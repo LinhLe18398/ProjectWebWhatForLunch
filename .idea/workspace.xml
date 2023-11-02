@@ -25,12 +25,13 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/home/homeAdmin.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/merchant/merchant-register-form.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/product/product-create-form.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/product/product-update-form.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/user/user-login-form.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/user/user-register-form.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +87,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -187,7 +189,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698807902317</updated>
-      <workItem from="1698807903405" duration="2892000" />
+      <workItem from="1698807903405" duration="7875000" />
     </task>
     <servers />
   </component>
