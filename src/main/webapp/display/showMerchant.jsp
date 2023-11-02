@@ -12,15 +12,13 @@
   <title>Show Merchant</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/697b47444a.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<%--<select id="statusFilter" onchange="filterTableByStatus()">--%>
-<%--    <option value="all">All</option>--%>
-<%--    <option value="action">Action</option>--%>
-<%--    <option value="wait">Wait</option>--%>
-<%--</select>--%>
 
-<form action="/admin?action=showMerchant" method="get">
+
+<form action="/admin?action=clickStatus" method="post">
   <table class="table">
     <tr>
       <th scope="col">IdUser</th>
@@ -30,9 +28,9 @@
       <th scope="col">RestaurantPhone</th>
       <th scope="col">RestaurantAddress</th>
       <th scope="col">Status</th>
-      <th scope="col">Buttons</th>
     </tr>
     <c:forEach items="${merchant}" var="merchantList">
+
       <tr>
         <td>${merchantList.idUser}</td>
         <td>${merchantList.idMerchant}</td>
@@ -40,56 +38,59 @@
         <td>${merchantList.email}</td>
         <td>${merchantList.numberPhone}</td>
         <td>${merchantList.address}</td>
-        <td>${merchantList.status}</td>
-        <td>
-          <form id="statusForm_${merchantList.idMerchant}" action="/admin" method="get">
-            <input type="hidden" name="action" value="clickStatus">
-            <input type="hidden" name="id" value="${merchantList.idMerchant}">
-            <button id="statusButton_${merchantList.idMerchant}" type="submit" class="btn btn-success">Change Status</button>
-          </form>
+        <td>${merchantList.status}
+          <div>
+            <button id="button1" type="submit" onclick="approveStatus(${merchantList.idUser})">&#10003;</button>
+            <button id="button2" type="submit" onclick="declineStatus(${merchantList.idUser})">&#10005;</button>
+          </div>
         </td>
-
-        <script>
-          function handleStatusButton(merchantId, status) {
-            let button = document.getElementById("statusButton_" + merchantId);
-
-            if (status === "wait") {
-              button.style.display = "block"; // Hiển thị nút button
-            } else {
-              button.style.display = "none"; // Ẩn nút button
-            }
-          }
-
-          // Gọi hàm handleStatusButton để xử lý từng merchant
-          handleStatusButton("${merchantList.idMerchant}", "${merchantList.status}");
-        </script>
       </tr>
     </c:forEach>
+    <input type="text" hidden="hidden" id="idUser" name="how" value="">
+    <input id="active" hidden="hidden" type="text" name="active" value="">
   </table>
 
-  <script>
-    function filterTableByStatus() {
-      let statusFilter = document.getElementById("statusFilter");
-      let selectedStatus = statusFilter.value;
-      let rows = document.querySelectorAll("#merchantTable tr");
-
-      for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua hàng tiêu đề
-        let statusCell = rows[i].querySelector("td:nth-child(7)");
-        let buttonCell = rows[i].querySelector("td:nth-child(8)");
-        let status = statusCell.textContent.trim();
-
-        if (selectedStatus === "all" || status === selectedStatus) {
-          rows[i].style.display = ""; // Hiển thị hàng
-          buttonCell.querySelector("button").disabled = false; // Kích hoạt nút button
-        } else {
-          rows[i].style.display = "none"; // Ẩn hàng
-          buttonCell.querySelector("button").disabled = true; // Vô hiệu hóa nút button
-        }
-      }
-    }
-  </script>
 
 </form>
+<script>
+  function approveStatus(idUser) {
+    document.getElementById("idUser").value = idUser;
+    document.getElementById("active").value = 1;
+  }
+
+  function declineStatus(idUser) {
+    document.getElementById("idUser").value = idUser;
+    document.getElementById("active").value = 0;
+  }
+
+  let idMerchant = document.getElementById("idMerchant").value;
+  if (idMerchant != null) {
+    document.getElementById("button-full").hidden = true;
+
+  } else {
+    document.getElementById("button-full").hidden = false;
+  }
+
+  function filterTableByStatus() {
+    let statusFilter = document.getElementById("statusFilter");
+    let selectedStatus = statusFilter.value;
+    let rows = document.querySelectorAll("#merchantTable tr");
+
+    for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua hàng tiêu đề
+      let statusCell = rows[i].querySelector("td:nth-child(7)");
+      let buttonCell = rows[i].querySelector("td:nth-child(8)");
+      let status = statusCell.textContent.trim();
+
+      if (selectedStatus === "all" || status === selectedStatus) {
+        rows[i].style.display = ""; // Hiển thị hàng
+        buttonCell.querySelector("button").disabled = false; // Kích hoạt nút button
+      } else {
+        rows[i].style.display = "none"; // Ẩn hàng
+        buttonCell.querySelector("button").disabled = true; // Vô hiệu hóa nút button
+      }
+    }
+  }
+</script>
 
 </body>
 </html>
