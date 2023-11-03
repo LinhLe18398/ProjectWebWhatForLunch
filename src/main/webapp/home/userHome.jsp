@@ -19,18 +19,7 @@
 
 </head>
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
-
-
-
-
-
-
-
-
-
-
-
+  /*@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");*/
 
 </style>
 <body>
@@ -63,21 +52,9 @@
 <%--</c:if>--%>
 <div class="header">
 
-
-
-
-<div class="footer" style="margin-top: 100px">
-  <!-- Footer -->
+  <div class="footer" style="margin-top: 100px">
   <footer class="text-center text-lg-start bg-white text-muted">
-    <!-- Section: Social media -->
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-      <!-- Left -->
-<%--      <div class="me-5 d-none d-lg-block">--%>
-<%--        <span>Get connected with us on social networks:</span>--%>
-<%--      </div>--%>
-      <!-- Left -->
-
-      <!-- Right -->
       <div>
         <a href="" class="me-4 link-secondary">
           <i class="fab fa-facebook-f"></i>
@@ -98,16 +75,11 @@
           <i class="fab fa-github"></i>
         </a>
       </div>
-      <!-- Right -->
     </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Links  -->
     <section class="">
       <div class="container text-center text-md-start mt-5">
         <!-- Grid row -->
         <div class="row mt-3">
-          <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
             <h6 class="text-uppercase fw-bold mb-4">
@@ -117,53 +89,24 @@
               Here you can order all delicious Vietnamese dishes.
             </p>
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               Products
             </h6>
-            <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
+            <p>Information</p>
+            <p>Help</p>
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
+              Member Project
             </h6>
-            <p>
-              <a href="#!" class="text-reset">Pricing</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
-            </p>
+           <p>Le Ngoc Linh</p>
+            <p>Vuong Van Tuan</p>
+            <p>Vo Cat Hai</p>
+            <p>Nguyen Hoang Minh</p>
+            <p>Le Pham Minh Hieu</p>
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
             <p><i class="fas fa-home me-3 text-secondary"></i> Hoài Đức, Hà Nội</p>
             <p>
@@ -173,20 +116,15 @@
             <p><i class="fas fa-phone me-3 text-secondary"></i> +84 888658023</p>
             <p><i class="fas fa-print me-3 text-secondary"></i> +84 388301773</p>
           </div>
-          <!-- Grid column -->
         </div>
-        <!-- Grid row -->
       </div>
     </section>
-    <!-- Section: Links  -->
-
-    <!-- Copyright -->
     <div class="text-center p-4" style="background-color: lightgray;">
       © 2023 WebWhatForLunch
     </div>
-    <!-- Copyright -->
+
   </footer>
-  <!-- Footer -->
+
 </div>
 </div>
 
