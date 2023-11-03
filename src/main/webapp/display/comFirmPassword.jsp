@@ -131,9 +131,7 @@
     </div>
     <input type="submit" value="Login"/>
   </form>
-  <a href="/users?action=home" class="back">
-    <button type="submit" class="btn btn-secondary btn-sm">&#8592; back</button>
-  </a>
+
 </div>
 </body>
 </html>

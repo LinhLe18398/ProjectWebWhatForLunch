@@ -24,7 +24,7 @@
         }
 
         .actions .btn-info {
-            float:left;
+            float:left
         }
 
         .actions .btn-danger {
@@ -108,7 +108,7 @@
         </tr>
         </tbody><tfoot>
     <tr>
-        <td><a href="" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Home</a>
+        <td><a href="/users?action=home" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Home</a>
         </td>
         <td colspan="2" class="hidden-xs"> </td>
         <td class="hidden-xs text-center"><strong>Sum: 500.000 VND</strong>
