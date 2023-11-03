@@ -26,19 +26,10 @@
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
 </head>
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
-    /*body{*/
-    /*  background-color:#eee;*/
-    /*  font-family: "Poppins", sans-serif;*/
-    /*  font-weight: 300;*/
-    /*}*/
-
-    /*.height{*/
-    /*  height: 100vh;*/
-    /*}*/
-
 
     .search {
         /*position: relative;*/
@@ -52,16 +43,6 @@
         border: 2px solid #d6d4d4;
         width: 390px;
     }
-
-
-    /*.search input:focus{*/
-
-    /*  box-shadow: none;*/
-    /*  border: 2px solid blue;*/
-
-
-    /*}*/
-
 
     .search button {
         width: 110px;
@@ -80,7 +61,7 @@
 
     .search {
         margin-top: 50px;
-        padding-bottom: 200px;
+        padding-bottom: 60px;
     }
 
     .header {
@@ -106,7 +87,7 @@
 </div>
 <div class="header">
     <c:if test="${sessionScope.isLogin==true}">
-        <div class="navbar" style="margin-left: 700px">
+        <div class="navbar" style="margin-left: 800px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
                  style="background-color: rgb(255,255,255,0) !important;">
                 <div class="container-fluid">
@@ -157,7 +138,7 @@
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                    My Account
+                                    ${user.name}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Edit
@@ -185,10 +166,10 @@
         </div>
     </c:if>
     <div class="text-content">
-        <h1 style="color: white">Discover The Best Food &</h1>
+        <h1 style="color: white;">Discover The Best Food &</h1>
         <h1 style="color: white">Drinks In Viet Nam 🇻🇳</h1>
     </div>
-
+    <%--search--%>
     <div class="search">
         <div class="container">
             <div class="row height d-flex justify-content-center align-items-center">
@@ -215,43 +196,145 @@
         </div>
     </div>
 
+    <div class="container carousel slide" style="display: flex; padding-bottom: 10px" id="myCarousel">
+        <div class="card" style="width: 15rem; margin-right: 35px">
+            <div style="width: auto ; height: 160px">
+                <img src="https://cdn.tgdd.vn/2021/01/CookRecipe/Avatar/GaNuongKieuAnh1200.jpg" class="card-img-top"
+                     alt="...">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">(tên món ăn)</h5>
+                <p class="card-text">(giá) VND</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 15rem;margin-right: 35px">
+            <div style="width: auto ; height: 160px">
+                <img src="https://file.hstatic.net/200000303304/article/steak_10_b1b1397477ea4c8ca1f215989632a614_1024x1024.jpg"
+                     class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">(tên món ăn)</h5>
+                <p class="card-text">(giá) VND</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 15rem;margin-right: 35px">
+            <div style="width: auto ; height: 160px">
+                <img src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
+                     class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">(tên món ăn)</h5>
+                <p class="card-text">(giá) VND</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 15rem;">
+            <div style="width: auto ; height: 160px">
+                <img src="https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250313281452.jpg"
+                     class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">(tên món ăn)</h5>
+                <p class="card-text">(giá) VND</p>
+            </div>
+        </div>
+
+    </div>
 
 </div>
 
+<%--content--%>
+<div class="container" style="padding: 50px; height: 80px">
 
-<div class="container" style="padding: 50px">
+    <%--8 món ăn được gợi ý--%>
+    <h2>món ăn được gợi ý</h2>
+    <div class="container carousel slide" style="display: flex; padding-bottom: 10px" id="myCarousel">
+        <div class="col-md-3 col-6" style="width:15%; border-radius: 20px 20px 20px 20px; padding: 10px">
+            <div style="width: auto; height: 150px">
+                <h6 style="background-color: #589d4a ; position: absolute; border-radius: 0 15px 15px 0; color: white;padding: 5px">
+                    gợi ý</h6>
+                <img class="card-img-top"
+                     src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
+                     alt="Card image cap"
+                     style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(155,154,154); max-width: 100% ;max-height: 100%">
+            </div>
+            <div class="card-body"
+                 style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px ">
+                <h5 class="card-title" style="max-width: 100% ;max-height: 100%">tên món ăn - (Name
+                    Merchant)</h5>
+                <p class="card-text">
+                    <li>(địa chỉ)</li>
+                    <li>(thời gian) phút</li>
+                    <li>(giá) VND</li>
+                    <li>(giảm giá) %</li>
+                </p>
+                <c:if test="${sessionScope.isLogin==true}">
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </c:if>
+            </div>
+        </div>
+    </div>
 
 
-
-
-
-
-
-    <div class="row mb-2">
-        <c:forEach items="${pro}" var="pro">
-            <div class="col-md-3 col-6 " style="width:10%; border-radius: 20px 20px 20px 20px; padding: 10px">
-                <div style="width: auto; height: 160px">
-                    <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+    <%--8 món ăn được giảm giá nhất --%>
+    <div style="padding-top: 30px;">
+        <h2>món ăn được giảm giá nhiều nhất</h2>
+        <div class="container carousel slide" style="display: flex; padding-bottom: 10px">
+            <div class="col-md-3 col-6" style="width:15%; border-radius: 20px 20px 20px 20px; padding: 10px">
+                <div style="width: auto; height: 150px">
+                    <h6 style="background-color: #589d4a; position: absolute; border-radius:0 15px 15px 0; color: white;padding: 5px">
+                        giảm giá 1%</h6>
+                    <img class="card-img-top"
+                         src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
+                         alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
                 </div>
                 <div class="card-body"
                      style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px ">
-                    <h5 class="card-title" style="max-width: 100% ;max-height: 100%">${pro.productName} - (Name
+                    <h5 class="card-title" style="max-width: 100% ;max-height: 100%">tên món ăn - (Name
                         Merchant)</h5>
                     <p class="card-text">
-                        <li>! ${pro.address}</li>
-                        <li>&#128337; ${pro.waitTime}</li>
-                        <li>$ ${pro.price}</li>
-                        <li>% ${pro.sale}</li>
+                        <li>(địa chỉ)</li>
+                        <li>(thời gian) phút</li>
+                        <li>(giá) VND</li>
+                        <li>(giảm giá) %</li>
                     </p>
                     <c:if test="${sessionScope.isLogin==true}">
                         <a href="#" class="btn btn-primary">Add to Cart</a>
                     </c:if>
                 </div>
             </div>
-        </c:forEach>
-    </div>
+        </div>
 
+        <%--Menu main--%>
+        <div class="row mb-2" style="padding-top: 50px">
+            <h2>Có thể bạn cần tìm</h2>
+            <c:forEach items="${pro}" var="pro">
+                <div class="col-md-3 col-6 " style="width:10%; border-radius: 20px 20px 20px 20px; padding: 10px">
+                    <div style="width: auto; height: 150px">
+                        <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                    </div>
+                    <div class="card-body"
+                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 100% ;max-height: 100% ">
+                        <h5 class="card-title" style="max-width: 100% ;max-height: 100%">${pro.productName} - (Name
+                            Merchant)</h5>
+                        <p class="card-text">
+                            <li>${pro.address}</li>
+                            <li>${pro.waitTime} phút</li>
+                            <li>${pro.price} VND</li>
+                            <li>${pro.sale} %</li>
+                        </p>
+                        <c:if test="${sessionScope.isLogin==true}">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </c:if>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
 </div>
 
 
@@ -261,6 +344,8 @@
 </body>
 </html>
 <script>
+
+
     let idUser = document.getElementById("idUser").value;
     if (idUser != 0) {
         document.getElementById("button-full").hidden = true;
