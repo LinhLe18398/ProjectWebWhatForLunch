@@ -21,7 +21,6 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
@@ -68,24 +67,21 @@
         background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-food-overlooking-the-background-banner-image_138613.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        background-color: rgb(255, 255, 255, 0.5) !important;;
+        background-color: rgb(255, 255, 255, 0.5) !important;
     }
-
-
-    /*css content*/
 
 </style>
 <body>
-<input type="text" value="${user.id}" id="idUser" hidden="hidden">
-<div class="div-login-signup" id="button-full" style="float: right">
-    <a href="/users?action=login">
-        <button type="submit" class="btn btn-primary btn-sm">Login</button>
-    </a>
-    <a href="/users?action=create">
-        <button type="submit" class="btn btn-secondary btn-sm">Signup</button>
-    </a>
-</div>
 <div class="header">
+    <input type="text" value="${user.id}" id="idUser" hidden="hidden">
+    <div class="div-login-signup" id="button-full" style="float: right">
+        <a href="/users?action=login">
+            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+        </a>
+        <a href="/users?action=create">
+            <button type="submit" class="btn btn-secondary btn-sm">Signup</button>
+        </a>
+    </div>
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 800px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -138,7 +134,7 @@
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                    ${user.name}
+                                        ${user.name}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Edit
@@ -193,61 +189,60 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="container carousel slide" style="display: flex; padding-bottom: 10px">
+                <div class="card" style="width: 15rem; margin-right: 35px">
+                    <div style="width: auto ; height: 160px">
+                        <img src="https://cdn.tgdd.vn/2021/01/CookRecipe/Avatar/GaNuongKieuAnh1200.jpg"
+                             class="card-img-top"
+                             alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">(tên món ăn)</h5>
+                        <p class="card-text">(giá) VND</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 15rem;margin-right: 35px">
+                    <div style="width: auto ; height: 160px">
+                        <img src="https://file.hstatic.net/200000303304/article/steak_10_b1b1397477ea4c8ca1f215989632a614_1024x1024.jpg"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">(tên món ăn)</h5>
+                        <p class="card-text">(giá) VND</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 15rem;margin-right: 35px">
+                    <div style="width: auto ; height: 160px">
+                        <img src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">(tên món ăn)</h5>
+                        <p class="card-text">(giá) VND</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 15rem;">
+                    <div style="width: auto ; height: 160px">
+                        <img src="https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250313281452.jpg"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">(tên món ăn)</h5>
+                        <p class="card-text">(giá) VND</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-
-    <div class="container carousel slide" style="display: flex; padding-bottom: 10px" id="myCarousel">
-        <div class="card" style="width: 15rem; margin-right: 35px">
-            <div style="width: auto ; height: 160px">
-                <img src="https://cdn.tgdd.vn/2021/01/CookRecipe/Avatar/GaNuongKieuAnh1200.jpg" class="card-img-top"
-                     alt="...">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">(tên món ăn)</h5>
-                <p class="card-text">(giá) VND</p>
-            </div>
-        </div>
-
-        <div class="card" style="width: 15rem;margin-right: 35px">
-            <div style="width: auto ; height: 160px">
-                <img src="https://file.hstatic.net/200000303304/article/steak_10_b1b1397477ea4c8ca1f215989632a614_1024x1024.jpg"
-                     class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">(tên món ăn)</h5>
-                <p class="card-text">(giá) VND</p>
-            </div>
-        </div>
-
-        <div class="card" style="width: 15rem;margin-right: 35px">
-            <div style="width: auto ; height: 160px">
-                <img src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
-                     class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">(tên món ăn)</h5>
-                <p class="card-text">(giá) VND</p>
-            </div>
-        </div>
-
-        <div class="card" style="width: 15rem;">
-            <div style="width: auto ; height: 160px">
-                <img src="https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250313281452.jpg"
-                     class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">(tên món ăn)</h5>
-                <p class="card-text">(giá) VND</p>
-            </div>
-        </div>
-
-    </div>
-
 </div>
-
 <%--content--%>
 <div class="container" style="padding: 50px; height: 80px">
-
     <%--8 món ăn được gợi ý--%>
     <h2>món ăn được gợi ý</h2>
     <div class="container carousel slide" style="display: flex; padding-bottom: 10px" id="myCarousel">
@@ -307,49 +302,89 @@
                 </div>
             </div>
         </div>
-
-        <%--Menu main--%>
-        <div class="row mb-2" style="padding-top: 50px">
-            <h2>Có thể bạn cần tìm</h2>
-            <c:forEach items="${pro}" var="pro">
-                <div class="col-md-3 col-6 " style="width:10%; border-radius: 20px 20px 20px 20px; padding: 10px">
-                    <div style="width: auto; height: 150px">
-                        <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
-                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
-                    </div>
-                    <div class="card-body"
-                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 100% ;max-height: 100% ">
-                        <h5 class="card-title" style="max-width: 100% ;max-height: 100%">${pro.productName} - (Name
-                            Merchant)</h5>
-                        <p class="card-text">
-                            <li>${pro.address}</li>
-                            <li>${pro.waitTime} phút</li>
-                            <li>${pro.price} VND</li>
-                            <li>${pro.sale} %</li>
+    </div>
+    <%--Menu main--%>
+    <div class="row mb-2" style="padding-top: 50px">
+        <h2 style="padding-bottom: 20px">Có thể bạn cần tìm</h2>
+        <c:forEach items="${pro}" var="pro">
+            <div class="col-md-3 col-6 "
+                 style="width:10%; border-radius: 20px 20px 20px 20px; padding: 10px">
+                <div style="width: auto; height: 150px">
+                    <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                </div>
+                <div class="card-body"
+                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 100% ;max-height: 100% ">
+                    <h5 class="card-title" style="max-width: 100% ;max-height: 100%">${pro.productName} -
+                        (Name
+                        Merchant)</h5>
+                    <p class="card-text">
+                        <li>${pro.address}</li>
+                        <li>${pro.waitTime} phút</li>
+                        <li>${pro.price} VND</li>
+                        <li>${pro.sale} %</li>
+                    </p>
+                    <c:if test="${sessionScope.isLogin==true}">
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </c:if>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        </section>
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Company name
+                        </h6>
+                        <p>
+                            Here you can order all delicious Vietnamese dishes.
                         </p>
-                        <c:if test="${sessionScope.isLogin==true}">
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </c:if>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Products
+                        </h6>
+                        <p>Information</p>
+                        <p>Help</p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Member Project
+                        </h6>
+                        <p>Ngoc Linh</p>
+                        <p>Van Tuan</p>
+                        <p>Cat Hai</p>
+                        <p>Gia Minh</p>
+                        <p>Minh Hieu</p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p>Hoai Duc - Ha Noi</p>
+                        <p>
+                            WebWhatForLunch@gmail.com
+                        </p>
+                        <p> +84 88658023</p>
+                        <p> +84 8301773</p>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
+        </section>
+        <div class="text-center p-4" style="background-color: lightgray;">
+            © 2023 WebWhatForLunch
         </div>
-    </div>
-</div>
-
-
-<div class="footer">
-
-</div>
+    </footer>
 </body>
 </html>
 <script>
-
-
     let idUser = document.getElementById("idUser").value;
     if (idUser != 0) {
         document.getElementById("button-full").hidden = true;
-
     } else {
         document.getElementById("button-full").hidden = false;
     }
