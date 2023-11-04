@@ -69,10 +69,25 @@ public class UserServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "cart":
+                showCart(req,resp);
+                break;
             case "logout":
                 logOutUser(req, resp);
                 break;
+            case "searchProductByName":
+                searchProductByName(req, resp);
+                break;
         }
+    }
+
+    private void searchProductByName(HttpServletRequest req, HttpServletResponse resp) {
+
+    }
+
+    private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/cart.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private void showComFirmPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -245,6 +260,9 @@ public class UserServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             session.setAttribute("isLogin", true);
+            List<Product> productList = userDAO.get_All_Product();
+            req.setAttribute("pro", productList);
+            session.getAttribute("user");
             dispatcher = req.getRequestDispatcher("home/userHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
