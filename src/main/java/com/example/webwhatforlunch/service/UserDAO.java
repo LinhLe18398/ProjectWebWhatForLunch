@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserDAO implements UserInterface{
     private final String username = "root";
-    private final String password = "password";
+    private final String password = "1111";
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -152,17 +152,13 @@ public class UserDAO implements UserInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
-            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
             double price = resultSet.getDouble("price");
-            String note = resultSet.getString("note");
             double sale = resultSet.getDouble("sale");
-            double serviceFee = resultSet.getDouble("serviceFee");
-            int view = resultSet.getInt("view");
-            int orders = resultSet.getInt("orders");
-            productList.add(new Product(idProduct, idMerchant, productName, productImg, waitTime, price, note, sale, serviceFee, view, orders));
+            String address = resultSet.getString("restaurantAddress");
+            productList.add(new Product(idProduct, productName, productImg, waitTime, price, sale,address));
         }
         return productList;
     }

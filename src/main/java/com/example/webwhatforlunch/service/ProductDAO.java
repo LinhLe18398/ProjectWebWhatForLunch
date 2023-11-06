@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductDAO implements ProductInterface{
     private String username = "root";
-    private String password = "password";
+    private String password = "1111";
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
@@ -162,10 +162,9 @@ public class ProductDAO implements ProductInterface{
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
             double price = resultSet.getDouble("price");
-            String note = resultSet.getString("note");
             double sale = resultSet.getDouble("sale");
-            double serviceFee = resultSet.getDouble("serviceFee");
-            products.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee));
+            String address = resultSet.getString("address");
+            products.add(new Product(idProduct, productName, productImg, waitTime,price,sale,address));
         }
         return products;
     }
@@ -183,10 +182,9 @@ public class ProductDAO implements ProductInterface{
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
             double price = resultSet.getDouble("price");
-            String note = resultSet.getString("note");
             double sale = resultSet.getDouble("sale");
-            double serviceFee = resultSet.getDouble("serviceFee");
-            products.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee));
+            String address = resultSet.getString("restaurantAddress");
+            products.add(new Product(idProduct, productName, productImg, waitTime, price, sale,address));
         }
         return products;
     }
