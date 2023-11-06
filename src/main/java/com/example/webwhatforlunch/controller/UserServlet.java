@@ -37,13 +37,7 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "home":
-                try {
                     showHomeForm(req, resp);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
                 break;
             case "login":
                 showLoginForm(req, resp);
@@ -61,18 +55,48 @@ public class UserServlet extends HttpServlet {
                 showComFirmPassword(req, resp);
                 break;
             case "edit":
-                try {
                     showEditForm(req, resp);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+                break;
+            case "cart":
+                showCart(req,resp);
                 break;
             case "logout":
                 logOutUser(req, resp);
                 break;
+            case "search":
+                search(req, resp);
+                break;
         }
+    }
+
+    private void search(HttpServletRequest req, HttpServletResponse resp){
+        String nameSearch = req.getParameter("name_search");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
+        List<Product> productList = null;
+        try {
+            if (nameSearch != null) {
+                productList = productDAO.searchProductByName(nameSearch);
+            } else {
+                String quickSearch = req.getParameter("quick_search");
+                productList = productDAO.searchProductByTag(quickSearch);
+                req.setAttribute("tagSearch", quickSearch);
+            }
+            req.setAttribute("pro", productList);
+            requestDispatcher.forward(req,resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/cart.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private void showComFirmPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -95,13 +119,23 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void showHomeForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
-        List<Product> productList = userDAO.get_All_Product();
-        req.setAttribute("pro", productList);
-        HttpSession session = req.getSession();
-        session.getAttribute("user");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
-        dispatcher.forward(req, resp);
+    private void showHomeForm(HttpServletRequest req, HttpServletResponse resp){
+        try {
+            List<Product> productList = userDAO.get_All_Product();
+            req.setAttribute("pro", productList);
+            HttpSession session = req.getSession();
+            session.getAttribute("user");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
+            dispatcher.forward(req, resp);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void showCreateForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -117,7 +151,13 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createUser(req, resp);
+                try {
+                    createUser(req, resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "login":
                 try {
@@ -206,8 +246,7 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void createUser(HttpServletRequest req, HttpServletResponse resp) {
-        try {
+    private void createUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
             User user;
             String name = req.getParameter("name");
             String email = req.getParameter("email");
@@ -223,18 +262,10 @@ public class UserServlet extends HttpServlet {
             }
             dispatcher.forward(req, resp);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
-    private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
+    private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
         User user;
         String username = req.getParameter("email");
         String password = req.getParameter("password");
@@ -245,6 +276,9 @@ public class UserServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             session.setAttribute("isLogin", true);
+            List<Product> productList = userDAO.get_All_Product();
+            req.setAttribute("pro", productList);
+            session.getAttribute("user");
             dispatcher = req.getRequestDispatcher("home/userHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
@@ -253,14 +287,24 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(req,resp);
     }
 
-    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp){
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         int id = user.getId();
-        User user1 = userDAO.findUserById(id);
-        req.setAttribute("user", user1);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("display/user-edit.jsp");
-        dispatcher.forward(req, resp);
+        try {
+            User user1 = userDAO.findUserById(id);
+            req.setAttribute("user", user1);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("display/user-edit.jsp");
+            dispatcher.forward(req, resp);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void editUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
