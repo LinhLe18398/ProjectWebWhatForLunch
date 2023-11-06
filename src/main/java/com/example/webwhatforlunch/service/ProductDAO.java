@@ -129,7 +129,7 @@ public class ProductDAO implements ProductInterface{
     public List<Product> searchProductByName(String idMerchant, String keyword) throws SQLException, ClassNotFoundException {
         List<Product> productList = new ArrayList<>();
         Connection connection = getConnection();
-        CallableStatement callableStatement = connection.prepareCall("{call SEARCH_MERCHANT_PRODUCT(?,?)}");
+        CallableStatement callableStatement = connection.prepareCall(GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT);
         callableStatement.setString(1, idMerchant);
         callableStatement.setString(2, keyword);
         ResultSet resultSet = callableStatement.executeQuery();
@@ -151,7 +151,7 @@ public class ProductDAO implements ProductInterface{
     }
 
     public List<Product> searchProductByName(String name) throws SQLException, ClassNotFoundException {
-        List<Product> products = new ArrayList<Product>();
+        List<Product> products = new ArrayList<>();
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(SEARCH_BY_NAME);
         callableStatement.setString(1, name);

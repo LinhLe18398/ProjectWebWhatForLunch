@@ -67,6 +67,25 @@
         background-size: cover;
         background-color: rgb(255, 255, 255, 0.5) !important;
     }
+
+    .listPage {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+    .listPage li {
+        background-color: #ffffffBD;
+        padding: 20px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .listPage .active {
+        background-color: #B192EF;
+        color: #fff;
+    }
 </style>
 <body>
 <div class="header">
@@ -316,10 +335,10 @@
         </div>
     </div>
     <%--Menu main--%>
-    <div class="row mb-2" style="padding-top: 50px">
+    <div class="row mb-2 list" style="padding-top: 50px">
         <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
         <c:forEach items="${pro}" var="pro">
-            <div class="col-md-3 col-6 "
+            <div class="col-md-3 col-6  item"
                  style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
                 <div style="width: auto; height: 145px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
@@ -348,6 +367,7 @@
             </div>
         </c:forEach>
     </div>
+    <ul class="listPage"></ul>
 </div>
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -416,5 +436,58 @@
         document.getElementById("button-full").hidden = true;
     } else {
         document.getElementById("button-full").hidden = false;
+    }
+
+    let thisPage = 1;
+    let limit = 12;
+    let list = document.querySelectorAll('.list .item');
+
+    function loadItem() {
+        let beginGet = limit * (thisPage - 1);
+        let endGet = limit * thisPage - 1;
+        list.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        })
+        listPage();
+    }
+
+    loadItem();
+
+    function listPage() {
+        let count = Math.ceil(list.length / limit);
+        document.querySelector('.listPage').innerHTML = '';
+
+        if (thisPage != 1) {
+            let prev = document.createElement('li');
+            prev.innerText = 'BACK';
+            prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
+            document.querySelector('.listPage').appendChild(prev);
+        }
+
+        for (i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage) {
+                newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage(" + i + ")");
+            document.querySelector('.listPage').appendChild(newPage);
+        }
+
+        if (thisPage != count) {
+            let next = document.createElement('li');
+            next.innerText = 'NEXT';
+            next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
+            document.querySelector('.listPage').appendChild(next);
+        }
+    }
+
+    function changePage(i) {
+        thisPage = i;
+        loadItem();
     }
 </script>

@@ -10,25 +10,26 @@
 <head>
     <title>&#128722; Cart</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <style>
     @media screen and (max-width: 600px) {
         table#cart tbody td .form-control {
-            width:20%;
+            width: 20%;
             display: inline !important;
         }
 
         .actions .btn {
-            width:36%;
-            margin:1.5em 0;
+            width: 36%;
+            margin: 1.5em 0;
         }
 
         .actions .btn-info {
-            float:left
+            float: left
         }
 
         .actions .btn-danger {
-            float:right;
+            float: right;
         }
 
         table#cart thead {
@@ -38,7 +39,7 @@
         table#cart tbody td {
             display: block;
             padding: .6rem;
-            min-width:320px;
+            min-width: 320px;
         }
 
         table#cart tbody tr td:first-child {
@@ -54,12 +55,23 @@
         }
 
         table#cart tfoot td {
-            display:block;
+            display: block;
         }
+
         table#cart tfoot td .btn {
-            display:block;
+            display: block;
         }
-    }</style>
+    }
+
+    .quantity {
+        padding-top: 10px;
+        padding-right: 5px;
+    }
+    .form-control{
+        width: 30px;
+        padding: 5px;
+    }
+</style>
 </style>
 <nav>
     <div class="container">
@@ -85,7 +97,8 @@
             <td data-th="Product">
                 <div class="row">
                     <div class="col-sm-2 hidden-xs">
-                        <img src="https://bizweb.dktcdn.net/100/363/151/files/istockphoto-701108028-612x612-5a41f83a-8b26-4486-a702-459d761d8cb7.jpg?v=1568781548068" alt="Sản phẩm 1"  width="100">
+                        <img src="https://bizweb.dktcdn.net/100/363/151/files/istockphoto-701108028-612x612-5a41f83a-8b26-4486-a702-459d761d8cb7.jpg?v=1568781548068"
+                             alt="Sản phẩm 1" width="100">
                     </div>
                     <div class="col-sm-10">
                         <h4 class="nomargin" style="padding-left: 5px">Beef Steak</h4>
@@ -94,29 +107,28 @@
                 </div>
             </td>
             <td data-th="Price">1000 VND</td>
-            <td data-th="Quantity">
-                <input class="form-control text-center" value="1" type="number">
+            <td data-th="Quantity" style="display: flex">
+                <a class="quantity"><i class="fa-solid fa-plus"></i></a>
+                <a class="quantity"><i class="fa-solid fa-minus"></i></a>
+                <input class="form-control" value="1" type="text">
             </td>
             <td data-th="Subtotal" class="text-center">200.000 VND</td>
             <td class="actions" data-th="">
-                <button class="btn btn-info btn-sm"> edit
-                </button>
-                <button class="btn btn-danger btn-sm">delete
-                </button>
-                <input type="checkbox">
+                <input type="checkbox" name="">
             </td>
         </tr>
-        </tbody><tfoot>
-    <tr>
-        <td><a href="/users?action=home" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Home</a>
-        </td>
-        <td colspan="2" class="hidden-xs"> </td>
-        <td class="hidden-xs text-center"><strong>Sum: 500.000 VND</strong>
-        </td>
-        <td><a href="" class="btn btn-success btn-block">Buy<i class="fa fa-angle-right"></i></a>
-        </td>
-    </tr>
-    </tfoot>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td><a href="/users?action=home" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Home</a>
+            </td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Sum: 500.000 VND</strong>
+            </td>
+            <td><a href="" class="btn btn-success btn-block">Buy</a>
+            </td>
+        </tr>
+        </tfoot>
     </table>
 </div>
 </body>
