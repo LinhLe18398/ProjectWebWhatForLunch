@@ -14,6 +14,7 @@ public class Product {
     int view;
     int orders;
     String address;
+    String restaurantName;
 
 
     public Product(String idProduct, String idMerchant, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee, int view, int orders) {
@@ -31,9 +32,10 @@ public class Product {
     }
 
     // this method for user interface
-    public Product(String idProduct, String productName, String productImg, int waitTime, double price, double sale, String address) {
+    public Product(String idProduct, String productName,String restaurantName, String productImg, int waitTime, double price, double sale, String address) {
         this.idProduct = idProduct;
         this.productName = productName;
+        this.restaurantName = restaurantName;
         this.productImg = productImg;
         this.waitTime = waitTime;
         this.price = price;
@@ -161,5 +163,13 @@ public class Product {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 }

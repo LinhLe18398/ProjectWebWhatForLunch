@@ -348,9 +348,7 @@
                      style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;max-height: 100%; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
                         <h5 class="card-title"
-                            style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} -
-                            (Name
-                            Merchant)
+                            style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
                         </h5>
                         <p class="card-text">
                             <li>${pro.address}</li>
