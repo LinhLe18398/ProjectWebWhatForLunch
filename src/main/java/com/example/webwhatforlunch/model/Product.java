@@ -14,6 +14,7 @@ public class Product {
     int view;
     int orders;
     String address;
+    String restaurantName;
 
 
     public Product(String idProduct, String idMerchant, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee, int view, int orders) {
@@ -29,15 +30,31 @@ public class Product {
         this.view = view;
         this.orders = orders;
     }
-    public Product( String name, String img, String note, double price, double promotionalPrice, double serviceCharge) {
-        this.productName = name;
-        this.productImg = img;
-        this.note = note;
+
+    // this method for user interface
+    public Product(String idProduct, String productName,String restaurantName, String productImg, int waitTime, double price, double sale, String address) {
+        this.idProduct = idProduct;
+        this.productName = productName;
+        this.restaurantName = restaurantName;
+        this.productImg = productImg;
+        this.waitTime = waitTime;
         this.price = price;
-        this.sale = promotionalPrice;
-        this.serviceFee = serviceCharge;
+        this.sale = sale;
+        this.address = address;
     }
 
+    // this method for merchant update product
+    public Product (String idProduct, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee){
+        this.idProduct = idProduct;
+        this.productName = productName;
+        this.productImg = productImg;
+        this.waitTime = waitTime;
+        this.price = price;
+        this.note = note;
+        this.sale = sale;
+        this.serviceFee = serviceFee;
+    }
+    // this method get data for merchant view
     public Product(String idProduct, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee, int view, int orders) {
         this.idProduct = idProduct;
         this.productName = productName;
@@ -51,27 +68,6 @@ public class Product {
         this.orders = orders;
     }
 
-
-    public Product(String idMerchant, String name,int waiTime, String img, double price, String note, double sale, double service) {
-        this.idMerchant = idMerchant;
-        this.productName = name;
-        this.productImg = img;
-        this.waitTime = waiTime;
-        this.price = price;
-        this.note = note;
-        this.sale = sale;
-        this.serviceFee = service;
-    }
-    public Product (String idProduct, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee){
-        this.idProduct = idProduct;
-        this.productName = productName;
-        this.productImg = productImg;
-        this.waitTime = waitTime;
-        this.price = price;
-        this.note = note;
-        this.sale = sale;
-        this.serviceFee = serviceFee;
-    }
 
     public String getIdProduct() {
         return idProduct;
@@ -167,5 +163,13 @@ public class Product {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 }

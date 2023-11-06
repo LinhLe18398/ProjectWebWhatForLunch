@@ -210,7 +210,7 @@ public class UserServlet extends HttpServlet {
 
         if (merchant1 != null) {
             HttpSession session = req.getSession();
-            session.setAttribute("merchant", merchant1);
+            session.setAttribute("merchant1", merchant1);
             req.setAttribute("merchant", user);
             req.setAttribute("productList", productList);
             dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");

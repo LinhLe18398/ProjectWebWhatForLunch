@@ -67,6 +67,25 @@
         background-size: cover;
         background-color: rgb(255, 255, 255, 0.5) !important;
     }
+
+    .listPage {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+    .listPage li {
+        background-color: #ffffffBD;
+        padding: 20px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .listPage .active {
+        background-color: #B192EF;
+        color: #fff;
+    }
 </style>
 <body>
 <div class="header">
@@ -160,7 +179,7 @@
     </c:if>
     <div class="text-content">
         <h1 style="color: white;">Discover The Best Food &</h1>
-        <h1 style="color: white">Drinks In Viet Nam 🇻🇳</h1>
+        <h1 style="color: white">Drinks In Viet Nam</h1>
     </div>
     <%--search--%>
     <div class="search">
@@ -169,9 +188,10 @@
                 <div class="col-md-8">
                     <div class="search" style="display: flex ; padding-left: 40px">
                         <div style="margin: 5px">
-                            <form id="quick-search" method="get" >
+                            <form id="quick-search" method="get">
                                 <input type="hidden" name="action" value="search">
-                                <select class="form-select" name="quick_search" aria-label="Default select example" style="height: 60px" onchange="quickSearch()">
+                                <select class="form-select" name="quick_search" aria-label="Default select example"
+                                        style="height: 60px" onchange="quickSearch()">
                                     <option selected>
                                         <c:choose>
                                             <c:when test="${empty tagSearch}">Quick Search</c:when>
@@ -185,16 +205,19 @@
                                 </select>
                             </form>
                         </div>
-                            <div style="margin: 5px; display: inline-block">
-                                <input type="text" id="search-input" class="form-control" placeholder="Enter your delivery location">
-                            </div>
-                            <div style="margin: 5px; display: inline-block">
-                                <form id="search-name" method="get" >
-                                    <input type="hidden" name="action" value="search">
-                                    <input type="hidden" id="hidden-name-search" name="name_search" value="">
-                                    <button type="submit" style="height: 60px" class="btn btn-danger" onclick="searchByName()">Search</button>
-                                </form>
-                            </div>
+                        <div style="margin: 5px; display: inline-block">
+                            <input type="text" id="search-input" class="form-control"
+                                   placeholder="Enter your delivery location">
+                        </div>
+                        <div style="margin: 5px; display: inline-block">
+                            <form id="search-name" method="get">
+                                <input type="hidden" name="action" value="search">
+                                <input type="hidden" id="hidden-name-search" name="name_search" value="">
+                                <button type="submit" style="height: 60px" class="btn btn-danger"
+                                        onclick="searchByName()">Search
+                                </button>
+                            </form>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -252,9 +275,9 @@
     </div>
 </div>
 <%--content--%>
-<div class="container" style="padding: 50px; height: 80px">
+<div class="container">
     <%--8 món ăn được gợi ý--%>
-    <h2>món ăn được gợi ý</h2>
+    <h2 style="padding-top: 40px">Gợi Ý Món Ăn</h2>
     <div class="container carousel slide" style="display: flex; padding-bottom: 10px" id="myCarousel">
         <div class="col-md-3 col-6" style="width:15%; border-radius: 20px 20px 20px 20px; padding: 10px">
             <div style="width: auto; height: 150px">
@@ -273,7 +296,6 @@
                     <li>(địa chỉ)</li>
                     <li>(thời gian) phút</li>
                     <li>(giá) VND</li>
-                    <li>(giảm giá) %</li>
                 </p>
                 <c:if test="${sessionScope.isLogin==true}">
                     <a href="#" class="btn btn-primary">Add to Cart</a>
@@ -285,11 +307,11 @@
 
     <%--8 món ăn được giảm giá nhất --%>
     <div style="padding-top: 30px;">
-        <h2>món ăn được giảm giá nhiều nhất</h2>
+        <h2>Món Ăn Giảm Giá</h2>
         <div class="container carousel slide" style="display: flex; padding-bottom: 10px">
             <div class="col-md-3 col-6" style="width:15%; border-radius: 20px 20px 20px 20px; padding: 10px">
                 <div style="width: auto; height: 150px">
-                    <h6 style="background-color: #589d4a; position: absolute; border-radius:0 15px 15px 0; color: white;padding: 5px">
+                    <h6 style="background-color: #e82323; position: absolute; border-radius:0 15px 15px 0; color: white;padding: 5px">
                         giảm giá 1%</h6>
                     <img class="card-img-top"
                          src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
@@ -304,7 +326,6 @@
                         <li>(địa chỉ)</li>
                         <li>(thời gian) phút</li>
                         <li>(giá) VND</li>
-                        <li>(giảm giá) %</li>
                     </p>
                     <c:if test="${sessionScope.isLogin==true}">
                         <a href="#" class="btn btn-primary">Add to Cart</a>
@@ -314,81 +335,86 @@
         </div>
     </div>
     <%--Menu main--%>
-    <div class="row mb-2" style="padding-top: 50px">
-        <h2 style="padding-bottom: 20px">Có thể bạn cần tìm</h2>
+    <div class="row mb-2 list" style="padding-top: 50px">
+        <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
         <c:forEach items="${pro}" var="pro">
-            <div class="col-md-3 col-6 "
-                 style="width:10%; border-radius: 20px 20px 20px 20px; padding: 10px">
-                <div style="width: auto; height: 150px">
+            <div class="col-md-3 col-6  item"
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                <div style="width: auto; height: 145px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
                 </div>
                 <div class="card-body"
-                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 100% ;max-height: 100% ">
-                    <h5 class="card-title" style="max-width: 100% ;max-height: 100%">${pro.productName} -
-                        (Name
-                        Merchant)</h5>
-                    <p class="card-text">
-                        <li>${pro.address}</li>
-                        <li>${pro.waitTime} phút</li>
-                        <li>${pro.price} VND</li>
-                        <li>${pro.sale} %</li>
-                    </p>
-                    <c:if test="${sessionScope.isLogin==true}">
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                    </c:if>
+                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;max-height: 100%; padding: 10px ">
+                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                        <h5 class="card-title"
+                            style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
+                        </h5>
+                        <p class="card-text">
+                            <li>${pro.address}</li>
+                            <li>${pro.waitTime} phút</li>
+                            <li>${pro.price} VND</li>
+                        </p>
+                        <p style="margin: 0">
+                            <c:if test="${sessionScope.isLogin==true}">
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                            </c:if>
+                        </p>
+                    </div>
                 </div>
             </div>
         </c:forEach>
     </div>
-    <!-- Footer -->
-    <footer class="text-center text-lg-start bg-light text-muted">
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        </section>
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-                <div class="row mt-3">
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>Company name
-                        </h6>
-                        <p>
-                            Here you can order all delicious Vietnamese dishes.
-                        </p>
-                    </div>
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Products
-                        </h6>
-                        <p>Information</p>
-                        <p>Help</p>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Member Project
-                        </h6>
-                        <p>Ngoc Linh</p>
-                        <p>Van Tuan</p>
-                        <p>Cat Hai</p>
-                        <p>Gia Minh</p>
-                        <p>Minh Hieu</p>
-                    </div>
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p>Hoai Duc - Ha Noi</p>
-                        <p>
-                            WebWhatForLunch@gmail.com
-                        </p>
-                        <p> +84 88658023</p>
-                        <p> +84 8301773</p>
-                    </div>
+    <ul class="listPage"></ul>
+</div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    </section>
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>Company name
+                    </h6>
+                    <p>
+                        Here you can order all delicious Vietnamese dishes.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Products
+                    </h6>
+                    <p>Information</p>
+                    <p>Help</p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Member Project
+                    </h6>
+                    <p>Ngoc Linh</p>
+                    <p>Van Tuan</p>
+                    <p>Cat Hai</p>
+                    <p>Gia Minh</p>
+                    <p>Minh Hieu</p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p>Hoai Duc - Ha Noi</p>
+                    <p>
+                        WebWhatForLunch@gmail.com
+                    </p>
+                    <p> +84 88658023</p>
+                    <p> +84 38301773</p>
                 </div>
             </div>
-        </section>
-        <div class="text-center p-4" style="background-color: lightgray;">
-            © 2023 WebWhatForLunch
         </div>
-    </footer>
+    </section>
+    <div class="text-center p-4" style="background-color: lightgray;">
+        © 2023 WebWhatForLunch
+    </div>
+</footer>
 </body>
 </html>
 <script>
@@ -408,5 +434,58 @@
         document.getElementById("button-full").hidden = true;
     } else {
         document.getElementById("button-full").hidden = false;
+    }
+
+    let thisPage = 1;
+    let limit = 12;
+    let list = document.querySelectorAll('.list .item');
+
+    function loadItem() {
+        let beginGet = limit * (thisPage - 1);
+        let endGet = limit * thisPage - 1;
+        list.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        })
+        listPage();
+    }
+
+    loadItem();
+
+    function listPage() {
+        let count = Math.ceil(list.length / limit);
+        document.querySelector('.listPage').innerHTML = '';
+
+        if (thisPage != 1) {
+            let prev = document.createElement('li');
+            prev.innerText = 'BACK';
+            prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
+            document.querySelector('.listPage').appendChild(prev);
+        }
+
+        for (i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage) {
+                newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage(" + i + ")");
+            document.querySelector('.listPage').appendChild(newPage);
+        }
+
+        if (thisPage != count) {
+            let next = document.createElement('li');
+            next.innerText = 'NEXT';
+            next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
+            document.querySelector('.listPage').appendChild(next);
+        }
+    }
+
+    function changePage(i) {
+        thisPage = i;
+        loadItem();
     }
 </script>

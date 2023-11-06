@@ -134,6 +134,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void createProduct(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
+        req.setCharacterEncoding("UTF-8");
         HttpSession httpSession = req.getSession();
         Merchant merchant = (Merchant) httpSession.getAttribute("merchant");
         String idMerchant = merchant.getIdMerchant();
@@ -148,7 +149,7 @@ public class ProductServlet extends HttpServlet {
         double sale = Double.parseDouble(req.getParameter("product_promotionalPrice"));
         double service = Double.parseDouble(req.getParameter("product_serviceCharge"));
 
-        Product product = new Product(idMerchant, name,waiTime, img , price, note, sale, service);
+        Product product = new Product(idMerchant,name,img,waiTime,price,note,sale,service);
         productDAO.createProduct(product);
         RequestDispatcher dispatcher = req.getRequestDispatcher("product/product-create-form.jsp");
         dispatcher.forward(req, resp);
