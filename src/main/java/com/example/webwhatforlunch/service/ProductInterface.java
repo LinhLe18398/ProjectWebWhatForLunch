@@ -13,4 +13,7 @@ public interface ProductInterface {
     Product getProductById(String idProduct) throws SQLException, ClassNotFoundException;
     List<Product> getAllProductByIdMerchant(String idMerchant) throws SQLException, ClassNotFoundException;
     List<Product> searchProductByName(String idMerchant,String keyword) throws SQLException, ClassNotFoundException;
+
+    void addProductToCart(int idUser, String idProduct) throws SQLException, ClassNotFoundException;
+    List<Product> getAllProductByIdUser(int idUser) throws SQLException, ClassNotFoundException;
 }

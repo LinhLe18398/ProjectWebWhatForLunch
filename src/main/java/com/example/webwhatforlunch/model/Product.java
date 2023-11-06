@@ -68,6 +68,14 @@ public class Product {
         this.orders = orders;
     }
 
+    public Product(String idProduct, String productName, String productImg, double price, String note) {
+        this.idProduct = idProduct;
+        this.productName = productName;
+        this.productImg = productImg;
+        this.price = price;
+        this.note = note;
+     }
+
 
     public String getIdProduct() {
         return idProduct;

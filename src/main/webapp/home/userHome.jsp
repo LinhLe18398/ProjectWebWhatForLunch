@@ -165,8 +165,7 @@
                             </li>
 
                             <li class="nav-item dropdown" style="margin-left: 20px">
-                                <a class="nav-link dropdown-toggle" href="/users?action=cart" role="button"
-                                   aria-expanded="false" style="color: white">
+                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false" style="color: white">
                                     Cart
                                 </a>
 
@@ -357,7 +356,7 @@
                         </p>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                <a href="/products?action=add-product-cart&id=${pro.idProduct}" class="btn btn-primary">Add to Cart</a>
                             </c:if>
                         </p>
                     </div>

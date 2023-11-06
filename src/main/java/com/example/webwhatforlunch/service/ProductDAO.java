@@ -19,6 +19,9 @@ public class ProductDAO implements ProductInterface{
     private final String GET_PRODUCT_BY_ID = "{CALL GET_PRODUCT_BY_ID(?)}";
     private final String SEARCH_BY_NAME = "{CALL SEARCH_PRODUCT_BY_NAME(?)}";
     private final String SEARCH_PRODUCT_BY_TAG = "{CALL SEARCH_PRODUCT_BY_TAG(?)}";
+    private final String ADD_PRODUCT_CART = "{CALL ADD_PRODUCT_TO_CART(?, ?)}";
+    private final String GET_ALL_PRODUCT_BY_ID_USER = "{CALL GET_PRODUCT_IN_CART(?)}";
+
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
@@ -150,6 +153,8 @@ public class ProductDAO implements ProductInterface{
         return productList;
     }
 
+
+
     public List<Product> searchProductByName(String name) throws SQLException, ClassNotFoundException {
         List<Product> products = new ArrayList<>();
         Connection connection = getConnection();
@@ -189,5 +194,32 @@ public class ProductDAO implements ProductInterface{
             products.add(new Product(idProduct, productName,restaurantName, productImg, waitTime,price,sale,address));
         }
         return products;
+    }
+
+    @Override
+    public void addProductToCart(int idUser, String idProduct) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ADD_PRODUCT_CART);
+        callableStatement.setInt(1, idUser);
+        callableStatement.setString(2, idProduct);
+        callableStatement.executeQuery();
+    }
+
+    @Override
+    public List<Product> getAllProductByIdUser(int idUser) throws SQLException, ClassNotFoundException {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_ALL_PRODUCT_BY_ID_USER);
+        callableStatement.setInt(1, idUser);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String productImg = resultSet.getString("productImg");
+             double price = resultSet.getDouble("price");
+            String note = resultSet.getString("note");
+            productList.add(new Product(idProduct, productName, productImg, price, note));
+        }
+        return productList;
     }
 }

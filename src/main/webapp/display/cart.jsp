@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tuan
@@ -93,30 +94,33 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td data-th="Product">
-                <div class="row">
-                    <div class="col-sm-2 hidden-xs">
-                        <img src="https://bizweb.dktcdn.net/100/363/151/files/istockphoto-701108028-612x612-5a41f83a-8b26-4486-a702-459d761d8cb7.jpg?v=1568781548068"
-                             alt="Sản phẩm 1" width="100">
+        <c:forEach items="${productCart}" var="pro">
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-2 hidden-xs">
+                            <img src="${pro.productImg}"
+                                 alt="${pro.idProduct}" width="100">
+                        </div>
+                        <div class="col-sm-10">
+                            <h4 class="nomargin" style="padding-left: 5px">${pro.productName}</h4>
+                            <p style="padding-left: 5px">Describe Product</p>
+                        </div>
                     </div>
-                    <div class="col-sm-10">
-                        <h4 class="nomargin" style="padding-left: 5px">Beef Steak</h4>
-                        <p style="padding-left: 5px">Describe Product</p>
-                    </div>
-                </div>
-            </td>
-            <td data-th="Price">1000 VND</td>
-            <td data-th="Quantity" style="display: flex">
-                <a class="quantity"><i class="fa-solid fa-plus"></i></a>
-                <a class="quantity"><i class="fa-solid fa-minus"></i></a>
-                <input class="form-control" value="1" type="text">
-            </td>
-            <td data-th="Subtotal" class="text-center">200.000 VND</td>
-            <td class="actions" data-th="">
-                <input type="checkbox" name="">
-            </td>
-        </tr>
+                </td>
+                <td data-th="Price">${pro.price} VNĐ</td>
+                <td data-th="Quantity" style="display: flex">
+                    <a class="quantity"><i class="fa-solid fa-plus"></i></a>
+                    <a class="quantity"><i class="fa-solid fa-minus"></i></a>
+                    <input class="form-control" value="1" type="text">
+                </td>
+                <td data-th="Subtotal" class="text-center">200.000 VND</td>
+                <td class="actions" data-th="">
+                    <input type="checkbox" name="">
+                </td>
+            </tr>
+        </c:forEach>
+
         </tbody>
         <tfoot>
         <tr>
