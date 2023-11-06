@@ -66,6 +66,27 @@ public class UserServlet extends HttpServlet {
             case "search":
                 search(req, resp);
                 break;
+            case "restaurant" :
+                showRestaurant(req, resp);
+                break;
+        }
+    }
+
+    private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
+        String idMerchant = req.getParameter("idMerchant");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("merchant/restaurant.jsp");
+        try {
+            List<Product> productList = productDAO.getProductsMerchant(idMerchant);
+            req.setAttribute("products", productList);
+            requestDispatcher.forward(req, resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -194,6 +215,9 @@ public class UserServlet extends HttpServlet {
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
+                break;
+            case "restaurant" :
+                System.out.println("a");
                 break;
         }
     }

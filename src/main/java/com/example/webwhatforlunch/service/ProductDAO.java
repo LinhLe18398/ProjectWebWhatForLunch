@@ -19,6 +19,7 @@ public class ProductDAO implements ProductInterface{
     private final String GET_PRODUCT_BY_ID = "{CALL GET_PRODUCT_BY_ID(?)}";
     private final String SEARCH_BY_NAME = "{CALL SEARCH_PRODUCT_BY_NAME(?)}";
     private final String SEARCH_PRODUCT_BY_TAG = "{CALL SEARCH_PRODUCT_BY_TAG(?)}";
+    private final String GET_PRODUCT_MERCHANT = "{CALL GET_PRODUCT_MERCHANT(?)}";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
@@ -158,14 +159,15 @@ public class ProductDAO implements ProductInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
             double price = resultSet.getDouble("price");
             double sale = resultSet.getDouble("sale");
-            String address = resultSet.getString("address");
-            products.add(new Product(idProduct, productName,restaurantName, productImg, waitTime,price,sale,address));
+            String address = resultSet.getString("restaurantAddress");
+            products.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
         }
         return products;
     }
@@ -176,17 +178,38 @@ public class ProductDAO implements ProductInterface{
         CallableStatement callableStatement = connection.prepareCall(SEARCH_PRODUCT_BY_TAG);
         callableStatement.setString(1, tag);
         ResultSet resultSet = callableStatement.executeQuery();
-
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
             double price = resultSet.getDouble("price");
             double sale = resultSet.getDouble("sale");
-            String address = resultSet.getString("address");
-            products.add(new Product(idProduct, productName,restaurantName, productImg, waitTime,price,sale,address));
+            String address = resultSet.getString("restaurantAddress");
+            products.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
+        }
+        return products;
+    }
+
+    public List<Product> getProductsMerchant(String idMerchant) throws SQLException, ClassNotFoundException {
+        List<Product> products = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_PRODUCT_MERCHANT);
+        callableStatement.setString(1, idMerchant);
+        ResultSet resultSet = callableStatement.executeQuery();
+
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            double price = resultSet.getDouble("price");
+            String note = resultSet.getString("note");
+            double sale = resultSet.getDouble("sale");
+            Product product = new Product(idProduct, productName, productImg, waitTime, price, note, sale);
+            products.add(product);
         }
         return products;
     }

@@ -152,6 +152,7 @@ public class UserDAO implements UserInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
@@ -159,7 +160,7 @@ public class UserDAO implements UserInterface{
             double price = resultSet.getDouble("price");
             double sale = resultSet.getDouble("sale");
             String address = resultSet.getString("restaurantAddress");
-            productList.add(new Product(idProduct, productName,restaurantName, productImg, waitTime, price, sale,address));
+            productList.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
         }
         return productList;
     }
@@ -178,7 +179,6 @@ public class UserDAO implements UserInterface{
             String address = resultSet.getString("restaurantAddress");
             String status = resultSet.getString("status");
             merchantList.add(new Merchant(idUser, idMerchant, name, phoneNumber, email, address, status));
-            System.out.println(idMerchant);
         }
         return merchantList;
     }
