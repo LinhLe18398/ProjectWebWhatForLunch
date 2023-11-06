@@ -17,6 +17,8 @@ public class ProductDAO implements ProductInterface{
     private final String DELETE_PRODUCT_QUERY = "{CALL DELETE_PRODUCT_BY_ID(?)}";
     private final String GET_ALL_PRODUCT_BY_ID_MERCHANT = "{CALL GET_ALL_PRODUCT_BY_ID_MERCHANT(?)}";
     private final String GET_PRODUCT_BY_ID = "{CALL GET_PRODUCT_BY_ID(?)}";
+    private final String SEARCH_BY_NAME = "{CALL SEARCH_PRODUCT_BY_NAME(?)}";
+    private final String SEARCH_PRODUCT_BY_TAG = "{CALL SEARCH_PRODUCT_BY_TAG(?)}";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
@@ -146,5 +148,46 @@ public class ProductDAO implements ProductInterface{
             productList.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee, view, orders));
         }
         return productList;
+    }
+
+    public List<Product> searchProductByName(String name) throws SQLException, ClassNotFoundException {
+        List<Product> products = new ArrayList<Product>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(SEARCH_BY_NAME);
+        callableStatement.setString(1, name);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            double price = resultSet.getDouble("price");
+            String note = resultSet.getString("note");
+            double sale = resultSet.getDouble("sale");
+            double serviceFee = resultSet.getDouble("serviceFee");
+            products.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee));
+        }
+        return products;
+    }
+
+    public List<Product> searchProductByTag(String tag) throws SQLException, ClassNotFoundException {
+        List<Product> products = new ArrayList<Product>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(SEARCH_PRODUCT_BY_TAG);
+        callableStatement.setString(1, tag);
+        ResultSet resultSet = callableStatement.executeQuery();
+
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            double price = resultSet.getDouble("price");
+            String note = resultSet.getString("note");
+            double sale = resultSet.getDouble("sale");
+            double serviceFee = resultSet.getDouble("serviceFee");
+            products.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee));
+        }
+        return products;
     }
 }
