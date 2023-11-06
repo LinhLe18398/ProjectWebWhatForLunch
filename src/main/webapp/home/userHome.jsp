@@ -153,14 +153,13 @@
                                         ${user.name}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Edit
-                                        profile</a></li>
-                                    <li><a class="dropdown-item" href="/users?action=merchant">Register merchant</a>
+                                    <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông tin</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="/users?action=logout">log out</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=logout">Đăng suất</a></li>
                                 </ul>
                             </li>
 
@@ -178,8 +177,8 @@
         </div>
     </c:if>
     <div class="text-content">
-        <h1 style="color: white;">Discover The Best Food &</h1>
-        <h1 style="color: white">Drinks In Viet Nam</h1>
+        <h1 style="color: white;">Khám phá những món ăn ngon nhất &</h1>
+        <h1 style="color: white">Đồ uống ở Hà Nội</h1>
     </div>
     <%--search--%>
     <div class="search">
@@ -353,11 +352,11 @@
                         <p class="card-text">
                             <li>${pro.address}</li>
                             <li>${pro.waitTime} phút</li>
-                            <li>${pro.price} VND</li>
+                            <li>${pro.price} đ</li>
                         </p>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
                             </c:if>
                         </p>
                     </div>
@@ -376,7 +375,7 @@
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i>Company name
+                        <i class="fas fa-gem me-3"></i>Công ty CNHH 1 5 thành viên
                     </h6>
                     <p>
                         Here you can order all delicious Vietnamese dishes.
@@ -384,14 +383,14 @@
                 </div>
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
-                        Products
+                        Sản phẩm
                     </h6>
-                    <p>Information</p>
-                    <p>Help</p>
+                    <p>Thông tin</p>
+                    <p>Trợ giúp</p>
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
-                        Member Project
+                        Thành viên
                     </h6>
                     <p>Ngoc Linh</p>
                     <p>Van Tuan</p>
@@ -400,8 +399,7 @@
                     <p>Minh Hieu</p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                    <p>Hoai Duc - Ha Noi</p>
+                    <p>Hoài Đức - Hà Nội</p>
                     <p>
                         WebWhatForLunch@gmail.com
                     </p>
