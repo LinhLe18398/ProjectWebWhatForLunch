@@ -19,7 +19,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
@@ -33,7 +32,6 @@
     .search {
         /*position: relative;*/
         box-shadow: 0 0 40px rgba(51, 51, 51, .1);
-
     }
 
     .search input {
@@ -69,7 +67,6 @@
         background-size: cover;
         background-color: rgb(255, 255, 255, 0.5) !important;
     }
-
 </style>
 <body>
 <div class="header">
@@ -172,20 +169,33 @@
                 <div class="col-md-8">
                     <div class="search" style="display: flex ; padding-left: 40px">
                         <div style="margin: 5px">
-                            <select class="form-select" aria-label="Default select example" style="height: 60px">
-                                <option selected>Quick Searches</option>
-                                <option value="1">Breakfast</option>
-                                <option value="2">Coffee</option>
-                                <option value="3">Lunch</option>
-                                <option value="4">Dinner</option>
-                            </select>
+                            <form id="quick-search" method="get" >
+                                <input type="hidden" name="action" value="search">
+                                <select class="form-select" name="quick_search" aria-label="Default select example" style="height: 60px" onchange="quickSearch()">
+                                    <option selected>
+                                        <c:choose>
+                                            <c:when test="${empty tagSearch}">Quick Search</c:when>
+                                            <c:otherwise>${tagSearch}</c:otherwise>
+                                        </c:choose>
+                                    </option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Coffee">Coffee</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Dinner">Dinner</option>
+                                </select>
+                            </form>
                         </div>
-                        <div style="margin: 5px">
-                            <input type="text" class="form-control" placeholder="Enter your delivery location">
-                        </div>
-                        <div style="margin: 5px;">
-                            <button type="button" style="height: 60px" class="btn btn-danger">Search</button>
-                        </div>
+                            <div style="margin: 5px; display: inline-block">
+                                <input type="text" id="search-input" class="form-control" placeholder="Enter your delivery location">
+                            </div>
+                            <div style="margin: 5px; display: inline-block">
+                                <form id="search-name" method="get" >
+                                    <input type="hidden" name="action" value="search">
+                                    <input type="hidden" id="hidden-name-search" name="name_search" value="">
+                                    <button type="submit" style="height: 60px" class="btn btn-danger" onclick="searchByName()">Search</button>
+                                </form>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -382,6 +392,17 @@
 </body>
 </html>
 <script>
+    function quickSearch() {
+        document.getElementById("quick-search").submit();
+        document.getElementById("name-search").value = "";
+    }
+
+    function searchByName() {
+        let search = document.getElementById("search-input");
+        document.getElementById("hidden-name-search").value = search.value;
+        document.getElementById("search-name").submit();
+    }
+
     let idUser = document.getElementById("idUser").value;
     if (idUser != 0) {
         document.getElementById("button-full").hidden = true;
