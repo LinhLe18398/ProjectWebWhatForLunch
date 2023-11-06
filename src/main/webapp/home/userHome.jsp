@@ -154,11 +154,8 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông tin</a></li>
-                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a></li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng suất</a></li>
                                 </ul>
                             </li>
@@ -337,31 +334,30 @@
     <div class="row mb-2 list" style="padding-top: 50px">
         <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
         <c:forEach items="${pro}" var="pro">
-            <div class="col-md-3 col-6  item"
-                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
-                <div style="width: auto; height: 145px">
-                    <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
-                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
-                </div>
-                <div class="card-body"
-                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;max-height: 100%; padding: 10px ">
-                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <h5 class="card-title"
-                            style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
-                        </h5>
-                        <p class="card-text">
-                            <li>${pro.address}</li>
-                            <li>${pro.waitTime} phút</li>
-                            <li>${pro.price} đ</li>
-                        </p>
-                        <p style="margin: 0">
-                            <c:if test="${sessionScope.isLogin==true}">
-                                <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
-                            </c:if>
-                        </p>
+                <div class="col-md-3 col-6  item"
+                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                    <div style="width: auto; height: 145px">
+                        <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
                     </div>
-                </div>
-            </div>
+                    <div class="card-body"
+                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;max-height: 100%; padding: 10px ">
+                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                            <h5 class="card-title"
+                                style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
+                            </h5>
+                            <p class="card-text">
+                                <li>${pro.address}</li>
+                                <li>${pro.waitTime} phút</li>
+                                <li>${pro.price} đ</li>
+                            </p>
+                            <p style="margin: 0">
+                                <c:if test="${sessionScope.isLogin==true}">
+                                    <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
+                                </c:if>
+                            </p>
+                        </div>
+                    </div>
         </c:forEach>
     </div>
     <ul class="listPage"></ul>
