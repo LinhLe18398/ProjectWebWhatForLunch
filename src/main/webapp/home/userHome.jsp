@@ -334,6 +334,7 @@
     <div class="row mb-2 list" style="padding-top: 50px">
         <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
         <c:forEach items="${pro}" var="pro">
+
                 <div class="col-md-3 col-6  item"
                      style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
                     <div style="width: auto; height: 145px">
