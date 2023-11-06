@@ -326,10 +326,10 @@
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
                 </div>
                 <div class="card-body"
-                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 100% ;max-height: 100%; padding: 10px ">
+                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;max-height: 100%; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
                         <h5 class="card-title"
-                            style=" width: 100%; height: 48px; margin: 0;overflow: scroll">${pro.productName} -
+                            style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} -
                             (Name
                             Merchant)
                         </h5>

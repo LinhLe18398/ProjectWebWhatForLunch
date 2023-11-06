@@ -294,7 +294,7 @@
       <workItem from="1699113714036" duration="3631000" />
       <workItem from="1699192101499" duration="9363000" />
       <workItem from="1699232739345" duration="6998000" />
-      <workItem from="1699253003356" duration="4445000" />
+      <workItem from="1699253003356" duration="4761000" />
     </task>
     <servers />
   </component>
@@ -313,11 +313,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java</url>
           <line>172</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/controller/ProductServlet.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
