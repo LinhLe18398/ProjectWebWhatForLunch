@@ -92,10 +92,10 @@
     <input type="text" value="${user.id}" id="idUser" hidden="hidden">
     <div class="div-login-signup" id="button-full" style="float: right">
         <a href="/users?action=login">
-            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+            <button type="submit" class="btn btn-primary btn-sm">Đăng Nhập</button>
         </a>
         <a href="/users?action=create">
-            <button type="submit" class="btn btn-secondary btn-sm">Signup</button>
+            <button type="submit" class="btn btn-secondary btn-sm">Đăng Kí</button>
         </a>
     </div>
     <c:if test="${sessionScope.isLogin==true}">
@@ -121,8 +121,7 @@
                                     Restaurant
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">switch to
-                                        merchant</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang merchant</a></li>
                                     <li><a class="dropdown-item" href="#">2</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -344,10 +343,10 @@
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
                 </div>
                 <div class="card-body"
-                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 198px; padding: 10px ">
+                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
                         <h5 class="card-title"
-                            style=" width: 100%; height: 48px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
+                            style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
                         </h5>
                         <p class="card-text">
                             <li>${pro.address}</li>
@@ -459,7 +458,7 @@
 
         if (thisPage != 1) {
             let prev = document.createElement('li');
-            prev.innerText = 'BACK';
+            prev.innerText = 'Trở về';
             prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
             document.querySelector('.listPage').appendChild(prev);
         }
@@ -476,7 +475,7 @@
 
         if (thisPage != count) {
             let next = document.createElement('li');
-            next.innerText = 'NEXT';
+            next.innerText = 'Tiếp';
             next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
             document.querySelector('.listPage').appendChild(next);
         }
