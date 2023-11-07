@@ -86,6 +86,11 @@
         background-color: #B192EF;
         color: #fff;
     }
+
+    a {
+        cursor: pointer;
+        color: #212529;
+    }
 </style>
 <body>
 <div class="header">
@@ -333,7 +338,7 @@
         </div>
     </div>
     <%--Menu main--%>
-    <div class="row mb-2 list" style="padding-top: 50px">
+    <div class="row mb-2 list" style="padding-top: 50px;">
         <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
         <c:forEach items="${pro}" var="pro">
             <div class="col-md-3 col-6  item"
@@ -345,19 +350,24 @@
                 <div class="card-body"
                      style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <h5 class="card-title"
-                            style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
-                        </h5>
-                        <p class="card-text">
-                            <li>${pro.address}</li>
-                            <li>${pro.waitTime} phút</li>
-                            <li>${pro.price} đ</li>
-                        </p>
+                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;" onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
+                            <h5 class="card-title"
+                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
+                            </h5>
+                            <p class="card-text" >
+                                <li>${pro.address}</li>
+                                <li>${pro.waitTime} phút</li>
+                                <li>${pro.price} đ</li>
+                            </p>
+                        </form>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
                                 <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
                             </c:if>
                         </p>
+
                     </div>
                 </div>
             </div>
@@ -372,22 +382,22 @@
     <section class="">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
-                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i>Công ty CNHH 1 5 thành viên
+                        <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
                     </h6>
                     <p>
                         Here you can order all delicious Vietnamese dishes.
                     </p>
                 </div>
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <div class="col-md-2 col-lg-2 col-xl-2 text-left mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
                         Sản phẩm
                     </h6>
                     <p>Thông tin</p>
                     <p>Trợ giúp</p>
                 </div>
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <div class="col-md-3 col-lg-2 col-xl-2 text-left mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
                         Thành viên
                     </h6>
@@ -397,7 +407,7 @@
                     <p>Gia Minh</p>
                     <p>Minh Hieu</p>
                 </div>
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
                     <p>Hoài Đức - Hà Nội</p>
                     <p>
                         WebWhatForLunch@gmail.com
@@ -415,6 +425,10 @@
 </body>
 </html>
 <script>
+    function redirectToUsers(id) {
+      document.getElementById(id).submit();
+    }
+
     function quickSearch() {
         document.getElementById("quick-search").submit();
         document.getElementById("name-search").value = "";
