@@ -267,8 +267,8 @@
                         <p class="card-text">(giá) VND</p>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
 </div>
