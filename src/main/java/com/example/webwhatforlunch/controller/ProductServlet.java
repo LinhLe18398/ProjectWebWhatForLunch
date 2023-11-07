@@ -90,7 +90,6 @@ public class ProductServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void showCreateProductForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -105,6 +104,7 @@ public class ProductServlet extends HttpServlet {
             Merchant merchant = (Merchant) session.getAttribute("merchant");
             List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
             req.setAttribute("productList", productList);
+            req.setAttribute("merchant", merchant);
             RequestDispatcher dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
             dispatcher.forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {
@@ -134,7 +134,7 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "createProduct":
+            case "create-product":
                 try {
                     createProduct(req, resp);
                 } catch (SQLException e) {
@@ -163,22 +163,23 @@ public class ProductServlet extends HttpServlet {
 
     private void createProduct(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
         req.setCharacterEncoding("UTF-8");
-        HttpSession httpSession = req.getSession();
-        Merchant merchant = (Merchant) httpSession.getAttribute("merchant");
+
+        HttpSession session = req.getSession();
+        Merchant merchant = (Merchant) session.getAttribute("merchant");
         String idMerchant = merchant.getIdMerchant();
 
-        String name = req.getParameter("product_name");
-        HttpSession session = req.getSession();
-        session.getAttribute("user");
-        String img = req.getParameter("product_image");
+        String productName = req.getParameter("product_name");
+        String productImage = req.getParameter("product_image");
         int waiTime = Integer.parseInt(req.getParameter("product_waiTime"));
         int price = Integer.parseInt(req.getParameter("product_price"));
         String note = req.getParameter("product_note");
         int sale = Integer.parseInt(req.getParameter("product_promotionalPrice"));
-        int service = Integer.parseInt(req.getParameter("product_serviceCharge"));
+        int serviceFee = Integer.parseInt(req.getParameter("product_serviceCharge"));
 
-        Product product = new Product(idMerchant,name,img,waiTime,price,note,sale,service);
+
+        Product product = new Product(productName, productImage, waiTime, price, note, sale, serviceFee, idMerchant);
         productDAO.createProduct(product);
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("product/product-create-form.jsp");
         dispatcher.forward(req, resp);
     }
@@ -230,7 +231,7 @@ public class ProductServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         Merchant merchant = (Merchant) httpSession.getAttribute("merchant");
         String idMerchant = merchant.getIdMerchant();
-        String keyword = req.getParameter("search");
+        String keyword = req.getParameter("keyword");
         List<Product> productList = productDAO.searchProductByName(idMerchant,keyword);
         req.setAttribute("productList",productList);
         req.getRequestDispatcher("home/merchantHome.jsp").forward(req,resp);

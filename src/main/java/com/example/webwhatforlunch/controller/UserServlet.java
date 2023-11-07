@@ -234,13 +234,13 @@ public class UserServlet extends HttpServlet {
         int id = user.getId();
 
         RequestDispatcher dispatcher;
-        Merchant merchant1 = userDAO.checkLoginMerchant(id, password);
-        List<Product> productList = productDAO.getAllProductByIdMerchant(merchant1.getIdMerchant());
+        Merchant merchant = userDAO.checkLoginMerchant(id, password);
+        List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
 
-        if (merchant1 != null) {
+        if (merchant != null) {
             HttpSession session = req.getSession();
-            session.setAttribute("merchant1", merchant1);
-            req.setAttribute("merchant", user);
+            session.setAttribute("merchant", merchant);
+            req.setAttribute("user", user);
             req.setAttribute("productList", productList);
             dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
         } else {
