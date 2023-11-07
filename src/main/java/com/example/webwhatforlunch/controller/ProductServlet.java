@@ -144,10 +144,10 @@ public class ProductServlet extends HttpServlet {
         session.getAttribute("user");
         String img = req.getParameter("product_image");
         int waiTime = Integer.parseInt(req.getParameter("product_waiTime"));
-        double price = Double.parseDouble(req.getParameter("product_price"));
+        int price = Integer.parseInt(req.getParameter("product_price"));
         String note = req.getParameter("product_note");
-        double sale = Double.parseDouble(req.getParameter("product_promotionalPrice"));
-        double service = Double.parseDouble(req.getParameter("product_serviceCharge"));
+        int sale = Integer.parseInt(req.getParameter("product_promotionalPrice"));
+        int service = Integer.parseInt(req.getParameter("product_serviceCharge"));
 
         Product product = new Product(idMerchant,name,img,waiTime,price,note,sale,service);
         productDAO.createProduct(product);
@@ -162,10 +162,10 @@ public class ProductServlet extends HttpServlet {
             String productName = req.getParameter("product_name");
             String productImg = req.getParameter("product_image");
             int waitTime = Integer.parseInt(req.getParameter("product_waiTime"));
-            double price = Double.parseDouble(req.getParameter("product_price"));
+            int price = Integer.parseInt(req.getParameter("product_price"));
             String note = req.getParameter("product_note");
-            double sale = Double.parseDouble(req.getParameter("product_sale"));
-            double serviceFee = Double.parseDouble(req.getParameter("product_serviceFee"));
+            int sale = Integer.parseInt(req.getParameter("product_sale"));
+            int serviceFee = Integer.parseInt(req.getParameter("product_serviceFee"));
 
             product = new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee);
             productDAO.updateProduct(product);

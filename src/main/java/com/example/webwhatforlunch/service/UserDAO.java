@@ -158,8 +158,8 @@ public class UserDAO implements UserInterface{
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
-            double sale = resultSet.getDouble("sale");
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
             String address = resultSet.getString("restaurantAddress");
             productList.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
         }

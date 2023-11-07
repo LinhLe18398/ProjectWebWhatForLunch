@@ -91,6 +91,10 @@
         cursor: pointer;
         color: #212529;
     }
+
+    .price{
+        display: inline-block;
+    }
 </style>
 <body>
 <div class="header">
@@ -356,10 +360,10 @@
                             <h5 class="card-title"
                                 style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
                             </h5>
-                            <p class="card-text" >
+                            <p class="card-text " >
                                 <li>${pro.address}</li>
                                 <li>${pro.waitTime} phút</li>
-                                <li>${pro.price} đ</li>
+                                <li><p class="price">${pro.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">
@@ -425,6 +429,13 @@
 </body>
 </html>
 <script>
+    let numberElements = document.getElementsByClassName("price");
+    for (let i = 0; i < numberElements.length; i++) {
+        let numberElement = numberElements[i];
+        let number = parseInt(numberElement.textContent);
+        let formattedNumber = number.toLocaleString();
+        numberElement.textContent = formattedNumber;
+    }
     function redirectToUsers(id) {
       document.getElementById(id).submit();
     }

@@ -7,16 +7,16 @@ public class Product {
     String productName;
     String productImg;
     int waitTime;
-    double price;
+    int price;
     String note;
-    double sale;
-    double serviceFee;
+    int sale;
+    int serviceFee;
     int view;
     int orders;
     String address;
     String restaurantName;
 
-    public Product(String idProduct,String productName,String productImg,int waitTime,double price, String note,double sale) {
+    public Product(String idProduct,String productName,String productImg,int waitTime,int price, String note,int sale) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.productImg = productImg;
@@ -27,7 +27,7 @@ public class Product {
     }
 
 
-    public Product(String idProduct, String idMerchant, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee, int view, int orders) {
+    public Product(String idProduct, String idMerchant, String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee, int view, int orders) {
         this.idProduct = idProduct;
         this.idMerchant = idMerchant;
         this.productName = productName;
@@ -42,7 +42,7 @@ public class Product {
     }
 
     // this method for user interface
-    public Product(String idProduct,String idMerchant, String productName,String restaurantName, String productImg, int waitTime, double price, double sale, String address) {
+    public Product(String idProduct,String idMerchant, String productName,String restaurantName, String productImg, int waitTime, int price, int sale, String address) {
         this.idProduct = idProduct;
         this.idMerchant = idMerchant;
         this.productName = productName;
@@ -55,7 +55,7 @@ public class Product {
     }
 
     // this method for merchant update product
-    public Product (String idProduct, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee){
+    public Product (String idProduct, String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee){
         this.idProduct = idProduct;
         this.productName = productName;
         this.productImg = productImg;
@@ -66,7 +66,7 @@ public class Product {
         this.serviceFee = serviceFee;
     }
     // this method get data for merchant view
-    public Product(String idProduct, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee, int view, int orders) {
+    public Product(String idProduct, String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee, int view, int orders) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.productImg = productImg;
@@ -120,14 +120,6 @@ public class Product {
         this.waitTime = waitTime;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getNote() {
         return note;
     }
@@ -135,23 +127,6 @@ public class Product {
     public void setNote(String note) {
         this.note = note;
     }
-
-    public double getSale() {
-        return sale;
-    }
-
-    public void setSale(double sale) {
-        this.sale = sale;
-    }
-
-    public double getServiceFee() {
-        return serviceFee;
-    }
-
-    public void setServiceFee(double serviceFee) {
-        this.serviceFee = serviceFee;
-    }
-
     public int getView() {
         return view;
     }
@@ -182,5 +157,29 @@ public class Product {
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getSale() {
+        return sale;
+    }
+
+    public void setSale(int sale) {
+        this.sale = sale;
+    }
+
+    public int getServiceFee() {
+        return serviceFee;
+    }
+
+    public void setServiceFee(int serviceFee) {
+        this.serviceFee = serviceFee;
     }
 }
