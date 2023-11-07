@@ -115,10 +115,10 @@ public class ProductDAO implements ProductInterface{
             String productName = resultSet.getString("productName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
+            int price = resultSet.getInt("price");
             String note = resultSet.getString("note");
-            double sale = resultSet.getDouble("sale");
-            double serviceFee = resultSet.getDouble("serviceFee");
+            int sale = resultSet.getInt("sale");
+            int serviceFee = resultSet.getInt("serviceFee");
             int view = resultSet.getInt("view");
             int orders = resultSet.getInt("orders");
             productList.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee, view, orders));
@@ -140,10 +140,10 @@ public class ProductDAO implements ProductInterface{
             String productName = resultSet.getString("productName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
+            int price = resultSet.getInt("price");
             String note = resultSet.getString("note");
-            double sale = resultSet.getDouble("sale");
-            double serviceFee = resultSet.getDouble("serviceFee");
+            int sale = resultSet.getInt("sale");
+            int serviceFee = resultSet.getInt("serviceFee");
             int view = resultSet.getInt("view");
             int orders = resultSet.getInt("orders");
             productList.add(new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee, view, orders));
@@ -164,8 +164,8 @@ public class ProductDAO implements ProductInterface{
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
-            double sale = resultSet.getDouble("sale");
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
             String address = resultSet.getString("restaurantAddress");
             products.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
         }
@@ -185,8 +185,8 @@ public class ProductDAO implements ProductInterface{
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
-            double sale = resultSet.getDouble("sale");
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
             String address = resultSet.getString("restaurantAddress");
             products.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
         }
@@ -205,9 +205,9 @@ public class ProductDAO implements ProductInterface{
             String productName = resultSet.getString("productName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
+            int price = resultSet.getInt("price");
             String note = resultSet.getString("note");
-            double sale = resultSet.getDouble("sale");
+            int sale = resultSet.getInt("sale");
             Product product = new Product(idProduct, productName, productImg, waitTime, price, note, sale);
             products.add(product);
         }

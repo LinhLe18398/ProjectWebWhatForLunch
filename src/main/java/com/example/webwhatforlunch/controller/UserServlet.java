@@ -216,9 +216,6 @@ public class UserServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "restaurant" :
-                System.out.println("a");
-                break;
         }
     }
 

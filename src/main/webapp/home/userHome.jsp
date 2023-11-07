@@ -91,6 +91,10 @@
         cursor: pointer;
         color: #212529;
     }
+
+    .price{
+        display: inline-block;
+    }
 </style>
 <body>
 <div class="header">
@@ -350,16 +354,16 @@
                 <div class="card-body"
                      style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" id="restaurant" style="cursor: pointer;" onclick="redirectToUsers()">
+                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;" onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="restaurant"/>
                             <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
                             <h5 class="card-title"
                                 style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
                             </h5>
-                            <p class="card-text" >
+                            <p class="card-text " >
                                 <li>${pro.address}</li>
                                 <li>${pro.waitTime} phút</li>
-                                <li>${pro.price} đ</li>
+                                <li><p class="price">${pro.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">
@@ -425,8 +429,17 @@
 </body>
 </html>
 <script>
-    function redirectToUsers() {
-      document.getElementById("restaurant").submit();
+
+    let numberElements = document.getElementsByClassName("price");
+    for (let i = 0; i < numberElements.length; i++) {
+        let numberElement = numberElements[i];
+        let number = parseInt(numberElement.textContent);
+        let formattedNumber = number.toLocaleString();
+        numberElement.textContent = formattedNumber;
+    }
+
+    function redirectToUsers(id) {
+      document.getElementById(id).submit();
     }
 
     function quickSearch() {
