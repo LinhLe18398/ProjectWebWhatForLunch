@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserDAO implements UserInterface{
     private final String username = "root";
-    private final String password = "1111";
+    private final String password = "password";
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -28,6 +28,7 @@ public class UserDAO implements UserInterface{
     private final String CHECK_DUPLICATE_EMAIL = "{CALL CHECK_DUPLICATE_EMAIL(?,?)}";
     private final String UPDATE_PROFILE_USER = "{CALL UPDATE_DATA_USER(?,?,?,?,?,?,?)}";
     private final String GET_ALL_PRODUCT = "{CALL GET_ALL_PRODUCT()}";
+    private final String GET_RESTAURANT_MERCHANT_QUERY = "{CALL GET_RESTAURANT_MERCHANT(?)}";
 
     public boolean checkDuplicate(String email) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
@@ -154,19 +155,34 @@ public class UserDAO implements UserInterface{
             String idProduct = resultSet.getString("idProduct");
             String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int waitTime = resultSet.getInt("waitTime");
-            double price = resultSet.getDouble("price");
-            String note = resultSet.getString("note");
-            double sale = resultSet.getDouble("sale");
-            double serviceFee = resultSet.getDouble("serviceFee");
-            int view = resultSet.getInt("view");
-            int orders = resultSet.getInt("orders");
-            productList.add(new Product(idProduct, idMerchant, productName, productImg, waitTime, price, note, sale, serviceFee, view, orders));
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
+            String address = resultSet.getString("restaurantAddress");
+            productList.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
         }
         return productList;
     }
-
+    public Merchant getAllMerchant(String idMerchantIput) throws SQLException, ClassNotFoundException {
+        Merchant merchant = new Merchant();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_RESTAURANT_MERCHANT_QUERY);
+        callableStatement.setString(1,idMerchantIput);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()){
+            int idUser = resultSet.getInt("idUser");
+            String idMerchant = resultSet.getString("idMerchant");
+            String name = resultSet.getString("restaurantName");
+            String phoneNumber = resultSet.getString("restaurantPhoneNumber");
+            String email = resultSet.getString("restaurantEmail");
+            String address = resultSet.getString("restaurantAddress");
+            String status = resultSet.getString("status");
+            merchant = new Merchant(idUser,idMerchant,name,phoneNumber,email,address,status);
+        }
+        return merchant;
+    }
     public List<Merchant> showMerchant() throws SQLException, ClassNotFoundException {
         List<Merchant> merchantList = new ArrayList<>();
         Connection connection = getConnection();
@@ -181,7 +197,6 @@ public class UserDAO implements UserInterface{
             String address = resultSet.getString("restaurantAddress");
             String status = resultSet.getString("status");
             merchantList.add(new Merchant(idUser, idMerchant, name, phoneNumber, email, address, status));
-            System.out.println(idMerchant);
         }
         return merchantList;
     }

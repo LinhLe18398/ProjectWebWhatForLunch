@@ -23,6 +23,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
+
     @Override
     public void init() {
         userDAO = new UserDAO();
@@ -37,7 +38,7 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "home":
-                    showHomeForm(req, resp);
+                showHomeForm(req, resp);
                 break;
             case "login":
                 showLoginForm(req, resp);
@@ -55,10 +56,10 @@ public class UserServlet extends HttpServlet {
                 showComFirmPassword(req, resp);
                 break;
             case "edit":
-                    showEditForm(req, resp);
+                showEditForm(req, resp);
                 break;
             case "cart":
-                showCart(req,resp);
+                showCart(req, resp);
                 break;
             case "logout":
                 logOutUser(req, resp);
@@ -66,10 +67,33 @@ public class UserServlet extends HttpServlet {
             case "search":
                 search(req, resp);
                 break;
+            case "restaurant":
+                showRestaurant(req, resp);
+                break;
         }
     }
 
-    private void search(HttpServletRequest req, HttpServletResponse resp){
+    private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
+        String idMerchant = req.getParameter("idMerchant");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("merchant/merchantProfile.jsp");
+        try {
+            List<Product> productList = productDAO.getProductsMerchant(idMerchant);
+            Merchant merchant = userDAO.getAllMerchant(idMerchant);
+            req.setAttribute("merchants", merchant);
+            req.setAttribute("products", productList);
+            requestDispatcher.forward(req, resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void search(HttpServletRequest req, HttpServletResponse resp) {
         String nameSearch = req.getParameter("name_search");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
         List<Product> productList = null;
@@ -82,7 +106,7 @@ public class UserServlet extends HttpServlet {
                 req.setAttribute("tagSearch", quickSearch);
             }
             req.setAttribute("pro", productList);
-            requestDispatcher.forward(req,resp);
+            requestDispatcher.forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -96,7 +120,7 @@ public class UserServlet extends HttpServlet {
 
     private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("display/cart.jsp");
-        dispatcher.forward(req,resp);
+        dispatcher.forward(req, resp);
     }
 
     private void showComFirmPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -119,7 +143,7 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void showHomeForm(HttpServletRequest req, HttpServletResponse resp){
+    private void showHomeForm(HttpServletRequest req, HttpServletResponse resp) {
         try {
             List<Product> productList = userDAO.get_All_Product();
             req.setAttribute("pro", productList);
@@ -210,7 +234,7 @@ public class UserServlet extends HttpServlet {
 
         if (merchant1 != null) {
             HttpSession session = req.getSession();
-            session.setAttribute("merchant", merchant1);
+            session.setAttribute("merchant1", merchant1);
             req.setAttribute("merchant", user);
             req.setAttribute("productList", productList);
             dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
@@ -247,20 +271,20 @@ public class UserServlet extends HttpServlet {
     }
 
     private void createUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
-            User user;
-            String name = req.getParameter("name");
-            String email = req.getParameter("email");
-            String password = req.getParameter("password");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("user/user-register-form.jsp");
-            boolean result = userDAO.checkDuplicate(email);
-            if (result) {
-                user = new User(name, email, password);
-                userDAO.createUser(user);
-                req.setAttribute("success", "tài khoản được tạo");
-            } else {
-                req.setAttribute("error", "tai khoản không được tạo");
-            }
-            dispatcher.forward(req, resp);
+        User user;
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("user/user-register-form.jsp");
+        boolean result = userDAO.checkDuplicate(email);
+        if (result) {
+            user = new User(name, email, password);
+            userDAO.createUser(user);
+            req.setAttribute("success", "tài khoản được tạo");
+        } else {
+            req.setAttribute("error", "tai khoản không được tạo");
+        }
+        dispatcher.forward(req, resp);
 
 
     }
@@ -284,10 +308,10 @@ public class UserServlet extends HttpServlet {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
             dispatcher = req.getRequestDispatcher("user/user-login-form.jsp");
         }
-        dispatcher.forward(req,resp);
+        dispatcher.forward(req, resp);
     }
 
-    private void showEditForm(HttpServletRequest req, HttpServletResponse resp){
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         int id = user.getId();
