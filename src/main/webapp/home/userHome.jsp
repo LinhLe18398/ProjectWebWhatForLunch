@@ -52,6 +52,9 @@
 
 </head>
 <style>
+    body {
+        max-height: 100%;
+    }
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
 
     .search {
@@ -119,6 +122,11 @@
 
     .price {
         display: inline-block;
+    }
+
+    .card-text{
+        font-size: 12px;
+        color: #212529;
     }
 </style>
 <body>
@@ -199,8 +207,7 @@
                             </li>
 
                             <li class="nav-item dropdown" style="margin-left: 20px">
-                                <a class="nav-link dropdown-toggle" href="/users?action=cart" role="button"
-                                   aria-expanded="false" style="color: white">
+                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false" style="color: white">
                                     Cart
                                 </a>
 
@@ -818,63 +825,85 @@
 <%--content--%>
 <div class="container">
     <%--8 món ăn được gợi ý--%>
-    <h2 style="padding-top: 40px">Gợi Ý Món Ăn</h2>
-    <div class="container carousel slide" style="display: flex; padding-bottom: 10px" id="myCarousel">
-        <div class="col-md-3 col-6" style="width:15%; border-radius: 20px 20px 20px 20px; padding: 10px">
-            <div style="width: auto; height: 150px">
-                <h6 style="background-color: #589d4a ; position: absolute; border-radius: 0 15px 15px 0; color: white;padding: 5px">
-                    gợi ý</h6>
-                <img class="card-img-top"
-                     src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
-                     alt="Card image cap"
-                     style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(155,154,154); max-width: 100% ;max-height: 100%">
-            </div>
-            <div class="card-body"
-                 style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px ">
-                <h5 class="card-title" style="max-width: 100% ;max-height: 100%">tên món ăn - (Name
-                    Merchant)</h5>
-                <p class="card-text">
-                <li>(địa chỉ)</li>
-                <li>(thời gian) phút</li>
-                <li>(giá) VND</li>
-                </p>
-                <c:if test="${sessionScope.isLogin==true}">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                </c:if>
-            </div>
+        <h2 style="padding-top: 40px">Gợi Ý Món Ăn</h2>
+        <div class="row mb-2" style="padding-top: 50px">
+
+            <c:forEach items="${productRecommend}" var="productRecommend">
+                <div class="col-md-3 col-6  item"
+                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                    <div style="width: auto; height: 145px">
+                        <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
+                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                    </div>
+                    <div class="card-body"
+                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
+                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                            <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
+                                  onclick="redirectToUsers(this.id)">
+                                <input type="hidden" name="action" value="restaurant"/>
+                                <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
+                                <h5 class="card-title"
+                                    style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productRecommend.productName}
+                                    - ${productRecommend.restaurantName}
+                                </h5>
+                                <p class="card-text ">
+                                    <li>${productRecommend.address}</li>
+                                    <li>${productRecommend.waitTime} phút</li>
+                                    <li><p class="price">${productRecommend.price}</p> &#8363</li>
+                                </p>
+                            </form>
+                            <p style="margin: 0">
+                                <c:if test="${sessionScope.isLogin==true}">
+                                    <a href="/products?action=add-product-cart&id=${productRecommend.idProduct}" class="btn btn-primary">Add to Cart</a>
+                                </c:if>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
         </div>
-    </div>
 
 
-    <%--8 món ăn được giảm giá nhất --%>
-    <div style="padding-top: 30px;">
-        <h2>Món Ăn Giảm Giá</h2>
-        <div class="container carousel slide" style="display: flex; padding-bottom: 10px">
-            <div class="col-md-3 col-6" style="width:15%; border-radius: 20px 20px 20px 20px; padding: 10px">
-                <div style="width: auto; height: 150px">
-                    <h6 style="background-color: #e82323; position: absolute; border-radius:0 15px 15px 0; color: white;padding: 5px">
-                        giảm giá 1%</h6>
-                    <img class="card-img-top"
-                         src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
-                         alt="Card image cap"
-                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+<%--8 món ăn được giảm giá nhất --%>
+        <h2 style="padding-top: 40px">Món ăn giảm giá</h2>
+        <div class="row mb-2" style="padding-top: 50px">
+
+            <c:forEach items="${productBestSale}" var="productBestSale">
+                <div class="col-md-3 col-6  item"
+                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                    <div style="width: auto; height: 145px">
+                        <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
+                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                    </div>
+                    <div class="card-body"
+                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
+                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                            <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
+                                  onclick="redirectToUsers(this.id)">
+                                <input type="hidden" name="action" value="restaurant"/>
+                                <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
+                                <h5 class="card-title"
+                                    style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productBestSale.productName}
+                                    - ${productBestSale.restaurantName}
+                                </h5>
+                                <p class="card-text ">
+                                    <li>${productBestSale.address}</li>
+                                    <li>${productBestSale.waitTime} phút</li>
+                                    <li><p class="price">${productBestSale.price}</p> &#8363</li>
+                                </p>
+                            </form>
+                            <p style="margin: 0">
+                                <c:if test="${sessionScope.isLogin==true}">
+                                    <a href="/products?action=add-product-cart&id=${productBestSale.idProduct}" class="btn btn-primary">Add to Cart</a>
+                                </c:if>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body"
-                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px ">
-                    <h5 class="card-title" style="max-width: 100% ;max-height: 100%">tên món ăn - (Name
-                        Merchant)</h5>
-                    <p class="card-text">
-                    <li>(địa chỉ)</li>
-                    <li>(thời gian) phút</li>
-                    <li>(giá) VND</li>
-                    </p>
-                    <c:if test="${sessionScope.isLogin==true}">
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                    </c:if>
-                </div>
-            </div>
+            </c:forEach>
+
         </div>
-    </div>
     <%--Menu main--%>
     <div class="row mb-2 list" style="padding-top: 50px;">
         <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
@@ -904,10 +933,9 @@
                         </form>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
+                                <a href="/products?action=add-product-cart&id=${pro.idProduct}" class="btn btn-primary">Add to Cart</a>
                             </c:if>
                         </p>
-
                     </div>
                 </div>
             </div>
@@ -922,7 +950,7 @@
     <section class="">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
-                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4">
+                <div class =" col-md-3 col-lg-4 col-xl-3 text-left mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
                         <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
                     </h6>
@@ -930,15 +958,15 @@
                         Here you can order all delicious Vietnamese dishes.
                     </p>
                 </div>
-                <div class="col-md-2 col-lg-2 col-xl-2 text-left mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4">
+                <div class = " col-md-2 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class= " text-uppercase fw-bold mb-4">
                         Sản phẩm
                     </h6>
                     <p>Thông tin</p>
                     <p>Trợ giúp</p>
                 </div>
-                <div class="col-md-3 col-lg-2 col-xl-2 text-left mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4">
+                <div class=" col-md-3 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class=" text-uppercase fw-bold mb-4">
                         Thành viên
                     </h6>
                     <p>Ngoc Linh</p>
@@ -998,7 +1026,7 @@
     }
 
     let thisPage = 1;
-    let limit = 12;
+    let limit = 8;
     let list = document.querySelectorAll('.list .item');
 
     function loadItem() {

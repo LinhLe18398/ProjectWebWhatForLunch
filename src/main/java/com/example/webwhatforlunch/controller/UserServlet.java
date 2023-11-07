@@ -146,7 +146,12 @@ public class UserServlet extends HttpServlet {
     private void showHomeForm(HttpServletRequest req, HttpServletResponse resp) {
         try {
             List<Product> productList = userDAO.get_All_Product();
+            List<Product> productBestSale = productDAO.getBestSaleProduct();
+            List<Product> productRecommend = productDAO.getRecommendProduct();
             req.setAttribute("pro", productList);
+            req.setAttribute("productBestSale", productBestSale);
+            req.setAttribute("productRecommend", productRecommend);
+
             HttpSession session = req.getSession();
             session.getAttribute("user");
             RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
@@ -252,7 +257,8 @@ public class UserServlet extends HttpServlet {
         session.removeAttribute("isLogin");
         session.invalidate();
         RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
-        dispatcher.forward(req, resp);
+        showHomeForm(req, resp);
+//        dispatcher.forward(req, resp);
     }
 
     private void createNewMerchant(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
@@ -308,7 +314,8 @@ public class UserServlet extends HttpServlet {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
             dispatcher = req.getRequestDispatcher("user/user-login-form.jsp");
         }
-        dispatcher.forward(req, resp);
+
+        showHomeForm(req,resp);
     }
 
     private void showEditForm(HttpServletRequest req, HttpServletResponse resp) {
