@@ -21,7 +21,7 @@ public class ProductDAO implements ProductInterface{
     private final String SEARCH_PRODUCT_BY_TAG = "{CALL SEARCH_PRODUCT_BY_TAG(?)}";
     private final String ADD_PRODUCT_CART = "{CALL ADD_PRODUCT_TO_CART(?, ?)}";
     private final String GET_ALL_PRODUCT_BY_ID_USER = "{CALL GET_PRODUCT_IN_CART(?)}";
-
+    private final String UPDATE_QUANTITY_PRODUCT = "{CALL UPDATE_PRODUCT_CART(?, ?, ?)}";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
@@ -216,10 +216,22 @@ public class ProductDAO implements ProductInterface{
             String idProduct = resultSet.getString("idProduct");
             String productName = resultSet.getString("productName");
             String productImg = resultSet.getString("productImg");
-             double price = resultSet.getDouble("price");
+            double price = resultSet.getDouble("price");
             String note = resultSet.getString("note");
-            productList.add(new Product(idProduct, productName, productImg, price, note));
+            int quantity = resultSet.getInt("quantity");
+            productList.add(new Product(idProduct, productName, productImg, price, note, quantity));
+
         }
         return productList;
+    }
+
+    @Override
+    public void updateQuantityProduct(int idUser, String idProduct, int isAdd) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(UPDATE_QUANTITY_PRODUCT);
+        callableStatement.setInt(1, idUser);
+        callableStatement.setString(2, idProduct);
+        callableStatement.setInt(3, isAdd);
+        callableStatement.executeUpdate();
     }
 }

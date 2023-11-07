@@ -15,7 +15,7 @@ public class Product {
     int orders;
     String address;
     String restaurantName;
-
+    int quantity;
 
     public Product(String idProduct, String idMerchant, String productName, String productImg, int waitTime, double price, String note, double sale, double serviceFee, int view, int orders) {
         this.idProduct = idProduct;
@@ -68,12 +68,13 @@ public class Product {
         this.orders = orders;
     }
 
-    public Product(String idProduct, String productName, String productImg, double price, String note) {
+    public Product(String idProduct, String productName, String productImg, double price, String note, int quantity) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.productImg = productImg;
         this.price = price;
         this.note = note;
+        this.quantity = quantity;
      }
 
 
@@ -179,5 +180,24 @@ public class Product {
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "idProduct='" + idProduct + '\'' +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", note='" + note + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }
