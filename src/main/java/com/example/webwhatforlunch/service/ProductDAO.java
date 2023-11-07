@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductDAO implements ProductInterface{
     private String username = "root";
-    private String password = "mySQL7122023@";
+    private String password = "1111";
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
@@ -269,6 +269,7 @@ public class ProductDAO implements ProductInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
@@ -276,7 +277,8 @@ public class ProductDAO implements ProductInterface{
             int price = resultSet.getInt("price");
             int sale = resultSet.getInt("sale");
             String address = resultSet.getString("restaurantAddress");
-            productList.add(new Product(idProduct, productName,restaurantName, productImg, waitTime, price, sale,address));
+            // idProduct, idMerchant , productName,restaurantName, productImg, waitTime, price, sale,address
+            productList.add(new Product(idProduct,idMerchant,productName,restaurantName,productImg,waitTime,price, sale,address));
         }
         return productList;
     }
@@ -289,6 +291,7 @@ public class ProductDAO implements ProductInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
@@ -296,8 +299,7 @@ public class ProductDAO implements ProductInterface{
             int price = resultSet.getInt("price");
             int sale = resultSet.getInt("sale");
             String address = resultSet.getString("restaurantAddress");
-            // idProduct, productName,restaurantName, productImg, waitTime, price, sale,address
-            productList.add(new Product(idProduct,productName,restaurantName,productImg,waitTime,price,sale,address));
+            productList.add(new Product(idProduct,idMerchant,productName,restaurantName,productImg,waitTime,price, sale,address));
         }
         return productList;
     }

@@ -42,20 +42,9 @@ public class Product {
         this.view = view;
         this.orders = orders;
     }
-    public Product(String idProduct, String productName, String restaurantName, String productImg, int waitTime, int price, int sale, String address) {
-        this.idProduct = idProduct;
-        this.productName = productName;
-        this.restaurantName = restaurantName;
-        this.productImg = productImg;
-        this.waitTime = waitTime;
-        this.price = price;
-        this.sale = sale;
-        this.address = address;
-    }
-
 
     // this method for user interface
-    public Product(String idProduct,String idMerchant, String productName,String restaurantName, String productImg, int waitTime, int price, int sale, String address) {
+    public Product(String idProduct,String idMerchant, String productName, String restaurantName, String productImg, int waitTime, int price, int sale, String address) {
         this.idProduct = idProduct;
         this.idMerchant = idMerchant;
         this.productName = productName;
@@ -66,6 +55,8 @@ public class Product {
         this.sale = sale;
         this.address = address;
     }
+
+
 
     // this method for merchant update product
     public Product (String idProduct, String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee){
