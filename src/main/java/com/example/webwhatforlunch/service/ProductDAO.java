@@ -1,6 +1,7 @@
 package com.example.webwhatforlunch.service;
 
 import com.example.webwhatforlunch.model.Product;
+import com.mysql.cj.util.DnsSrv;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ProductDAO implements ProductInterface{
     private final String ADD_PRODUCT_CART = "{CALL ADD_PRODUCT_TO_CART(?, ?)}";
     private final String GET_ALL_PRODUCT_BY_ID_USER = "{CALL GET_PRODUCT_IN_CART(?)}";
     private final String UPDATE_QUANTITY_PRODUCT = "{CALL UPDATE_PRODUCT_CART(?, ?, ?)}";
+    private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
+    private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
@@ -233,5 +236,45 @@ public class ProductDAO implements ProductInterface{
         callableStatement.setString(2, idProduct);
         callableStatement.setInt(3, isAdd);
         callableStatement.executeUpdate();
+    }
+
+    @Override
+    public List<Product> getBestSaleProduct() throws SQLException, ClassNotFoundException {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_BEST_SALE);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            double price = resultSet.getDouble("price");
+            double sale = resultSet.getDouble("sale");
+            String address = resultSet.getString("restaurantAddress");
+            productList.add(new Product(idProduct, productName,restaurantName, productImg, waitTime, price, sale,address));
+        }
+        return productList;
+    }
+
+    @Override
+    public List<Product> getRecommendProduct() throws SQLException, ClassNotFoundException {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_RECOMMEND_PRODUCT);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            double price = resultSet.getDouble("price");
+            double sale = resultSet.getDouble("sale");
+            String address = resultSet.getString("restaurantAddress");
+            productList.add(new Product(idProduct, productName,restaurantName, productImg, waitTime, price, sale,address));
+        }
+        return productList;
     }
 }

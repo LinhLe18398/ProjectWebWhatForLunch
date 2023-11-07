@@ -37,7 +37,7 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "home":
-                    showHomeForm(req, resp);
+                showHomeForm(req, resp);
                 break;
             case "login":
                 showLoginForm(req, resp);
@@ -122,7 +122,12 @@ public class UserServlet extends HttpServlet {
     private void showHomeForm(HttpServletRequest req, HttpServletResponse resp){
         try {
             List<Product> productList = userDAO.get_All_Product();
+            List<Product> productBestSale = productDAO.getBestSaleProduct();
+            List<Product> productRecommend = productDAO.getRecommendProduct();
             req.setAttribute("pro", productList);
+            req.setAttribute("productBestSale", productBestSale);
+            req.setAttribute("productRecommend", productRecommend);
+
             HttpSession session = req.getSession();
             session.getAttribute("user");
             RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
