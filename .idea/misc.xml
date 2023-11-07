@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="19" project-jdk-type="JavaSDK" />
 =======
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="corretto-19" project-jdk-type="JavaSDK" />
 >>>>>>> 48fdec788665414b792762523fa6a983758cc5b2
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="19 (2)" project-jdk-type="JavaSDK" />
+>>>>>>> e0f1f550f0b989cb2f06b954af9f4b99db65d185
 </project>

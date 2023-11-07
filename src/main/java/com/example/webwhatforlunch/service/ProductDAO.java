@@ -1,6 +1,7 @@
 package com.example.webwhatforlunch.service;
 
 import com.example.webwhatforlunch.model.Product;
+import com.mysql.cj.util.DnsSrv;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ProductDAO implements ProductInterface{
     private String username = "root";
-    private String password = "1111";
+    private String password = "mySQL7122023@";
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
@@ -20,6 +21,11 @@ public class ProductDAO implements ProductInterface{
     private final String SEARCH_BY_NAME = "{CALL SEARCH_PRODUCT_BY_NAME(?)}";
     private final String SEARCH_PRODUCT_BY_TAG = "{CALL SEARCH_PRODUCT_BY_TAG(?)}";
     private final String GET_PRODUCT_MERCHANT = "{CALL GET_PRODUCT_MERCHANT(?)}";
+    private final String ADD_PRODUCT_CART = "{CALL ADD_PRODUCT_TO_CART(?, ?)}";
+    private final String GET_ALL_PRODUCT_BY_ID_USER = "{CALL GET_PRODUCT_IN_CART(?)}";
+    private final String UPDATE_QUANTITY_PRODUCT = "{CALL UPDATE_PRODUCT_CART(?, ?, ?)}";
+    private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
+    private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
@@ -151,6 +157,8 @@ public class ProductDAO implements ProductInterface{
         return productList;
     }
 
+
+
     public List<Product> searchProductByName(String name) throws SQLException, ClassNotFoundException {
         List<Product> products = new ArrayList<>();
         Connection connection = getConnection();
@@ -208,9 +216,89 @@ public class ProductDAO implements ProductInterface{
             int price = resultSet.getInt("price");
             String note = resultSet.getString("note");
             int sale = resultSet.getInt("sale");
-            Product product = new Product(idProduct, productName, productImg, waitTime, price, note, sale);
+            Product product = new Product(idProduct,productName,productImg,waitTime,price,note, sale);
             products.add(product);
         }
         return products;
+    }
+
+    @Override
+    public void addProductToCart(int idUser, String idProduct) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ADD_PRODUCT_CART);
+        callableStatement.setInt(1, idUser);
+        callableStatement.setString(2, idProduct);
+        callableStatement.executeQuery();
+    }
+
+    @Override
+    public List<Product> getAllProductByIdUser(int idUser) throws SQLException, ClassNotFoundException {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_ALL_PRODUCT_BY_ID_USER);
+        callableStatement.setInt(1, idUser);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String productImg = resultSet.getString("productImg");
+            int price = resultSet.getInt("price");
+            String note = resultSet.getString("note");
+            int quantity = resultSet.getInt("quantity");
+            productList.add(new Product(idProduct, productName, productImg, price, note, quantity));
+
+        }
+        return productList;
+    }
+
+    @Override
+    public void updateQuantityProduct(int idUser, String idProduct, int isAdd) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(UPDATE_QUANTITY_PRODUCT);
+        callableStatement.setInt(1, idUser);
+        callableStatement.setString(2, idProduct);
+        callableStatement.setInt(3, isAdd);
+        callableStatement.executeUpdate();
+    }
+
+    @Override
+    public List<Product> getBestSaleProduct() throws SQLException, ClassNotFoundException {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_BEST_SALE);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
+            String address = resultSet.getString("restaurantAddress");
+            productList.add(new Product(idProduct, productName,restaurantName, productImg, waitTime, price, sale,address));
+        }
+        return productList;
+    }
+
+    @Override
+    public List<Product> getRecommendProduct() throws SQLException, ClassNotFoundException {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_RECOMMEND_PRODUCT);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
+            String address = resultSet.getString("restaurantAddress");
+            // idProduct, productName,restaurantName, productImg, waitTime, price, sale,address
+            productList.add(new Product(idProduct,productName,restaurantName,productImg,waitTime,price,sale,address));
+        }
+        return productList;
     }
 }
