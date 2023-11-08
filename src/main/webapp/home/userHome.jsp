@@ -25,6 +25,31 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
+
+    <link href="https://gofood.in/public/assets/webs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://gofood.in/public/assets/webs/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+
+    <link href="https://gofood.in/public/assets/webs/vendor/icofont/icofont.min.css" rel="stylesheet">
+
+    <link href="https://gofood.in/public/assets/webs/vendor/select2/css/select2.min.css" rel="stylesheet">
+
+    <link href="https://gofood.in/public/assets/webs/css/main.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://gofood.in/public/assets/webs/vendor/owl-carousel/owl.carousel.css">
+
+    <link rel="stylesheet" href="https://gofood.in/public/assets/webs/vendor/owl-carousel/owl.theme.css">
+
+    <link rel="stylesheet" href="https://gofood.in/public/assets/css/custom.css?q=12">
+
+    <link rel="stylesheet" href="https://gofood.in/public/assets/css/photoviewer.css">
+
+    <link rel="stylesheet" href="https://gofood.in/public/assets/css/search_box.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 </head>
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
@@ -92,7 +117,7 @@
         color: #212529;
     }
 
-    .price{
+    .price {
         display: inline-block;
     }
 </style>
@@ -130,7 +155,8 @@
                                     Restaurant
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang merchant</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                        merchant</a></li>
                                     <li><a class="dropdown-item" href="#">2</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -161,7 +187,8 @@
                                         ${user.name}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông tin</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
+                                        tin</a></li>
                                     <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
                                     <li>
@@ -230,56 +257,553 @@
                 </div>
             </div>
 
+            <div class="container">
 
-            <div class="container carousel slide" style="display: flex; padding-bottom: 10px">
-                <div class="card" style="width: 15rem; margin-right: 35px">
-                    <div style="width: auto ; height: 160px">
-                        <img src="https://cdn.tgdd.vn/2021/01/CookRecipe/Avatar/GaNuongKieuAnh1200.jpg"
-                             class="card-img-top"
-                             alt="...">
+                <div class="row d-flex align-items-center py-lg-4">
+
+                    <div class="owl-carousel owl-carousel-category owl-theme owl-loaded owl-drag">
+
+                        <div class="owl-stage-outer">
+
+                            <div class="owl-stage"
+                                 style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
+
+                                                <h6>Pizza</h6>
+
+                                                <p>120</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
+
+                                                <h6>Healthy</h6>
+
+                                                <p>130</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/4.png" alt="">
+
+                                                <h6>Vegetarian</h6>
+
+                                                <p>120</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/5.png" alt="">
+
+                                                <h6>Chinese</h6>
+
+                                                <p>111</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/6.png" alt="">
+
+                                                <h6>Hamburgers</h6>
+
+                                                <p>958</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/7.png" alt="">
+
+                                                <h6>Dessert</h6>
+
+                                                <p>56</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/8.png" alt="">
+
+                                                <h6>Chicken</h6>
+
+                                                <p>40</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned" style="width: 91.25px;">
+
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/9.png" alt="">
+
+                                                <h6>Indian</h6>
+
+                                                <p>156</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/1.png" alt="">
+
+                                                <h6>American</h6>
+
+                                                <p>156</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
+
+                                                <h6>Pizza</h6>
+
+                                                <p>120</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
+
+                                                <h6>Healthy</h6>
+
+                                                <p>130</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/4.png" alt="">
+
+                                                <h6>Vegetarian</h6>
+
+                                                <p>120</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/5.png" alt="">
+
+                                                <h6>Chinese</h6>
+
+                                                <p>111</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/6.png" alt="">
+
+                                                <h6>Hamburgers</h6>
+
+                                                <p>958</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/7.png" alt="">
+
+                                                <h6>Dessert</h6>
+
+                                                <p>56</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/8.png" alt="">
+
+                                                <h6>Chicken</h6>
+
+                                                <p>40</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/9.png" alt="">
+
+                                                <h6>Indian</h6>
+
+                                                <p>156</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/1.png" alt="">
+
+                                                <h6>American</h6>
+
+                                                <p>156</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
+
+                                                <h6>Pizza</h6>
+
+                                                <p>120</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
+
+                                                <h6>Healthy</h6>
+
+                                                <p>130</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/4.png" alt="">
+
+                                                <h6>Vegetarian</h6>
+
+                                                <p>120</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/5.png" alt="">
+
+                                                <h6>Chinese</h6>
+
+                                                <p>111</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/6.png" alt="">
+
+                                                <h6>Hamburgers</h6>
+
+                                                <p>958</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="owl-item cloned active" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/7.png" alt="">
+
+                                                <h6>Dessert</h6>
+
+                                                <p>56</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="owl-item cloned" style="width: 91.25px;">
+
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/8.png" alt="">
+
+                                                <h6>Chicken</h6>
+
+                                                <p>40</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="owl-nav">
+                            <button type="button" role="presentation" class="owl-prev"><i
+                                    class="fa fa-chevron-left"></i></button>
+                            <button type="button" role="presentation" class="owl-next"><i
+                                    class="fa fa-chevron-right"></i></button>
+                        </div>
+                        <div class="owl-dots disabled"></div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">(tên món ăn)</h5>
-                        <p class="card-text">(giá) VND</p>
-                    </div>
+
                 </div>
 
-                <div class="card" style="width: 15rem;margin-right: 35px">
-                    <div style="width: auto ; height: 160px">
-                        <img src="https://file.hstatic.net/200000303304/article/steak_10_b1b1397477ea4c8ca1f215989632a614_1024x1024.jpg"
-                             class="card-img-top" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">(tên món ăn)</h5>
-                        <p class="card-text">(giá) VND</p>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 15rem;margin-right: 35px">
-                    <div style="width: auto ; height: 160px">
-                        <img src="https://theme.hstatic.net/200000492347/1000889029/14/home_slider_image_1.jpg?v=2419"
-                             class="card-img-top" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">(tên món ăn)</h5>
-                        <p class="card-text">(giá) VND</p>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 15rem;">
-                    <div style="width: auto ; height: 160px">
-                        <img src="https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250313281452.jpg"
-                             class="card-img-top" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">(tên món ăn)</h5>
-                        <p class="card-text">(giá) VND</p>
-                    </div>
-                </div>
             </div>
-
         </div>
+
+
     </div>
+</div>
 </div>
 <%--content--%>
 <div class="container">
@@ -354,16 +878,19 @@
                 <div class="card-body"
                      style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;" onclick="redirectToUsers(this.id)">
+                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="restaurant"/>
                             <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
                             <h5 class="card-title"
-                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName} - ${pro.restaurantName}
+                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName}
+                                - ${pro.restaurantName}
                             </h5>
-                            <p class="card-text " >
+                            <p class="card-text ">
                                 <li>${pro.address}</li>
                                 <li>${pro.waitTime} phút</li>
-                                <li><p class="price">${pro.price}</p> &#8363</li>
+                                <li>
+                            <p class="price">${pro.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">
@@ -426,6 +953,8 @@
         © 2023 WebWhatForLunch
     </div>
 </footer>
+
+
 </body>
 </html>
 <script>
@@ -436,8 +965,9 @@
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber;
     }
+
     function redirectToUsers(id) {
-      document.getElementById(id).submit();
+        document.getElementById(id).submit();
     }
 
     function quickSearch() {
@@ -510,4 +1040,55 @@
         thisPage = i;
         loadItem();
     }
+
+
+    $(document).ready(function () {
+
+        $('#select-location-modal2').modal({show: true});
+
+        $('#select-location-modal2 button').click(function () {
+
+            $('.navbar-toggler').click();
+
+            $('#hd_cl_form #location_input').focus();
+
+        });
+
+        $('#select-location-modal').modal({show: true});
+
+        $('#select-location-modal button').click(function () {
+
+            $('.navbar-toggler').click();
+
+            $('#hd_cl_form #location_input').focus();
+
+        });
+
+
+    });
+
 </script>
+
+
+<script src="https://gofood.in/public/assets/webs/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+<!-- <script src="https://gofood.in/public/assets/webs/select2.min.js" type="text/javascript"></script> -->
+
+<script src="https://gofood.in/public/assets/webs/owl.carousel.js" type="text/javascript"></script>
+
+
+<script src="https://gofood.in/public/assets/js/classes.js?12" type="text/javascript"></script>
+
+<script src="https://gofood.in/public/assets/js/custom.js?12" type="text/javascript"></script>
+
+<script src="https://gofood.in/public/assets/js/rest_controllers.js?12" type="text/javascript"></script>
+
+<script src="https://gofood.in/public/assets/js/web.js?12" type="text/javascript"></script>
+
+<!-- <script src="https://gofood.in/auto_script.js?12"></script> -->
+
+<script src="https://gofood.in/public/assets/js/photoviewer.js" type="text/javascript"></script>
+
+<script src="https://gofood.in/public/assets/js/search_box.js?12123" type="text/javascript"></script>
+
+<script src="https://gofood.in/public/assets/js/orders_controller.js?12" type="text/javascript"></script>
