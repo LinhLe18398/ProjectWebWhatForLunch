@@ -231,7 +231,7 @@
                         <div style="margin: 5px">
                             <form id="quick-search" method="get">
                                 <input type="hidden" name="action" value="search">
-                                <select class="form-select" name="quick_search" aria-label="Default select example"
+                                <select class="form-select" id="option_tag" name="quick_search" aria-label="Default select example"
                                         style="height: 60px" onchange="quickSearch()">
                                     <option selected>
                                         <c:choose>
@@ -248,11 +248,12 @@
                         </div>
                         <div style="margin: 5px; display: inline-block">
                             <input type="text" id="search-input" class="form-control"
-                                   placeholder="Enter your delivery location">
+                                   placeholder="Enter your delivery location" value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
                             <form id="search-name" method="get">
                                 <input type="hidden" name="action" value="search">
+                                <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
                                 <button type="submit" style="height: 60px" class="btn btn-danger"
                                         onclick="searchByName()">Search
@@ -1014,7 +1015,10 @@
 
     function searchByName() {
         let search = document.getElementById("search-input");
+        let optionTag = document.getElementById("option_tag");
+
         document.getElementById("hidden-name-search").value = search.value;
+        document.getElementById("quick_search").value = optionTag.value;
         document.getElementById("search-name").submit();
     }
 
@@ -1084,24 +1088,15 @@
         $('#select-location-modal2').modal({show: true});
 
         $('#select-location-modal2 button').click(function () {
-
             $('.navbar-toggler').click();
-
             $('#hd_cl_form #location_input').focus();
-
         });
 
         $('#select-location-modal').modal({show: true});
-
         $('#select-location-modal button').click(function () {
-
             $('.navbar-toggler').click();
-
             $('#hd_cl_form #location_input').focus();
-
         });
-
-
     });
 
 </script>
@@ -1109,10 +1104,8 @@
 
 <script src="https://gofood.in/public/assets/webs/bootstrap.bundle.min.js" type="text/javascript"></script>
 
-<!-- <script src="https://gofood.in/public/assets/webs/select2.min.js" type="text/javascript"></script> -->
 
 <script src="https://gofood.in/public/assets/webs/owl.carousel.js" type="text/javascript"></script>
-
 
 <script src="https://gofood.in/public/assets/js/classes.js?12" type="text/javascript"></script>
 
@@ -1121,8 +1114,6 @@
 <script src="https://gofood.in/public/assets/js/rest_controllers.js?12" type="text/javascript"></script>
 
 <script src="https://gofood.in/public/assets/js/web.js?12" type="text/javascript"></script>
-
-<!-- <script src="https://gofood.in/auto_script.js?12"></script> -->
 
 <script src="https://gofood.in/public/assets/js/photoviewer.js" type="text/javascript"></script>
 
