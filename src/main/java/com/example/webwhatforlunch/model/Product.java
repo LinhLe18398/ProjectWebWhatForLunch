@@ -15,6 +15,7 @@ public class Product {
     int orders;
     String address;
     String restaurantName;
+    int quantity;
 
     public Product(String idProduct, String productName, String productImg, int waitTime, int price, String note, int sale) {
         this.idProduct = idProduct;
@@ -25,8 +26,17 @@ public class Product {
         this.note = note;
         this.sale = sale;
     }
-
-    int quantity;
+    //controller create new product
+    public Product(String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee, String idMerchant) {
+        this.productName = productName;
+        this.productImg = productImg;
+        this.waitTime = waitTime;
+        this.price = price;
+        this.note = note;
+        this.sale = sale;
+        this.serviceFee = serviceFee;
+        this.idMerchant = idMerchant;
+    }
 
 
     public Product(String idProduct, String idMerchant, String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee, int view, int orders) {
@@ -91,7 +101,6 @@ public class Product {
         this.note = note;
         this.quantity = quantity;
      }
-
 
     public String getIdProduct() {
         return idProduct;

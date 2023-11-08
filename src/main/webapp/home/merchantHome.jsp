@@ -36,7 +36,7 @@
             <form action="/products?action=search" method="post">
                 <div class="search">
                     <div class="search-box">
-                        <input type="text" class="search-input"/>
+                        <input type="text" name="keyword" class="search-input "/>
                         <button class="search-btn" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
@@ -52,7 +52,7 @@
             </div>
             <div class="profile">
                 <img src="https://demoda.vn/wp-content/uploads/2022/09/avatar-facebook-doc-ff.jpg" class="pro-img"/>
-                <p class="profile-name">${merchant1.restaurantName}<i class="fa fa-ellipsis-v dots"
+                <p class="profile-name">${merchant.restaurantName}<i class="fa fa-ellipsis-v dots"
                                                                       aria-hidden="true"></i></p>
                 <div class="profile-div">
                     <%--          <p><i class="fa fa-user "><a href="/merchants?action=profile"> Profile</a></i></p>--%>
@@ -72,8 +72,7 @@
             <p class="list"> Category Selling food
                 <span>
           <button class="ip-add" type="submit"><a style="text-decoration: none" href="/products?action=create-product">+Add</a></button>
-          <button class="ip-selectAll" type="submit"><a style="text-decoration: none"
-                                                        href="/products?action=home-merchant">Select All</a></button>
+          <button class="ip-selectAll" type="submit"><a style="text-decoration: none" href="/products?action=home-merchant">Select All</a></button>
         </span>
             </p>
             <br/>
