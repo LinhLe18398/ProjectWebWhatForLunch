@@ -1104,7 +1104,6 @@
 
 <script src="https://gofood.in/public/assets/webs/bootstrap.bundle.min.js" type="text/javascript"></script>
 
-
 <script src="https://gofood.in/public/assets/webs/owl.carousel.js" type="text/javascript"></script>
 
 <script src="https://gofood.in/public/assets/js/classes.js?12" type="text/javascript"></script>
