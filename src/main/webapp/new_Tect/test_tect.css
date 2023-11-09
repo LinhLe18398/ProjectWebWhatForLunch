@@ -1,0 +1,12 @@
+.naba {
+    text-align: center;
+}
+
+.nav {
+    display: inline-block;
+}
+
+.item {
+    display: none;
+    color: brown;
+}
