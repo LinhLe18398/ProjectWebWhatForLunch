@@ -25,7 +25,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-    
+
     <link href="https://gofood.in/public/assets/webs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://gofood.in/public/assets/webs/vendor/fontawesome/css/all.min.css" rel="stylesheet">
@@ -826,85 +826,85 @@
 <%--content--%>
 <div class="container">
     <%--8 món ăn được gợi ý--%>
-        <h2 style="padding-top: 40px">Gợi Ý Món Ăn</h2>
-        <div class="row mb-2" style="padding-top: 50px">
+    <h2 style="padding-top: 40px">Gợi Ý Món Ăn</h2>
+    <div class="row mb-2" style="padding-top: 50px">
 
-            <c:forEach items="${productRecommend}" var="productRecommend">
-                <div class="col-md-3 col-6  item"
-                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
-                    <div style="width: auto; height: 145px">
-                        <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
-                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
-                    </div>
-                    <div class="card-body"
-                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
-                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                            <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
-                                  onclick="redirectToUsers(this.id)">
-                                <input type="hidden" name="action" value="restaurant"/>
-                                <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
-                                <h5 class="card-title"
-                                    style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productRecommend.productName}
-                                    - ${productRecommend.restaurantName}
-                                </h5>
-                                <p class="card-text ">
-                                    <li>${productRecommend.address}</li>
-                                    <li>${productRecommend.waitTime} phút</li>
-                                    <li><p class="price">${productRecommend.price}</p> &#8363</li>
-                                </p>
-                            </form>
-                            <p style="margin: 0">
-                                <c:if test="${sessionScope.isLogin==true}">
-                                    <a href="/products?action=add-product-cart&id=${productRecommend.idProduct}" class="btn btn-primary">Add to Cart</a>
-                                </c:if>
+        <c:forEach items="${productRecommend}" var="productRecommend">
+            <div class="col-md-3 col-6  item"
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                <div style="width: auto; height: 145px">
+                    <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                </div>
+                <div class="card-body"
+                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
+                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                        <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
+                            <h5 class="card-title"
+                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productRecommend.productName}
+                                - ${productRecommend.restaurantName}
+                            </h5>
+                            <p class="card-text ">
+                                <li>${productRecommend.address}</li>
+                                <li>${productRecommend.waitTime} phút</li>
+                                <li><p class="price">${productRecommend.price}</p> &#8363</li>
                             </p>
-                        </div>
+                        </form>
+                        <p style="margin: 0">
+                            <c:if test="${sessionScope.isLogin==true}">
+                                <a href="/products?action=add-product-cart&id=${productRecommend.idProduct}" class="btn btn-primary">Add to Cart</a>
+                            </c:if>
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
+        </c:forEach>
 
-        </div>
+    </div>
 
 
-<%--8 món ăn được giảm giá nhất --%>
-        <h2 style="padding-top: 40px">Món ăn giảm giá</h2>
-        <div class="row mb-2" style="padding-top: 50px">
+    <%--8 món ăn được giảm giá nhất --%>
+    <h2 style="padding-top: 40px">Món ăn giảm giá</h2>
+    <div class="row mb-2" style="padding-top: 50px">
 
-            <c:forEach items="${productBestSale}" var="productBestSale">
-                <div class="col-md-3 col-6  item"
-                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
-                    <div style="width: auto; height: 145px">
-                        <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
-                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
-                    </div>
-                    <div class="card-body"
-                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
-                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                            <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
-                                  onclick="redirectToUsers(this.id)">
-                                <input type="hidden" name="action" value="restaurant"/>
-                                <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
-                                <h5 class="card-title"
-                                    style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productBestSale.productName}
-                                    - ${productBestSale.restaurantName}
-                                </h5>
-                                <p class="card-text ">
-                                    <li>${productBestSale.address}</li>
-                                    <li>${productBestSale.waitTime} phút</li>
-                                    <li><p class="price">${productBestSale.price}</p> &#8363</li>
-                                </p>
-                            </form>
-                            <p style="margin: 0">
-                                <c:if test="${sessionScope.isLogin==true}">
-                                    <a href="/products?action=add-product-cart&id=${productBestSale.idProduct}" class="btn btn-primary">Add to Cart</a>
-                                </c:if>
+        <c:forEach items="${productBestSale}" var="productBestSale">
+            <div class="col-md-3 col-6  item"
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                <div style="width: auto; height: 145px">
+                    <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                </div>
+                <div class="card-body"
+                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
+                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                        <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
+                            <h5 class="card-title"
+                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productBestSale.productName}
+                                - ${productBestSale.restaurantName}
+                            </h5>
+                            <p class="card-text ">
+                                <li>${productBestSale.address}</li>
+                                <li>${productBestSale.waitTime} phút</li>
+                                <li><p class="price">${productBestSale.price}</p> &#8363</li>
                             </p>
-                        </div>
+                        </form>
+                        <p style="margin: 0">
+                            <c:if test="${sessionScope.isLogin==true}">
+                                <a href="/products?action=add-product-cart&id=${productBestSale.idProduct}" class="btn btn-primary">Add to Cart</a>
+                            </c:if>
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
+        </c:forEach>
 
-        </div>
+    </div>
     <%--Menu main--%>
     <div class="row mb-2 list" style="padding-top: 50px;">
         <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
@@ -927,9 +927,9 @@
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
-                            <li>${pro.address}</li>
-                            <li>${pro.waitTime} phút</li>
-                            <li><p class="price">${pro.price}</p> &#8363</li>
+                                <li>${pro.address}</li>
+                                <li>${pro.waitTime} phút</li>
+                                <li><p class="price">${pro.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">

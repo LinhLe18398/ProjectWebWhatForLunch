@@ -8,9 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO implements UserInterface{
+public class UserDAO implements UserInterface {
     private final String username = "root";
-    private final String password = "1111";
+    private final String password = "password";
+
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -161,17 +162,18 @@ public class UserDAO implements UserInterface{
             int price = resultSet.getInt("price");
             int sale = resultSet.getInt("sale");
             String address = resultSet.getString("restaurantAddress");
-            productList.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
+            productList.add(new Product(idProduct, idMerchant, productName, restaurantName, productImg, waitTime, price, sale, address));
         }
         return productList;
     }
+
     public Merchant getAllMerchant(String idMerchantIput) throws SQLException, ClassNotFoundException {
         Merchant merchant = new Merchant();
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(GET_RESTAURANT_MERCHANT_QUERY);
-        callableStatement.setString(1,idMerchantIput);
+        callableStatement.setString(1, idMerchantIput);
         ResultSet resultSet = callableStatement.executeQuery();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int idUser = resultSet.getInt("idUser");
             String idMerchant = resultSet.getString("idMerchant");
             String name = resultSet.getString("restaurantName");
@@ -179,10 +181,11 @@ public class UserDAO implements UserInterface{
             String email = resultSet.getString("restaurantEmail");
             String address = resultSet.getString("restaurantAddress");
             String status = resultSet.getString("status");
-            merchant = new Merchant(idUser,idMerchant,name,phoneNumber,email,address,status);
+            merchant = new Merchant(idUser, idMerchant, name, phoneNumber, email, address, status);
         }
         return merchant;
     }
+
     public List<Merchant> showMerchant() throws SQLException, ClassNotFoundException {
         List<Merchant> merchantList = new ArrayList<>();
         Connection connection = getConnection();
