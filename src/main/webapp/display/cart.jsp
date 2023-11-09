@@ -12,6 +12,7 @@
     <title>&#128722; Cart</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
@@ -112,9 +113,10 @@
                 <td data-th="Price">${pro.price} ₫</td>
                 <td data-th="Quantity" style="display: flex">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
-                    <a style="margin-right: 8px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0" onclick="checkQuantity(quantity${pro.idProduct},${pro.quantity})"><i class="fa-solid fa-minus"></i></a>
-                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
 
+                    <a hidden="hidden" href="" id="${pro.idProduct}"></a>
+                    <a style="margin-right: 8px; margin-top: 6px; color:blue"  onclick="checkQuantity(`${pro.idProduct}`,${pro.quantity})" ><i class="fa-solid fa-minus"></i></a>
+                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
                     <a style="margin-left: 6px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i class="fa-solid fa-plus"></i></a>
                 </td>
                 <td data-th="Subtotal" class="text-center"></td>
@@ -131,7 +133,7 @@
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
-            <td><a href="" class="btn btn-success btn-block">Mua</a>
+            <td><a href="/users?action=order" class="btn btn-success btn-block" onclick="checkEmpty()">Mua</a>
             </td>
         </tr>
         </tfoot>
@@ -140,28 +142,36 @@
 </body>
 </html>
 <script>
-    // Lấy tất cả các hàng trong bảng
-    var rows = document.querySelectorAll("#cart tbody tr");
+    let rows = document.querySelectorAll("#cart tbody tr");
 
-    // Duyệt qua từng hàng
+    function checkQuantity(id, quantity) {
+        let link = document.getElementById(id);
+        let href = "/products?action=update-quantity&id=" + id + "&isAdd=0";
+        // alert(quantity);
+        if (quantity <= 1) {
+            if (confirm("Bạn có chắc muốn xóa?")) {
+                link.href = href;
+                link.click();
+            }
+        } else {
+            link.href = href;
+            link.click();
+        }
+    }
+
     rows.forEach(function(row) {
-        // Lấy giá trị cột "Price"
-        var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
+        let price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
 
-        // Lấy giá trị cột "Quantity"
-        var quantity = parseInt(row.querySelector(".form-control").value);
+        let quantity = parseInt(row.querySelector(".form-control").value);
 
-        // Tính giá trị cột "Into Money" bằng tích của "Price" và "Quantity"
-        var intoMoney = price * quantity;
+        let intoMoney = price * quantity;
 
-        // Hiển thị giá trị trong cột "Into Money"
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
-    // Tính tổng giá trị của tất cả các hàng cột "Into Money"
-    var total = 0;
+    let total = 0;
     rows.forEach(function(row) {
-        var intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
+        let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
 
@@ -180,22 +190,14 @@
         }
         document.getElementById("my-sum").textContent   = "Tổng tiền: " + priceCart + "₫";
     }
-    function checkQuantity(id,quantity) {
-        let idProduct = id;
-        if(quantity <= 1){
-           showConfirm();
-        }
-    }
-    function showConfirm() {
-        var result = confirm("Bạn có chắc chắn muốn tiếp tục?");
 
-        if (result) {
-            // Người dùng nhấp vào nút OK
-            alert("Bạn đã chọn OK!");
-        } else {
-            // Người dùng nhấp vào nút Cancel
-            alert("Bạn đã chọn Cancel!");
+
+
+    function checkEmpty() {
+        if (priceCart <= 0) {
+            alert("Bạn chưa chọn sản phẩm nào");
         }
     }
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

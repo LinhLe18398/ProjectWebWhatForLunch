@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68f6319a-8a69-4a1f-bce2-7159d1ca564e" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
+>>>>>>> 48fdec788665414b792762523fa6a983758cc5b2
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,12 +39,16 @@
       <state>
         <projects_view>
           <tree_state>
+<<<<<<< HEAD
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="WebWhatForLunch" type="f1a62948:ProjectNode" />
               </path>
             </expand>
+=======
+            <expand />
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
             <select />
           </tree_state>
         </projects_view>
@@ -43,14 +59,25 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+<<<<<<< HEAD
         <option value="Class" />
         <option value="Jsp File" />
+=======
+        <option value="Jsp File" />
+        <option value="Class" />
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+  </component>
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -61,6 +88,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -68,6 +96,11 @@
       </MavenImportingSettings>
     </option>
   </component>
+=======
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
   <component name="ProjectId" id="2XYZJaEi9d6Alnl0cZksdDRr1H7" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -79,7 +112,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;last_opened_file_path&quot;: &quot;D:/Java/newWhatForLuch/ProjectWebWhatForLunch&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;feature/hot-fix-user-home&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tuan/Downloads/ProjectWebWhatForLunch&quot;,
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -91,7 +130,11 @@
   <component name="RunManager">
     <configuration name="Tomcat 9.0.80" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/users?action=home" />
+<<<<<<< HEAD
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
+=======
+      <option name="UPDATING_POLICY" value="restart-server" />
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
       <deployment>
         <artifact name="Gradle : com.example : WebWhatForLunch-1.0-SNAPSHOT.war">
           <settings>
@@ -101,7 +144,10 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="a10a5e64-ba6d-4dab-8508-5d0449bff574" />
+<<<<<<< HEAD
         <option name="JNDI_PORT" value="1098" />
+=======
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -178,6 +224,21 @@
         </option>
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -188,15 +249,31 @@
       <option name="presentableId" value="Default" />
       <updated>1698807902317</updated>
       <workItem from="1698807903405" duration="2892000" />
+<<<<<<< HEAD
       <workItem from="1698891786801" duration="3128000" />
       <workItem from="1698980531585" duration="4139000" />
       <workItem from="1699512709087" duration="1261000" />
+=======
+      <workItem from="1698812786970" duration="711000" />
+      <workItem from="1698819465170" duration="10000" />
+      <workItem from="1698829493831" duration="1483000" />
+      <workItem from="1698893394424" duration="4867000" />
+      <workItem from="1698982815567" duration="1514000" />
+      <workItem from="1699113646334" duration="13000" />
+      <workItem from="1699113714036" duration="3631000" />
+      <workItem from="1699192101499" duration="9363000" />
+      <workItem from="1699232739345" duration="6998000" />
+      <workItem from="1699253003356" duration="5915000" />
+      <workItem from="1699280060739" duration="8702000" />
+      <workItem from="1699319128695" duration="6776000" />
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -208,4 +285,6 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+=======
+>>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
 </project>
