@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductDAO implements ProductInterface{
     private String username = "root";
-    private String password = "mySQL7122023@";
+    private String password = "1111";
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
@@ -20,6 +20,7 @@ public class ProductDAO implements ProductInterface{
     private final String GET_PRODUCT_BY_ID = "{CALL GET_PRODUCT_BY_ID(?)}";
     private final String SEARCH_BY_NAME = "{CALL SEARCH_PRODUCT_BY_NAME(?)}";
     private final String SEARCH_PRODUCT_BY_TAG = "{CALL SEARCH_PRODUCT_BY_TAG(?)}";
+    private final String SEARCH_PRODUCT_BY_TAG_AND_NAME = "{CALL SEARCH_PRODUCT_BY_TAG_AND_NAME(?,?)}";
     private final String GET_PRODUCT_MERCHANT = "{CALL GET_PRODUCT_MERCHANT(?)}";
     private final String ADD_PRODUCT_CART = "{CALL ADD_PRODUCT_TO_CART(?, ?)}";
     private final String GET_ALL_PRODUCT_BY_ID_USER = "{CALL GET_PRODUCT_IN_CART(?)}";
@@ -185,6 +186,28 @@ public class ProductDAO implements ProductInterface{
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(SEARCH_PRODUCT_BY_TAG);
         callableStatement.setString(1, tag);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
+            String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
+            String productImg = resultSet.getString("productImg");
+            int waitTime = resultSet.getInt("waitTime");
+            int price = resultSet.getInt("price");
+            int sale = resultSet.getInt("sale");
+            String address = resultSet.getString("restaurantAddress");
+            products.add(new Product(idProduct,idMerchant, productName,restaurantName, productImg, waitTime,price,sale,address));
+        }
+        return products;
+    }
+
+    public List<Product> searchProductByNameAndTag(String name,String tag) throws SQLException, ClassNotFoundException {
+        List<Product> products = new ArrayList<Product>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(SEARCH_PRODUCT_BY_TAG_AND_NAME);
+        callableStatement.setString(1,name);
+        callableStatement.setString(2, tag);
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
