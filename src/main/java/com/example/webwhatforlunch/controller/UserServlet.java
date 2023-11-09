@@ -70,7 +70,15 @@ public class UserServlet extends HttpServlet {
             case "restaurant":
                 showRestaurant(req, resp);
                 break;
+            case "order":
+                showComFirmOrder(req,resp);
+                break;
         }
+    }
+
+    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
@@ -298,13 +306,14 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+    private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException{
         User user;
         String username = req.getParameter("email");
         String password = req.getParameter("password");
 
         RequestDispatcher dispatcher;
         user = userDAO.checkLoginUser(username, password);
+
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
@@ -317,7 +326,6 @@ public class UserServlet extends HttpServlet {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
             dispatcher = req.getRequestDispatcher("user/user-login-form.jsp");
         }
-
         showHomeForm(req,resp);
     }
 

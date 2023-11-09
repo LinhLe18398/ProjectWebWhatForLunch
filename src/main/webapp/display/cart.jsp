@@ -132,7 +132,7 @@
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
-            <td><a href="" class="btn btn-success btn-block" onclick="checkEmpty()">Mua</a>
+            <td><a href="/users?action=order" class="btn btn-success btn-block" onclick="checkEmpty()">Mua</a>
             </td>
         </tr>
         </tfoot>

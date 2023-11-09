@@ -55,6 +55,7 @@
     body {
         max-height: 100%;
     }
+
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
 
     .search {
@@ -124,7 +125,7 @@
         display: inline-block;
     }
 
-    .card-text{
+    .card-text {
         font-size: 12px;
         color: #212529;
     }
@@ -156,7 +157,6 @@
                             <li class="nav-item" style="margin-left: 20px">
                                 <a class="nav-link active" aria-current="page" href="#" style="color: white">Offers</a>
                             </li>
-
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
@@ -207,7 +207,8 @@
                             </li>
 
                             <li class="nav-item dropdown" style="margin-left: 20px">
-                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false" style="color: white">
+                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
+                                   style="color: white">
                                     Cart
                                 </a>
 
@@ -231,7 +232,8 @@
                         <div style="margin: 5px">
                             <form id="quick-search" method="get">
                                 <input type="hidden" name="action" value="search">
-                                <select class="form-select" id="option_tag" name="quick_search" aria-label="Default select example"
+                                <select class="form-select" id="option_tag" name="quick_search"
+                                        aria-label="Default select example"
                                         style="height: 60px" onchange="quickSearch()">
                                     <option selected>
                                         <c:choose>
@@ -850,12 +852,14 @@
                             <p class="card-text ">
                                 <li>${productRecommend.address}</li>
                                 <li>${productRecommend.waitTime} phút</li>
-                                <li><p class="price">${productRecommend.price}</p> &#8363</li>
+                                <li>
+                            <p class="price">${productRecommend.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="/products?action=add-product-cart&id=${productRecommend.idProduct}" class="btn btn-primary">Add to Cart</a>
+                                <a href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
+                                   class="btn btn-primary">Add to Cart</a>
                             </c:if>
                         </p>
                     </div>
@@ -891,12 +895,14 @@
                             <p class="card-text ">
                                 <li>${productBestSale.address}</li>
                                 <li>${productBestSale.waitTime} phút</li>
-                                <li><p class="price">${productBestSale.price}</p> &#8363</li>
+                                <li>
+                            <p class="price">${productBestSale.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="/products?action=add-product-cart&id=${productBestSale.idProduct}" class="btn btn-primary">Add to Cart</a>
+                                <a href="/products?action=add-product-cart&id=${productBestSale.idProduct}"
+                                   class="btn btn-primary">Add to Cart</a>
                             </c:if>
                         </p>
                     </div>
@@ -929,12 +935,14 @@
                             <p class="card-text ">
                                 <li>${pro.address}</li>
                                 <li>${pro.waitTime} phút</li>
-                                <li><p class="price">${pro.price}</p> &#8363</li>
+                                <li>
+                            <p class="price">${pro.price}</p> &#8363</li>
                             </p>
                         </form>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="/products?action=add-product-cart&id=${pro.idProduct}" class="btn btn-primary">Add to Cart</a>
+                                <a href="/products?action=add-product-cart&id=${pro.idProduct}" class="btn btn-primary">Add
+                                    to Cart</a>
                             </c:if>
                         </p>
                     </div>
@@ -951,7 +959,7 @@
     <section class="">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
-                <div class =" col-md-3 col-lg-4 col-xl-3 text-left mb-4">
+                <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">
                         <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
                     </h6>
@@ -959,8 +967,8 @@
                         Here you can order all delicious Vietnamese dishes.
                     </p>
                 </div>
-                <div class = " col-md-2 col-lg-2 col-xl-2 text-left mb-4">
-                    <h6 class= " text-uppercase fw-bold mb-4">
+                <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class=" text-uppercase fw-bold mb-4">
                         Sản phẩm
                     </h6>
                     <p>Thông tin</p>
@@ -1028,7 +1036,6 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
-
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');
