@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68f6319a-8a69-4a1f-bce2-7159d1ca564e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/merchant/merchantProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/controller/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/controller/ProductServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/controller/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/display/comFirmPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/comFirmPassword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +90,7 @@
 }</component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.80" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/admin?action=showMerchant" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/users?action=home" />
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
       <deployment>
         <artifact name="Gradle : com.example : WebWhatForLunch-1.0-SNAPSHOT.war">
@@ -113,6 +101,7 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="a10a5e64-ba6d-4dab-8508-5d0449bff574" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -201,6 +190,7 @@
       <workItem from="1698807903405" duration="2892000" />
       <workItem from="1698891786801" duration="3128000" />
       <workItem from="1698980531585" duration="4139000" />
+      <workItem from="1699512709087" duration="1261000" />
     </task>
     <servers />
   </component>
@@ -211,9 +201,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java</url>
+          <line>266</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class AdminDAO implements AdminInterface{
     private String username = "root";
-
     private String password = "thanghai";
+
 
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";

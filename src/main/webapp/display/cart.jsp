@@ -112,8 +112,9 @@
                 <td data-th="Price">${pro.price} ₫</td>
                 <td data-th="Quantity" style="display: flex">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
+                    <a style="margin-right: 8px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0" onclick="checkQuantity(quantity${pro.idProduct},${pro.quantity})"><i class="fa-solid fa-minus"></i></a>
                     <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
-                    <a style="margin-left: 8px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i class="fa-solid fa-minus"></i></a>
+
                     <a style="margin-left: 6px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i class="fa-solid fa-plus"></i></a>
                 </td>
                 <td data-th="Subtotal" class="text-center"></td>
@@ -177,6 +178,24 @@
         } else {
             priceCart = priceCart - (quantity * price);
         }
-        document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + "₫";
+        document.getElementById("my-sum").textContent   = "Tổng tiền: " + priceCart + "₫";
     }
+    function checkQuantity(id,quantity) {
+        let idProduct = id;
+        if(quantity <= 1){
+           showConfirm();
+        }
+    }
+    function showConfirm() {
+        var result = confirm("Bạn có chắc chắn muốn tiếp tục?");
+
+        if (result) {
+            // Người dùng nhấp vào nút OK
+            alert("Bạn đã chọn OK!");
+        } else {
+            // Người dùng nhấp vào nút Cancel
+            alert("Bạn đã chọn Cancel!");
+        }
+    }
+
 </script>
