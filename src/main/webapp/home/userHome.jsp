@@ -287,6 +287,7 @@
                                         <div class="osahan-category-item">
 
                                             <a href="#">
+
                                                 <img class="img-fluid"
                                                      src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
 
@@ -302,9 +303,30 @@
                                 </div>
 
 
+                                <div class="owl-item cloned" style="width: 91.25px;">
+                                    <div class="item">
+
+                                        <div class="osahan-category-item">
+
+                                            <a href="#">
+
+                                                <img class="img-fluid"
+                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
+
+                                                <h6>Healthy</h6>
+
+                                                <p>130</p>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
-
                         <div class="owl-nav">
                             <button type="button" role="presentation" class="owl-prev"><i
                                     class="fa fa-chevron-left"></i></button>
