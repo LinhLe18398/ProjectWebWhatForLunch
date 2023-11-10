@@ -25,7 +25,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-    
+
     <link href="https://gofood.in/public/assets/webs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://gofood.in/public/assets/webs/vendor/fontawesome/css/all.min.css" rel="stylesheet">
@@ -50,11 +50,21 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 </head>
 <style>
     body {
         max-height: 100%;
     }
+
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
 
     .search {
@@ -124,10 +134,28 @@
         display: inline-block;
     }
 
-    .card-text{
+    .card-text {
         font-size: 12px;
         color: #212529;
     }
+
+    #main-footer {
+        background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hinh-anh-background-ban-do-the-gioi_034909785.jpg");
+    }
+
+    #bot-footer {
+        background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hinh-anh-background-ban-do-the-gioi_034909785.jpg");
+
+    }
+
+    .h1-banner {
+        margin-top: 30px;
+    }
+
+    li {
+        list-style-type: none;
+    }
+
 </style>
 <body>
 <div class="header">
@@ -141,11 +169,12 @@
         </a>
     </div>
     <c:if test="${sessionScope.isLogin==true}">
-        <div class="navbar" style="margin-left: 800px">
+        <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
                  style="background-color: rgb(255,255,255,0) !important;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#" style="color: white">Home</a>
+                    <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 18px">Trang
+                        chủ</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -153,45 +182,24 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item" style="margin-left: 20px">
-                                <a class="nav-link active" aria-current="page" href="#" style="color: white">Offers</a>
-                            </li>
 
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                    Restaurant
+                                   data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="color: white; font-size: 18px">
+                                    Nhà hàng
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
-                                        merchant</a></li>
-                                    <li><a class="dropdown-item" href="#">2</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">3</a></li>
+                                        nhà hàng của tôi</a></li>
                                 </ul>
                             </li>
 
-
-                            <li class="nav-item dropdown" style="margin-left: 20px">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                    Page
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">1</a></li>
-                                    <li><a class="dropdown-item" href="#">2</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">3</a></li>
-                                </ul>
-                            </li>
 
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                                   data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="color: white; font-size: 18px">
                                         ${user.name}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -202,13 +210,14 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="/users?action=logout">Đăng suất</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
 
                             <li class="nav-item dropdown" style="margin-left: 20px">
-                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false" style="color: white">
-                                    Cart
+                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
+                                   style="color: white; font-size: 18px">
+                                    Giỏ hàng
                                 </a>
 
                             </li>
@@ -231,31 +240,33 @@
                         <div style="margin: 5px">
                             <form id="quick-search" method="get">
                                 <input type="hidden" name="action" value="search">
-                                <select class="form-select" name="quick_search" aria-label="Default select example"
+                                <select class="form-select" id="option_tag" name="quick_search"
+                                        aria-label="Default select example"
                                         style="height: 60px" onchange="quickSearch()">
                                     <option selected>
                                         <c:choose>
-                                            <c:when test="${empty tagSearch}">Quick Search</c:when>
+                                            <c:when test="${empty tagSearch}">Tìm nhanh</c:when>
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Breakfast</option>
-                                    <option value="Coffee">Coffee</option>
-                                    <option value="Lunch">Lunch</option>
-                                    <option value="Dinner">Dinner</option>
+                                    <option value="Breakfast">Đồ ăn sáng</option>
+                                    <option value="Coffee">Cafe</option>
+                                    <option value="Lunch">Đồ ăn trưa</option>
+                                    <option value="Dinner">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
                         <div style="margin: 5px; display: inline-block">
                             <input type="text" id="search-input" class="form-control"
-                                   placeholder="Enter your delivery location">
+                                   placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
                             <form id="search-name" method="get">
                                 <input type="hidden" name="action" value="search">
+                                <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
                                 <button type="submit" style="height: 60px" class="btn btn-danger"
-                                        onclick="searchByName()">Search
+                                        onclick="searchByName()">Tìm kiếm
                                 </button>
                             </form>
                         </div>
@@ -266,54 +277,25 @@
 
 
             <div class="container">
-
                 <div class="row d-flex align-items-center py-lg-4">
-
-
                     <div class="owl-carousel owl-carousel-category owl-theme owl-loaded owl-drag">
-
-
                         <div class="owl-stage-outer">
-
                             <div class="owl-stage"
                                  style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
 
-                                <div class="owl-item cloned" style="width: 91.25px;">
-
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
-
-                                                <h6>Pizza</h6>
-
-                                                <p>120</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
+                           <c:forEach items="${productBestSale}" var="productBestSale">
                                 <div class="owl-item cloned" style="width: 91.25px;">
                                     <div class="item">
-
-                                        <div class="osahan-category-item">
+                                        <div class="osahan-category-item" style="height: 120px">
 
                                             <a href="#">
 
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
+                                                <img class="img-fluid" style="height: 65px"
+                                                     src="${productBestSale.productImg}">
 
-                                                <h6>Healthy</h6>
+                                                <h6>${productBestSale.productName}</h6>
 
-                                                <p>130</p>
+                                                <p style="color:black;">${productBestSale.price}&#8363</p>
 
                                             </a>
 
@@ -323,483 +305,30 @@
                                 </div>
 
 
-                                <div class="owl-item cloned" style="width: 91.25px;">
-                                    <div class="item">
+                               <div class="owl-item cloned" style="width: 91.25px;">
 
-                                        <div class="osahan-category-item">
+                                   <div class="item">
 
-                                            <a href="#">
+                                       <div class="osahan-category-item" style="height: 120px">
 
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/4.png" alt="">
+                                           <a href="#">
 
-                                                <h6>Vegetarian</h6>
+                                               <img class="img-fluid" style="height: 65px"
+                                                    src="${productBestSale.productImg}">
 
-                                                <p>120</p>
+                                               <h6>${productBestSale.productName}</h6>
 
-                                            </a>
+                                               <p style="color: black">${productBestSale.price}&#8363</p>
 
-                                        </div>
+                                           </a>
 
-                                    </div>
-                                </div>
+                                       </div>
 
+                                   </div>
+                               </div>
+                           </c:forEach>
 
-                                <div class="owl-item cloned" style="width: 91.25px;">
-                                    <div class="item">
 
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/5.png" alt="">
-
-                                                <h6>Chinese</h6>
-
-                                                <p>111</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="owl-item cloned" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/6.png" alt="">
-
-                                                <h6>Hamburgers</h6>
-
-                                                <p>958</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="owl-item cloned" style="width: 91.25px;">
-
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/7.png" alt="">
-
-                                                <h6>Dessert</h6>
-
-                                                <p>56</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="owl-item cloned" style="width: 91.25px;">
-
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/8.png" alt="">
-
-                                                <h6>Chicken</h6>
-
-                                                <p>40</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 91.25px;">
-
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/9.png" alt="">
-
-                                                <h6>Indian</h6>
-
-                                                <p>156</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/1.png" alt="">
-
-                                                <h6>American</h6>
-
-                                                <p>156</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
-
-                                                <h6>Pizza</h6>
-
-                                                <p>120</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
-
-                                                <h6>Healthy</h6>
-
-                                                <p>130</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/4.png" alt="">
-
-                                                <h6>Vegetarian</h6>
-
-                                                <p>120</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/5.png" alt="">
-
-                                                <h6>Chinese</h6>
-
-                                                <p>111</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/6.png" alt="">
-
-                                                <h6>Hamburgers</h6>
-
-                                                <p>958</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/7.png" alt="">
-
-                                                <h6>Dessert</h6>
-
-                                                <p>56</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/8.png" alt="">
-
-                                                <h6>Chicken</h6>
-
-                                                <p>40</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/9.png" alt="">
-
-                                                <h6>Indian</h6>
-
-                                                <p>156</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/1.png" alt="">
-
-                                                <h6>American</h6>
-
-                                                <p>156</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
-
-                                                <h6>Pizza</h6>
-
-                                                <p>120</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
-
-                                                <h6>Healthy</h6>
-
-                                                <p>130</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/4.png" alt="">
-
-                                                <h6>Vegetarian</h6>
-
-                                                <p>120</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/5.png" alt="">
-
-                                                <h6>Chinese</h6>
-
-                                                <p>111</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/6.png" alt="">
-
-                                                <h6>Hamburgers</h6>
-
-                                                <p>958</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="owl-item cloned active" style="width: 91.25px;">
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/7.png" alt="">
-
-                                                <h6>Dessert</h6>
-
-                                                <p>56</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="owl-item cloned" style="width: 91.25px;">
-
-                                    <div class="item">
-
-                                        <div class="osahan-category-item">
-
-                                            <a href="#">
-
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/8.png" alt="">
-
-                                                <h6>Chicken</h6>
-
-                                                <p>40</p>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
 
 
                             </div>
@@ -825,97 +354,130 @@
 <%--content--%>
 <div class="container">
     <%--8 món ăn được gợi ý--%>
-        <h2 style="padding-top: 40px">Gợi Ý Món Ăn</h2>
-        <div class="row mb-2" style="padding-top: 50px">
 
-            <c:forEach items="${productRecommend}" var="productRecommend">
-                <div class="col-md-3 col-6  item"
-                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
-                    <div style="width: auto; height: 145px">
-                        <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
-                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
-                    </div>
-                    <div class="card-body"
-                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
-                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                            <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
-                                  onclick="redirectToUsers(this.id)">
-                                <input type="hidden" name="action" value="restaurant"/>
-                                <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
-                                <h5 class="card-title"
-                                    style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productRecommend.productName}
-                                    - ${productRecommend.restaurantName}
-                                </h5>
-                                <p class="card-text ">
-                                    <li>${productRecommend.address}</li>
-                                    <li>${productRecommend.waitTime} phút</li>
-                                    <li><p class="price">${productRecommend.price}</p> &#8363</li>
-                                </p>
-                            </form>
-                            <p style="margin: 0">
-                                <c:if test="${sessionScope.isLogin==true}">
-                                    <a href="/products?action=add-product-cart&id=${productRecommend.idProduct}" class="btn btn-primary">Add to Cart</a>
-                                </c:if>
+    <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
+    <div class="row mb-2" style="padding-top: 50px;">
+
+
+        <c:forEach items="${productRecommend}" var="productRecommend">
+            <div class="col-md-3 col-6  item"
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+
+                <div style="width: 100%; height: 210px">
+                    <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
+                </div>
+                <div class="card-body"
+                     style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+
+                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                        <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
+                            <h5 class="card-title"
+
+                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productRecommend.productName}
+                                - ${productRecommend.restaurantName}
+                            </h5>
+                            <p class="card-text ">
+                                <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
+                            <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
+                                                             style="color: #2b3240;"></i></div>
+                            <div style="padding-left: 7px">${productRecommend.address}</div>
+                            </li>
+                            <li class="icon-tag" style="font-size: large"><i
+                                    class="fa-solid fa-clock"></i> ${productRecommend.waitTime} phút
+                            </li>
+                            <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
+                                    class="fa-solid fa-sack-dollar"></i>
+                                <p style="font-size: large; color: black" class="price">${productRecommend.price}</p>
+                                &#8363
+                            </li>
                             </p>
-                        </div>
+                        </form>
+                        <c:if test="${sessionScope.isLogin==true}">
+                            <a style="width: 60px"
+                               href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
+                               class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
+                        </c:if>
+
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
+        </c:forEach>
 
-        </div>
+    </div>
 
 
-<%--8 món ăn được giảm giá nhất --%>
-        <h2 style="padding-top: 40px">Món ăn giảm giá</h2>
-        <div class="row mb-2" style="padding-top: 50px">
+    <%--8 món ăn được giảm giá nhất --%>
 
-            <c:forEach items="${productBestSale}" var="productBestSale">
-                <div class="col-md-3 col-6  item"
-                     style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
-                    <div style="width: auto; height: 145px">
-                        <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
-                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
-                    </div>
-                    <div class="card-body"
-                         style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
-                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                            <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
-                                  onclick="redirectToUsers(this.id)">
-                                <input type="hidden" name="action" value="restaurant"/>
-                                <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
-                                <h5 class="card-title"
-                                    style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${productBestSale.productName}
-                                    - ${productBestSale.restaurantName}
-                                </h5>
-                                <p class="card-text ">
-                                    <li>${productBestSale.address}</li>
-                                    <li>${productBestSale.waitTime} phút</li>
-                                    <li><p class="price">${productBestSale.price}</p> &#8363</li>
-                                </p>
-                            </form>
-                            <p style="margin: 0">
-                                <c:if test="${sessionScope.isLogin==true}">
-                                    <a href="/products?action=add-product-cart&id=${productBestSale.idProduct}" class="btn btn-primary">Add to Cart</a>
-                                </c:if>
+
+    <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
+    <div class="row mb-2" style="padding-top: 50px;">
+        <c:forEach items="${productBestSale}" var="productBestSale">
+            <div class="col-md-3 col-6  item"
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                <div style="width: 100%; height: 210px">
+                    <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
+                </div>
+                <div class="card-body"
+                     style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+
+                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                        <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
+                            <h5 class="card-title"
+
+                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
+                                - ${productBestSale.restaurantName}
+                            </h5>
+                            <p class="card-text ">
+                                <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
+                            <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
+                                                             style="color: #2b3240;"></i></div>
+                            <div style="padding-left: 7px">${productBestSale.address}</div>
+                            </li>
+                            <li class="icon-tag" style="font-size: large"><i
+                                    class="fa-solid fa-clock"></i> ${productBestSale.waitTime} phút
+                            </li>
+                            <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
+                                    class="fa-solid fa-sack-dollar"></i>
+                                <p style="font-size: large; color: black" class="price">${productBestSale.price}</p>
+                                &#8363
+                            </li>
                             </p>
-                        </div>
+                        </form>
+                        <c:if test="${sessionScope.isLogin==true}">
+                            <a style="width: 60px"
+                               href="/products?action=add-product-cart&id=${productBestSale.idProduct}"
+                               class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
+                        </c:if>
+
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
+        </c:forEach>
 
-        </div>
+
+    </div>
     <%--Menu main--%>
+    <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
     <div class="row mb-2 list" style="padding-top: 50px;">
-        <h2 style="padding-bottom: 20px">Có Thể Bạn Cần Tìm</h2>
         <c:forEach items="${pro}" var="pro">
             <div class="col-md-3 col-6  item"
                  style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
-                <div style="width: auto; height: 145px">
+                <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
-                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); max-width: 100% ;max-height: 100%">
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
                 </div>
                 <div class="card-body"
-                     style="background-color: #b9b7b7 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 250px; padding: 10px ">
+                     style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
                         <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
@@ -926,14 +488,26 @@
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
-                            <li>${pro.address}</li>
-                            <li>${pro.waitTime} phút</li>
-                            <li><p class="price">${pro.price}</p> &#8363</li>
+
+                                <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
+                            <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
+                                                             style="color: #2b3240;"></i></div>
+                            <div style="padding-left: 7px">${pro.address}</div>
+                            <li class="icon-tag" style="font-size: large"><i
+                                    class="fa-solid fa-clock"></i> ${pro.waitTime} phút
+                            </li>
+                            <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
+                                    class="fa-solid fa-sack-dollar"></i>
+                                <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
+                            </li>
+
                             </p>
                         </form>
                         <p style="margin: 0">
                             <c:if test="${sessionScope.isLogin==true}">
-                                <a href="/products?action=add-product-cart&id=${pro.idProduct}" class="btn btn-primary">Add to Cart</a>
+                                <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
+                                   class="btn btn-primary"><i
+                                        style="font-size: 20px" class='bx bx-cart'></i></a>
                             </c:if>
                         </p>
                     </div>
@@ -944,50 +518,55 @@
     <ul class="listPage"></ul>
 </div>
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted">
+
+<footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     </section>
     <section class="">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
-                <div class =" col-md-3 col-lg-4 col-xl-3 text-left mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
+                <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 40px">
+                    <h6 class="text-uppercase fw-bold mb-4" style="color:white">
+                        <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
-                    <p>
+                    <p style="color: white">
                         Here you can order all delicious Vietnamese dishes.
                     </p>
                 </div>
-                <div class = " col-md-2 col-lg-2 col-xl-2 text-left mb-4">
-                    <h6 class= " text-uppercase fw-bold mb-4">
+                <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
+                    <h6 class=" text-uppercase fw-bold mb-4" style="color: white">
                         Sản phẩm
                     </h6>
-                    <p>Thông tin</p>
-                    <p>Trợ giúp</p>
+                    <p style="color: white">Thông tin</p>
+                    <p style="color: white">Trợ giúp</p>
                 </div>
-                <div class=" col-md-3 col-lg-2 col-xl-2 text-left mb-4">
-                    <h6 class=" text-uppercase fw-bold mb-4">
+
+                <div class=" col-md-3 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
+                    <h6 class=" text-uppercase fw-bold mb-4" style="color: white">
                         Thành viên
                     </h6>
-                    <p>Ngoc Linh</p>
-                    <p>Van Tuan</p>
-                    <p>Cat Hai</p>
-                    <p>Gia Minh</p>
-                    <p>Minh Hieu</p>
+                    <p style="color: white">Ngoc Linh</p>
+                    <p style="color: white">Van Tuan</p>
+                    <p style="color: white">Cat Hai</p>
+                    <p style="color: white">Gia Minh</p>
+                    <p style="color: white">Minh Hieu</p>
                 </div>
-                <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
-                    <p>Hoài Đức - Hà Nội</p>
-                    <p>
+                <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4" style="margin-left: 40px">
+                    <h6 class=" text-uppercase fw-bold mb-4" style="color: white">
+                        Liên hệ
+                    </h6>
+                    <p style="color: white">Hoài Đức - Hà Nội</p>
+                    <p style="color: white">
                         WebWhatForLunch@gmail.com
                     </p>
-                    <p> +84 88658023</p>
-                    <p> +84 38301773</p>
+                    <p style="color: white"> +84 88658023</p>
+                    <p style="color: white"> +84 38301773</p>
                 </div>
             </div>
         </div>
     </section>
-    <div class="text-center p-4" style="background-color: lightgray;">
-        © 2023 WebWhatForLunch
+    <div class="text-center p-4" id="bot-footer">
+        <p style="color:white;">© 2023 WebWhatForLunch</p>
     </div>
 </footer>
 
@@ -1014,7 +593,10 @@
 
     function searchByName() {
         let search = document.getElementById("search-input");
+        let optionTag = document.getElementById("option_tag");
+
         document.getElementById("hidden-name-search").value = search.value;
+        document.getElementById("quick_search").value = optionTag.value;
         document.getElementById("search-name").submit();
     }
 
@@ -1084,24 +666,15 @@
         $('#select-location-modal2').modal({show: true});
 
         $('#select-location-modal2 button').click(function () {
-
             $('.navbar-toggler').click();
-
             $('#hd_cl_form #location_input').focus();
-
         });
 
         $('#select-location-modal').modal({show: true});
-
         $('#select-location-modal button').click(function () {
-
             $('.navbar-toggler').click();
-
             $('#hd_cl_form #location_input').focus();
-
         });
-
-
     });
 
 </script>
@@ -1109,10 +682,7 @@
 
 <script src="https://gofood.in/public/assets/webs/bootstrap.bundle.min.js" type="text/javascript"></script>
 
-<!-- <script src="https://gofood.in/public/assets/webs/select2.min.js" type="text/javascript"></script> -->
-
 <script src="https://gofood.in/public/assets/webs/owl.carousel.js" type="text/javascript"></script>
-
 
 <script src="https://gofood.in/public/assets/js/classes.js?12" type="text/javascript"></script>
 
@@ -1121,8 +691,6 @@
 <script src="https://gofood.in/public/assets/js/rest_controllers.js?12" type="text/javascript"></script>
 
 <script src="https://gofood.in/public/assets/js/web.js?12" type="text/javascript"></script>
-
-<!-- <script src="https://gofood.in/auto_script.js?12"></script> -->
 
 <script src="https://gofood.in/public/assets/js/photoviewer.js" type="text/javascript"></script>
 

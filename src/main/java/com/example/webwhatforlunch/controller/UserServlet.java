@@ -70,7 +70,15 @@ public class UserServlet extends HttpServlet {
             case "restaurant":
                 showRestaurant(req, resp);
                 break;
+            case "order":
+                showComFirmOrder(req,resp);
+                break;
         }
+    }
+
+    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
@@ -95,16 +103,19 @@ public class UserServlet extends HttpServlet {
 
     private void search(HttpServletRequest req, HttpServletResponse resp) {
         String nameSearch = req.getParameter("name_search");
+        String quickSearch = req.getParameter("quick_search");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
         List<Product> productList = null;
         try {
             if (nameSearch != null) {
                 productList = productDAO.searchProductByName(nameSearch);
+            } else if (nameSearch != null && quickSearch != null) {
+                productList = productDAO.searchProductByNameAndTag(nameSearch, quickSearch);
             } else {
-                String quickSearch = req.getParameter("quick_search");
                 productList = productDAO.searchProductByTag(quickSearch);
-                req.setAttribute("tagSearch", quickSearch);
             }
+            req.setAttribute("nameSearch", nameSearch);
+            req.setAttribute("tagSearch", quickSearch);
             req.setAttribute("pro", productList);
             requestDispatcher.forward(req, resp);
         } catch (SQLException e) {
