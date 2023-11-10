@@ -282,18 +282,20 @@
                         <div class="owl-stage-outer">
                             <div class="owl-stage"
                                  style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
+
+                           <c:forEach items="${productBestSale}" var="productBestSale">
                                 <div class="owl-item cloned" style="width: 91.25px;">
                                     <div class="item">
-                                        <div class="osahan-category-item">
+                                        <div class="osahan-category-item" style="height: 120px">
 
                                             <a href="#">
 
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/2.png" alt="">
+                                                <img class="img-fluid" style="height: 65px"
+                                                     src="${productBestSale.productImg}">
 
-                                                <h6>Pizza</h6>
+                                                <h6>${productBestSale.productName}</h6>
 
-                                                <p>120</p>
+                                                <p style="color:black;">${productBestSale.price}&#8363</p>
 
                                             </a>
 
@@ -303,26 +305,30 @@
                                 </div>
 
 
-                                <div class="owl-item cloned" style="width: 91.25px;">
-                                    <div class="item">
+                               <div class="owl-item cloned" style="width: 91.25px;">
 
-                                        <div class="osahan-category-item">
+                                   <div class="item">
 
-                                            <a href="#">
+                                       <div class="osahan-category-item" style="height: 120px">
 
-                                                <img class="img-fluid"
-                                                     src="https://gofood.in/public/assets/webs/img/list/3.png" alt="">
+                                           <a href="#">
 
-                                                <h6>Healthy</h6>
+                                               <img class="img-fluid" style="height: 65px"
+                                                    src="${productBestSale.productImg}">
 
-                                                <p>130</p>
+                                               <h6>${productBestSale.productName}</h6>
 
-                                            </a>
+                                               <p style="color: black">${productBestSale.price}&#8363</p>
 
-                                        </div>
+                                           </a>
 
-                                    </div>
-                                </div>
+                                       </div>
+
+                                   </div>
+                               </div>
+                           </c:forEach>
+
+
 
 
                             </div>
