@@ -354,24 +354,29 @@
 <%--content--%>
 <div class="container">
     <%--8 món ăn được gợi ý--%>
+
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
+
 
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
                  style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
                 </div>
                 <div class="card-body"
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
                         <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="restaurant"/>
                             <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
                             <h5 class="card-title"
+
                                 style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productRecommend.productName}
                                 - ${productRecommend.restaurantName}
                             </h5>
@@ -396,6 +401,7 @@
                                href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
+
                         </p>
                     </div>
                 </div>
@@ -406,6 +412,7 @@
 
 
     <%--8 món ăn được giảm giá nhất --%>
+
 
     <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
     <div class="row mb-2" style="padding-top: 50px;">
@@ -418,12 +425,14 @@
                 </div>
                 <div class="card-body"
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
                         <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="restaurant"/>
                             <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
                             <h5 class="card-title"
+
                                 style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
                                 - ${productBestSale.restaurantName}
                             </h5>
@@ -448,11 +457,14 @@
                                href="/products?action=add-product-cart&id=${productBestSale.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
+
                         </p>
                     </div>
                 </div>
             </div>
         </c:forEach>
+
+
     </div>
     <%--Menu main--%>
     <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
@@ -476,6 +488,7 @@
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
+
                                 <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
                             <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
                                                              style="color: #2b3240;"></i></div>
@@ -487,6 +500,7 @@
                                     class="fa-solid fa-sack-dollar"></i>
                                 <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
                             </li>
+
                             </p>
                         </form>
                         <p style="margin: 0">
