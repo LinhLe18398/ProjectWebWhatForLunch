@@ -160,7 +160,7 @@
 <body>
 <div class="header">
     <input type="text" value="${user.id}" id="idUser" hidden="hidden">
-    <div class="div-login-signup" id="button-full" style="float: right">
+    <div class="div-login-signup" id="button-full" style="float: right; margin:8px 6px 0px 0px">
         <a href="/users?action=login">
             <button type="submit" class="btn btn-primary btn-sm">Đăng Nhập</button>
         </a>
