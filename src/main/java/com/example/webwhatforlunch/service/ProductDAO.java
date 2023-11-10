@@ -10,7 +10,7 @@ import java.util.List;
 public class ProductDAO implements ProductInterface{
     private String username = "root";
 
-    private String password = "";
+    private String password = "mySQL7122023@";
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
