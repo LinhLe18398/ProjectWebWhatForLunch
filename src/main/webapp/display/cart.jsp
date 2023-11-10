@@ -12,7 +12,6 @@
     <title>&#128722; Cart</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
@@ -113,10 +112,15 @@
                 <td data-th="Price">${pro.price} ₫</td>
                 <td data-th="Quantity" style="display: flex">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
+<<<<<<< HEAD
 
                     <a hidden="hidden" href="" id="${pro.idProduct}"></a>
                     <a style="margin-right: 8px; margin-top: 6px; color:blue"  onclick="checkQuantity(`${pro.idProduct}`,${pro.quantity})" ><i class="fa-solid fa-minus"></i></a>
                     <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
+=======
+                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
+                    <a style="margin-left: 8px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i class="fa-solid fa-minus"></i></a>
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
                     <a style="margin-left: 6px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i class="fa-solid fa-plus"></i></a>
                 </td>
                 <td data-th="Subtotal" class="text-center"></td>
@@ -133,7 +137,9 @@
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
+
             <td><a href="/users?action=order" class="btn btn-success btn-block" onclick="checkEmpty()">Mua</a>
+
             </td>
         </tr>
         </tfoot>
@@ -142,6 +148,7 @@
 </body>
 </html>
 <script>
+<<<<<<< HEAD
     let rows = document.querySelectorAll("#cart tbody tr");
 
     function checkQuantity(id, quantity) {
@@ -159,19 +166,19 @@
         }
     }
 
+=======
+    var rows = document.querySelectorAll("#cart tbody tr");
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
     rows.forEach(function(row) {
-        let price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
-
-        let quantity = parseInt(row.querySelector(".form-control").value);
-
-        let intoMoney = price * quantity;
-
+        var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
+        var quantity = parseInt(row.querySelector(".form-control").value);
+        var intoMoney = price * quantity;
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
-    let total = 0;
+    var total = 0;
     rows.forEach(function(row) {
-        let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
+        var intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
 
@@ -190,6 +197,7 @@
         }
         document.getElementById("my-sum").textContent   = "Tổng tiền: " + priceCart + "₫";
     }
+<<<<<<< HEAD
 
 
 
@@ -199,5 +207,6 @@
         }
     }
 
+=======
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

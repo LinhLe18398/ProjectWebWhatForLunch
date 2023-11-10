@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="68f6319a-8a69-4a1f-bce2-7159d1ca564e" name="Changes" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
 =======
 <<<<<<< HEAD
@@ -13,6 +14,8 @@
 =======
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
 >>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
+=======
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" afterDir="false" />
@@ -21,8 +24,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
+<<<<<<< HEAD
 >>>>>>> 48fdec788665414b792762523fa6a983758cc5b2
 >>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
+=======
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,9 +119,13 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
 <<<<<<< HEAD
+<<<<<<< HEAD
     &quot;last_opened_file_path&quot;: &quot;D:/Java/newWhatForLuch/ProjectWebWhatForLunch&quot;,
 =======
     &quot;git-widget-placeholder&quot;: &quot;feature/hot-fix-user-home&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;feature/front-end-manage-list-bill&quot;,
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/tuan/Downloads/ProjectWebWhatForLunch&quot;,
 >>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
@@ -128,7 +138,7 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.80" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 9.0.80" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/users?action=home" />
 <<<<<<< HEAD
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
@@ -143,11 +153,15 @@
         </artifact>
       </deployment>
       <server-settings>
+<<<<<<< HEAD
         <option name="BASE_DIRECTORY_NAME" value="a10a5e64-ba6d-4dab-8508-5d0449bff574" />
 <<<<<<< HEAD
         <option name="JNDI_PORT" value="1098" />
 =======
 >>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
+=======
+        <option name="BASE_DIRECTORY_NAME" value="aed8cc32-7828-4d9b-a65b-30b7cbf46594" />
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -155,7 +169,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="51597" />
+        <option name="DEBUG_PORT" value="58810" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -266,7 +280,11 @@
       <workItem from="1699253003356" duration="5915000" />
       <workItem from="1699280060739" duration="8702000" />
       <workItem from="1699319128695" duration="6776000" />
+<<<<<<< HEAD
 >>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
+=======
+      <workItem from="1699602039272" duration="1326000" />
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
     </task>
     <servers />
   </component>
