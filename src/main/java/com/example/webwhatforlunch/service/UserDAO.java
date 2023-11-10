@@ -1,5 +1,6 @@
 package com.example.webwhatforlunch.service;
 
+import com.example.webwhatforlunch.model.DeliveryAddress;
 import com.example.webwhatforlunch.model.Merchant;
 import com.example.webwhatforlunch.model.Product;
 import com.example.webwhatforlunch.model.User;
@@ -31,6 +32,8 @@ public class UserDAO implements UserInterface {
     private final String UPDATE_PROFILE_USER = "{CALL UPDATE_DATA_USER(?,?,?,?,?,?,?)}";
     private final String GET_ALL_PRODUCT = "{CALL GET_ALL_PRODUCT()}";
     private final String GET_RESTAURANT_MERCHANT_QUERY = "{CALL GET_RESTAURANT_MERCHANT(?)}";
+    private final String CREATE_ADDRESS_QUERY = "{CALL CREATE_ADDRESS(?,?,?,?)}";
+    private final String GET_ALL_USER_ADDRESS_QUERY = "{CALL GET_ALL_USER_ADDRESS(?)}";
 
     public boolean checkDuplicate(String email) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
@@ -205,4 +208,37 @@ public class UserDAO implements UserInterface {
         return merchantList;
     }
 
+    public void createAddress(int idUser, String name, String phone, String address) {
+        try {
+            Connection connection = getConnection();
+            CallableStatement callableStatement = connection.prepareCall(CREATE_ADDRESS_QUERY);
+            callableStatement.setInt(1, idUser);
+            callableStatement.setString(2, name);
+            callableStatement.setString(3, phone);
+            callableStatement.setString(4, address);
+            callableStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<DeliveryAddress> getAllUserAddress(int idUser) throws SQLException, ClassNotFoundException {
+        List<DeliveryAddress> addressList = new ArrayList<>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_ALL_USER_ADDRESS_QUERY);
+        callableStatement.setInt(1, idUser);
+        ResultSet resultSet = callableStatement.executeQuery();
+        while (resultSet.next()) {
+            int idAddress = resultSet.getInt("idAddress");
+            int idU = resultSet.getInt("idUser");
+            String recipientName = resultSet.getString("recipientName");
+            String recipientPhone = resultSet.getString("recipientPhone");
+            String detailedAddress = resultSet.getString("detailedAddress");
+
+            addressList.add(new DeliveryAddress(idAddress, idU,recipientName, recipientPhone, detailedAddress));
+        }
+        return addressList;
+    }
 }
