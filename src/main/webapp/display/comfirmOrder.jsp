@@ -21,7 +21,11 @@
 <style>
     .header {
         display: flex;
-        background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-food-overlooking-the-background-banner-image_138613.jpg");
+        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-color: rgb(255, 255, 255, 0.5) !important;
     }
 
     .hh {

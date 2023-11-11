@@ -100,9 +100,10 @@
     }
 
     .header {
-        background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-food-overlooking-the-background-banner-image_138613.jpg");
+        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
         background-repeat: no-repeat;
         background-size: cover;
+        position: relative;
         background-color: rgb(255, 255, 255, 0.5) !important;
     }
 
@@ -120,6 +121,13 @@
         cursor: pointer;
     }
 
+    .header .overlay {
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
     .listPage .active {
         background-color: #B192EF;
         color: #fff;
@@ -159,15 +167,18 @@
 </style>
 <body>
 <div class="header">
+    <div class="overlay"></div>
     <input type="text" value="${user.id}" id="idUser" hidden="hidden">
-    <div class="div-login-signup" id="button-full" style="float: right">
+    <div class="div-login-signup" id="button-full" style="float: right; margin:8px 6px 0px 0px">
         <a href="/users?action=login">
-            <button type="submit" class="btn btn-primary btn-sm">Đăng Nhập</button>
+            <button type="submit" class="btn btn-primary btn-sm" style="position: relative">Đăng Nhập</button>
         </a>
         <a href="/users?action=create">
-            <button type="submit" class="btn btn-secondary btn-sm">Đăng Kí</button>
+            <button type="submit" class="btn btn-secondary btn-sm" style="position: relative">Đăng Kí</button>
         </a>
     </div>
+    <div style="clear: both"></div>
+
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -227,8 +238,8 @@
         </div>
     </c:if>
     <div class="text-content">
-        <h1 style="color: white;">Khám phá những món ăn ngon nhất &</h1>
-        <h1 style="color: white">Đồ uống ở Hà Nội</h1>
+        <h1 style="color: white; position: relative">Khám phá những món ăn ngon nhất &</h1>
+        <h1 style="color: white; position: relative">Đồ uống ở Hà Nội</h1>
     </div>
     <%--search--%>
     <div class="search">
