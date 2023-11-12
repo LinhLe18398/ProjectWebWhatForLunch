@@ -102,6 +102,18 @@ public class Product {
         this.quantity = quantity;
      }
 
+    public Product(String idProduct, String productName, String productImg, int waitTime, int price, String note, int sale, int serviceFee, int quantity) {
+        this.idProduct = idProduct;
+        this.productName = productName;
+        this.productImg =  productImg;
+        this.waitTime = waitTime;
+        this.price = price;
+        this.note = note;
+        this.sale = sale;
+        this.serviceFee = serviceFee;
+        this.quantity = quantity;
+    }
+
     public String getIdProduct() {
         return idProduct;
     }

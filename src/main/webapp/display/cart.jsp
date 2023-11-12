@@ -141,25 +141,14 @@
 </body>
 </html>
 <script>
-    // Lấy tất cả các hàng trong bảng
     var rows = document.querySelectorAll("#cart tbody tr");
-
-    // Duyệt qua từng hàng
     rows.forEach(function(row) {
-        // Lấy giá trị cột "Price"
         var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
-
-        // Lấy giá trị cột "Quantity"
         var quantity = parseInt(row.querySelector(".form-control").value);
-
-        // Tính giá trị cột "Into Money" bằng tích của "Price" và "Quantity"
         var intoMoney = price * quantity;
-
-        // Hiển thị giá trị trong cột "Into Money"
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
-    // Tính tổng giá trị của tất cả các hàng cột "Into Money"
     var total = 0;
     rows.forEach(function(row) {
         var intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);

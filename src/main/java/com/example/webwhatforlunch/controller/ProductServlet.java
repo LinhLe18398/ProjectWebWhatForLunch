@@ -1,8 +1,10 @@
 package com.example.webwhatforlunch.controller;
 
+import com.example.webwhatforlunch.model.Bill;
 import com.example.webwhatforlunch.model.Merchant;
 import com.example.webwhatforlunch.model.Product;
 import com.example.webwhatforlunch.model.User;
+import com.example.webwhatforlunch.service.BillDAO;
 import com.example.webwhatforlunch.service.ProductDAO;
 import com.example.webwhatforlunch.service.UserDAO;
 
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
@@ -22,6 +25,7 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
+    private BillDAO billDAO;
 
     @Override
     public void init() {
@@ -59,6 +63,8 @@ public class ProductServlet extends HttpServlet {
                 break;
         }
     }
+
+
 
     private void showProductInCart(HttpServletRequest req, HttpServletResponse resp) {
         try {

@@ -1,7 +1,6 @@
 package com.example.webwhatforlunch.service;
 
 import com.example.webwhatforlunch.model.Product;
-import com.mysql.cj.util.DnsSrv;
 
 import java.sql.*;
 import java.util.ArrayList;
