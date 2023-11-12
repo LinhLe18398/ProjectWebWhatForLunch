@@ -193,7 +193,6 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
@@ -412,7 +411,6 @@
                                href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
-
                         </p>
                     </div>
                 </div>
@@ -468,7 +466,6 @@
                                href="/products?action=add-product-cart&id=${productBestSale.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
-
                         </p>
                     </div>
                 </div>
@@ -499,7 +496,6 @@
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
-
                                 <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
                             <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
                                                              style="color: #2b3240;"></i></div>
@@ -617,7 +613,6 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
-
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');

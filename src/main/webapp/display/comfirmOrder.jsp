@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tuan
@@ -20,7 +21,11 @@
 <style>
     .header {
         display: flex;
-        background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-food-overlooking-the-background-banner-image_138613.jpg");
+        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-color: rgb(255, 255, 255, 0.5) !important;
     }
 
     .hh {
@@ -139,14 +144,10 @@
                         </div>
                         <div class="modal-body">
                            <div class="form-check " style="margin-bottom: 0">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                     id="flexRadioDefault1">
-                              <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                Vương Văn Tuấn <span style="color: rgb(128,128,128)"> | (+84) 388301773</span>
-                                  <a href="#xmas-popup" class="button"
-                                     style="text-decoration: none;padding-left: 100px">Cập Nhập</a>
 
-                                  <div id="xmas-popup" class="popup" href="#">
+                               <a href="#xmas-popup" class="button"
+                                  style="text-decoration: none;float: right">Cập Nhập</a>
+                               <div id="xmas-popup" class="popup" href="#">
                                     <div class="popup-content">
                                         <label>Cập nhật địa chỉ</label>
                                         <hr>
@@ -160,31 +161,39 @@
                                                 <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ">
                                             </p>
                                           </form>
-                                            <p>
-                                                <a href="/users?action=order" class="btn btn-outline-secondary">Hủy</a>
-                                                <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
-                                            </p>
+                                         <p>
+                                            <a href="/users?action=order" class="btn btn-outline-secondary">Hủy</a>
+                                            <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
+                                         </p>
                                         </div>
                                     </div>
-                                  </div>
-                                  <div style="color: rgb(128,128,128);padding-right: 100px">
-                                    Trường Đại Học Thành Đô, Đường Quốc Lộ 32, Lai Xá, Xã Kim Chung, Huyện Hoài Đức, Hà Nội
-                                  </div>
-                            </label>
+                               </div>
+
+                               <c:forEach items="${address}" var="showAddress">
+
+                                   <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
+                                       <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                              id="flexRadioDefault1">
+                                    ${showAddress.recipientName} <span
+                                           style="color: rgb(128,128,128)"> | ${showAddress.recipientPhone}</span>
+                                      <div style="color: rgb(128,128,128);padding-right: 100px">
+                                              ${showAddress.detailedAddress}
+                                      </div>
+                                   </label>
+                               </c:forEach>
                            </div>
                             <div>
                                 <p style="padding-bottom: 3px"
                                    class="btn btn-outline-secondary card-address" onclick="openForm()">+ Thêm địa chỉ mới</p>
-
                                 <div id="myForm" hidden="hidden">
-                                    <form action="">
+                                    <form action="/users?action=create-new-address" method="post">
                                         <p>
-                                        <input type="text" placeholder="Họ và tên">
-                                        <input type="text" placeholder="Số điện thoại">
+                                        <input type="text" placeholder="Họ và tên" name="name">
+                                        <input type="text" placeholder="Số điện thoại" name="phone">
                                         </p>
-                                    <p>
-                                        <input style="width: 100%" type="text" placeholder="Địa chỉ">
-                                    </p>
+                                        <p>
+                                            <input style="width: 100%" type="text" placeholder="Địa chỉ" name="address">
+                                        </p>
                                         <p>
                                         <button type="button" class="btn btn-outline-secondary" onclick="closeForm()">Hủy</button>
                                         <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>

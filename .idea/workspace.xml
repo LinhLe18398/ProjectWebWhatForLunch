@@ -9,7 +9,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/AdminDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/display/user-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/user-edit.jsp" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" afterDir="false" />
+>>>>>>> 693feacfb9406339262f898aacfe175422ddf944
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +92,11 @@
   <component name="RunManager">
     <configuration name="Tomcat 9.0.80" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/users?action=home" />
+<<<<<<< HEAD
+      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+=======
       <option name="UPDATING_POLICY" value="restart-server" />
+>>>>>>> 693feacfb9406339262f898aacfe175422ddf944
       <deployment>
         <artifact name="Gradle : com.example : WebWhatForLunch-1.0-SNAPSHOT.war">
           <settings>
@@ -195,7 +204,11 @@
       <workItem from="1699253003356" duration="5915000" />
       <workItem from="1699280060739" duration="8702000" />
       <workItem from="1699319128695" duration="6776000" />
+<<<<<<< HEAD
+      <workItem from="1699713275189" duration="396000" />
+=======
       <workItem from="1699602039272" duration="1326000" />
+>>>>>>> 693feacfb9406339262f898aacfe175422ddf944
     </task>
     <servers />
   </component>
