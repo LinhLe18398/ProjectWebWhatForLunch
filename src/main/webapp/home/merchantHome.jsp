@@ -153,9 +153,9 @@
                     <form method="post">
                         <div class="form-group">
                             <div class="form-search-one">
-                                <input type="text" name="idBill" placeholder="*Mã đơn hàng">
-                                <input type="text" name="numberPhone" placeholder="*Số điện thoại">
-                                <input type="text" name="nameUser" placeholder="*Tên khách hàng">
+                                <input type="text" name="idBill" placeholder="Mã đơn hàng">
+                                <input type="text" name="numberPhone" placeholder="Số điện thoại">
+                                <input type="text" name="nameUser" placeholder="Tên khách hàng">
                             </div>
                             <div class="form-search-two">
                                 <div class="form-input-four">
@@ -163,7 +163,7 @@
                                     <i class="fa fa-search"></i>
                                 </div>
                                 <button class="sp-search reset" type="submit" onclick="location.href='/bill?action=search-bill'">Tìm kiếm</button>
-                                <button class="sp-return" type="submit" onclick="resetSearch()">Đặt lại</button>
+                                <button class="sp-return" type="submit">Đặt lại</button>
                             </div>
 
                         </div>
@@ -447,7 +447,10 @@
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber+"₫";
     }
-
+    function clearInput() {
+        let inputElement = document.getElementById("textInput");
+        inputElement.value = "";
+    }
 </script>
 
 </html>

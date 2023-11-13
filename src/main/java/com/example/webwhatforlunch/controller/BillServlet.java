@@ -66,6 +66,7 @@ public class BillServlet extends HttpServlet {
         String numberPhone = request.getParameter("numberPhone");
         String nameUser = request.getParameter("nameUser");
         String filter = request.getParameter("filter");
+        System.out.println(idMerchant + idBill + nameUser + filter);
         List<Bill> billList = billDAO.searchInMerchantBillList(idMerchant, idBill, numberPhone, nameUser, filter);
 
         try {
