@@ -21,8 +21,12 @@ public class BillServlet extends HttpServlet {
         }
 
         switch (action) {
-            case "bill-user": getBillUser(request, response); break;
-            case "bill-merchant": getBillMerchant(request, response); break;
+            case "bill-user":
+                getBillUser(request, response);
+                break;
+            case "bill-merchant":
+                getBillMerchant(request, response);
+                break;
         }
     }
 

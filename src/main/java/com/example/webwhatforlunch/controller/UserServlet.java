@@ -1,9 +1,7 @@
 package com.example.webwhatforlunch.controller;
 
-import com.example.webwhatforlunch.model.DeliveryAddress;
-import com.example.webwhatforlunch.model.Merchant;
-import com.example.webwhatforlunch.model.Product;
-import com.example.webwhatforlunch.model.User;
+import com.example.webwhatforlunch.model.*;
+import com.example.webwhatforlunch.service.BillDAO;
 import com.example.webwhatforlunch.service.ProductDAO;
 import com.example.webwhatforlunch.service.UserDAO;
 
@@ -24,11 +22,12 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
-
+    private BillDAO billDAO;
     @Override
     public void init() {
         userDAO = new UserDAO();
         productDAO = new ProductDAO();
+        billDAO = new BillDAO();
     }
 
     @Override
@@ -283,12 +282,13 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         Merchant merchant = userDAO.checkLoginMerchant(id, password);
         List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-
+        List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
         if (merchant != null) {
             HttpSession session = req.getSession();
             session.setAttribute("merchant", merchant);
             req.setAttribute("user", user);
             req.setAttribute("productList", productList);
+            req.setAttribute("billList", billList);
             dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai mật khẩu");
