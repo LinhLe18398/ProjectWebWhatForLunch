@@ -225,7 +225,9 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
+                                    <li><a class="dropdown-item" href="/users?action=logout">Đơn đã đặt</a></li>
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
                                 </ul>
                             </li>
 
