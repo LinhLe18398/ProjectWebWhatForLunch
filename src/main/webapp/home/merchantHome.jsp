@@ -176,6 +176,7 @@
                 <p class="list" id="sum-order">X Đơn hàng</p>
 
                 <br/>
+                <form action="/bill?action=cancel-accept-bill" method="post">
                 <table id="table-order">
                     <thead>
                     <tr>
@@ -196,23 +197,38 @@
                             <td class="price">${billList.getFinalTotal()}</td>
                             <td>${billList.getBillStatus()}</td>
                             <td style=" text-align: center;">
-                                <button class="ip-delete" type="button"
-                                        onclick="location.href='/products?action=delete-product&id=${billList.idBill}'">
-                                    <i class="fa fa-x"></i>
-                                </button>
-                                <button class="ip-update" type="button"
-                                        onclick="location.href='/products?action=update-product&id=${billList.idBill}'">
-                                    <i class="fa fa-check"></i>
-                                </button>
-                                <button class="ip-view" type="button"
-                                        onclick="">
-                                    <i class="fa fa-eye"></i>
-                                </button>
+                                <div>
+                                    <c:choose>
+                                        <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
+                                            <button class="ip-delete" type="submit" onclick="declineStatus(${billList.idBill})">
+                                                <i class="fa fa-x"></i>
+                                            </button>
+                                            <button class="ip-update" type="submit" onclick="approveStatus(${billList.idBill})">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                            <button class="ip-view" type="submit" onclick="">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <button class="ip-view" type="button"
+                                                    onclick="">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </div>
+
                             </td>
                         </tr>
                     </c:forEach>
+                    <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
+                    <input type="text" hidden="hidden" id="active" name="active" value="">
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </div>
@@ -223,7 +239,7 @@
                 <div class="content-box">
                     <div class="form-detail">
                         <div class="detail-return">
-                            <a href="#"id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
+                            <a href="#" id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
                         </div>
 
                         <div class="detail-status">
@@ -448,10 +464,17 @@
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber+"₫";
     }
-    function clearInput() {
-        let inputElement = document.getElementById("textInput");
-        inputElement.value = "";
+
+    function approveStatus(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 1;
     }
+
+    function declineStatus(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 0;
+    }
+
 </script>
 
 </html>
