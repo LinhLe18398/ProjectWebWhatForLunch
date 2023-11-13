@@ -16,8 +16,8 @@ public class BillDAO {
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
-    private static final String GET_BILL_USER = "GET_BILL_USER(?)";
-    private static final String GET_PRODUCT_IN_BILL = "GET_PRODUCT_IN_BILL(?)";
+    private static final String GET_BILL_USER = "CALL GET_BILL_USER(?)";
+    private static final String GET_PRODUCT_IN_BILL = "CALL GET_PRODUCT_IN_BILL(?)";
 
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
