@@ -52,18 +52,6 @@ public class BillDAO {
         return billList;
     }
 
-    public List<Bill> getBillMerchant(String idMerchant) {
-        List<Bill> billList;
-        try {
-            billList  = getBills(idMerchant,GET_BILL_MERCHANT);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return billList;
-    }
-
     private List<Bill> getBills(String id,String QUERY) throws ClassNotFoundException, SQLException {
         Connection connection = getConnection();
         List<Bill> billList = new ArrayList<Bill>();
