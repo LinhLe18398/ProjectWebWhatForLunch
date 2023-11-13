@@ -22,19 +22,15 @@ public class BillServlet extends HttpServlet {
 
         switch (action) {
             case "bill-user": getBillUser(request, response); break;
+            case "bill-merchant": getBillMerchant(request, response); break;
         }
     }
 
     private void getBillUser(HttpServletRequest request, HttpServletResponse response) {
-        try {
             List<Bill> billList = billDAO.getBillUser(2);
-            for (Bill bill : billList) {
-                System.out.println(bill);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    }
+
+    private void getBillMerchant(HttpServletRequest request, HttpServletResponse response) {
+        List<Bill> merchantList = billDAO.getBillMerchant("M10");
     }
 }

@@ -12,7 +12,7 @@ public class BillDAO {
 
     private String username = "root";
 
-    private String password = "1111";
+    private String password = "mySQL7122023@";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -31,6 +31,10 @@ public class BillDAO {
         List<Bill> billList;
         try {
             billList = getBills(String.valueOf(idUser),GET_BILL_USER);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return billList;
     }
@@ -60,7 +64,7 @@ public class BillDAO {
                 String restaurantName = rs.getString("restaurantName");
                 String restaurantAddress = rs.getString("restaurantAddress");
                 List<Product> product = getProductListInBill(connection,idBill);
-                Bill bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientEmail, recipientAddress, paymentMethod, billStatus, timeOrder, restaurantName, restaurantAddress, product);
+                Bill bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientAddress, paymentMethod, billStatus, timeOrder, restaurantName, restaurantAddress, product);
                 billList.add(bill);
             }
         }
@@ -98,9 +102,5 @@ public class BillDAO {
             productList.add(product);
         }
         return productList;
-    }
-
-    public List<Bill> searchBillMerchant(String idBill,String recipientPhone,String recipientName, String freeSearch) {
-
     }
 }

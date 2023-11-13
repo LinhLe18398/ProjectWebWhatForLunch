@@ -5,6 +5,7 @@ import java.util.List;
 public class Bill {
     private int idBill;
     private int idUser;
+    private final String idMerchant;
     private String timeOrder;
     private String deliveryTime;
     private String restaurantName;
@@ -12,28 +13,26 @@ public class Bill {
     private String recipientName;
     private String recipientAddress;
     private String recipientPhone;
+    private final String billStatus;
+    private final String paymentMethod;
     private List<Product> productList;
     private int sale;
     private int serviceFee;
     private int total;
 
-
-    public Bill(int idBill, String timeOrder, String deliveryTime, String restaurantName, String restaurantAddress, String recipientName, String recipientAddress, String recipientPhone, List<Product> productList, int sale, int serviceFee, int total) {
+    public Bill(int idBill, int idUserDB, String idMerchant, String recipientName, String recipientPhone, String recipientAddress, String paymentMethod, String billStatus, String timeOrder, String restaurantName, String restaurantAddress, List<Product> productList) {
         this.idBill = idBill;
+        this.idUser = idUserDB;
+        this.idMerchant = idMerchant;
+        this.recipientName = recipientName;
+        this.recipientPhone = recipientPhone;
+        this.recipientAddress = recipientAddress;
+        this.paymentMethod = paymentMethod;
+        this.billStatus = billStatus;
         this.timeOrder = timeOrder;
-        this.deliveryTime = deliveryTime;
         this.restaurantName = restaurantName;
         this.restaurantAddress = restaurantAddress;
-        this.recipientName = recipientName;
-        this.recipientAddress = recipientAddress;
-        this.recipientPhone = recipientPhone;
         this.productList = productList;
-        this.sale = sale;
-        this.serviceFee = serviceFee;
-        this.total = total;
-    }
-
-    public Bill(int idBill, int idUserDB, String idMerchant, String recipientName, String recipientPhone, String recipientEmail, String recipientAddress, String paymentMethod, String billStatus, String timeOrder, String restaurantName, String restaurantAddress, List<Product> product) {
     }
 
     public int getIdBill() {
@@ -130,5 +129,25 @@ public class Bill {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getIdMerchant() {
+        return idMerchant;
+    }
+
+    public String getBillStatus() {
+        return billStatus;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 }
