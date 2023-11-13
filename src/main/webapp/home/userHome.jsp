@@ -65,6 +65,10 @@
         max-height: 100%;
     }
 
+    .col-md-3{
+        flex: 1 0 23%;
+    }
+
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
 
     .search {
@@ -128,6 +132,7 @@
         left: 0;
         width: 100%;
     }
+
     .listPage .active {
         background-color: #B192EF;
         color: #fff;
@@ -193,7 +198,6 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
@@ -294,52 +298,73 @@
                             <div class="owl-stage"
                                  style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
 
-                           <c:forEach items="${productBestSale}" var="productBestSale">
-                                <div class="owl-item cloned" style="width: 91.25px;">
-                                    <div class="item">
-                                        <div class="osahan-category-item" style="height: 120px">
+                                <c:forEach items="${productBestSale}" var="productBestSale">
+                                    <div class="owl-item cloned" style="width: 91.25px;">
+                                        <div class="item">
+                                            <div class="osahan-category-item" style="height: 120px">
 
-                                            <a href="#">
+                                                <a href="#">
 
-                                                <img class="img-fluid" style="height: 65px"
-                                                     src="${productBestSale.productImg}">
+                                                    <img class="img-fluid" style="height: 65px"
+                                                         src="${productBestSale.productImg}">
 
-                                                <h6>${productBestSale.productName}</h6>
+                                                    <h6>${productBestSale.productName}</h6>
 
-                                                <p style="color:black;">${productBestSale.price}&#8363</p>
+                                                    <p style="color:black;">${productBestSale.price}&#8363</p>
 
-                                            </a>
+                                                </a>
+
+                                            </div>
 
                                         </div>
-
                                     </div>
-                                </div>
 
 
-                               <div class="owl-item cloned" style="width: 91.25px;">
+                                    <div class="owl-item cloned" style="width: 91.25px;">
 
-                                   <div class="item">
+                                        <div class="item">
 
-                                       <div class="osahan-category-item" style="height: 120px">
+                                            <div class="osahan-category-item" style="height: 120px">
 
-                                           <a href="#">
+                                                <a href="#">
 
-                                               <img class="img-fluid" style="height: 65px"
-                                                    src="${productBestSale.productImg}">
+                                                    <img class="img-fluid" style="height: 65px"
+                                                         src="${productBestSale.productImg}">
 
-                                               <h6>${productBestSale.productName}</h6>
+                                                    <h6>${productBestSale.productName}</h6>
 
-                                               <p style="color: black">${productBestSale.price}&#8363</p>
+                                                    <p style="color: black">${productBestSale.price}&#8363</p>
 
-                                           </a>
+                                                </a>
 
-                                       </div>
+                                            </div>
 
-                                   </div>
-                               </div>
-                           </c:forEach>
+                                        </div>
+                                    </div>
 
 
+                                    <div class="owl-item cloned" style="width: 91.25px;">
+
+                                        <div class="item">
+
+                                            <div class="osahan-category-item" style="height: 120px">
+
+                                                <a href="#">
+
+                                                    <img class="img-fluid" style="height: 65px"
+                                                         src="${productBestSale.productImg}">
+
+                                                    <h6>${productBestSale.productName}</h6>
+
+                                                    <p style="color: black">${productBestSale.price}&#8363</p>
+
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:forEach>
 
 
                             </div>
@@ -372,7 +397,7 @@
 
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
-                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
 
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
@@ -412,7 +437,6 @@
                                href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
-
                         </p>
                     </div>
                 </div>
@@ -429,7 +453,7 @@
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
             <div class="col-md-3 col-6  item"
-                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                 style="border: thin solid black ;width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -468,7 +492,6 @@
                                href="/products?action=add-product-cart&id=${productBestSale.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
-
                         </p>
                     </div>
                 </div>
@@ -482,7 +505,7 @@
     <div class="row mb-2 list" style="padding-top: 50px;">
         <c:forEach items="${pro}" var="pro">
             <div class="col-md-3 col-6  item"
-                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
+                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -499,7 +522,6 @@
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
-
                                 <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
                             <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
                                                              style="color: #2b3240;"></i></div>
@@ -617,7 +639,6 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
-
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');
