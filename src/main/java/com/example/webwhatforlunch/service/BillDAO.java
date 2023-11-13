@@ -13,7 +13,7 @@ public class BillDAO {
 
     private String username = "root";
 
-    private String password = "mySQL7122023@";
+    private String password = "1111";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -105,12 +105,12 @@ public class BillDAO {
         return productList;
     }
 
-    private List<Bill> filterIdMerchant(String idMerchant,List<Bill> billList) {
+    private List<Bill> filterIdMerchant(String idBill,List<Bill> billList) {
         List<Bill> listBillFilter = new ArrayList<Bill>();
-        if (idMerchant != null) {
-            String pattern = ".*" + idMerchant + ".*";
+        if (idBill != null) {
+            String pattern = ".*" + idBill + ".*";
             for (Bill bill : billList) {
-                if (bill.getIdMerchant().matches(pattern)) {
+                if (String.valueOf(bill.getIdBill()).matches(pattern)) {
                     listBillFilter.add(bill);
                 }
             }

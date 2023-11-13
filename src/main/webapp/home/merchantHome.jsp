@@ -150,20 +150,20 @@
                 <hr>
 
                 <div>
-                    <form method="post">
+                    <form method="post" action="/bill?action=search-bill">
                         <div class="form-group">
                             <div class="form-search-one">
-                                <input type="text" name="idBill" placeholder="*Mã đơn hàng">
-                                <input type="text" name="numberPhone" placeholder="*Số điện thoại">
-                                <input type="text" name="nameUser" placeholder="*Tên khách hàng">
+                                <input type="number" name="idBill" placeholder="Mã đơn hàng">
+                                <input type="number" name="numberPhone" placeholder="Số điện thoại">
+                                <input type="text" name="nameUser" placeholder="Tên khách hàng">
                             </div>
                             <div class="form-search-two">
                                 <div class="form-input-four">
                                     <input class="search-sp" type="text" name="filter" placeholder="Nhập kí tự bất kì">
                                     <i class="fa fa-search"></i>
                                 </div>
-                                <button class="sp-search reset" type="submit" onclick="location.href='/bill?action=search-bill'">Tìm kiếm</button>
-                                <button class="sp-return" type="submit" onclick="resetSearch()">Đặt lại</button>
+                                <button class="sp-search reset" type="submit">Tìm kiếm</button>
+                                <button class="sp-return" type="submit">Đặt lại</button>
                             </div>
 
                         </div>
