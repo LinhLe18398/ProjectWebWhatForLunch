@@ -105,12 +105,12 @@ public class BillDAO {
         return productList;
     }
 
-    private List<Bill> filterIdMerchant(String idMerchant,List<Bill> billList) {
+    private List<Bill> filterIdMerchant(String idBill,List<Bill> billList) {
         List<Bill> listBillFilter = new ArrayList<Bill>();
-        if (idMerchant != null) {
-            String pattern = ".*" + idMerchant + ".*";
+        if (idBill != null) {
+            String pattern = ".*" + idBill + ".*";
             for (Bill bill : billList) {
-                if (bill.getIdMerchant().matches(pattern)) {
+                if (String.valueOf(bill.getIdBill()).matches(pattern)) {
                     listBillFilter.add(bill);
                 }
             }
