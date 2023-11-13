@@ -18,7 +18,6 @@ public class Bill {
     private List<Product> productList;
     private int sale;
     private int serviceFee;
-    private int total;
 
     public Bill(int idBill, int idUserDB, String idMerchant, String recipientName, String recipientPhone, String recipientAddress, String paymentMethod, String billStatus, String timeOrder, String restaurantName, String restaurantAddress, List<Product> productList) {
         this.idBill = idBill;
@@ -34,7 +33,51 @@ public class Bill {
         this.restaurantAddress = restaurantAddress;
         this.productList = productList;
     }
+    @Override
+    public String toString() {
+        String toString = "";
+        toString += idBill + "/" + idUser + "/" + idMerchant + "/" + recipientName + "/" + recipientPhone + "/" + recipientAddress + "/" + billStatus + "/" + timeOrder + "/" + restaurantName + "/" + restaurantAddress;
+        for (Product product : productList) {
+            toString += "/" + product.toString();
+        }
+        return toString;
+    }
 
+    public int getTotalPrice() {
+        int total = 0;
+        for (Product product : productList) {
+            total += product.getPrice() * product.getQuantity();
+        }
+        return total;
+    }
+
+    public int getTotalSale() {
+        int totalSale = 0;
+        for (Product product : productList) {
+            totalSale += product.getSale() * product.getQuantity();
+        }
+        return totalSale;
+    }
+
+    public int GetTotalQuantity() {
+        int totalProduct = 0;
+        for (Product product : productList) {
+            totalProduct += product.getQuantity();
+        }
+        return totalProduct;
+    }
+
+    public int getTotalService() {
+        int totalService = 0;
+        for (Product product : productList) {
+            totalService += product.getServiceFee() * product.getQuantity();
+        }
+        return totalService;
+    }
+
+    public int getFinalTotal() {
+        return getTotalPrice() + getTotalService() - getTotalSale();
+    }
     public int getIdBill() {
         return idBill;
     }
@@ -121,14 +164,6 @@ public class Bill {
 
     public void setServiceFee(int serviceFee) {
         this.serviceFee = serviceFee;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
     }
 
     public int getIdUser() {

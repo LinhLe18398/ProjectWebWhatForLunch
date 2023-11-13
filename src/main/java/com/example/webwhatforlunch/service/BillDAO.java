@@ -2,6 +2,7 @@ package com.example.webwhatforlunch.service;
 
 import com.example.webwhatforlunch.model.Bill;
 import com.example.webwhatforlunch.model.Product;
+import jdk.internal.joptsimple.util.RegexMatcher;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,6 +32,18 @@ public class BillDAO {
         List<Bill> billList;
         try {
             billList = getBills(String.valueOf(idUser),GET_BILL_USER);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return billList;
+    }
+
+    public List<Bill> getBillMerchant(String idMerchant) {
+        List<Bill> billList;
+        try {
+            billList  = getBills(idMerchant,GET_BILL_MERCHANT);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -71,18 +84,6 @@ public class BillDAO {
 
         return billList;
     }
-
-    public List<Bill> getBillMerchant(String idMerchant) {
-        List<Bill> billList;
-        try {
-            billList  = getBills(idMerchant,GET_BILL_MERCHANT);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return billList;
-    }
     public List<Product> getProductListInBill(Connection connection,int idBill) throws SQLException {
         CallableStatement callableStatement = connection.prepareCall(GET_PRODUCT_IN_BILL);
         callableStatement.setInt(1,idBill);
@@ -103,4 +104,77 @@ public class BillDAO {
         }
         return productList;
     }
+
+    private List<Bill> filterIdMerchant(String idMerchant,List<Bill> billList) {
+        List<Bill> listBillFilter = new ArrayList<Bill>();
+        if (idMerchant != null) {
+            String pattern = ".*" + idMerchant + ".*";
+            for (Bill bill : billList) {
+                if (bill.getIdMerchant().matches(pattern)) {
+                    listBillFilter.add(bill);
+                }
+            }
+        } else {
+            listBillFilter = billList;
+        }
+        return listBillFilter;
+    }
+
+    private List<Bill> filterUserPhone(String phone, List<Bill> billList) {
+        List<Bill> listBillFilter = new ArrayList<Bill>();
+        if ( phone != null) {
+            String pattern = ".*" + phone + ".*";
+            for (Bill bill : billList) {
+                if (bill.getRecipientPhone().matches(pattern)) {
+                    listBillFilter.add(bill);
+                }
+            }
+        } else {
+            listBillFilter = billList;
+        }
+        return listBillFilter;
+    }
+    private List<Bill> filterUserName(String username, List<Bill> billList) {
+        List<Bill> listBillFilter = new ArrayList<Bill>();
+        if (username != null) {
+            String pattern = ".*" + username + ".*";
+            for (Bill bill : billList) {
+                if (bill.getRecipientName().matches(pattern)) {
+                    listBillFilter.add(bill);
+                }
+            }
+        } else {
+            listBillFilter = billList;
+        }
+        return listBillFilter;
+    }
+
+    private List<Bill> filter(String filter, List<Bill> billList) {
+        List<Bill> listBillFilter = new ArrayList<Bill>();
+        if (filter != null) {
+            String pattern = ".*" + filter + ".*";
+            for (Bill bill : billList) {
+                 String[] dataProduct = bill.toString().split("/");
+                 for (String data : dataProduct) {
+                     if (data.matches(pattern)) {
+                         listBillFilter.add(bill);
+                         break;
+                     }
+                 }
+            }
+        } else {
+            listBillFilter = billList;
+        }
+        return listBillFilter;
+    }
+
+    public List<Bill> searchInMerchantBillList(String idMerchant,String id, String phone, String name, String filter) {
+        List<Bill> billList = getBillMerchant(idMerchant);
+        billList = filterIdMerchant(id,billList);
+        billList = filterUserPhone(phone, billList);
+        billList = filterUserName(name, billList);
+        billList = filter(filter, billList);
+        return billList;
+    }
+
 }
