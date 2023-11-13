@@ -65,7 +65,7 @@
         max-height: 100%;
     }
 
-    .col-md-3{
+    .col-md-3 {
         flex: 1 0 23%;
     }
 
@@ -397,7 +397,7 @@
 
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
+                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
 
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"

@@ -9,18 +9,18 @@ import com.example.webwhatforlunch.service.UserDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "userServlet", value = "/users")
-
 public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
@@ -84,9 +84,9 @@ public class UserServlet extends HttpServlet {
         int id = user.getId();
         try {
             List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
-            req.setAttribute("address",deliveryAddress);
+            req.setAttribute("address", deliveryAddress);
             RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
-            dispatcher.forward(req,resp);
+            dispatcher.forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -96,7 +96,7 @@ public class UserServlet extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        showComFirmOrder(req,resp);
+        showComFirmOrder(req, resp);
     }
 
     private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
@@ -255,14 +255,47 @@ public class UserServlet extends HttpServlet {
                 }
                 break;
             case "create-new-address":
-                createAddress(req, resp);
+                try {
+                    createAddress(req, resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "order":
+                try {
+                    orderProduct(req,resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
         }
     }
 
+    private void orderProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String selectedItems = req.getParameter("idProduct");
+        String quantity = req.getParameter("quantity");
 
+        if (selectedItems != null && quantity != null) {
+            String[] idProduct = selectedItems.split("/");
+            String[] quantityArray = quantity.split("/");
 
-    private void createAddress(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            List<Product> productList = new ArrayList<>();
+            for (int i = 0; i < idProduct.length; i++) {
+                Product product = productDAO.getProductById(idProduct[i]);
+                if (product != null) {
+                    product.setQuantity(Integer.parseInt(quantityArray[i]));
+                    productList.add(product);
+                }
+            }
+            req.setAttribute("product", productList);
+            req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
+        }
+    }
+    private void createAddress(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String address = req.getParameter("address");
@@ -401,4 +434,5 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
         dispatcher.forward(req, resp);
     }
+
 }

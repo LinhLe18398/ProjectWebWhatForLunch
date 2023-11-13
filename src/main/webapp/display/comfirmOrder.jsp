@@ -225,38 +225,38 @@
                     <th style="width:22%" class="text-center">Thành tiền</th>
                 </tr>
             </thead>
+           <c:forEach items="${product}" var="product">
             <tbody>
                 <tr>
                     <td data-th="Product">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs">
-                                <img src=""
+                                <img src="${product.productImg}"
                                      alt="" width="100">
                             </div>
                             <div class="col-sm-10">
-                                <h4 class="nomargin" style="padding-left: 5px">Trà sữa trân châu</h4>
-                                <p style="padding-left: 5px">full topping</p>
+                                <h4 class="nomargin" style="padding-left: 5px">${product.productName}</h4>
+                                <p style="padding-left: 5px">${product.note}</p>
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">50,000 ₫</td>
+                    <td data-th="Price">${product.price} ₫</td>
                     <td data-th="Quantity">
-                        <label>1</label>
+                        <label id="quantity">${product.quantity}</label>
                     </td>
-                    <td data-th="Subtotal" class="text-center">50,000 ₫</td>
+                    <td data-th="Subtotal" class="text-center"> ₫</td>
                 </tr>
+                 <td>
+                    <div style="padding: 10px; width: 100%">
+                      <label style="padding-right: 10px">Lời Nhắn:</label>
+                      <input style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
+                    </div>
+                 </td>
             </tbody>
-           <td>
-                <div style="padding: 10px; width: 100%">
-                  <label style="padding-right: 10px">Lời Nhắn:</label>
-                  <input style="height: 30px" type="text" placeholder=" Lưu ý cho Người bán...">
-                </div>
-           </td>
+           </c:forEach>
     </table>
     </span>
     </div>
-
-
     <div class="container"
          style="box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px; margin-bottom: 10px; padding: 20px">
     <span style="line-height: 2.0em">
@@ -272,11 +272,11 @@
                         </select>
                     </div>
                     <div>
-                        <label style="padding-right: 50px">
+                        <label style="padding-right: 50px" >
                             Tổng Thanh Toán:
                         </label>
                         <label>
-                            200,000 ₫
+
                         </label>
                     </div>
                </div>
@@ -301,6 +301,8 @@
 </body>
 
 <script>
+
+
     function openForm() {
         let address = document.getElementsByClassName("card-address");
 
