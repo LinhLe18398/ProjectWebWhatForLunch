@@ -6,10 +6,7 @@ public class AdminDAO implements AdminInterface{
     private String username = "root";
 
 
-
-    private String password = "";
-
-
+    private String password = "1111";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
