@@ -12,7 +12,7 @@ public class BillDAO {
 
     private String username = "root";
 
-    private String password = "mySQL7122023@";
+    private String password = "1111";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -58,7 +58,7 @@ public class BillDAO {
                 String recipientName =  rs.getString("recipientName");
                 String recipientPhone = rs.getString("recipientPhone");
                 String recipientAddress = rs.getString("recipientAddress");
-                String paymentMethod = rs.getString("paymentMethod");
+                String paymentMethod = rs.getString("paymentMethods");
                 String billStatus = rs.getString("billStatus");
                 String timeOrder = rs.getString("timeOrder");
                 String restaurantName = rs.getString("restaurantName");
@@ -90,7 +90,7 @@ public class BillDAO {
         List<Product> productList = new ArrayList<>();
         while (rs.next()) {
             String idProduct = rs.getString("idProduct");
-            String productImg = rs.getString("productIgm");
+            String productImg = rs.getString("productImg");
             String productName = rs.getString("productName");
             String note = rs.getString("note");
             int waitTime = rs.getInt("waitTime");
