@@ -12,7 +12,7 @@ public class BillDAO {
 
     private String username = "root";
 
-    private String password = "1111";
+    private String password = "mySQL7122023@";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -27,7 +27,7 @@ public class BillDAO {
     }
     public List<Bill> getBillUser (int idUser) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
-        List<Bill> billList = new ArrayList<Bill>();
+        List<Bill> billList = new ArrayList<>();
         CallableStatement callableStatement = connection.prepareCall(GET_BILL_USER);
         callableStatement.setInt(1, idUser);
         ResultSet rs = callableStatement.executeQuery();
