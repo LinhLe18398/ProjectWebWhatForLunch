@@ -51,7 +51,7 @@ public class Bill {
         return total;
     }
 
-    public int getTotalSale() {
+    public int getTotalSale() {  //Tổng giảm giá
         int totalSale = 0;
         for (Product product : productList) {
             totalSale += product.getSale() * product.getQuantity();
@@ -59,7 +59,7 @@ public class Bill {
         return totalSale;
     }
 
-    public int GetTotalQuantity() {
+    public int GetTotalQuantity() { //Tổng số lượng sản phẩm
         int totalProduct = 0;
         for (Product product : productList) {
             totalProduct += product.getQuantity();
@@ -67,7 +67,7 @@ public class Bill {
         return totalProduct;
     }
 
-    public int getTotalService() {
+    public int getTotalService() {  //Tổng dịch vụ
         int totalService = 0;
         for (Product product : productList) {
             totalService += product.getServiceFee() * product.getQuantity();
@@ -75,7 +75,7 @@ public class Bill {
         return totalService;
     }
 
-    public int getFinalTotal() {
+    public int getFinalTotal() { //Tổng tiền phải trả
         return getTotalPrice() + getTotalService() - getTotalSale();
     }
     public int getIdBill() {
