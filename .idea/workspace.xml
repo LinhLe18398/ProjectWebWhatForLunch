@@ -10,8 +10,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/display/user-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/user-edit.jsp" afterDir="false" />
+>>>>>>> 015a143c4377124212f01de8747750d2bd338463
 =======
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" afterDir="false" />
+>>>>>>> 693feacfb9406339262f898aacfe175422ddf944
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
 >>>>>>> 693feacfb9406339262f898aacfe175422ddf944
     </list>
@@ -207,7 +213,11 @@
       <workItem from="1699280060739" duration="8702000" />
       <workItem from="1699319128695" duration="6776000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1699599769151" duration="1472000" />
+=======
+      <workItem from="1699713275189" duration="396000" />
+>>>>>>> 015a143c4377124212f01de8747750d2bd338463
 =======
       <workItem from="1699602039272" duration="1326000" />
 >>>>>>> 693feacfb9406339262f898aacfe175422ddf944
