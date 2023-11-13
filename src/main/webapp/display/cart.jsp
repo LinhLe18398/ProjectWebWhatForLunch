@@ -141,17 +141,17 @@
 </body>
 </html>
 <script>
-    var rows = document.querySelectorAll("#cart tbody tr");
+    let rows = document.querySelectorAll("#cart tbody tr");
     rows.forEach(function(row) {
-        var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
-        var quantity = parseInt(row.querySelector(".form-control").value);
-        var intoMoney = price * quantity;
+        let price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
+        let quantity = parseInt(row.querySelector(".form-control").value);
+        let intoMoney = price * quantity;
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
-    var total = 0;
+    let total = 0;
     rows.forEach(function(row) {
-        var intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
+        let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
 

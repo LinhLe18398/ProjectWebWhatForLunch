@@ -114,6 +114,11 @@ public class Product {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return idProduct + "/" + productName + "/" + waitTime + "/" + price + "/" + note + "/" + sale + "/" + serviceFee + "/" + quantity;
+    }
+
     public String getIdProduct() {
         return idProduct;
     }
@@ -223,14 +228,4 @@ public class Product {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "idProduct='" + idProduct + '\'' +
-                ", productName='" + productName + '\'' +
-                ", price=" + price +
-                ", note='" + note + '\'' +
-                ", quantity=" + quantity +
-                '}';
-    }
 }
