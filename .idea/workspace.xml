@@ -21,8 +21,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/ProductDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/webwhatforlunch/service/UserDAO.java" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/display/cart.jsp" afterDir="false" />
 =======
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/merchantHome.css" afterDir="false" />
+>>>>>>> 693feacfb9406339262f898aacfe175422ddf944
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" afterDir="false" />
 <<<<<<< HEAD
 >>>>>>> 48fdec788665414b792762523fa6a983758cc5b2
@@ -239,6 +243,7 @@
       </method>
     </configuration>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
@@ -253,6 +258,8 @@
       </method>
     </configuration>
 >>>>>>> 9d82d193f4ede9b3884fd5da53f65f39e6a6eb72
+=======
+>>>>>>> 693feacfb9406339262f898aacfe175422ddf944
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
