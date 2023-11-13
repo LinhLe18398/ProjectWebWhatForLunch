@@ -1,8 +1,7 @@
 package com.example.webwhatforlunch.controller;
 
-import com.example.webwhatforlunch.model.Merchant;
-import com.example.webwhatforlunch.model.Product;
-import com.example.webwhatforlunch.model.User;
+import com.example.webwhatforlunch.model.*;
+import com.example.webwhatforlunch.service.BillDAO;
 import com.example.webwhatforlunch.service.ProductDAO;
 import com.example.webwhatforlunch.service.UserDAO;
 
@@ -23,11 +22,12 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
-
+    private BillDAO billDAO;
     @Override
     public void init() {
         userDAO = new UserDAO();
         productDAO = new ProductDAO();
+        billDAO = new BillDAO();
     }
 
     @Override
@@ -71,14 +71,31 @@ public class UserServlet extends HttpServlet {
                 showRestaurant(req, resp);
                 break;
             case "order":
-                showComFirmOrder(req,resp);
+                showComFirmOrder(req, resp);
                 break;
         }
     }
 
+
     private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
-        dispatcher.forward(req,resp);
+        HttpSession httpSession = req.getSession();
+        User user = (User) httpSession.getAttribute("user");
+        int id = user.getId();
+        try {
+            List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
+            req.setAttribute("address",deliveryAddress);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
+            dispatcher.forward(req,resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        showComFirmOrder(req,resp);
     }
 
     private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
@@ -95,6 +112,7 @@ public class UserServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ServletException e) {
+
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -235,7 +253,24 @@ public class UserServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "create-new-address":
+                createAddress(req, resp);
+                break;
         }
+    }
+
+
+
+    private void createAddress(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("name");
+        String phone = req.getParameter("phone");
+        String address = req.getParameter("address");
+        HttpSession httpSession = req.getSession();
+        User user = (User) httpSession.getAttribute("user");
+        int id = user.getId();
+
+        userDAO.createAddress(id, name, phone, address);
+        req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
     }
 
     private void loginMerchant(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
@@ -247,12 +282,13 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         Merchant merchant = userDAO.checkLoginMerchant(id, password);
         List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-
+        List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
         if (merchant != null) {
             HttpSession session = req.getSession();
             session.setAttribute("merchant", merchant);
             req.setAttribute("user", user);
             req.setAttribute("productList", productList);
+            req.setAttribute("billList", billList);
             dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai mật khẩu");
@@ -306,13 +342,14 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+    private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException {
         User user;
         String username = req.getParameter("email");
         String password = req.getParameter("password");
 
         RequestDispatcher dispatcher;
         user = userDAO.checkLoginUser(username, password);
+
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
@@ -325,8 +362,7 @@ public class UserServlet extends HttpServlet {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
             dispatcher = req.getRequestDispatcher("user/user-login-form.jsp");
         }
-
-        showHomeForm(req,resp);
+        showHomeForm(req, resp);
     }
 
     private void showEditForm(HttpServletRequest req, HttpServletResponse resp) {

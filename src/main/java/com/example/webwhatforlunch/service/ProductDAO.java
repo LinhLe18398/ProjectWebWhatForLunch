@@ -1,7 +1,6 @@
 package com.example.webwhatforlunch.service;
 
 import com.example.webwhatforlunch.model.Product;
-import com.mysql.cj.util.DnsSrv;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +9,9 @@ import java.util.List;
 public class ProductDAO implements ProductInterface{
     private String username = "root";
 
-    private String password = "";
+
+    private String password = "thanghai";
+
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
