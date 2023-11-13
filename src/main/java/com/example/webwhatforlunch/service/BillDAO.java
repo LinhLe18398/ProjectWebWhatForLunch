@@ -19,38 +19,66 @@ public class BillDAO {
     private static final String GET_BILL_USER = "CALL GET_BILL_USER(?)";
     private static final String GET_PRODUCT_IN_BILL = "CALL GET_PRODUCT_IN_BILL(?)";
 
+    private static final String GET_BILL_MERCHANT = "CALL GET_BILL_MERCHANT(?)";
+
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection(jdbcURL, username, password);
         return connection;
     }
-    public List<Bill> getBillUser (int idUser) throws SQLException, ClassNotFoundException {
-        Connection connection = getConnection();
-        List<Bill> billList = new ArrayList<Bill>();
-        CallableStatement callableStatement = connection.prepareCall(GET_BILL_USER);
-        callableStatement.setInt(1, idUser);
-        ResultSet rs = callableStatement.executeQuery();
-        while (rs.next()) {
-            int idBill = rs.getInt("idBill");
-            int idUserDB = rs.getInt("idUser");
-            String idMerchant = rs.getString("idMerchant");
-            String recipientName =  rs.getString("recipientName");
-            String recipientPhone = rs.getString("recipientPhone");
-            String recipientEmail = rs.getString("recipientEmail");
-            String recipientAddress = rs.getString("recipientAddress");
-            String paymentMethod = rs.getString("paymentMethod");
-            String billStatus = rs.getString("billStatus");
-            String timeOrder = rs.getString("timeOrder");
-            String restaurantName = rs.getString("restaurantName");
-            String restaurantAddress = rs.getString("restaurantAddress");
-            List<Product> product = getProductListInBill(connection,idBill);
-            Bill bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientEmail, recipientAddress, paymentMethod, billStatus, timeOrder, restaurantName, restaurantAddress, product);
-            billList.add(bill);
+    public List<Bill> getBillUser (int idUser){
+        List<Bill> billList;
+        try {
+            billList = getBills(String.valueOf(idUser),GET_BILL_USER);
         }
         return billList;
     }
 
+    private List<Bill> getBills(String id,String QUERY) throws ClassNotFoundException, SQLException {
+        Connection connection = getConnection();
+        List<Bill> billList = new ArrayList<Bill>();
+        CallableStatement callableStatement = connection.prepareCall(QUERY);
+
+        try {
+            int idUser = Integer.parseInt(id);
+            callableStatement.setInt(1, idUser);
+        } catch (NumberFormatException e) {
+            callableStatement.setString(1, id);
+        } finally {
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                int idBill = rs.getInt("idBill");
+                int idUserDB = rs.getInt("idUser");
+                String idMerchant = rs.getString("idMerchant");
+                String recipientName =  rs.getString("recipientName");
+                String recipientPhone = rs.getString("recipientPhone");
+                String recipientAddress = rs.getString("recipientAddress");
+                String paymentMethod = rs.getString("paymentMethod");
+                String billStatus = rs.getString("billStatus");
+                String timeOrder = rs.getString("timeOrder");
+                String restaurantName = rs.getString("restaurantName");
+                String restaurantAddress = rs.getString("restaurantAddress");
+                List<Product> product = getProductListInBill(connection,idBill);
+                Bill bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientEmail, recipientAddress, paymentMethod, billStatus, timeOrder, restaurantName, restaurantAddress, product);
+                billList.add(bill);
+            }
+        }
+
+        return billList;
+    }
+
+    public List<Bill> getBillMerchant(String idMerchant) {
+        List<Bill> billList;
+        try {
+            billList  = getBills(idMerchant,GET_BILL_MERCHANT);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return billList;
+    }
     public List<Product> getProductListInBill(Connection connection,int idBill) throws SQLException {
         CallableStatement callableStatement = connection.prepareCall(GET_PRODUCT_IN_BILL);
         callableStatement.setInt(1,idBill);
@@ -70,5 +98,9 @@ public class BillDAO {
             productList.add(product);
         }
         return productList;
+    }
+
+    public List<Bill> searchBillMerchant(String idBill,String recipientPhone,String recipientName, String freeSearch) {
+
     }
 }
