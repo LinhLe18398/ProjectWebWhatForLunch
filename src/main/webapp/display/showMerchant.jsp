@@ -50,7 +50,7 @@
       </tr>
     </c:forEach>
     <input type="text" hidden="hidden" id="idUser" name="how" value="">
-    <input id="active" hidden="hidden" type="text" name="active" value="">
+    <input type="text" hidden="hidden" id="active" name="active" value="">
   </table>
 
 
