@@ -3,7 +3,6 @@ package com.example.webwhatforlunch.controller;
 import com.example.webwhatforlunch.model.Bill;
 import com.example.webwhatforlunch.model.Merchant;
 import com.example.webwhatforlunch.service.BillDAO;
-import sun.rmi.server.Dispatcher;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,9 +45,11 @@ public class BillServlet extends HttpServlet {
             case "search-bill":
                 searchBillUser(request, response);
                 break;
+            case "cancel-accept-bill":
+                cancelAcceptBill(request, response);
+                break;
         }
     }
-
 
 
     private void getBillUser(HttpServletRequest request, HttpServletResponse response) {
@@ -58,6 +59,7 @@ public class BillServlet extends HttpServlet {
     private void getBillMerchant(HttpServletRequest request, HttpServletResponse response) {
         List<Bill> merchantList = billDAO.getBillMerchant("M10");
     }
+
     private void searchBillUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
@@ -77,5 +79,34 @@ public class BillServlet extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private void cancelAcceptBill(HttpServletRequest request, HttpServletResponse response) {
+        int idBill = Integer.parseInt(request.getParameter("how"));
+        int number = Integer.parseInt(request.getParameter("active"));
+
+        HttpSession httpSession = request.getSession();
+        Merchant merchant = (Merchant) httpSession.getAttribute("merchant");
+
+        List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+        try {
+            if (number == 1) {
+                billDAO.activeBill(idBill, 0);
+            }
+            if (number == 0) {
+                billDAO.cancelBill(idBill, 0);
+            }
+            request.setAttribute("billList", billList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

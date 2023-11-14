@@ -46,14 +46,6 @@ public class AdminServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "clickStatus":
-                try {
-                    setStatusMerchant(req, resp);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
         }
     }
 
@@ -79,6 +71,15 @@ public class AdminServlet extends HttpServlet {
             case "login":
                 loginAdmin(req, resp);
                 break;
+            case "clickStatus":
+                try {
+                    setStatusMerchant(req, resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
         }
     }
 
@@ -103,9 +104,12 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
+
     private void setStatusMerchant(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        adminDAO.setStatusMerchant(id);
+        int id = Integer.parseInt(req.getParameter("how"));
+        int number = Integer.parseInt(req.getParameter("active"));
+
+        adminDAO.setStatusMerchant(id, number);
         List<Merchant> merchantList = userDAO.showMerchant();
         req.setAttribute("merchant", merchantList);
         req.getRequestDispatcher("display/showMerchant.jsp").forward(req, resp);

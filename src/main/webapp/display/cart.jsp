@@ -112,8 +112,15 @@
                 <td data-th="Price">${pro.price} ₫</td>
                 <td data-th="Quantity" style="display: flex">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
+<<<<<<< HEAD
+
+                    <a hidden="hidden" href="" id="${pro.idProduct}"></a>
+                    <a style="margin-right: 8px; margin-top: 6px; color:blue"  onclick="checkQuantity(`${pro.idProduct}`,${pro.quantity})" ><i class="fa-solid fa-minus"></i></a>
+                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
+=======
                     <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
                     <a style="margin-left: 8px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i class="fa-solid fa-minus"></i></a>
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
                     <a style="margin-left: 6px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i class="fa-solid fa-plus"></i></a>
                 </td>
                 <td data-th="Subtotal" class="text-center"></td>
@@ -141,7 +148,31 @@
 </body>
 </html>
 <script>
+<<<<<<< HEAD
+<<<<<<< HEAD
     let rows = document.querySelectorAll("#cart tbody tr");
+
+    function checkQuantity(id, quantity) {
+        let link = document.getElementById(id);
+        let href = "/products?action=update-quantity&id=" + id + "&isAdd=0";
+        // alert(quantity);
+        if (quantity <= 1) {
+            if (confirm("Bạn có chắc muốn xóa?")) {
+                link.href = href;
+                link.click();
+            }
+        } else {
+            link.href = href;
+            link.click();
+        }
+    }
+
+=======
+    var rows = document.querySelectorAll("#cart tbody tr");
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
+=======
+    let rows = document.querySelectorAll("#cart tbody tr");
+>>>>>>> 9d3f04b9bbe265529fd797e9307b77d6fdb36de8
     rows.forEach(function(row) {
         let price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
         let quantity = parseInt(row.querySelector(".form-control").value);
@@ -168,6 +199,18 @@
         } else {
             priceCart = priceCart - (quantity * price);
         }
-        document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + "₫";
+        document.getElementById("my-sum").textContent   = "Tổng tiền: " + priceCart + "₫";
     }
+<<<<<<< HEAD
+
+
+
+    function checkEmpty() {
+        if (priceCart <= 0) {
+            alert("Bạn chưa chọn sản phẩm nào");
+        }
+    }
+
+=======
+>>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
 </script>

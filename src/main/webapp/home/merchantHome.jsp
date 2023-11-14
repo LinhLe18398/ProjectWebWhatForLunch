@@ -175,6 +175,7 @@
                 <p class="list" id="sum-order">X Đơn hàng</p>
 
                 <br/>
+                <form action="/bill?action=cancel-accept-bill" method="post">
                 <table id="table-order">
                     <thead>
                     <tr>
@@ -195,23 +196,43 @@
                             <td class="price">${billList.getFinalTotal()}</td>
                             <td>${billList.getBillStatus()}</td>
                             <td style=" text-align: center;">
-                                <button class="ip-delete" type="button"
-                                        onclick="location.href='/products?action=delete-product&id=${billList.idBill}'">
-                                    <i class="fa fa-x"></i>
-                                </button>
-                                <button class="ip-update" type="button"
-                                        onclick="location.href='/products?action=update-product&id=${billList.idBill}'">
-                                    <i class="fa fa-check"></i>
-                                </button>
-                                <button class="ip-view" type="button"
-                                        onclick="">
-                                    <i class="fa fa-eye"></i>
-                                </button>
+                                <div>
+                                    <c:choose>
+                                        <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
+                                            <button class="ip-delete" type="submit"
+                                                    onclick="declineStatus(${billList.idBill})">
+                                                <i class="fa fa-x"></i>
+                                            </button>
+                                            <button class="ip-update" type="submit"
+                                                    onclick="approveStatus(${billList.idBill})">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                            <button class="ip-view" type="submit"
+                                                    onclick="">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <button class="ip-view" type="button"
+                                                    onclick="">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </c:otherwise>
+
+
+                                    </c:choose>
+
+                                </div>
+
                             </td>
                         </tr>
                     </c:forEach>
+                    <input type="text" hidden="hidden" id="idBill" name="how" value="">
+                    <input type="text" hidden="hidden" id="active" name="active" value="">
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </div>
@@ -446,6 +467,15 @@
         let number = parseInt(numberElement.textContent);
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber+"₫";
+    }
+    function approveStatus(idBill) {
+        document.getElementById("idUser").value = idBill;
+        document.getElementById("active").value = 1;
+    }
+
+    function declineStatus(idBill) {
+        document.getElementById("idUser").value = idBill;
+        document.getElementById("active").value = 0;
     }
 
 </script>
