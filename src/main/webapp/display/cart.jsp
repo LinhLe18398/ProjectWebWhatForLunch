@@ -69,7 +69,8 @@
         padding-top: 10px;
         padding-right: 5px;
     }
-    .form-control{
+
+    .form-control {
         width: 30px;
         padding: 5px;
     }
@@ -96,39 +97,42 @@
         </thead>
         <tbody>
         <c:forEach items="${productCart}" var="pro">
-            <tr>
-                <td data-th="Product">
-                    <div class="row">
-                        <div class="col-sm-2 hidden-xs">
-                            <img src="${pro.productImg}"
-                                 alt="${pro.idProduct}" width="100">
-                        </div>
-                        <div class="col-sm-10">
-                            <h4 class="nomargin" style="padding-left: 5px">${pro.productName}</h4>
-                            <p style="padding-left: 5px">${pro.note}</p>
-                        </div>
+        <tr>
+            <td data-th="Product">
+                <div class="row">
+                    <div class="col-sm-2 hidden-xs">
+                        <img src="${pro.productImg}"
+                             alt="${pro.idProduct}" width="100">
                     </div>
-                </td>
-                <td data-th="Price">${pro.price} ₫</td>
-                <td data-th="Quantity" style="display: flex">
-                    <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
-<<<<<<< HEAD
+                    <div class="col-sm-10">
+                        <h4 class="nomargin" style="padding-left: 5px">${pro.productName}</h4>
+                        <p style="padding-left: 5px">${pro.note}</p>
+                    </div>
+                </div>
+            </td>
+            <td data-th="Price">${pro.price} ₫</td>
+            <td data-th="Quantity" style="display: flex">
+                <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
 
-                    <a hidden="hidden" href="" id="${pro.idProduct}"></a>
-                    <a style="margin-right: 8px; margin-top: 6px; color:blue"  onclick="checkQuantity(`${pro.idProduct}`,${pro.quantity})" ><i class="fa-solid fa-minus"></i></a>
-                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
-=======
-                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}" type="text">
-                    <a style="margin-left: 8px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i class="fa-solid fa-minus"></i></a>
->>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
-                    <a style="margin-left: 6px; margin-top: 6px" href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i class="fa-solid fa-plus"></i></a>
-                </td>
-                <td data-th="Subtotal" class="text-center"></td>
-                <td class="actions" data-th="">
-                    <input type="checkbox" id="${pro.idProduct}" onclick="sumProduct(this.id)">
-                </td>
-            </tr>
+                <a style="margin-right: 8px; margin-top: 8px"
+                   href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i
+                        class="fa-solid fa-minus"></i></a>
+                <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
+                       type="text">
+                <a style="margin-left: 6px; margin-top: 8px"
+                   href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i
+                        class="fa-solid fa-plus"></i></a>
+            </td>
+            <td data-th="Subtotal" class="text-center"></td>
+
+            <td class="actions" data-th="">
+                <input type="checkbox" id="${pro.idProduct}" name="check" onclick="sumProduct(this.id)">
+                <input type="text" id="checkbox" name="check" value="${pro.idProduct}" hidden="hidden">
+            </td>
+
+        </tr>
         </c:forEach>
+
 
         </tbody>
         <tfoot>
@@ -137,9 +141,12 @@
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
-
-            <td><a href="/users?action=order" class="btn btn-success btn-block" onclick="checkEmpty()">Mua</a>
-
+            <td>
+                <form action="/users?action=order" method="post">
+                    <input type="submit" id="btnn" class="btn btn-success btn-block" value="Mua">
+                    <input hidden="hidden" type="text" id="idProduct" name="idProduct" value="${param.idProduct}">
+                    <input hidden="hidden" type="text" id="quantity" name="quantity" value="${param.quantity}">
+                </form>
             </td>
         </tr>
         </tfoot>
@@ -148,35 +155,30 @@
 </body>
 </html>
 <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    let rows = document.querySelectorAll("#cart tbody tr");
 
-    function checkQuantity(id, quantity) {
-        let link = document.getElementById(id);
-        let href = "/products?action=update-quantity&id=" + id + "&isAdd=0";
-        // alert(quantity);
-        if (quantity <= 1) {
-            if (confirm("Bạn có chắc muốn xóa?")) {
-                link.href = href;
-                link.click();
+    var form = document.getElementById('myForm');
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var submitButton = document.getElementById('btnn');
+
+    submitButton.addEventListener('click', function (event) {
+        var atLeastOneChecked = false;
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                atLeastOneChecked = true;
             }
-        } else {
-            link.href = href;
-            link.click();
-        }
-    }
+        });
 
-=======
+        if (!atLeastOneChecked) {
+            event.preventDefault();
+            alert('vui lòng chọn ít nhất một sản phẩm');
+        }
+    });
+
     var rows = document.querySelectorAll("#cart tbody tr");
->>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
-=======
-    let rows = document.querySelectorAll("#cart tbody tr");
->>>>>>> 9d3f04b9bbe265529fd797e9307b77d6fdb36de8
-    rows.forEach(function(row) {
-        let price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
-        let quantity = parseInt(row.querySelector(".form-control").value);
-        let intoMoney = price * quantity;
+    rows.forEach(function (row) {
+        var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
+        var quantity = parseInt(row.querySelector(".form-control").value);
+        var intoMoney = price * quantity;
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
@@ -187,6 +189,7 @@
     });
 
     let priceCart = 0;
+
     function sumProduct(thisId) {
         let checkBox = document.getElementById(thisId);
         let idQuantity = "quantity" + thisId;
@@ -196,21 +199,38 @@
         let price = Number(document.getElementById(idPrice).value);
         if (checkBox.checked) {
             priceCart = priceCart + (quantity * price);
+            addDataIntoFormHidden(thisId, quantity, true);
         } else {
             priceCart = priceCart - (quantity * price);
+            addDataIntoFormHidden(thisId, quantity, false);
         }
-        document.getElementById("my-sum").textContent   = "Tổng tiền: " + priceCart + "₫";
-    }
-<<<<<<< HEAD
-
-
-
-    function checkEmpty() {
-        if (priceCart <= 0) {
-            alert("Bạn chưa chọn sản phẩm nào");
-        }
+        document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + "₫";
     }
 
-=======
->>>>>>> b3b2a599dac9fed8890bd4abdd60b0fc337a3635
+    let allIdProductChecked = "";
+    let allQuantityChecked = "";
+    function addDataIntoFormHidden(idProduct, quantity, checked) {
+        if (checked) {
+            allQuantityChecked +=  "/" + quantity ;
+            allIdProductChecked +=  "/" + idProduct ;
+        }else {
+            let allId = allIdProductChecked.split("/");
+            let allQuantity = allQuantityChecked.split("/");
+            if (allId.length == 1) {
+                allId = [""];
+                allQuantity = [""];
+            } else {
+                for (let i = 0; i < allId.length; i++) {
+                    if (allId[i] == idProduct) {
+                        allId = allId.splice(i,1);
+                        allQuantity = allQuantity.splice(i,1);
+                    }
+                }
+            }
+            allIdProductChecked = allId.join("/");
+            allQuantityChecked = allQuantity.join("/");
+        }
+        document.getElementById("idProduct").value = allIdProductChecked;
+        document.getElementById("quantity").value = allQuantityChecked;
+    }
 </script>

@@ -222,10 +222,13 @@
                                         tin</a></li>
                                     <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
+                                    <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
+
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
                                 </ul>
                             </li>
 
@@ -397,7 +400,7 @@
 
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
+                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
 
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
@@ -453,7 +456,7 @@
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black ;width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                 style="border: thin solid lightgray ;width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -505,7 +508,7 @@
     <div class="row mb-2 list" style="padding-top: 50px;">
         <c:forEach items="${pro}" var="pro">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -563,7 +566,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Here you can order all delicious Vietnamese dishes.
+                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
