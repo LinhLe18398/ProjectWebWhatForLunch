@@ -176,7 +176,7 @@
                 <p class="list" id="sum-order">X Đơn hàng</p>
 
                 <br/>
-                <form method="post" action="/bill?action=set-status-bill"/>
+                <form method="post" action="/bill?action=status-bill"/>
                 <table id="table-order">
                     <thead>
                     <tr>
@@ -206,13 +206,13 @@
                                             <button class="ip-update" type="submit" onclick="approveStatus(${billList.idBill})">
                                                 <i class="fa fa-check"></i>
                                             </button>
-                                            <button class="ip-view" type="submit" onclick="">
+                                            <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </c:when>
 
                                         <c:otherwise>
-                                            <button class="ip-view" type="button" onclick="">
+                                            <button class="ip-view" type="submit" onclick="">
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </c:otherwise>
@@ -469,6 +469,11 @@
     function approveStatus(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 1;
+        location.reload();
+    }
+    function showDetail(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 2;
         location.reload();
     }
 </script>

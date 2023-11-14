@@ -41,7 +41,6 @@ public class BillServlet extends HttpServlet {
             case "bill-merchant":
                 getBillMerchant(request, response);
                 break;
-
         }
     }
 
@@ -55,8 +54,8 @@ public class BillServlet extends HttpServlet {
             case "search-bill":
                 searchBillUser(request, response);
                 break;
-            case "set-status-bill":
-                setStatusBill(request, response);
+            case "status-bill":
+                statusBill(request, response);
                 break;
         }
     }
@@ -93,7 +92,15 @@ public class BillServlet extends HttpServlet {
         }
     }
 
-    private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
+    private void statusBill(HttpServletRequest request, HttpServletResponse response) {
+        int number = Integer.parseInt(request.getParameter("active"));
+        if (number == 2) {
+            showDetailBill(request, response);
+        } else {
+            setStatusBill(request, response);
+        }
+    }
+        private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
 
@@ -101,7 +108,6 @@ public class BillServlet extends HttpServlet {
         int number = Integer.parseInt(request.getParameter("active"));
 
         try {
-
             switch (number) {
                 case 0:
                     billDAO.cancelBill(idBill, 0);
@@ -122,5 +128,21 @@ public class BillServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private void showDetailBill(HttpServletRequest request, HttpServletResponse response)  {
+        int idBill = Integer.parseInt(request.getParameter("idBill"));
+        try {
+          Bill bill = billDAO.getBillById(idBill);
+          List<Product> productList = billDAO.getProductListInBill(idBill);
+        request.setAttribute("bill", bill);
+        request.setAttribute("productList", productList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("home/detailBill.jsp");
+        dispatcher.forward(request, response);
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    } catch (ClassNotFoundException | ServletException | IOException e) {
+        throw new RuntimeException(e);
+    }
     }
 }
