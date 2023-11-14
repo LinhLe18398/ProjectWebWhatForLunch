@@ -222,10 +222,11 @@
                                         tin</a></li>
                                     <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
+                                    <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="/users?action=logout">Đơn đã đặt</a></li>
+
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
 
                                 </ul>
@@ -565,7 +566,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Here you can order all delicious Vietnamese dishes.
+                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
