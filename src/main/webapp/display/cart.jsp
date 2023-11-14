@@ -65,6 +65,12 @@
         }
     }
 
+
+    .quantity {
+        padding-top: 10px;
+        padding-right: 5px;
+    }
+
     .form-control {
         width: 30px;
         padding: 5px;
@@ -108,12 +114,13 @@
                 <td data-th="Price">${pro.price} ₫</td>
                 <td data-th="Quantity" style="display: flex">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
-                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
-                           type="text">
-                    <a style="margin-left: 8px; margin-top: 6px"
+
+                    <a style="margin-right: 8px; margin-top: 8px"
                        href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i
                             class="fa-solid fa-minus"></i></a>
-                    <a style="margin-left: 6px; margin-top: 6px"
+                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
+                           type="text">
+                    <a style="margin-left: 6px; margin-top: 8px"
                        href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i
                             class="fa-solid fa-plus"></i></a>
                 </td>
@@ -126,8 +133,6 @@
 
             </tr>
         </c:forEach>
-
-
         </tbody>
         <tfoot>
         <tr>
@@ -177,7 +182,7 @@
     });
 
     let total = 0;
-    rows.forEach(function(row) {
+    rows.forEach(function (row) {
         let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
@@ -203,11 +208,12 @@
 
     let allIdProductChecked = "";
     let allQuantityChecked = "";
+
     function addDataIntoFormHidden(idProduct, quantity, checked) {
         if (checked) {
-            allQuantityChecked +=  "/" + quantity ;
-            allIdProductChecked +=  "/" + idProduct ;
-        }else {
+            allQuantityChecked += "/" + quantity;
+            allIdProductChecked += "/" + idProduct;
+        } else {
             let allId = allIdProductChecked.split("/");
             let allQuantity = allQuantityChecked.split("/");
             if (allId.length == 1) {
@@ -216,8 +222,8 @@
             } else {
                 for (let i = 0; i < allId.length; i++) {
                     if (allId[i] == idProduct) {
-                        allId = allId.splice(i,1);
-                        allQuantity = allQuantity.splice(i,1);
+                        allId = allId.splice(i, 1);
+                        allQuantity = allQuantity.splice(i, 1);
                     }
                 }
             }
@@ -227,4 +233,6 @@
         document.getElementById("idProduct").value = allIdProductChecked;
         document.getElementById("quantity").value = allQuantityChecked;
     }
+
 </script>
+

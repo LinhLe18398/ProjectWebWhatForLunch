@@ -23,6 +23,7 @@ public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
     private BillDAO billDAO;
+
     @Override
     public void init() {
         userDAO = new UserDAO();
@@ -73,11 +74,18 @@ public class UserServlet extends HttpServlet {
             case "order":
                 showComFirmOrder(req, resp);
                 break;
+            case "billUser":
+                showBillUser(req, resp);
+                break;
         }
     }
 
+    private void showBillUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/billUser.jsp");
+        dispatcher.forward(req, resp);
+    }
 
-    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp){
+    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
         int id = user.getId();
@@ -264,7 +272,7 @@ public class UserServlet extends HttpServlet {
                 break;
             case "order":
                 try {
-                    orderProduct(req,resp);
+                    orderProduct(req, resp);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (ClassNotFoundException e) {
@@ -273,6 +281,7 @@ public class UserServlet extends HttpServlet {
                 break;
         }
     }
+
 
     private void orderProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String selectedItems = req.getParameter("idProduct");
@@ -294,6 +303,7 @@ public class UserServlet extends HttpServlet {
             req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
         }
     }
+
     private void createAddress(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");

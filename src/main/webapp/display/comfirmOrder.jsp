@@ -278,7 +278,7 @@
             <tfoot>
                 <tr style="display: flex; float: right">
                     <td style="float: right">
-                        <a style="float: right" href="" class="btn btn-success btn-block">Đặt Hàng</a>
+                        <a style="float: right" href="/users?action=billUser" class="btn btn-success btn-block">Đặt Hàng</a>
                     </td>
                 </tr>
                 <tr style="float: left;padding-top: 10px">
