@@ -29,12 +29,9 @@
         height: 95px;
     }
 
-    .hh {
-        background-color: white;
-    }
 
     ::placeholder {
-        color: gray;
+        color: rgb(128, 128, 128);
     }
 
     #button-group {

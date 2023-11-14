@@ -65,6 +65,7 @@
         }
     }
 
+
     .quantity {
         padding-top: 10px;
         padding-right: 5px;
@@ -97,43 +98,41 @@
         </thead>
         <tbody>
         <c:forEach items="${productCart}" var="pro">
-        <tr>
-            <td data-th="Product">
-                <div class="row">
-                    <div class="col-sm-2 hidden-xs">
-                        <img src="${pro.productImg}"
-                             alt="${pro.idProduct}" width="100">
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-2 hidden-xs">
+                            <img src="${pro.productImg}"
+                                 alt="${pro.idProduct}" width="100">
+                        </div>
+                        <div class="col-sm-10">
+                            <h4 class="nomargin" style="padding-left: 5px">${pro.productName}</h4>
+                            <p style="padding-left: 5px">${pro.note}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-10">
-                        <h4 class="nomargin" style="padding-left: 5px">${pro.productName}</h4>
-                        <p style="padding-left: 5px">${pro.note}</p>
-                    </div>
-                </div>
-            </td>
-            <td data-th="Price">${pro.price} ₫</td>
-            <td data-th="Quantity" style="display: flex">
-                <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
+                </td>
+                <td data-th="Price">${pro.price} ₫</td>
+                <td data-th="Quantity" style="display: flex">
+                    <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
 
-                <a style="margin-right: 8px; margin-top: 8px"
-                   href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i
-                        class="fa-solid fa-minus"></i></a>
-                <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
-                       type="text">
-                <a style="margin-left: 6px; margin-top: 8px"
-                   href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i
-                        class="fa-solid fa-plus"></i></a>
-            </td>
-            <td data-th="Subtotal" class="text-center"></td>
+                    <a style="margin-right: 8px; margin-top: 8px"
+                       href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i
+                            class="fa-solid fa-minus"></i></a>
+                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
+                           type="text">
+                    <a style="margin-left: 6px; margin-top: 8px"
+                       href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i
+                            class="fa-solid fa-plus"></i></a>
+                </td>
+                <td data-th="Subtotal" class="text-center"></td>
 
-            <td class="actions" data-th="">
-                <input type="checkbox" id="${pro.idProduct}" name="check" onclick="sumProduct(this.id)">
-                <input type="text" id="checkbox" name="check" value="${pro.idProduct}" hidden="hidden">
-            </td>
+                <td class="actions" data-th="">
+                    <input type="checkbox" id="${pro.idProduct}" name="check" onclick="sumProduct(this.id)">
+                    <input type="text" id="checkbox" name="check" value="${pro.idProduct}" hidden="hidden">
+                </td>
 
-        </tr>
+            </tr>
         </c:forEach>
-
-
         </tbody>
         <tfoot>
         <tr>
@@ -183,7 +182,7 @@
     });
 
     let total = 0;
-    rows.forEach(function(row) {
+    rows.forEach(function (row) {
         let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
@@ -209,11 +208,12 @@
 
     let allIdProductChecked = "";
     let allQuantityChecked = "";
+
     function addDataIntoFormHidden(idProduct, quantity, checked) {
         if (checked) {
-            allQuantityChecked +=  "/" + quantity ;
-            allIdProductChecked +=  "/" + idProduct ;
-        }else {
+            allQuantityChecked += "/" + quantity;
+            allIdProductChecked += "/" + idProduct;
+        } else {
             let allId = allIdProductChecked.split("/");
             let allQuantity = allQuantityChecked.split("/");
             if (allId.length == 1) {
@@ -222,8 +222,8 @@
             } else {
                 for (let i = 0; i < allId.length; i++) {
                     if (allId[i] == idProduct) {
-                        allId = allId.splice(i,1);
-                        allQuantity = allQuantity.splice(i,1);
+                        allId = allId.splice(i, 1);
+                        allQuantity = allQuantity.splice(i, 1);
                     }
                 }
             }
@@ -233,4 +233,6 @@
         document.getElementById("idProduct").value = allIdProductChecked;
         document.getElementById("quantity").value = allQuantityChecked;
     }
+
 </script>
+

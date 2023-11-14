@@ -65,7 +65,7 @@
         max-height: 100%;
     }
 
-    .col-md-3{
+    .col-md-3 {
         flex: 1 0 23%;
     }
 
@@ -222,7 +222,7 @@
                                         tin</a></li>
                                     <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=billUser">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

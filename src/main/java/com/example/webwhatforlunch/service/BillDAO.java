@@ -13,7 +13,7 @@ public class BillDAO {
 
     private String username = "root";
 
-    private String password = "";
+    private String password = "password";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -21,7 +21,7 @@ public class BillDAO {
     private static final String GET_PRODUCT_IN_BILL = "CALL GET_PRODUCT_IN_BILL(?)";
 
     private static final String GET_BILL_MERCHANT = "CALL GET_BILL_MERCHANT(?)";
-
+    private static final String CREATE_BILL_QUERY = "CALL CREATE_BILL(?,?,?,?)";
     private static final String ACTIVE_BILL = "CALL ACTIVE_BILL(?,?)";
     private static final String CANCEL_BILL = "CALL CANCEL_BILL(?,?,?)";
 
@@ -30,6 +30,16 @@ public class BillDAO {
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection(jdbcURL, username, password);
         return connection;
+    }
+
+    public void createBill(Bill bill) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(CREATE_BILL_QUERY);
+        callableStatement.setInt(1, bill.getIdUser());
+        callableStatement.setString(2,bill.getIdMerchant());
+        callableStatement.setString(3, bill.getPaymentMethod());
+        callableStatement.setString(4, bill.getRecipientAddress());
+        callableStatement.executeQuery();
     }
 
     public List<Bill> getBillMerchant(String idMerchant) {
@@ -196,6 +206,7 @@ public class BillDAO {
         }
         callableStatement.executeUpdate();
     }
+
     public void activeBill(int idBill, int idUser) throws ClassNotFoundException, SQLException {
         setStatusBill(idBill, idUser, ACTIVE_BILL);
     }
