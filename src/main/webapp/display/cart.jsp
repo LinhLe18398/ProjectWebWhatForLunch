@@ -65,11 +65,6 @@
         }
     }
 
-    .quantity {
-        padding-top: 10px;
-        padding-right: 5px;
-    }
-
     .form-control {
         width: 30px;
         padding: 5px;
@@ -181,9 +176,9 @@
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
-    var total = 0;
-    rows.forEach(function (row) {
-        var intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
+    let total = 0;
+    rows.forEach(function(row) {
+        let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
 

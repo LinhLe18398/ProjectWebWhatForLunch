@@ -1,3 +1,4 @@
+<%@ page import="com.example.webwhatforlunch.model.Bill" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -63,7 +64,7 @@
                 <div style="color:#FF7F3F ; padding: 20px ; font-size: 30px;display: inline-block">
                     &#128722; | Thanh Toán
                 </div>
-                <div class="navbar" style="padding-bottom: 0;margin-left: 400px">
+                <div class="navbar" style="padding-bottom: 0;margin-left: 600px">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light"
                          style="background-color: rgb(255,255,255,0) !important; padding-top: 0">
                         <div class="container-fluid">
@@ -75,11 +76,6 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item" style="margin-left: 20px">
-                                        <a class="nav-link active" aria-current="page" href="#"
-                                           style="color: #ffffff">Offers</a>
-                                    </li>
-
                                     <li class="nav-item dropdown" style="margin-left: 20px">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                            data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
@@ -104,8 +100,6 @@
                                             <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa
                                                 thông
                                                 tin</a></li>
-                                            <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                            </li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
@@ -212,7 +206,6 @@
     </div>
     </span>
     </div>
-
     <div class="container"
          style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px;">
     <span style="box-sizing: inherit; line-height: 2.0em">
@@ -225,8 +218,9 @@
                     <th style="width:22%" class="text-center">Thành tiền</th>
                 </tr>
             </thead>
-           <c:forEach items="${product}" var="product">
+
             <tbody>
+             <c:forEach items="${product}" var="product">
                 <tr>
                     <td data-th="Product">
                         <div class="row">
@@ -240,11 +234,11 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">${product.price} ₫</td>
+                    <td data-th="Price" class="price money">${product.price}</td>
                     <td data-th="Quantity">
-                        <label id="quantity">${product.quantity}</label>
+                        <label class="quantity">${product.quantity}</label>
                     </td>
-                    <td data-th="Subtotal" class="text-center"> ₫</td>
+                    <td data-th="Subtotal" class="text-center total money"> </td>
                 </tr>
                  <td>
                     <div style="padding: 10px; width: 100%">
@@ -252,8 +246,8 @@
                       <input style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
                     </div>
                  </td>
+             </c:forEach>
             </tbody>
-           </c:forEach>
     </table>
     </span>
     </div>
@@ -272,7 +266,7 @@
                         </select>
                     </div>
                     <div>
-                        <label style="padding-right: 50px" >
+                        <label style="padding-right: 50px" id="totalAll" class="money">
                             Tổng Thanh Toán:
                         </label>
                         <label>
@@ -298,10 +292,28 @@
     </span>
     </div>
 </form>
+
 </body>
 
 <script>
 
+    let totalProduct = 0;
+    let price = document.getElementsByClassName("price");
+    let quantity = document.getElementsByClassName("quantity");
+    let total = document.getElementsByClassName("total");
+
+    for (let i = 0; i < price.length; i++) {
+        let dataPrice = price[i].innerHTML;
+        let dataQuantity = quantity[i].innerHTML;
+        console.log(dataPrice + " " + dataQuantity);
+        let totalPrice = dataPrice * dataQuantity;
+        total[i].innerHTML = totalPrice + "₫";
+        price[i].innerHTML = dataPrice + "₫";
+        quantity[i].innerHTML = dataQuantity ;
+        totalProduct += totalPrice;
+    }
+
+    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + "₫";
 
     function openForm() {
         let address = document.getElementsByClassName("card-address");
@@ -319,6 +331,8 @@
         }
         document.getElementById("myForm").hidden = true;
     }
+
+
 </script>
 </html>
 

@@ -5,12 +5,7 @@ import java.sql.*;
 public class AdminDAO implements AdminInterface{
     private String username = "root";
 
-
-
     private String password = "password";
-
-
-
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
