@@ -189,12 +189,12 @@
                     <tbody>
                     <c:forEach items="${billList}" var="billList">
                         <tr>
-                            <td>${billList.getTimeOrder()}</td>
-                            <td>${billList.getRecipientName()}</td>
-                            <td>${billList.GetTotalQuantity()}</td>
-                            <td class="price">${billList.getFinalTotal()}</td>
-                            <td>${billList.getBillStatus()}</td>
-                            <td style=" text-align: center;">
+                            <td class="idBill${billList.getIdBill()}">${billList.getTimeOrder()}</td>
+                            <td class="idBill${billList.getIdBill()}">${billList.getRecipientName()}</td>
+                            <td class="idBill${billList.getIdBill()}">${billList.GetTotalQuantity()}</td>
+                            <td class="price idBill${billList.getIdBill()}">${billList.getFinalTotal()}</td>
+                            <td class="idBill${billList.getIdBill()}">${billList.getBillStatus()}</td>
+                            <td style=" text-align: center;" class="idBill${billList.getIdBill()}">
                                 <button class="ip-delete" type="button"
                                         onclick="location.href='/products?action=delete-product&id=${billList.idBill}'">
                                     <i class="fa fa-x"></i>
@@ -215,8 +215,6 @@
             </div>
         </div>
     </div>
-
-
         <div class="cb box">
             <div class="col-div-12">
                 <div class="content-box">
