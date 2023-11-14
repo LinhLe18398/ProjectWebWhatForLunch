@@ -11,15 +11,14 @@ import java.util.List;
 
 public class BillDAO {
     private String username = "root";
-
     private String password = "mySQL7122023@";
-
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private static final String GET_BILL_USER = "CALL GET_BILL_USER(?)";
     private static final String GET_BILL_ID = "CALL GET_BILL_BY_ID(?)";
     private static final String GET_PRODUCT_IN_BILL = "CALL GET_PRODUCT_IN_BILL(?)";
     private static final String GET_BILL_MERCHANT = "CALL GET_BILL_MERCHANT(?)";
+    private static final String CREATE_BILL_QUERY = "CALL CREATE_BILL(?,?,?,?)";
     private static final String ACCEPT_BILL = "CALL ACTIVE_BILL(?,?)";
     private static final String CANCEL_BILL = "CALL CANCEL_BILL(?,?)";
 
@@ -28,6 +27,16 @@ public class BillDAO {
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection(jdbcURL, username, password);
         return connection;
+    }
+
+    public void createBill(Bill bill) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(CREATE_BILL_QUERY);
+        callableStatement.setInt(1, bill.getIdUser());
+        callableStatement.setString(2,bill.getIdMerchant());
+        callableStatement.setString(3, bill.getPaymentMethod());
+        callableStatement.setString(4, bill.getRecipientAddress());
+        callableStatement.executeQuery();
     }
 
     public List<Bill> getBillMerchant(String idMerchant) {
@@ -187,14 +196,13 @@ public class BillDAO {
         callableStatement.setInt(2, idUser);
         callableStatement.executeUpdate();
     }
-    public void acceptBill(int idBill, int idUser) throws SQLException, ClassNotFoundException {
-        Connection connection = getConnection();
-        CallableStatement callableStatement = connection.prepareCall(ACCEPT_BILL);
-        callableStatement.setInt(1, idBill);
-        callableStatement.setInt(2, idUser);
-        callableStatement.executeUpdate();
-    }
-
+     public void acceptBill(int idBill, int idUser) throws SQLException, ClassNotFoundException {
+         Connection connection = getConnection();
+         CallableStatement callableStatement = connection.prepareCall(ACCEPT_BILL);
+         callableStatement.setInt(1, idBill);
+         callableStatement.setInt(2, idUser);
+         callableStatement.executeUpdate();
+     }
     public Bill getBillById(int idBill) throws SQLException, ClassNotFoundException {
         Bill bill = null;
         Connection connection = getConnection();

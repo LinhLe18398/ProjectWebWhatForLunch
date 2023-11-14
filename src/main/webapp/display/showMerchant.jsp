@@ -51,8 +51,6 @@
     <input type="text" hidden="hidden" id="idUser" name="how" value="">
     <input type="text" hidden="hidden" id="active" name="active" value="">
   </table>
-
-
 </form>
 <script>
   function approveStatus(idUser) {

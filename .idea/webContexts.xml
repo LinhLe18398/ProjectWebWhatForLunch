@@ -3,7 +3,19 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+<<<<<<< HEAD
         <entry key="file://$PROJECT_DIR$/src/main/webapp/display/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp/display" />
+=======
+<<<<<<< HEAD
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/display/comfirmOrder.jsp" value="file://$PROJECT_DIR$/src/main/webapp/display" />
+=======
+<<<<<<< HEAD
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" value="file://$PROJECT_DIR$/src/main/webapp/home" />
+=======
+>>>>>>> 1354c8475ec8c7ce654bb6555c26bb760213d17e
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/home/merchantHome.jsp" value="file://$PROJECT_DIR$/src/main/webapp/home" />
+>>>>>>> 9d3f04b9bbe265529fd797e9307b77d6fdb36de8
+>>>>>>> 1f465336168a62f9aaf26b0dfb57d02890f0c399
       </map>
     </option>
   </component>
