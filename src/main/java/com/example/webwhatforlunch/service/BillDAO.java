@@ -13,7 +13,7 @@ public class BillDAO {
 
     private String username = "root";
 
-    private String password = "thanghai";
+    private String password = "";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 

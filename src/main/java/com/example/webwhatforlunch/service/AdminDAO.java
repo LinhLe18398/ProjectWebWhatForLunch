@@ -7,7 +7,7 @@ public class AdminDAO implements AdminInterface{
 
 
 
-    private String password = "thanghai";
+    private String password = "";
 
 
 
