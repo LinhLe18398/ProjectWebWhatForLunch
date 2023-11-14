@@ -2,8 +2,9 @@ package com.example.webwhatforlunch.controller;
 
 import com.example.webwhatforlunch.model.Bill;
 import com.example.webwhatforlunch.model.Merchant;
+import com.example.webwhatforlunch.model.Product;
 import com.example.webwhatforlunch.service.BillDAO;
-import sun.rmi.server.Dispatcher;
+import com.example.webwhatforlunch.service.ProductDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,11 +15,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "bill", urlPatterns = "/bill")
 public class BillServlet extends HttpServlet {
-    private BillDAO billDAO = new BillDAO();
+    private BillDAO billDAO;
+    private ProductDAO productDAO;
+    @Override
+    public void init() throws ServletException {
+        billDAO = new BillDAO();
+        productDAO = new ProductDAO();
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
@@ -33,11 +41,12 @@ public class BillServlet extends HttpServlet {
             case "bill-merchant":
                 getBillMerchant(request, response);
                 break;
+
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -45,6 +54,9 @@ public class BillServlet extends HttpServlet {
         switch (action) {
             case "search-bill":
                 searchBillUser(request, response);
+                break;
+            case "set-status-bill":
+                setStatusBill(request, response);
                 break;
         }
     }
@@ -58,6 +70,7 @@ public class BillServlet extends HttpServlet {
     private void getBillMerchant(HttpServletRequest request, HttpServletResponse response) {
         List<Bill> merchantList = billDAO.getBillMerchant("M10");
     }
+
     private void searchBillUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
@@ -78,5 +91,36 @@ public class BillServlet extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Merchant merchant = (Merchant) session.getAttribute("merchant");
+
+        int idBill = Integer.parseInt(request.getParameter("idBill"));
+        int number = Integer.parseInt(request.getParameter("active"));
+
+        try {
+
+            switch (number) {
+                case 0:
+                    billDAO.cancelBill(idBill, 0);
+                    break;
+                case 1:
+                    billDAO.acceptBill(idBill, 0);
+                    break;
+            }
+            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
+            request.setAttribute("productList", productList);
+            request.setAttribute("billList", billList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException | ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

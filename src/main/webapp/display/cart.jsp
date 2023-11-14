@@ -130,9 +130,7 @@
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
-
-            <td><a href="/users?action=order" class="btn btn-success btn-block" onclick="checkEmpty()">Mua</a>
-
+            <td><a href="" class="btn btn-success btn-block">Mua</a>
             </td>
         </tr>
         </tfoot>
@@ -141,17 +139,17 @@
 </body>
 </html>
 <script>
-    let rows = document.querySelectorAll("#cart tbody tr");
-    rows.forEach(function(row) {
-        let price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
-        let quantity = parseInt(row.querySelector(".form-control").value);
-        let intoMoney = price * quantity;
+     var rows = document.querySelectorAll("#cart tbody tr");
+     rows.forEach(function(row) {
+        var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
+        var quantity = parseInt(row.querySelector(".form-control").value);
+        var intoMoney = price * quantity;
         row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
     });
 
-    let total = 0;
+    var total = 0;
     rows.forEach(function(row) {
-        let intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
+        var intoMoney = parseFloat(row.querySelector("td[data-th='Subtotal']").innerText);
         total += intoMoney;
     });
 
