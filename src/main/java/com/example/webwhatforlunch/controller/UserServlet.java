@@ -13,6 +13,7 @@ import javax.servlet.http.*;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +73,13 @@ public class UserServlet extends HttpServlet {
                 showRestaurant(req, resp);
                 break;
             case "order":
-                showComFirmOrder(req, resp);
+                try {
+                    showComFirmOrder(req, resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "billUser":
                 showBillUser(req, resp);
@@ -85,7 +92,13 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        HttpSession httpSession = req.getSession();
+        User user = (User) httpSession.getAttribute("user");
+        int id = user.getId();
+
+        List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
+        req.setAttribute("address", deliveryAddress);
         RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
         dispatcher.forward(req, resp);
     }
@@ -282,9 +295,15 @@ public class UserServlet extends HttpServlet {
                     productList.add(product);
                 }
             }
+            HttpSession httpSession = req.getSession();
+            User user = (User) httpSession.getAttribute("user");
+            int id = user.getId();
+            List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
+            req.setAttribute("address", deliveryAddress);
             req.setAttribute("idProduct", selectedItems);
             req.setAttribute("quantity", quantity);
-            req.setAttribute("product", productList);
+            HttpSession session = req.getSession();
+            session.setAttribute("product", productList);
             req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
         }
     }
@@ -302,6 +321,7 @@ public class UserServlet extends HttpServlet {
         if (addressId == null || addressId.isEmpty()) {
             userDAO.createAddress(id, name, phone, address);
         }
+
         List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
         req.setAttribute("address", deliveryAddress);
         req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
@@ -373,8 +393,6 @@ public class UserServlet extends HttpServlet {
             req.setAttribute("error", "tai khoản không được tạo");
         }
         dispatcher.forward(req, resp);
-
-
     }
 
     private void loginUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException {
@@ -424,12 +442,12 @@ public class UserServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
         int id = user.getId();
-        String name = req.getParameter("name");
-        String gender = req.getParameter("gender");
+        String name = new String(req.getParameter("name").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String gender = new String(req.getParameter("gender").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);;
         String phoneNumber = req.getParameter("phoneNumber");
         String birthday = req.getParameter("birthday");
         String img = req.getParameter("img");
-        String address = req.getParameter("address");
+        String address = new String( req.getParameter("address").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);;
         user = new User(id, name, gender, phoneNumber, birthday, img, address);
         httpSession.setAttribute("user", user);
         userDAO.updateUser(user);

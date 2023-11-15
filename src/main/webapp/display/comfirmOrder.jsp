@@ -1,4 +1,6 @@
 <%@ page import="com.example.webwhatforlunch.model.Bill" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.webwhatforlunch.model.Product" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -168,12 +170,9 @@
                                <c:forEach items="${address}" var="showAddress">
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                              id="flexRadioDefault1">
-                                    ${showAddress.recipientName} <span
-                                           style="color: rgb(128,128,128)"> | ${showAddress.recipientPhone}</span>
-                                      <div style="color: rgb(128,128,128);padding-right: 100px">
-                                              ${showAddress.detailedAddress}
-                                      </div>
+                                              id="flexRadioDefault1">${showAddress.recipientName}
+                                       <span style="color: rgb(128,128,128)"> | ${showAddress.recipientPhone}</span>
+                                      <div style="color: rgb(128,128,128);padding-right: 100px">${showAddress.detailedAddress}</div>
                                    </label>
                                </c:forEach>
                            </div>
@@ -199,7 +198,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-primary ">Xác Nhận</button>
+                            <button type="submit" class="btn btn-primary" id="updateConfirmBtn">Xác Nhận</button>
                         </div>
                     </div>
                 </div>
@@ -222,6 +221,7 @@
 
             <tbody>
              <c:forEach items="${product}" var="product">
+                 <input type="hidden" class="id" value="${product.idProduct}">
                 <tr>
                     <td data-th="Product">
                         <div class="row">
@@ -280,7 +280,11 @@
             <tfoot>
                 <tr style="display: flex; float: right">
                     <td style="float: right">
-                            <a style="float: right" href="" methods="post" class="btn btn-success btn-block">Đặt Hàng</a>
+                        <form action="/bill?action=confirm-bill" method="post">
+                            <input type="submit" class="btn btn-success btn-block" value="Đặt Hàng">
+                            <input type="hidden" name="listId" id="listId" value="">
+                            <input type="hidden" name="listQuantity" id="listQuantity" value="">
+                        </form>
                     </td>
                 </tr>
                 <tr style="float: left;padding-top: 10px">
@@ -296,24 +300,29 @@
 </form>
 
 </body>
-
 <script>
-
     let totalProduct = 0;
     let price = document.getElementsByClassName("price");
+    let id = document.getElementsByClassName("id");
     let quantity = document.getElementsByClassName("quantity");
     let total = document.getElementsByClassName("total");
+
+    let listId = document.getElementById("listId");
+    let listQuantity = document.getElementById("listQuantity");
 
     for (let i = 0; i < price.length; i++) {
         let dataPrice = price[i].innerHTML;
         let dataQuantity = quantity[i].innerHTML;
-        console.log(dataPrice + " " + dataQuantity);
         let totalPrice = dataPrice * dataQuantity;
         total[i].innerHTML = totalPrice + "₫";
         price[i].innerHTML = dataPrice + "₫";
-        quantity[i].innerHTML = dataQuantity;
+        quantity[i].innerHTML = dataQuantity ;
+        listId.value += "/" + id[i].value;
+        listQuantity.value += "/" + quantity[i].innerHTML;
         totalProduct += totalPrice;
     }
+    console.log(listId.value)
+    console.log(listQuantity.value)
 
     document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + "₫";
 
@@ -333,7 +342,6 @@
         }
         document.getElementById("myForm").hidden = true;
     }
-
 
 </script>
 </html>
