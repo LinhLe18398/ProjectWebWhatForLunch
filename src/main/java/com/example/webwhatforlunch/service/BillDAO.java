@@ -18,7 +18,7 @@ public class BillDAO {
     private static final String GET_BILL_ID = "CALL GET_BILL_BY_ID(?)";
     private static final String GET_PRODUCT_IN_BILL = "CALL GET_PRODUCT_IN_BILL(?)";
     private static final String GET_BILL_MERCHANT = "CALL GET_BILL_MERCHANT(?)";
-    private static final String CREATE_BILL_QUERY = "CALL CREATE_BILL(?,?,?,?)";
+    private static final String CREATE_BILL_QUERY = "CALL CREATE_BILL(?,?,?,?,?,?)";
     private static final String ACCEPT_BILL = "CALL ACTIVE_BILL(?,?)";
     private static final String CANCEL_BILL = "CALL CANCEL_BILL(?,?)";
 
@@ -29,14 +29,16 @@ public class BillDAO {
         return connection;
     }
 
-    public void createBill(Bill bill) throws SQLException, ClassNotFoundException {
+    public void createBill(int idUser, String idMerchant, String recipientName, String recipientPhone,String recipientAddress,String paymentMethods) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(CREATE_BILL_QUERY);
-        callableStatement.setInt(1, bill.getIdUser());
-        callableStatement.setString(2,bill.getIdMerchant());
-        callableStatement.setString(3, bill.getPaymentMethod());
-        callableStatement.setString(4, bill.getRecipientAddress());
-        callableStatement.executeQuery();
+        callableStatement.setInt(1,idUser);
+        callableStatement.setString(2,idMerchant);
+        callableStatement.setString(3,recipientName);
+        callableStatement.setString(4,recipientPhone);
+        callableStatement.setString(5,recipientAddress);
+        callableStatement.setString(6,paymentMethods);
+        callableStatement.executeUpdate();
     }
 
     public List<Bill> getBillMerchant(String idMerchant) {

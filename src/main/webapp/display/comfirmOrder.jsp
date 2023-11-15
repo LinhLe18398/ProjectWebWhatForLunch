@@ -1,4 +1,6 @@
 <%@ page import="com.example.webwhatforlunch.model.Bill" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.webwhatforlunch.model.Product" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -150,18 +152,22 @@
                                     <div class="popup-content">
                                         <label>Cập nhật địa chỉ</label>
                                         <hr>
-                                        <div id="updateAddress" style="padding: 10px">
-                                          <form action="">
+                                        <div style="padding: 10px">
+                                          <form action="" method="post">
+                                              <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
                                             <input type="text" placeholder="Họ và tên" >
                                             <input type="text" placeholder="Số điện thoại" >
+                                            <input type="text" placeholder="Họ và tên" id="updateName">
+                                            <input type="text" placeholder="Số điện thoại" id="updatePhone">
                                             </p>
                                             <p>
-                                                <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ">
+                                                <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
+                                                       id="updateAddress">
                                             </p>
                                           </form>
                                          <p>
-                                            <a href="/users?action=order" class="btn btn-outline-secondary">Hủy</a>
+                                            <a href="#" class="btn btn-outline-secondary">Hủy</a>
                                             <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
                                          </p>
                                         </div>
@@ -170,10 +176,10 @@
 
                                <c:forEach items="${address}" var="showAddress">
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                       <input class="form-check-input" onclick="selectAddress(${address.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                       <input class="bill-address${address.idAddress}" value="${showAddress.recipientName}" >
-                                       <input class="bill-address${address.idAddress}" style="color: rgb(128,128,128)" value="${showAddress.recipientPhone}">
-                                       <input class="bill-address${address.idAddress}" style="color: rgb(128,128,128);padding-right: 100px" value=" ${showAddress.detailedAddress}">
+                                       <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                       <input class="bill-address${showAddress.idAddress}" value="${showAddress.recipientName}" >
+                                       <input class="bill-address${showAddress.idAddress}" style="color: rgb(128,128,128)" value="${showAddress.recipientPhone}">
+                                       <input class="bill-address${showAddress.idAddress}" style="color: rgb(128,128,128);padding-right: 100px" value=" ${showAddress.detailedAddress}">
                                    </label>
                                </c:forEach>
                            </div>
@@ -199,7 +205,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-primary ">Xác Nhận</button>
+                            <button type="submit" class="btn btn-primary" id="updateConfirmBtn">Xác Nhận</button>
                         </div>
                     </div>
                 </div>
@@ -245,7 +251,7 @@
                  <td>
                     <div style="padding: 10px; width: 100%">
                       <label style="padding-right: 10px">Lời Nhắn:</label>
-                      <input style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
+                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
                     </div>
                  </td>
              </c:forEach>
@@ -260,7 +266,8 @@
             <tbody style="padding: 10px">
                <div style="display: flex">
                     <div style="margin-right: 600px">
-                        <select class="form-select" aria-label="Default select example" style="width: 400px">
+                        <select name="paymentMethod" class="form-select" aria-label="Default select example"
+                                style="width: 400px">
                           <option selected>Phương Thức Thanh Toán</option>
                           <option value="1">Thanh toán khi nhận hàng</option>
                           <option value="2">Thẻ tín dụng/Ghi nợ</option>
@@ -284,6 +291,7 @@
                             <input type="hidden" name="listId" id="listId" value="">
                             <input type="hidden" name="listQuantity" id="listQuantity" value="">
                             <input style="float: right" class="btn btn-success btn-block " value="Đặt Hàng">
+
                         </form>
                     </td>
                 </tr>
@@ -300,9 +308,7 @@
 </form>
 
 </body>
-
 <script>
-
     let totalProduct = 0;
     let price = document.getElementsByClassName("price");
     let id = document.getElementsByClassName("id");
@@ -323,6 +329,8 @@
         listQuantity.value += "/" + quantity[i].innerHTML;
         totalProduct += totalPrice;
     }
+    console.log(listId.value)
+    console.log(listQuantity.value)
 
     document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + "₫";
 
