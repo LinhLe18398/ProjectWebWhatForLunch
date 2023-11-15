@@ -81,7 +81,6 @@ public class BillDAO {
                 billList.add(bill);
             }
         }
-
         return billList;
     }
     public List<Product> getProductListInBill(Connection connection,int idBill) throws SQLException {
