@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BillDAO {
     private String username = "root";
-    private String password = "mySQL7122023@";
+    private String password = "password";
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     private static final String GET_BILL_USER = "CALL GET_BILL_USER(?)";
