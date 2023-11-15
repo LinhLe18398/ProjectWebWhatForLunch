@@ -145,18 +145,20 @@
                                     <div class="popup-content">
                                         <label>Cập nhật địa chỉ</label>
                                         <hr>
-                                        <div id="updateAddress" style="padding: 10px">
-                                          <form action="">
+                                        <div style="padding: 10px">
+                                          <form action="" method="post">
+                                              <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" disabled>
-                                            <input type="text" placeholder="Số điện thoại" disabled>
+                                            <input type="text" placeholder="Họ và tên" id="updateName">
+                                            <input type="text" placeholder="Số điện thoại" id="updatePhone">
                                             </p>
                                             <p>
-                                                <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ">
+                                                <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
+                                                       id="updateAddress">
                                             </p>
                                           </form>
                                          <p>
-                                            <a href="/users?action=order" class="btn btn-outline-secondary">Hủy</a>
+                                            <a href="#" class="btn btn-outline-secondary">Hủy</a>
                                             <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
                                          </p>
                                         </div>
@@ -164,7 +166,6 @@
                                </div>
 
                                <c:forEach items="${address}" var="showAddress">
-
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
                                               id="flexRadioDefault1">
@@ -243,7 +244,7 @@
                  <td>
                     <div style="padding: 10px; width: 100%">
                       <label style="padding-right: 10px">Lời Nhắn:</label>
-                      <input style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
+                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
                     </div>
                  </td>
              </c:forEach>
@@ -258,7 +259,8 @@
             <tbody style="padding: 10px">
                <div style="display: flex">
                     <div style="margin-right: 600px">
-                        <select class="form-select" aria-label="Default select example" style="width: 400px">
+                        <select name="paymentMethod" class="form-select" aria-label="Default select example"
+                                style="width: 400px">
                           <option selected>Phương Thức Thanh Toán</option>
                           <option value="1">Thanh toán khi nhận hàng</option>
                           <option value="2">Thẻ tín dụng/Ghi nợ</option>
@@ -278,7 +280,7 @@
             <tfoot>
                 <tr style="display: flex; float: right">
                     <td style="float: right">
-                        <a style="float: right" href="/users?action=billUser" class="btn btn-success btn-block">Đặt Hàng</a>
+                            <a style="float: right" href="" methods="post" class="btn btn-success btn-block">Đặt Hàng</a>
                     </td>
                 </tr>
                 <tr style="float: left;padding-top: 10px">
@@ -309,7 +311,7 @@
         let totalPrice = dataPrice * dataQuantity;
         total[i].innerHTML = totalPrice + "₫";
         price[i].innerHTML = dataPrice + "₫";
-        quantity[i].innerHTML = dataQuantity ;
+        quantity[i].innerHTML = dataQuantity;
         totalProduct += totalPrice;
     }
 

@@ -85,25 +85,9 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) {
-        HttpSession httpSession = req.getSession();
-        User user = (User) httpSession.getAttribute("user");
-        int id = user.getId();
-        try {
-            List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
-            req.setAttribute("address", deliveryAddress);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
-            dispatcher.forward(req, resp);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        showComFirmOrder(req, resp);
+    private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
+        dispatcher.forward(req, resp);
     }
 
     private void showRestaurant(HttpServletRequest req, HttpServletResponse resp) {
@@ -282,7 +266,6 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-
     private void orderProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String selectedItems = req.getParameter("idProduct");
         String quantity = req.getParameter("quantity");
@@ -299,22 +282,31 @@ public class UserServlet extends HttpServlet {
                     productList.add(product);
                 }
             }
+            req.setAttribute("idProduct", selectedItems);
+            req.setAttribute("quantity", quantity);
             req.setAttribute("product", productList);
             req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
         }
     }
 
     private void createAddress(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String addressId = req.getParameter("addressId");
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String address = req.getParameter("address");
+
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
         int id = user.getId();
 
-        userDAO.createAddress(id, name, phone, address);
+        if (addressId == null || addressId.isEmpty()) {
+            userDAO.createAddress(id, name, phone, address);
+        }
+        List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
+        req.setAttribute("address", deliveryAddress);
         req.getRequestDispatcher("display/comfirmOrder.jsp").forward(req, resp);
     }
+
 
     private void loginMerchant(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String password = req.getParameter("password");

@@ -34,6 +34,7 @@ public class UserDAO implements UserInterface {
     private final String GET_RESTAURANT_MERCHANT_QUERY = "{CALL GET_RESTAURANT_MERCHANT(?)}";
     private final String CREATE_ADDRESS_QUERY = "{CALL CREATE_ADDRESS(?,?,?,?)}";
     private final String GET_ALL_USER_ADDRESS_QUERY = "{CALL GET_ALL_USER_ADDRESS(?)}";
+    private final String UPDATE_ADDRESS_QUERY = "{CALL UPDATE_ADDRESS(?,?,?,?)}";
 
     public boolean checkDuplicate(String email) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
@@ -240,5 +241,14 @@ public class UserDAO implements UserInterface {
             addressList.add(new DeliveryAddress(idAddress, idU,recipientName, recipientPhone, detailedAddress));
         }
         return addressList;
+    }
+    public void updateAddress(int idAddress, String name ,String phone, String address) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(UPDATE_ADDRESS_QUERY);
+        callableStatement.setInt(1,idAddress);
+        callableStatement.setString(2,name);
+        callableStatement.setString(3,phone);
+        callableStatement.setString(4,address);
+        callableStatement.executeUpdate();
     }
 }
