@@ -44,7 +44,6 @@
               <button id="button1" type="submit" onclick="approveStatus(${merchantList.idUser})">&#10003;</button>
               <button id="button2" type="submit" onclick="declineStatus(${merchantList.idUser})">&#10005;</button>
             </c:if>
-
           </div>
         </td>
       </tr>

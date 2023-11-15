@@ -153,6 +153,7 @@
                     <form method="post" action="/bill?action=search-bill">
                         <div class="form-group">
                             <div class="form-search-one">
+
                                 <input type="number" name="idBill" placeholder="Mã đơn hàng">
                                 <input type="number" name="numberPhone" placeholder="Số điện thoại">
                                 <input type="text" name="nameUser" placeholder="Tên khách hàng">
@@ -175,7 +176,7 @@
                 <p class="list" id="sum-order">X Đơn hàng</p>
 
                 <br/>
-                <form action="/bill?action=cancel-accept-bill" method="post">
+                <form method="post" action="/bill?action=status-bill"/>
                 <table id="table-order">
                     <thead>
                     <tr>
@@ -199,28 +200,22 @@
                                 <div>
                                     <c:choose>
                                         <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
-                                            <button class="ip-delete" type="submit"
-                                                    onclick="declineStatus(${billList.idBill})">
+                                            <button class="ip-delete" type="submit" onclick="declineStatus(${billList.idBill})">
                                                 <i class="fa fa-x"></i>
                                             </button>
-                                            <button class="ip-update" type="submit"
-                                                    onclick="approveStatus(${billList.idBill})">
+                                            <button class="ip-update" type="submit" onclick="approveStatus(${billList.idBill})">
                                                 <i class="fa fa-check"></i>
                                             </button>
-                                            <button class="ip-view" type="submit"
-                                                    onclick="">
+                                            <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </c:when>
 
                                         <c:otherwise>
-                                            <button class="ip-view" type="button"
-                                                    onclick="">
+                                            <button class="ip-view" type="submit" onclick="">
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </c:otherwise>
-
-
                                     </c:choose>
 
                                 </div>
@@ -228,7 +223,7 @@
                             </td>
                         </tr>
                     </c:forEach>
-                    <input type="text" hidden="hidden" id="idBill" name="how" value="">
+                    <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
                     <input type="text" hidden="hidden" id="active" name="active" value="">
                     </tbody>
                 </table>
@@ -243,7 +238,7 @@
                 <div class="content-box">
                     <div class="form-detail">
                         <div class="detail-return">
-                            <a href="#"id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
+                            <a href="#" id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
                         </div>
 
                         <div class="detail-status">
@@ -456,8 +451,6 @@
             case "Huỷ":
                 cell.style.color = "red";
                 break;
-            default:
-                break;
         }
     });
 
@@ -468,16 +461,21 @@
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber+"₫";
     }
-    function approveStatus(idBill) {
-        document.getElementById("idUser").value = idBill;
-        document.getElementById("active").value = 1;
-    }
-
     function declineStatus(idBill) {
-        document.getElementById("idUser").value = idBill;
+        document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 0;
+        location.reload();
     }
-
+    function approveStatus(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 1;
+        location.reload();
+    }
+    function showDetail(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 2;
+        location.reload();
+    }
 </script>
 
 </html>
