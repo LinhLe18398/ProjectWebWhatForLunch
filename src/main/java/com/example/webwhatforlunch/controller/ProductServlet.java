@@ -64,8 +64,6 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-
-
     private void showProductInCart(HttpServletRequest req, HttpServletResponse resp) {
         try {
             HttpSession session = req.getSession();
@@ -79,7 +77,6 @@ public class ProductServlet extends HttpServlet {
         }
 
     }
-
 
     private void showUpdateProductForm(HttpServletRequest req, HttpServletResponse resp){
         RequestDispatcher dispatcher = req.getRequestDispatcher("product/product-update-form.jsp");

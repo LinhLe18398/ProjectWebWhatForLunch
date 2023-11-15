@@ -55,6 +55,10 @@
     .popup:target {
         display: block;
     }
+
+    .bill-address{
+        border: none;
+    }
 </style>
 <body>
 <form action="/users?action=order" method="get">
@@ -123,8 +127,9 @@
             Địa Chỉ Nhận Hàng
         </span>
        <div style="display: flex">
-           <p style="padding-right: 40px;margin-bottom: 0; font-weight: 800">Vương Văn Tuấn 0388301773</p>
-        <p style="padding-right: 250px ; margin-bottom: 0">Trường Đại Học Thành Đô, Đường Quốc Lộ 32, Lai Xá, Xã Kim Chung, Huyện Hoài Đức, Hà Nội</p>
+           <input type="text" id="recipient-name" readonly>
+           <input type="text" id="recipient-phone" readonly>
+           <input type="text" id="recipient-Address" readonly>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
              style="text-decoration: none; color: blue">Thay Đổi</a>
@@ -148,8 +153,8 @@
                                         <div id="updateAddress" style="padding: 10px">
                                           <form action="">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" disabled>
-                                            <input type="text" placeholder="Số điện thoại" disabled>
+                                            <input type="text" placeholder="Họ và tên" >
+                                            <input type="text" placeholder="Số điện thoại" >
                                             </p>
                                             <p>
                                                 <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ">
@@ -164,15 +169,11 @@
                                </div>
 
                                <c:forEach items="${address}" var="showAddress">
-
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                       <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                              id="flexRadioDefault1">
-                                    ${showAddress.recipientName} <span
-                                           style="color: rgb(128,128,128)"> | ${showAddress.recipientPhone}</span>
-                                      <div style="color: rgb(128,128,128);padding-right: 100px">
-                                              ${showAddress.detailedAddress}
-                                      </div>
+                                       <input class="form-check-input" onclick="selectAddress(${address.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                       <input class="bill-address${address.idAddress}" value="${showAddress.recipientName}" >
+                                       <input class="bill-address${address.idAddress}" style="color: rgb(128,128,128)" value="${showAddress.recipientPhone}">
+                                       <input class="bill-address${address.idAddress}" style="color: rgb(128,128,128);padding-right: 100px" value=" ${showAddress.detailedAddress}">
                                    </label>
                                </c:forEach>
                            </div>
@@ -221,6 +222,7 @@
 
             <tbody>
              <c:forEach items="${product}" var="product">
+                 <input type="hidden" class="id" value="${product.idProduct}">
                 <tr>
                     <td data-th="Product">
                         <div class="row">
@@ -278,7 +280,11 @@
             <tfoot>
                 <tr style="display: flex; float: right">
                     <td style="float: right">
-                        <a style="float: right" href="/users?action=billUser" class="btn btn-success btn-block">Đặt Hàng</a>
+                        <form method="post" action="/bill?action=confirm-bill">
+                            <input type="hidden" name="listId" id="listId" value="">
+                            <input type="hidden" name="listQuantity" id="listQuantity" value="">
+                            <input style="float: right" class="btn btn-success btn-block " value="Đặt Hàng">
+                        </form>
                     </td>
                 </tr>
                 <tr style="float: left;padding-top: 10px">
@@ -299,17 +305,22 @@
 
     let totalProduct = 0;
     let price = document.getElementsByClassName("price");
+    let id = document.getElementsByClassName("id");
     let quantity = document.getElementsByClassName("quantity");
     let total = document.getElementsByClassName("total");
+
+    let listId = document.getElementById("listId");
+    let listQuantity = document.getElementById("listQuantity");
 
     for (let i = 0; i < price.length; i++) {
         let dataPrice = price[i].innerHTML;
         let dataQuantity = quantity[i].innerHTML;
-        console.log(dataPrice + " " + dataQuantity);
         let totalPrice = dataPrice * dataQuantity;
         total[i].innerHTML = totalPrice + "₫";
         price[i].innerHTML = dataPrice + "₫";
         quantity[i].innerHTML = dataQuantity ;
+        listId.value += "/" + id[i].value;
+        listQuantity.value += "/" + quantity[i].innerHTML;
         totalProduct += totalPrice;
     }
 
@@ -332,6 +343,12 @@
         document.getElementById("myForm").hidden = true;
     }
 
+    function selectAddress(idAddress) {
+        let address = document.getElementsByClassName("bill-address" + idAddress);
+        document.getElementById("recipient-name").value = address[0].value;
+        document.getElementById("recipient-phone").value = address[1].value;
+        document.getElementById("recipient-Address").value = address[2].value;
+    }
 
 </script>
 </html>
