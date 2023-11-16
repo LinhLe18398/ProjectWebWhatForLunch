@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Document</title>
+    <title>Merchant Home</title>
 </head>
 
 <body>
@@ -160,7 +160,7 @@
                             </div>
                             <div class="form-search-two">
                                 <div class="form-input-four">
-                                    <input class="search-sp" type="text" name="filter" placeholder="Nhập kí tự bất kì">
+                                    <input class="search-sp" type="text" name="filter" placeholder="Thông tin bất kì đơn hàng">
                                     <i class="fa fa-search"></i>
                                 </div>
                                 <button class="sp-search reset" type="submit">Tìm kiếm</button>
@@ -173,7 +173,7 @@
 
                 <hr>
 
-                <p class="list" id="sum-order">X Đơn hàng</p>
+                <p class="list" id="sum-order"></p>
 
                 <br/>
                 <form method="post" action="/bill?action=status-bill"/>
@@ -185,7 +185,7 @@
                         <th>Tổng món</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái đơn</th>
-                        <th style=" text-align: center;">Huỷ/Nhận/Xem</th>
+                        <th style=" text-align: center;">Thao tác đơn</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -212,7 +212,7 @@
                                         </c:when>
 
                                         <c:otherwise>
-                                            <button class="ip-view" type="submit" onclick="">
+                                            <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </c:otherwise>
@@ -232,103 +232,6 @@
         </div>
     </div>
 
-
-        <div class="cb box">
-            <div class="col-div-12">
-                <div class="content-box">
-                    <div class="form-detail">
-                        <div class="detail-return">
-                            <a href="#" id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
-                        </div>
-
-                        <div class="detail-status">
-                            <ul class="progressbar">
-                                <li class="complete">Chờ nhận hàng</li>
-                                <li class="complete">Đang chế biến</li>
-                                <li class="complete">Đã nhận món</li>
-                                <li class="complete">Đang giao</li>
-                                <li class="active">Đã hoàn thành</li>
-                            </ul>
-                        </div>
-
-                        <hr>
-
-                        <div class="detail-cancel-order">
-                            <button class="dt-cancel-order"
-                                    type="submit"><a style="text-decoration: none"href="/products?action=home-merchant">Huỷ đơn hàng</a></button>
-                        </div>
-
-                        <hr>
-
-                        <div class="detail-time-address">
-                            <div class="detail-address">
-                                <h2>Địa chỉ nhận hàng</h2>
-                                <p>Họ tên người nhận</p>
-                                <span class="detail-sp">(+84)Số điện thoại</span><br>
-                                <span class="detail-sp">Địa chỉ</span>
-                            </div>
-                            <div class="detail-time">
-                                <h2>Thời gian nhận hàng</h2>
-                                <p>Thời gian đặt</p><span class="detail-sp time">Thời gian đặt</span>
-                                <p>Thời dự kiến </p><span class="detail-sp time">Thời gian dự kiến</span>
-                            </div>
-                        </div>
-
-                        <hr>
-
-
-                        <div class="detail-orders">
-                            <h3 class="detail-h3">MÃ ĐƠN HÀNG.</h3>
-                            <hr>
-                            <div class="detail-order">
-                                <img src="#">
-                                <div class="infor-product">
-                                    <h3>Tên sản phẩm</h3>
-                                    <p>Phân loại hàng</p>
-                                    <p>x Số lượng</p>
-                                </div>
-                                <div class="price-product">
-                                    <span class="price-sale">₫Giá gốc</span>
-                                    <span class="price-simple">₫Đơn giá</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="detail-money-bill">
-                            <div class="detair-summary">
-                                <div class="order-item">
-                                    <span class="item-label">Tổng tiền hàng:</span>
-                                    <span class="item-value">1,000,000 VND</span>
-                                </div>
-                                <div class="order-item">
-                                    <span class="item-label">Phí giao hàng:</span>
-                                    <span class="item-value">50,000 VND</span>
-                                </div>
-                                <div class="order-item">
-                                    <span class="item-label">Phí dịch vụ:</span>
-                                    <span class="item-value">20,000 VND</span>
-                                </div>
-                                <div class="order-item">
-                                    <span class="item-label">Giảm giá:</span>
-                                    <span class="item-value">-100,000 VND</span>
-                                </div>
-                            </div>
-                            <div class="detail-total">
-                                <div class="order-item">
-                                    <h3 class="item-label">Thành tiền:</h3>
-                                    <h3 class="item-value">-100,000 VND</h3>
-                                </div>
-                                <div class="order-item">
-                                    <span class="item-label">Phương thức thanh toán:</span>
-                                    <span class="item-value">50,000 VND</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
 </div>
 <div class="clearfix"></div>
@@ -464,17 +367,14 @@
     function declineStatus(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 0;
-        location.reload();
-    }
+     }
     function approveStatus(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 1;
-        location.reload();
-    }
+     }
     function showDetail(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 2;
-        location.reload();
     }
 </script>
 
