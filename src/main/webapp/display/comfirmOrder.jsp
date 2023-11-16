@@ -304,7 +304,7 @@
                             <input style="float: right" type="submit" class="btn btn-success btn-block " value="Đặt Hàng">
                             <c:forEach items="${address}" var="showAddress">
                                    <label hidden="hidden" class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                       <input hidden="hidden" class="form-check-input" onclick="selectAddress1(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+                                       <input hidden="hidden" class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault">
                                        <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" >
                                        <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128)" name="phone" value="${showAddress.recipientPhone}" >
                                        <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128);padding-right: 100px" name="address" value=" ${showAddress.detailedAddress}" >
@@ -376,14 +376,6 @@
         document.getElementById("recipient-Address").value = address[2].value;
     }
 
-    function selectAddress1(id) {
-        var selectedAddress = document.querySelector(".bill-address" + id);
-
-        document.getElementById("selectedAddressId").value = id;
-        document.getElementById("selectedRecipientName").value = selectedAddress.querySelector("[name='name']").value;
-        document.getElementById("selectedRecipientPhone").value = selectedAddress.querySelector("[name='phone']").value;
-        document.getElementById("selectedDetailedAddress").value = selectedAddress.querySelector("[name='address']").value;
-    }
 </script>
 </html>
 

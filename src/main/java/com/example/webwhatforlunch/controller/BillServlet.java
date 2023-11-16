@@ -23,6 +23,7 @@ import java.util.List;
 public class BillServlet extends HttpServlet {
     private BillDAO billDAO;
     private ProductDAO productDAO;
+
     @Override
     public void init() throws ServletException {
         billDAO = new BillDAO();
@@ -60,7 +61,7 @@ public class BillServlet extends HttpServlet {
                 break;
             case "confirm-bill":
                 try {
-                    confirmBill(request,response);
+                    confirmBill(request, response);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (ClassNotFoundException e) {
@@ -75,10 +76,8 @@ public class BillServlet extends HttpServlet {
     }
 
 
-
-
     private void getBillUser(HttpServletRequest request, HttpServletResponse response) {
-            List<Bill> billList = billDAO.getBillUser(2);
+        List<Bill> billList = billDAO.getBillUser(2);
     }
 
     private void getBillMerchant(HttpServletRequest request, HttpServletResponse response) {
@@ -106,6 +105,7 @@ public class BillServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
     private void confirmBill(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("user");
@@ -129,11 +129,12 @@ public class BillServlet extends HttpServlet {
                     product.setQuantity(Integer.parseInt(quantityArray[i]));
                     productList.add(product);
                 }
+
             }
-         billDAO.createProductToBill((Product) productList);
+            billDAO.createBill(id,selectedRecipientName, selectedRecipientPhone, selectedDetailedAddress);
+            billDAO.createProductToBill(16,productList);
         }
-        billDAO.createBill(id,selectedRecipientName,selectedRecipientPhone,selectedDetailedAddress);
-        request.getRequestDispatcher("display/billUser.jsp").forward(request,response);
+        request.getRequestDispatcher("display/billUser.jsp").forward(request, response);
     }
 
     private void statusBill(HttpServletRequest request, HttpServletResponse response) {
@@ -144,7 +145,8 @@ public class BillServlet extends HttpServlet {
             setStatusBill(request, response);
         }
     }
-        private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
+
+    private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
 
@@ -174,19 +176,19 @@ public class BillServlet extends HttpServlet {
 
     }
 
-    private void showDetailBill(HttpServletRequest request, HttpServletResponse response)  {
+    private void showDetailBill(HttpServletRequest request, HttpServletResponse response) {
         int idBill = Integer.parseInt(request.getParameter("idBill"));
         try {
-          Bill bill = billDAO.getBillById(idBill);
-          List<Product> productList = billDAO.getProductListInBill(idBill);
-        request.setAttribute("bill", bill);
-        request.setAttribute("productList", productList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home/detailBill.jsp");
-        dispatcher.forward(request, response);
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    } catch (ClassNotFoundException | ServletException | IOException e) {
-        throw new RuntimeException(e);
-    }
+            Bill bill = billDAO.getBillById(idBill);
+            List<Product> productList = billDAO.getProductListInBill(idBill);
+            request.setAttribute("bill", bill);
+            request.setAttribute("productList", productList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("home/detailBill.jsp");
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException | ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
