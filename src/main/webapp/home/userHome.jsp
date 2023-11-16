@@ -61,12 +61,16 @@
 
 </head>
 <style>
+    ::placeholder {
+        font-size: 16px;
+    }
+
     body {
         max-height: 100%;
     }
 
     .col-md-3 {
-        flex: 1 0 23%;
+        flex: 0 0 23%;
     }
 
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
@@ -96,6 +100,7 @@
     .text-content {
         /*margin-top: 40px;*/
         text-align: center;
+        margin-top: 28px;
     }
 
     .search {
@@ -109,6 +114,7 @@
         background-size: cover;
         position: relative;
         background-color: rgb(255, 255, 255, 0.5) !important;
+        height: 700px;
     }
 
     .listPage {
@@ -283,7 +289,7 @@
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
-                                <button type="submit" style="height: 60px" class="btn btn-danger"
+                                <button type="submit" style="height: 60px; font-size: 16px" class="btn btn-danger"
                                         onclick="searchByName()">Tìm kiếm
                                 </button>
                             </form>
@@ -416,7 +422,7 @@
                             <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
                             <h5 class="card-title"
 
-                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productRecommend.productName}
+                                style=" width: 100%; height: 56px;font-weight: bold;font-size: 23px ;margin-top: 10px;overflow: hidden">${productRecommend.productName}
                                 - ${productRecommend.restaurantName}
                             </h5>
                             <p class="card-text ">
@@ -471,7 +477,7 @@
                             <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
                             <h5 class="card-title"
 
-                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
+                                style=" width: 100%;height: 56px;font-weight: bold;font-size: 22px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
                                 - ${productBestSale.restaurantName}
                             </h5>
                             <p class="card-text ">
@@ -521,7 +527,7 @@
                             <input type="hidden" name="action" value="restaurant"/>
                             <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
                             <h5 class="card-title"
-                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName}
+                                style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
