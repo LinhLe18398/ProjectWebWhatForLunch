@@ -61,6 +61,19 @@
     .bill-address{
         border: none;
     }
+
+    .detail-address {
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style:hidden;
+    }
+    .detail-address::placeholder{
+        color:white;
+    }
+    .detail-address:focus {
+        outline: none;
+    }
 </style>
 <body>
 <form action="/users?action=order" method="get">
@@ -129,12 +142,12 @@
             Địa Chỉ Nhận Hàng
         </span>
        <div style="display: flex">
-           <input type="text" id="recipient-name" readonly>
-           <input type="text" id="recipient-phone" readonly>
-           <input type="text" id="recipient-Address" readonly>
+           <input class="detail-address" style="width:100px;font-weight: 800" type="text" id="recipient-name" readonly disabled>
+           <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone" readonly disabled>
+           <input class="detail-address" style="width: 200px" type="text" id="recipient-Address" readonly disabled>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
-             style="text-decoration: none; color: blue">Thay Đổi</a>
+             style="text-decoration: none; color: blue;padding-left: 450px ">Thay Đổi</a>
            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -156,14 +169,12 @@
                                           <form action="" method="post">
                                               <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" >
-                                            <input type="text" placeholder="Số điện thoại" >
-                                            <input type="text" placeholder="Họ và tên" id="updateName">
-                                            <input type="text" placeholder="Số điện thoại" id="updatePhone">
+                                            <input type="text" placeholder="Họ và tên" id="update-name">
+                                            <input type="text" placeholder="Số điện thoại" id="update-phone">
                                             </p>
                                             <p>
                                                 <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
-                                                       id="updateAddress">
+                                                       id="update-Address">
                                             </p>
                                           </form>
                                          <p>
@@ -177,9 +188,9 @@
                                <c:forEach items="${address}" var="showAddress">
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                       <input class="bill-address${showAddress.idAddress}" value="${showAddress.recipientName}" >
-                                       <input class="bill-address${showAddress.idAddress}" style="color: rgb(128,128,128)" value="${showAddress.recipientPhone}">
-                                       <input class="bill-address${showAddress.idAddress}" style="color: rgb(128,128,128);padding-right: 100px" value=" ${showAddress.detailedAddress}">
+                                       <input class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" disabled >
+                                       <input class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128)" name="phone" value="${showAddress.recipientPhone}" disabled>
+                                       <input class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128);padding-right: 100px" name="address" value=" ${showAddress.detailedAddress}" disabled>
                                    </label>
                                </c:forEach>
                            </div>
@@ -204,8 +215,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-primary" id="updateConfirmBtn">Xác Nhận</button>
+<%--                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>--%>
+                            <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác Nhận</button>
                         </div>
                     </div>
                 </div>
@@ -266,7 +277,7 @@
             <tbody style="padding: 10px">
                <div style="display: flex">
                     <div style="margin-right: 600px">
-                        <select name="paymentMethod" class="form-select" aria-label="Default select example"
+                        <select name="paymentMethod" class="form-select"  aria-label="Default select example"
                                 style="width: 400px">
                           <option selected>Phương Thức Thanh Toán</option>
                           <option value="1">Thanh toán khi nhận hàng</option>
@@ -290,8 +301,15 @@
                         <form method="post" action="/bill?action=confirm-bill">
                             <input type="hidden" name="listId" id="listId" value="">
                             <input type="hidden" name="listQuantity" id="listQuantity" value="">
-                            <input style="float: right" class="btn btn-success btn-block " value="Đặt Hàng">
-
+                            <input style="float: right" type="submit" class="btn btn-success btn-block " value="Đặt Hàng">
+                            <c:forEach items="${address}" var="showAddress">
+                                   <label hidden="hidden" class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
+                                       <input hidden="hidden" class="form-check-input" onclick="selectAddress1(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128)" name="phone" value="${showAddress.recipientPhone}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128);padding-right: 100px" name="address" value=" ${showAddress.detailedAddress}" >
+                                   </label>
+                            </c:forEach>
                         </form>
                     </td>
                 </tr>
@@ -358,6 +376,14 @@
         document.getElementById("recipient-Address").value = address[2].value;
     }
 
+    function selectAddress1(id) {
+        var selectedAddress = document.querySelector(".bill-address" + id);
+
+        document.getElementById("selectedAddressId").value = id;
+        document.getElementById("selectedRecipientName").value = selectedAddress.querySelector("[name='name']").value;
+        document.getElementById("selectedRecipientPhone").value = selectedAddress.querySelector("[name='phone']").value;
+        document.getElementById("selectedDetailedAddress").value = selectedAddress.querySelector("[name='address']").value;
+    }
 </script>
 </html>
 
