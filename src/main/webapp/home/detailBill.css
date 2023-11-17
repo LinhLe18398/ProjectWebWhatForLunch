@@ -698,10 +698,12 @@ table p {
     color: black;
 }
 .dt-cancel-order:hover {
-    background: rgb(237, 227, 225);
+    border: none;
+    background: red;
 }
-
-
+.dt-cancel-order a:hover {
+    color: white;
+}
 /* ------------------------------------------------ */
 /* Địa chỉ giao hàng và thời gian dự kiến */
 
