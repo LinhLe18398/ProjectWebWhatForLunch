@@ -276,7 +276,27 @@ public class UserServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "delete-address":
+                try {
+                    deleteAddress(req,resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
         }
+    }
+
+    private void deleteAddress(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException {
+        int selectedAddressId = Integer.parseInt(req.getParameter("flexRadioDefault"));
+        if (selectedAddressId != 0) {
+            userDAO.deleteAddress(selectedAddressId);
+            resp.sendRedirect("display/comfirmOrder.jsp");
+        } else {
+            resp.getWriter().println("Vui lòng chọn một địa chỉ để xóa.");
+        }
+
     }
 
     private void orderProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
