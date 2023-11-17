@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDAO implements UserInterface {
     private final String username = "root";
 
-    private final String password = "1111";
+    private final String password = "";
 
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -35,6 +35,8 @@ public class UserDAO implements UserInterface {
     private final String CREATE_ADDRESS_QUERY = "{CALL CREATE_ADDRESS(?,?,?,?)}";
     private final String GET_ALL_USER_ADDRESS_QUERY = "{CALL GET_ALL_USER_ADDRESS(?)}";
     private final String UPDATE_ADDRESS_QUERY = "{CALL UPDATE_ADDRESS(?,?,?,?)}";
+
+
 
     public boolean checkDuplicate(String email) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();

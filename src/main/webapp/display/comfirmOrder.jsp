@@ -122,7 +122,7 @@
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item" href="/users?action=logout">Đăng suất</a></li>
+                                            <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 </ul>
