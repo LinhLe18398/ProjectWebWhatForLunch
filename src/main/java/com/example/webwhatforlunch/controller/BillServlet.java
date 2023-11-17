@@ -3,6 +3,7 @@ package com.example.webwhatforlunch.controller;
 import com.example.webwhatforlunch.model.Bill;
 import com.example.webwhatforlunch.model.Merchant;
 import com.example.webwhatforlunch.model.Product;
+import com.example.webwhatforlunch.model.User;
 import com.example.webwhatforlunch.service.BillDAO;
 import com.example.webwhatforlunch.service.ProductDAO;
 
@@ -22,6 +23,7 @@ import java.util.List;
 public class BillServlet extends HttpServlet {
     private BillDAO billDAO;
     private ProductDAO productDAO;
+
     @Override
     public void init() throws ServletException {
         billDAO = new BillDAO();
@@ -57,13 +59,15 @@ public class BillServlet extends HttpServlet {
             case "status-bill":
                 statusBill(request, response);
                 break;
+            case "confirm-bill":
+                    confirmBill(request, response);
+                break;
         }
     }
 
 
-
     private void getBillUser(HttpServletRequest request, HttpServletResponse response) {
-            List<Bill> billList = billDAO.getBillUser(2);
+        List<Bill> billList = billDAO.getBillUser(2);
     }
 
     private void getBillMerchant(HttpServletRequest request, HttpServletResponse response) {
@@ -92,6 +96,58 @@ public class BillServlet extends HttpServlet {
         }
     }
 
+    private void confirmBill(HttpServletRequest request, HttpServletResponse response){
+        HttpSession httpSession = request.getSession();
+        User user = (User) httpSession.getAttribute("user");
+        int idUser = user.getId();
+
+        String recipientName = request.getParameter("name");
+        String recipientPhone = request.getParameter("phone");
+        String detailedAddress = request.getParameter("address");
+        String payment = request.getParameter("payment");
+
+        String selectedItems = request.getParameter("listId");
+        if (selectedItems.startsWith("/")) {
+            selectedItems = selectedItems.substring(1);
+        }
+
+        String quantity = request.getParameter("listQuantity");
+        if (quantity.startsWith("/")) {
+            quantity = quantity.substring(1);
+        }
+
+        try {
+            if (selectedItems != null && quantity != null) {
+                String[] idProduct = selectedItems.split("/");
+                String[] quantityArray = quantity.split("/");
+                String idMerchant = productDAO.getProductById(idProduct[0]).getIdMerchant();
+
+                List<Product> productList = new ArrayList<>();
+                for (int i = 0; i < idProduct.length; i++) {
+                    Product product = productDAO.getProductById(idProduct[i]);
+                    if (product != null) {
+                        product.setQuantity(Integer.parseInt(quantityArray[i]));
+                        productList.add(product);
+                    }
+                }
+                int idBill = billDAO.createBill(idUser, idMerchant, recipientName, recipientPhone, detailedAddress, payment);
+                billDAO.createProductToBill(idBill,productList);
+            }
+
+            request.setAttribute("name",recipientName);
+            request.getRequestDispatcher("display/billUser.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     private void statusBill(HttpServletRequest request, HttpServletResponse response) {
         int number = Integer.parseInt(request.getParameter("active"));
         if (number == 2) {
@@ -100,7 +156,8 @@ public class BillServlet extends HttpServlet {
             setStatusBill(request, response);
         }
     }
-        private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
+
+    private void setStatusBill(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
 
@@ -130,19 +187,19 @@ public class BillServlet extends HttpServlet {
 
     }
 
-    private void showDetailBill(HttpServletRequest request, HttpServletResponse response)  {
+    private void showDetailBill(HttpServletRequest request, HttpServletResponse response) {
         int idBill = Integer.parseInt(request.getParameter("idBill"));
         try {
-          Bill bill = billDAO.getBillById(idBill);
-          List<Product> productList = billDAO.getProductListInBill(idBill);
-        request.setAttribute("bill", bill);
-        request.setAttribute("productList", productList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home/detailBill.jsp");
-        dispatcher.forward(request, response);
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    } catch (ClassNotFoundException | ServletException | IOException e) {
-        throw new RuntimeException(e);
-    }
+            Bill bill = billDAO.getBillById(idBill);
+            List<Product> productList = billDAO.getProductListInBill(idBill);
+            request.setAttribute("bill", bill);
+            request.setAttribute("productList", productList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("home/detailBill.jsp");
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException | ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

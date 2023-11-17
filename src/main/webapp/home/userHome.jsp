@@ -267,10 +267,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Đồ ăn sáng</option>
-                                    <option value="Coffee">Cafe</option>
-                                    <option value="Lunch">Đồ ăn trưa</option>
-                                    <option value="Dinner">Đồ ăn tối</option>
+                                    <option value="Đồ ăn sáng">Đồ ăn sáng</option>
+                                    <option value="Cafe">Cafe</option>
+                                    <option value="Đồ ăn trưa">Đồ ăn trưa</option>
+                                    <option value="Đồ ăn tối">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
@@ -283,8 +283,8 @@
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
-                                <button type="submit" style="height: 60px" class="btn btn-danger"
-                                        onclick="searchByName()">Tìm kiếm
+                                <button type="submit" style="height: 60px" class="btn btn-danger" onclick="searchByName()">
+                                    Tìm kiếm
                                 </button>
                             </form>
                         </div>
@@ -293,14 +293,12 @@
                 </div>
             </div>
 
-
             <div class="container">
                 <div class="row d-flex align-items-center py-lg-4">
                     <div class="owl-carousel owl-carousel-category owl-theme owl-loaded owl-drag">
                         <div class="owl-stage-outer">
                             <div class="owl-stage"
                                  style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
-
                                 <c:forEach items="${productBestSale}" var="productBestSale">
                                     <div class="owl-item cloned" style="width: 91.25px;">
                                         <div class="item">
@@ -452,7 +450,13 @@
     <%--8 món ăn được giảm giá nhất --%>
 
 
-    <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
+    <h2 style="padding-top: 40px">
+
+        <c:choose>
+            <c:when test="${empty tagSearch}">MÓN ĂN GIẢM GIÁ</c:when>
+            <c:otherwise>${tagSearch}</c:otherwise>
+        </c:choose>
+    </h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
             <div class="col-md-3 col-6  item"

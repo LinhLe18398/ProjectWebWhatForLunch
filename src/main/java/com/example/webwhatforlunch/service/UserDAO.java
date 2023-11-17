@@ -11,7 +11,9 @@ import java.util.List;
 
 public class UserDAO implements UserInterface {
     private final String username = "root";
-    private final String password = "mySQL7122023@";
+
+    private final String password = "1111";
+
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -32,6 +34,7 @@ public class UserDAO implements UserInterface {
     private final String GET_RESTAURANT_MERCHANT_QUERY = "{CALL GET_RESTAURANT_MERCHANT(?)}";
     private final String CREATE_ADDRESS_QUERY = "{CALL CREATE_ADDRESS(?,?,?,?)}";
     private final String GET_ALL_USER_ADDRESS_QUERY = "{CALL GET_ALL_USER_ADDRESS(?)}";
+    private final String UPDATE_ADDRESS_QUERY = "{CALL UPDATE_ADDRESS(?,?,?,?)}";
 
     public boolean checkDuplicate(String email) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
@@ -76,7 +79,7 @@ public class UserDAO implements UserInterface {
         ResultSet resultSet = callableStatement.executeQuery();
         if (resultSet.next()) {
             user = new User();
-            user.setId(resultSet.getInt("IdUser"));
+            user.setId(resultSet.getInt("idUser"));
             user.setName(resultSet.getString("name"));
             user.setEmail(resultSet.getString("email"));
             user.setPhoneNumber(resultSet.getString("phoneNumber"));
@@ -146,7 +149,6 @@ public class UserDAO implements UserInterface {
 
         return rowUpdated;
     }
-
 
     @Override
     public List<Product> get_All_Product() throws SQLException, ClassNotFoundException {
@@ -238,5 +240,14 @@ public class UserDAO implements UserInterface {
             addressList.add(new DeliveryAddress(idAddress, idU,recipientName, recipientPhone, detailedAddress));
         }
         return addressList;
+    }
+    public void updateAddress(int idAddress, String name ,String phone, String address) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(UPDATE_ADDRESS_QUERY);
+        callableStatement.setInt(1,idAddress);
+        callableStatement.setString(2,name);
+        callableStatement.setString(3,phone);
+        callableStatement.setString(4,address);
+        callableStatement.executeUpdate();
     }
 }
