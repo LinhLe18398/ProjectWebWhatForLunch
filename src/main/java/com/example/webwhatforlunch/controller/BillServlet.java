@@ -60,17 +60,7 @@ public class BillServlet extends HttpServlet {
                 statusBill(request, response);
                 break;
             case "confirm-bill":
-                try {
                     confirmBill(request, response);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                } catch (ServletException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
                 break;
         }
     }
@@ -106,35 +96,56 @@ public class BillServlet extends HttpServlet {
         }
     }
 
-    private void confirmBill(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
+    private void confirmBill(HttpServletRequest request, HttpServletResponse response){
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("user");
-        int id = user.getId();
+        int idUser = user.getId();
 
-        String selectedRecipientName = request.getParameter("name");
-        String selectedRecipientPhone = request.getParameter("phone");
-        String selectedDetailedAddress = request.getParameter("address");
+        String recipientName = request.getParameter("name");
+        String recipientPhone = request.getParameter("phone");
+        String detailedAddress = request.getParameter("address");
+        String payment = request.getParameter("payment");
 
         String selectedItems = request.getParameter("listId");
-        String quantity = request.getParameter("listQuantity");
-
-        if (selectedItems != null && quantity != null) {
-            String[] idProduct = selectedItems.split("/");
-            String[] quantityArray = quantity.split("/");
-
-            List<Product> productList = new ArrayList<>();
-            for (int i = 0; i < idProduct.length; i++) {
-                Product product = productDAO.getProductById(idProduct[i]);
-                if (product != null) {
-                    product.setQuantity(Integer.parseInt(quantityArray[i]));
-                    productList.add(product);
-                }
-
-            }
-            billDAO.createBill(id,selectedRecipientName, selectedRecipientPhone, selectedDetailedAddress);
-            billDAO.createProductToBill(16,productList);
+        if (selectedItems.startsWith("/")) {
+            selectedItems = selectedItems.substring(1);
         }
-        request.getRequestDispatcher("display/billUser.jsp").forward(request, response);
+
+        String quantity = request.getParameter("listQuantity");
+        if (quantity.startsWith("/")) {
+            quantity = quantity.substring(1);
+        }
+
+        try {
+            if (selectedItems != null && quantity != null) {
+                String[] idProduct = selectedItems.split("/");
+                String[] quantityArray = quantity.split("/");
+                String idMerchant = productDAO.getProductById(idProduct[0]).getIdMerchant();
+
+                List<Product> productList = new ArrayList<>();
+                for (int i = 0; i < idProduct.length; i++) {
+                    Product product = productDAO.getProductById(idProduct[i]);
+                    if (product != null) {
+                        product.setQuantity(Integer.parseInt(quantityArray[i]));
+                        productList.add(product);
+                    }
+                }
+                int idBill = billDAO.createBill(idUser, idMerchant, recipientName, recipientPhone, detailedAddress, payment);
+                billDAO.createProductToBill(idBill,productList);
+            }
+
+            request.setAttribute("name",recipientName);
+            request.getRequestDispatcher("display/billUser.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void statusBill(HttpServletRequest request, HttpServletResponse response) {

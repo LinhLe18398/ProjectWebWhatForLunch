@@ -18,7 +18,7 @@ public class BillDAO {
     private static final String GET_BILL_ID = "CALL GET_BILL_BY_ID(?)";
     private static final String GET_PRODUCT_IN_BILL = "CALL GET_PRODUCT_IN_BILL(?)";
     private static final String GET_BILL_MERCHANT = "CALL GET_BILL_MERCHANT(?)";
-    private static final String CREATE_BILL_QUERY = "CALl CREATE_BILL(?,?,?,?)";
+    private static final String CREATE_BILL_QUERY = "CALl CREATE_BILL(?,?,?,?,?,?)";
     private static final String ACCEPT_BILL = "CALL ACTIVE_BILL(?,?)";
     private static final String CANCEL_BILL = "CALL CANCEL_BILL(?,?)";
     private static final String ADD_PRODUCT_TO_BILL1_QUERY = "CALL ADD_PRODUCT_TO_BILL(?,?,?,?)";
@@ -30,26 +30,30 @@ public class BillDAO {
         return connection;
     }
 
-    public void createBill(int idUser, String recipientName, String recipientPhone, String recipientAddress) throws SQLException, ClassNotFoundException {
+    public int createBill(int idUser,String idMerchant, String recipientName, String recipientPhone, String recipientAddress,String paymentMethods) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(CREATE_BILL_QUERY);
         callableStatement.setInt(1, idUser);
-        callableStatement.setString(2, recipientName);
-        callableStatement.setString(3, recipientPhone);
-        callableStatement.setString(4, recipientAddress);
-        callableStatement.executeUpdate();
+        callableStatement.setString(2, idMerchant);
+        callableStatement.setString(3, recipientName);
+        callableStatement.setString(4, recipientPhone);
+        callableStatement.setString(5, recipientAddress);
+        callableStatement.setString(6, paymentMethods);
+        ResultSet resultSet = callableStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getInt(1);
     }
 
-    public void createProductToBill(int idBill, List<Product> product) throws SQLException, ClassNotFoundException {
+    public void createProductToBill(int idBill, List<Product> products) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(ADD_PRODUCT_TO_BILL1_QUERY);
-        for (Product product1 : product) {
+        for (Product product : products) {
             callableStatement.setInt(1,idBill);
-            callableStatement.setString(2, product1.getIdProduct());
-            callableStatement.setInt(3, product1.getQuantity());
-            callableStatement.setString(4, product1.getNote());
+            callableStatement.setString(2, product.getIdProduct());
+            callableStatement.setInt(3, product.getQuantity());
+            callableStatement.setString(4, product.getNote());
+            callableStatement.executeUpdate();
         }
-        callableStatement.executeUpdate();
     }
 
     public List<Bill> getBillMerchant(String idMerchant) {
@@ -105,7 +109,6 @@ public class BillDAO {
                 billList.add(bill);
             }
         }
-
         return billList;
     }
 

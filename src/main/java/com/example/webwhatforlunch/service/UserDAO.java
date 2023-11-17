@@ -79,7 +79,7 @@ public class UserDAO implements UserInterface {
         ResultSet resultSet = callableStatement.executeQuery();
         if (resultSet.next()) {
             user = new User();
-            user.setId(resultSet.getInt("IdUser"));
+            user.setId(resultSet.getInt("idUser"));
             user.setName(resultSet.getString("name"));
             user.setEmail(resultSet.getString("email"));
             user.setPhoneNumber(resultSet.getString("phoneNumber"));
@@ -149,7 +149,6 @@ public class UserDAO implements UserInterface {
 
         return rowUpdated;
     }
-
 
     @Override
     public List<Product> get_All_Product() throws SQLException, ClassNotFoundException {

@@ -142,9 +142,9 @@
             Địa Chỉ Nhận Hàng
         </span>
        <div style="display: flex">
-           <input class="detail-address" style="width:100px;font-weight: 800" type="text" id="recipient-name" readonly disabled>
+           <input class="detail-address" style="width:200px;font-weight: 800" type="text" id="recipient-name" readonly disabled>
            <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone" readonly disabled>
-           <input class="detail-address" style="width: 200px" type="text" id="recipient-Address" readonly disabled>
+           <input class="detail-address" style="width: 400px" type="text" id="recipient-Address" readonly disabled>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
              style="text-decoration: none; color: blue;padding-left: 450px ">Thay Đổi</a>
@@ -276,12 +276,10 @@
             <tbody style="padding: 10px">
                <div style="display: flex">
                     <div style="margin-right: 600px">
-                        <select name="paymentMethod" class="form-select"  aria-label="Default select example"
-                                style="width: 400px">
+                        <select name="paymentMethod" class="form-select"  aria-label="Default select example" style="width: 400px" onchange="select(this.value)">
                           <option selected>Phương Thức Thanh Toán</option>
-                          <option value="1">Thanh toán khi nhận hàng</option>
-                          <option value="2">Thẻ tín dụng/Ghi nợ</option>
-                          <option value="3">Bank</option>
+                          <option value="COD">Thanh toán khi nhận hàng</option>
+                          <option value="Card">Thanh toán luôn</option>
                         </select>
                     </div>
                     <div>
@@ -305,8 +303,9 @@
                                    <label hidden="hidden" class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input hidden="hidden" class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault">
                                        <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" >
-                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128)" name="phone" value="${showAddress.recipientPhone}" >
-                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128);padding-right: 100px" name="address" value=" ${showAddress.detailedAddress}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="phone" value="${showAddress.recipientPhone}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="address" value=" ${showAddress.detailedAddress}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="payment" value="" id="payment">
                                    </label>
                             </c:forEach>
                         </form>
@@ -374,6 +373,12 @@
         document.getElementById("recipient-phone").value = address[1].value;
         document.getElementById("recipient-Address").value = address[2].value;
     }
+
+    function select(selected) {
+        document.getElementById("payment").value = selected;
+    }
+
+
 </script>
 </html>
 
