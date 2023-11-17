@@ -30,9 +30,6 @@
     <p class="logo1"><span class="menu1">☰</span></p>
     <a href="#" class="icon-a" id="a" onclick="listClick(this.id)"><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
     <a href="#" class="icon-a" id="b" onclick="listClick(this.id)"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
-    <a href="#" class="icon-a" id="c" onclick="listClick(this.id)"><i class="fa fa-eye icons"></i> Xem thông tin chi
-        tiết</a>
-    <a href="#" class="icon-a"><i class="fa fa-sign-out icons"></i> Logout</a>
 </div>
 <div id="main">
 
@@ -63,10 +60,11 @@
         </div>
     </div>
 
-    <div class="clearfix"></div><br/>
+    <div class="clearfix"></div>
+    <br/>
 
     <div class="cb box">
-        <div class="col-div-12">
+        <div class="col-div-13">
             <div class="content-box">
                 <div class="form-detail">
                     <div class="detail-return">
@@ -85,75 +83,99 @@
                     </div>
 
                     <hr>
-
+                    <form method="post" action="/bill?action=status-bill"/>
                     <div class="detail-cancel-order">
-                        <button class="dt-cancel-order" id="dt-cancel-button"
-                                type="submit"><a id="dt-cancel-a" style="text-decoration: none"href="/products?action=home-merchant">Huỷ đơn hàng</a></button>
+                        <c:choose>
+                            <c:when test="${bill.getBillStatus() == 'Chờ nhận hàng'}">
+                                <button class="dt-cancel-order" id="dt-cancel-button"
+                                        onclick="declineStatus(<c:out value="${bill.getIdBill()}"/>)"
+                                        type="submit"><a id="dt-cancel-a" style="text-decoration: none"
+                                                         href="/products?action=home-merchant">Huỷ đơn hàng</a></button>
+                                <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
+                                <input type="text" hidden="hidden" id="active" name="active" value="">
+                            </c:when>
+
+                            <c:when test="${bill.getBillStatus() == 'Huỷ'}">
+                                <button class="dt-cancel-order1" type="submit" disabled>
+                                    <a style="text-decoration: none">Đơn hàng đã huỷ</a></button>
+                            </c:when>
+
+                            <c:otherwise>
+                                <button class="dt-cancel-order1" type="submit" disabled>
+                                    <a style="text-decoration: none">Không thể huỷ đơn hàng</a></button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
+                    </form>
 
                     <hr>
 
                     <div class="detail-time-address">
                         <div class="detail-address">
                             <h2>Địa chỉ nhận hàng</h2>
-                            <p><c:out value="${bill.getRecipientName()}" /></p>
-                            <span class="detail-sp">(+84)<c:out value="${bill.getRecipientPhone()}" /></span><br>
-                            <span class="detail-sp"><c:out value="${bill.getRecipientAddress()}" /></span>
+                            <p><c:out value="${bill.getRecipientName()}"/></p>
+                            <span class="detail-sp" id="phoneNumber"><c:out value="${bill.getRecipientPhone()}"/></span><br>
+                            <span class="detail-sp"><c:out value="${bill.getRecipientAddress()}"/></span>
                         </div>
                         <div class="detail-time">
                             <h2>Thời gian nhận hàng</h2>
-                            <span>Thời gian đặt</span><span class="detail-sp time"><c:out value="${bill.getTimeOrder()}" /></span><br>
-                            <span>Thời gian dự kiến </span><span class="detail-sp time"><c:out value="${bill.getDeliveryTime()}"/></span>
+                            <span class="detail-tm">Thời gian đặt</span>&emsp;
+                            &emsp;&nbsp;<span class="detail-sp-tm" id="timeStart"><c:out value="${bill.getTimeOrder()}"/></span><br>
+                            <span class="detail-tm">Thời gian dự kiến </span>
+                            <span class="detail-sp-tm" id="timeEnd"><c:out value="${bill.getTimeWait()}"/></span>
                         </div>
                     </div>
 
                     <hr>
 
-
                     <div class="detail-orders">
-                        <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}" /></h3>
+                        <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}"/></h3>
                         <hr>
+                    </div>
+
+
+                    <div class="detail-orders1">
                         <c:forEach items="${billProduct}" var="billProduct">
-                        <div class="detail-order">
-                            <img src="${billProduct.getProductImg()}">
-                            <div class="infor-product">
-                                <h3>${billProduct.getProductName()}</h3>
-                                <p>${billProduct.getNote()}</p>
-                                <p>x ${billProduct.getQuantity()}</p>
+                            <div class="detail-order">
+                                <img src="${billProduct.getProductImg()}">
+                                <div class="infor-product">
+                                    <h3>${billProduct.getProductName()}</h3>
+                                    <span>Phân loại sản phẩm</span><span>${billProduct.getNote()}</span><br>
+                                    <span class="dt-number">x ${billProduct.getQuantity()}</span>
+                                </div>
+                                <div class="price-product">
+                                    <span class="price-sale price" id="sale">${billProduct.getPrice()}</span>
+                                    <span class="price-simple price" id="cost">${billProduct.getPrice() - billProduct.getSale()}</span>
+                                </div>
                             </div>
-                            <div class="price-product">
-                                <span class="price-sale">₫${billProduct.getSale()}</span>
-                                <span class="price-simple">₫${billProduct.getPrice()}</span>
-                            </div>
-                        </div>
                         </c:forEach>
                     </div>
                     <div class="detail-money-bill">
-                        <div class="detair-summary">
+                        <div class="detail-summary">
                             <div class="order-item">
                                 <span class="item-label">Tổng tiền hàng:</span>
-                                <span class="item-value"><c:out value="${bill.getTotalPrice()}" /></span>
+                                <span class="item-value price"><c:out value="${bill.getTotalPrice()}"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí giao hàng:</span>
-                                <span class="item-value"><c:out value="0"/></span>
+                                <span class="item-value price"><c:out value="0"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí dịch vụ:</span>
-                                <span class="item-value"><c:out value="${bill.getTotalService()}" /></span>
+                                <span class="item-value price"><c:out value="${bill.getTotalService()}"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Giảm giá:</span>
-                                <span class="item-value"><c:out value="${bill.getTotalSale()}" /></span>
+                                <span class="item-value price"><c:out value="${bill.getTotalSale()}"/></span>
                             </div>
                         </div>
                         <div class="detail-total">
                             <div class="order-item">
-                                <h3 class="item-label">Thành tiền:</h3>
-                                <h3 class="item-value"><c:out value="${bill.getFinalTotal()}"/></h3>
+                                <p class="item-label">Thành tiền:</p>
+                                <p class="item-value price"><c:out value="${bill.getFinalTotal()}"/></p>
                             </div>
                             <div class="order-item">
-                                <span class="item-label">Phương thức thanh toán:</span>
+                                <span class="item-label">Phương thức thanh toán: </span>
                                 <span class="item-value"><c:out value="${bill.getPaymentMethod()}"/></span>
                             </div>
                         </div>
@@ -168,6 +190,7 @@
 <div class="clearfix"></div>
 </div>
 </body>
+
 <script>
     $(document).ready(function () {
         $(".profile p").click(function () {
@@ -221,7 +244,34 @@
         location.reload();
     }
 
+    //Xử lí đối tượng DOM
+    function formatNumberPhone() {
+        let numberElement = document.getElementById("phoneNumber");
+        let number = numberElement.textContent;
+        let del_number = number.replace('84', '');
+        numberElement.textContent = "(+84)" + del_number;
+    }
 
+    formatNumberPhone();
+
+    //Tính thời gian giao hàng dự kiến
+    function formatTimeDelivery() {
+        const timeStart = document.getElementById("timeStart");
+        const timeEnd = document.getElementById("timeEnd");
+        const timeString = timeStart.textContent.replace(" ", "T");
+        const time = new Date(timeString);
+        time.setMinutes(time.getMinutes() + Number(timeEnd.textContent));
+        time.setHours(time.getHours() + 7);
+        const updatedTimeString = time.toISOString().replace("T", " ").replace(".000Z", "");
+        timeEnd.textContent = updatedTimeString;
+    }
+
+    formatTimeDelivery();
+
+    function declineStatus(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 0;
+    }
 
 </script>
 
