@@ -158,7 +158,6 @@
                         </div>
                         <div class="modal-body">
                            <div class="form-check " style="margin-bottom: 0">
-
                                <a href="#xmas-popup" class="button"
                                   style="text-decoration: none;float: right">Cập Nhập</a>
                                <div id="xmas-popup" class="popup" href="#">
@@ -375,7 +374,6 @@
         document.getElementById("recipient-phone").value = address[1].value;
         document.getElementById("recipient-Address").value = address[2].value;
     }
-
 </script>
 </html>
 
