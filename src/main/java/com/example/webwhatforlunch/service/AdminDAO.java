@@ -4,7 +4,9 @@ import java.sql.*;
 
 public class AdminDAO implements AdminInterface{
     private String username = "root";
-    private String password = "1111";
+     private String password = "1111";
+
+
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -29,11 +31,12 @@ public class AdminDAO implements AdminInterface{
         }
     }
     @Override
-    public void setStatusMerchant(int id) throws SQLException, ClassNotFoundException {
+    public void setStatusMerchant(int id, int number) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
-        String query = "{call set_Status_merchant(?)}";
+        String query = "{call ACCEPT_USER_TO_MERCHANT(?,?)}";
         CallableStatement callableStatement = connection.prepareCall(query);
         callableStatement.setInt(1, id);
+        callableStatement.setInt(2, number);
         callableStatement.executeUpdate();
     }
 

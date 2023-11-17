@@ -1,3 +1,6 @@
+<%@ page import="com.example.webwhatforlunch.model.Bill" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.webwhatforlunch.model.Product" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -54,6 +57,23 @@
     .popup:target {
         display: block;
     }
+
+    .bill-address{
+        border: none;
+    }
+
+    .detail-address {
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style:hidden;
+    }
+    .detail-address::placeholder{
+        color:white;
+    }
+    .detail-address:focus {
+        outline: none;
+    }
 </style>
 <body>
 <form action="/users?action=order" method="get">
@@ -63,7 +83,7 @@
                 <div style="color:#FF7F3F ; padding: 20px ; font-size: 30px;display: inline-block">
                     &#128722; | Thanh Toán
                 </div>
-                <div class="navbar" style="padding-bottom: 0;margin-left: 400px">
+                <div class="navbar" style="padding-bottom: 0;margin-left: 600px">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light"
                          style="background-color: rgb(255,255,255,0) !important; padding-top: 0">
                         <div class="container-fluid">
@@ -75,11 +95,6 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item" style="margin-left: 20px">
-                                        <a class="nav-link active" aria-current="page" href="#"
-                                           style="color: #ffffff">Offers</a>
-                                    </li>
-
                                     <li class="nav-item dropdown" style="margin-left: 20px">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                            data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
@@ -104,8 +119,6 @@
                                             <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa
                                                 thông
                                                 tin</a></li>
-                                            <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                            </li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
@@ -129,11 +142,12 @@
             Địa Chỉ Nhận Hàng
         </span>
        <div style="display: flex">
-           <p style="padding-right: 40px;margin-bottom: 0; font-weight: 800">Vương Văn Tuấn 0388301773</p>
-        <p style="padding-right: 250px ; margin-bottom: 0">Trường Đại Học Thành Đô, Đường Quốc Lộ 32, Lai Xá, Xã Kim Chung, Huyện Hoài Đức, Hà Nội</p>
+           <input class="detail-address" style="width:100px;font-weight: 800" type="text" id="recipient-name" readonly disabled>
+           <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone" readonly disabled>
+           <input class="detail-address" style="width: 200px" type="text" id="recipient-Address" readonly disabled>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
-             style="text-decoration: none; color: blue">Thay Đổi</a>
+             style="text-decoration: none; color: blue;padding-left: 450px ">Thay Đổi</a>
            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -151,18 +165,20 @@
                                     <div class="popup-content">
                                         <label>Cập nhật địa chỉ</label>
                                         <hr>
-                                        <div id="updateAddress" style="padding: 10px">
-                                          <form action="">
+                                        <div style="padding: 10px">
+                                          <form action="" method="post">
+                                              <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" disabled>
-                                            <input type="text" placeholder="Số điện thoại" disabled>
+                                            <input type="text" placeholder="Họ và tên" id="update-name">
+                                            <input type="text" placeholder="Số điện thoại" id="update-phone">
                                             </p>
                                             <p>
-                                                <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ">
+                                                <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
+                                                       id="update-Address">
                                             </p>
                                           </form>
                                          <p>
-                                            <a href="/users?action=order" class="btn btn-outline-secondary">Hủy</a>
+                                            <a href="#" class="btn btn-outline-secondary">Hủy</a>
                                             <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
                                          </p>
                                         </div>
@@ -170,15 +186,11 @@
                                </div>
 
                                <c:forEach items="${address}" var="showAddress">
-
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                       <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                              id="flexRadioDefault1">
-                                    ${showAddress.recipientName} <span
-                                           style="color: rgb(128,128,128)"> | ${showAddress.recipientPhone}</span>
-                                      <div style="color: rgb(128,128,128);padding-right: 100px">
-                                              ${showAddress.detailedAddress}
-                                      </div>
+                                       <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                       <input class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" disabled >
+                                       <input class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128)" name="phone" value="${showAddress.recipientPhone}" disabled>
+                                       <input class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128);padding-right: 100px" name="address" value=" ${showAddress.detailedAddress}" disabled>
                                    </label>
                                </c:forEach>
                            </div>
@@ -203,8 +215,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-primary ">Xác Nhận</button>
+<%--                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>--%>
+                            <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác Nhận</button>
                         </div>
                     </div>
                 </div>
@@ -212,7 +224,6 @@
     </div>
     </span>
     </div>
-
     <div class="container"
          style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px;">
     <span style="box-sizing: inherit; line-height: 2.0em">
@@ -225,38 +236,40 @@
                     <th style="width:22%" class="text-center">Thành tiền</th>
                 </tr>
             </thead>
+
             <tbody>
+             <c:forEach items="${product}" var="product">
+                 <input type="hidden" class="id" value="${product.idProduct}">
                 <tr>
                     <td data-th="Product">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs">
-                                <img src=""
+                                <img src="${product.productImg}"
                                      alt="" width="100">
                             </div>
                             <div class="col-sm-10">
-                                <h4 class="nomargin" style="padding-left: 5px">Trà sữa trân châu</h4>
-                                <p style="padding-left: 5px">full topping</p>
+                                <h4 class="nomargin" style="padding-left: 5px">${product.productName}</h4>
+                                <p style="padding-left: 5px">${product.note}</p>
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">50,000 ₫</td>
+                    <td data-th="Price" class="price money">${product.price}</td>
                     <td data-th="Quantity">
-                        <label>1</label>
+                        <label class="quantity">${product.quantity}</label>
                     </td>
-                    <td data-th="Subtotal" class="text-center">50,000 ₫</td>
+                    <td data-th="Subtotal" class="text-center total money"> </td>
                 </tr>
+                 <td>
+                    <div style="padding: 10px; width: 100%">
+                      <label style="padding-right: 10px">Lời Nhắn:</label>
+                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
+                    </div>
+                 </td>
+             </c:forEach>
             </tbody>
-           <td>
-                <div style="padding: 10px; width: 100%">
-                  <label style="padding-right: 10px">Lời Nhắn:</label>
-                  <input style="height: 30px" type="text" placeholder=" Lưu ý cho Người bán...">
-                </div>
-           </td>
     </table>
     </span>
     </div>
-
-
     <div class="container"
          style="box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px; margin-bottom: 10px; padding: 20px">
     <span style="line-height: 2.0em">
@@ -264,19 +277,18 @@
             <tbody style="padding: 10px">
                <div style="display: flex">
                     <div style="margin-right: 600px">
-                        <select class="form-select" aria-label="Default select example" style="width: 400px">
+                        <select name="paymentMethod" class="form-select"  aria-label="Default select example" style="width: 400px" onchange="select(this.value)">
                           <option selected>Phương Thức Thanh Toán</option>
-                          <option value="1">Thanh toán khi nhận hàng</option>
-                          <option value="2">Thẻ tín dụng/Ghi nợ</option>
-                          <option value="3">Bank</option>
+                          <option value="COD">Thanh toán khi nhận hàng</option>
+                          <option value="Card">Thanh toán luôn</option>
                         </select>
                     </div>
                     <div>
-                        <label style="padding-right: 50px">
+                        <label style="padding-right: 50px" id="totalAll" class="money">
                             Tổng Thanh Toán:
                         </label>
                         <label>
-                            200,000 ₫
+
                         </label>
                     </div>
                </div>
@@ -284,7 +296,20 @@
             <tfoot>
                 <tr style="display: flex; float: right">
                     <td style="float: right">
-                        <a style="float: right" href="" class="btn btn-success btn-block">Đặt Hàng</a>
+                        <form method="post" action="/bill?action=confirm-bill">
+                            <input type="hidden" name="listId" id="listId" value="">
+                            <input type="hidden" name="listQuantity" id="listQuantity" value="">
+                            <input style="float: right" type="submit" class="btn btn-success btn-block " value="Đặt Hàng">
+                            <c:forEach items="${address}" var="showAddress">
+                                   <label hidden="hidden" class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
+                                       <input hidden="hidden" class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault">
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="phone" value="${showAddress.recipientPhone}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="address" value=" ${showAddress.detailedAddress}" >
+                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="payment" value="" id="payment">
+                                   </label>
+                            </c:forEach>
+                        </form>
                     </td>
                 </tr>
                 <tr style="float: left;padding-top: 10px">
@@ -298,9 +323,34 @@
     </span>
     </div>
 </form>
-</body>
 
+</body>
 <script>
+    let totalProduct = 0;
+    let price = document.getElementsByClassName("price");
+    let id = document.getElementsByClassName("id");
+    let quantity = document.getElementsByClassName("quantity");
+    let total = document.getElementsByClassName("total");
+
+    let listId = document.getElementById("listId");
+    let listQuantity = document.getElementById("listQuantity");
+
+    for (let i = 0; i < price.length; i++) {
+        let dataPrice = price[i].innerHTML;
+        let dataQuantity = quantity[i].innerHTML;
+        let totalPrice = dataPrice * dataQuantity;
+        total[i].innerHTML = totalPrice + "₫";
+        price[i].innerHTML = dataPrice + "₫";
+        quantity[i].innerHTML = dataQuantity ;
+        listId.value += "/" + id[i].value;
+        listQuantity.value += "/" + quantity[i].innerHTML;
+        totalProduct += totalPrice;
+    }
+    console.log(listId.value)
+    console.log(listQuantity.value)
+
+    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + "₫";
+
     function openForm() {
         let address = document.getElementsByClassName("card-address");
 
@@ -317,6 +367,18 @@
         }
         document.getElementById("myForm").hidden = true;
     }
+
+    function selectAddress(idAddress) {
+        let address = document.getElementsByClassName("bill-address" + idAddress);
+        document.getElementById("recipient-name").value = address[0].value;
+        document.getElementById("recipient-phone").value = address[1].value;
+        document.getElementById("recipient-Address").value = address[2].value;
+    }
+
+    function select(selected) {
+        document.getElementById("payment").value = selected;
+    }
+
 </script>
 </html>
 

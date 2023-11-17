@@ -153,6 +153,7 @@
                     <form method="post" action="/bill?action=search-bill">
                         <div class="form-group">
                             <div class="form-search-one">
+
                                 <input type="number" name="idBill" placeholder="Mã đơn hàng">
                                 <input type="number" name="numberPhone" placeholder="Số điện thoại">
                                 <input type="text" name="nameUser" placeholder="Tên khách hàng">
@@ -175,6 +176,7 @@
                 <p class="list" id="sum-order">X Đơn hàng</p>
 
                 <br/>
+                <form method="post" action="/bill?action=status-bill"/>
                 <table id="table-order">
                     <thead>
                     <tr>
@@ -210,8 +212,11 @@
                             </td>
                         </tr>
                     </c:forEach>
+                    <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
+                    <input type="text" hidden="hidden" id="active" name="active" value="">
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </div>
@@ -220,7 +225,7 @@
                 <div class="content-box">
                     <div class="form-detail">
                         <div class="detail-return">
-                            <a href="#"id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
+                            <a href="#" id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
                         </div>
 
                         <div class="detail-status">
@@ -433,8 +438,6 @@
             case "Huỷ":
                 cell.style.color = "red";
                 break;
-            default:
-                break;
         }
     });
 
@@ -445,7 +448,21 @@
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber+"₫";
     }
-
+    function declineStatus(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 0;
+        location.reload();
+    }
+    function approveStatus(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 1;
+        location.reload();
+    }
+    function showDetail(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 2;
+        location.reload();
+    }
 </script>
 
 </html>

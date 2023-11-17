@@ -65,7 +65,7 @@
         max-height: 100%;
     }
 
-    .col-md-3{
+    .col-md-3 {
         flex: 1 0 23%;
     }
 
@@ -222,10 +222,13 @@
                                         tin</a></li>
                                     <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
+                                    <li><a class="dropdown-item" href="/users?action=billUser">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
+
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
                                 </ul>
                             </li>
 
@@ -264,10 +267,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Đồ ăn sáng</option>
-                                    <option value="Coffee">Cafe</option>
-                                    <option value="Lunch">Đồ ăn trưa</option>
-                                    <option value="Dinner">Đồ ăn tối</option>
+                                    <option value="Đồ ăn sáng">Đồ ăn sáng</option>
+                                    <option value="Cafe">Cafe</option>
+                                    <option value="Đồ ăn trưa">Đồ ăn trưa</option>
+                                    <option value="Đồ ăn tối">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
@@ -280,8 +283,8 @@
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
-                                <button type="submit" style="height: 60px" class="btn btn-danger"
-                                        onclick="searchByName()">Tìm kiếm
+                                <button type="submit" style="height: 60px" class="btn btn-danger" onclick="searchByName()">
+                                    Tìm kiếm
                                 </button>
                             </form>
                         </div>
@@ -290,14 +293,12 @@
                 </div>
             </div>
 
-
             <div class="container">
                 <div class="row d-flex align-items-center py-lg-4">
                     <div class="owl-carousel owl-carousel-category owl-theme owl-loaded owl-drag">
                         <div class="owl-stage-outer">
                             <div class="owl-stage"
                                  style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
-
                                 <c:forEach items="${productBestSale}" var="productBestSale">
                                     <div class="owl-item cloned" style="width: 91.25px;">
                                         <div class="item">
@@ -397,7 +398,7 @@
 
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
+                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
 
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
@@ -449,11 +450,17 @@
     <%--8 món ăn được giảm giá nhất --%>
 
 
-    <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
+    <h2 style="padding-top: 40px">
+
+        <c:choose>
+            <c:when test="${empty tagSearch}">MÓN ĂN GIẢM GIÁ</c:when>
+            <c:otherwise>${tagSearch}</c:otherwise>
+        </c:choose>
+    </h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black ;width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                 style="border: thin solid lightgray ;width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -505,7 +512,7 @@
     <div class="row mb-2 list" style="padding-top: 50px;">
         <c:forEach items="${pro}" var="pro">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid black; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -563,7 +570,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Here you can order all delicious Vietnamese dishes.
+                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">

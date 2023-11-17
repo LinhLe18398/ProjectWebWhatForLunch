@@ -15,6 +15,13 @@ public class DeliveryAddress {
         this.detailedAddress = detailedAddress;
     }
 
+    public DeliveryAddress(String idAddress, String recipientName, String recipientPhone, String detailedAddress) {
+        this.idAddress = Integer.parseInt(idAddress);
+        this.recipientName = recipientName;
+        this.recipientPhone = recipientPhone;
+        this.detailedAddress = detailedAddress;
+    }
+
     public int getIdAddress() {
         return idAddress;
     }
