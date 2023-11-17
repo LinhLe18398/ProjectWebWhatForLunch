@@ -58,7 +58,7 @@
         display: block;
     }
 
-    .bill-address{
+    .bill-address {
         border: none;
     }
 
@@ -66,13 +66,22 @@
         border-top-style: hidden;
         border-right-style: hidden;
         border-left-style: hidden;
-        border-bottom-style:hidden;
+        border-bottom-style: hidden;
     }
-    .detail-address::placeholder{
-        color:white;
+
+    .detail-address::placeholder {
+        color: white;
     }
+
     .detail-address:focus {
         outline: none;
+    }
+
+    .no_border_button {
+        background: white;
+        border: none;
+        color: red;
+        float: right;
     }
 </style>
 <body>
@@ -87,7 +96,7 @@
                     <nav class="navbar navbar-expand-lg navbar-light bg-light"
                          style="background-color: rgb(255,255,255,0) !important; padding-top: 0">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="#" style="color: #ffffff">Home</a>
+                            <a class="navbar-brand" href="#" style="color: #ffffff">Trang Chủ</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +107,7 @@
                                     <li class="nav-item dropdown" style="margin-left: 20px">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                            data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
-                                            Page
+                                            Trang
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item" href="#">1</a></li>
@@ -122,7 +131,7 @@
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item" href="/users?action=logout">Đăng suất</a></li>
+                                            <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -142,8 +151,10 @@
             Địa Chỉ Nhận Hàng
         </span>
        <div style="display: flex">
-           <input class="detail-address" style="width:200px;font-weight: 800" type="text" id="recipient-name" readonly disabled>
-           <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone" readonly disabled>
+           <input class="detail-address" style="width:200px;font-weight: 800" type="text" id="recipient-name" readonly
+                  disabled>
+           <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone"
+                  readonly disabled>
            <input class="detail-address" style="width: 400px" type="text" id="recipient-Address" readonly disabled>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -183,15 +194,25 @@
                                         </div>
                                     </div>
                                </div>
-
+                               <form action="/users?action=delete-address" method="post">
                                <c:forEach items="${address}" var="showAddress">
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                       <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                       <input class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" disabled >
-                                       <input class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128)" name="phone" value="${showAddress.recipientPhone}" disabled>
-                                       <input class="bill-address${showAddress.idAddress} detail-address" style="color: rgb(128,128,128);padding-right: 100px" name="address" value=" ${showAddress.detailedAddress}" disabled>
+                                       <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})"
+                                              type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                              value="${showAddress.idAddress}">
+                                       <input class="bill-address${showAddress.idAddress} detail-address" name="name"
+                                              value="${showAddress.recipientName}" disabled>
+                                       <input class="bill-address${showAddress.idAddress} detail-address"
+                                              style="color: rgb(128,128,128)" name="phone"
+                                              value="${showAddress.recipientPhone}" disabled>
+                                       <input class="bill-address${showAddress.idAddress} detail-address"
+                                              style="color: rgb(128,128,128);width: 350px"
+                                              value=" ${showAddress.detailedAddress}" disabled>
                                    </label>
                                </c:forEach>
+                                   <button class="no_border_button btn btn-light" type="submit"
+                                           onclick="confirmDelete()">Xóa</button>
+                               </form>
                            </div>
                             <div>
                                 <p style="padding-bottom: 3px"
@@ -214,7 +235,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-<%--                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>--%>
+<%--                            <button type="button" class="btn btn-secondary">Hủy</button>--%>
                             <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác Nhận</button>
                         </div>
                     </div>
@@ -239,7 +260,7 @@
             <tbody>
              <c:forEach items="${product}" var="product">
                  <input type="hidden" class="id" value="${product.idProduct}">
-                <tr>
+                 <tr>
                     <td data-th="Product">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs">
@@ -276,7 +297,8 @@
             <tbody style="padding: 10px">
                <div style="display: flex">
                     <div style="margin-right: 600px">
-                        <select name="paymentMethod" class="form-select"  aria-label="Default select example" style="width: 400px" onchange="select(this.value)">
+                        <select name="paymentMethod" class="form-select" aria-label="Default select example"
+                                style="width: 400px" onchange="select(this.value)">
                           <option selected>Phương Thức Thanh Toán</option>
                           <option value="COD">Thanh toán khi nhận hàng</option>
                           <option value="Card">Thanh toán luôn</option>
@@ -298,14 +320,26 @@
                         <form method="post" action="/bill?action=confirm-bill">
                             <input type="hidden" name="listId" id="listId" value="">
                             <input type="hidden" name="listQuantity" id="listQuantity" value="">
-                            <input style="float: right" type="submit" class="btn btn-success btn-block " value="Đặt Hàng">
+                            <input style="float: right" type="submit" class="btn btn-success btn-block "
+                                   value="Đặt Hàng">
                             <c:forEach items="${address}" var="showAddress">
-                                   <label hidden="hidden" class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
-                                       <input hidden="hidden" class="form-check-input" onclick="selectAddress(${showAddress.idAddress})" type="radio" name="flexRadioDefault" id="flexRadioDefault">
-                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="name" value="${showAddress.recipientName}" >
-                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="phone" value="${showAddress.recipientPhone}" >
-                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="address" value=" ${showAddress.detailedAddress}" >
-                                       <input hidden="hidden" class="bill-address${showAddress.idAddress} detail-address" name="payment" value="" id="payment">
+                                   <label hidden="hidden" class="form-check-label" for="flexRadioDefault1"
+                                          style="padding-right: 10px">
+                                       <input hidden="hidden" class="form-check-input"
+                                              onclick="selectAddress(${showAddress.idAddress})" type="radio"
+                                              name="flexRadioDefault" id="flexRadioDefault">
+                                       <input hidden="hidden"
+                                              class="bill-address${showAddress.idAddress} detail-address" name="name"
+                                              value="${showAddress.recipientName}">
+                                       <input hidden="hidden"
+                                              class="bill-address${showAddress.idAddress} detail-address" name="phone"
+                                              value="${showAddress.recipientPhone}">
+                                       <input hidden="hidden"
+                                              class="bill-address${showAddress.idAddress} detail-address" name="address"
+                                              value=" ${showAddress.detailedAddress}">
+                                       <input hidden="hidden"
+                                              class="bill-address${showAddress.idAddress} detail-address" name="payment"
+                                              value="" id="payment">
                                    </label>
                             </c:forEach>
                         </form>
@@ -340,7 +374,7 @@
         let totalPrice = dataPrice * dataQuantity;
         total[i].innerHTML = totalPrice + "₫";
         price[i].innerHTML = dataPrice + "₫";
-        quantity[i].innerHTML = dataQuantity ;
+        quantity[i].innerHTML = dataQuantity;
         listId.value += "/" + id[i].value;
         listQuantity.value += "/" + quantity[i].innerHTML;
         totalProduct += totalPrice;
@@ -376,6 +410,21 @@
 
     function select(selected) {
         document.getElementById("payment").value = selected;
+    }
+
+
+    function confirmDelete() {
+        var selectedAddress = document.querySelector('input[name="flexRadioDefault"]:checked');
+
+        if (selectedAddress) {
+            var confirmation = confirm("Bạn có chắc chắn muốn xóa địa chỉ này?");
+
+            if (confirmation) {
+                document.forms[0].submit();
+            }
+        } else {
+            alert("Vui lòng chọn một địa chỉ để xóa.");
+        }
     }
 
 

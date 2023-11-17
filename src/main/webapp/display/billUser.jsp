@@ -150,7 +150,7 @@
 <div class="search" style="margin-top: 30px; ">
     <div class="container" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px">
         <input type="search"
-               style="width: 1320px; height: 50px; border: thin solid grey;margin-left: -15px ; background-color: #e7e6e6 "
+               style="width: 1320px; height: 50px; border: thin solid grey;margin-left: -15px ; background-color: #f4f4f4 "
                placeholder="&#128269; Bạn có thể tìm kiếm theo tên Cửa hàng, Id đơn hàng hoặc tên Món ăn">
     </div>
 

@@ -15,4 +15,6 @@ public interface UserInterface {
     boolean updateUser(User user) throws SQLException, ClassNotFoundException;
     void requestUserToMerchant(Merchant merchant) throws SQLException, ClassNotFoundException;
     List<Product> get_All_Product() throws SQLException, ClassNotFoundException;
+
+
 }

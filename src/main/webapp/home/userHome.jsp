@@ -61,12 +61,16 @@
 
 </head>
 <style>
+    ::placeholder {
+        font-size: 16px;
+    }
+
     body {
         max-height: 100%;
     }
 
     .col-md-3 {
-        flex: 1 0 23%;
+        flex: 0 0 23%;
     }
 
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
@@ -96,6 +100,7 @@
     .text-content {
         /*margin-top: 40px;*/
         text-align: center;
+        margin-top: 28px;
     }
 
     .search {
@@ -109,6 +114,7 @@
         background-size: cover;
         position: relative;
         background-color: rgb(255, 255, 255, 0.5) !important;
+        height: 700px;
     }
 
     .listPage {
@@ -267,10 +273,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Đồ ăn sáng">Đồ ăn sáng</option>
-                                    <option value="Cafe">Cafe</option>
-                                    <option value="Đồ ăn trưa">Đồ ăn trưa</option>
-                                    <option value="Đồ ăn tối">Đồ ăn tối</option>
+                                    <option value="Breakfast">Đồ ăn sáng</option>
+                                    <option value="Coffee">Cafe</option>
+                                    <option value="Lunch">Đồ ăn trưa</option>
+                                    <option value="Dinner">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
@@ -283,8 +289,8 @@
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
-                                <button type="submit" style="height: 60px" class="btn btn-danger" onclick="searchByName()">
-                                    Tìm kiếm
+                                <button type="submit" style="height: 60px; font-size: 16px" class="btn btn-danger"
+                                        onclick="searchByName()">Tìm kiếm
                                 </button>
                             </form>
                         </div>
@@ -293,12 +299,14 @@
                 </div>
             </div>
 
+
             <div class="container">
                 <div class="row d-flex align-items-center py-lg-4">
                     <div class="owl-carousel owl-carousel-category owl-theme owl-loaded owl-drag">
                         <div class="owl-stage-outer">
                             <div class="owl-stage"
                                  style="transform: translate3d(-1460px, 0px, 0px); transition: all 1s ease 0s; width: 2282px;">
+
                                 <c:forEach items="${productBestSale}" var="productBestSale">
                                     <div class="owl-item cloned" style="width: 91.25px;">
                                         <div class="item">
@@ -414,7 +422,7 @@
                             <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
                             <h5 class="card-title"
 
-                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productRecommend.productName}
+                                style=" width: 100%; height: 56px;font-weight: bold;font-size: 23px ;margin-top: 10px;overflow: hidden">${productRecommend.productName}
                                 - ${productRecommend.restaurantName}
                             </h5>
                             <p class="card-text ">
@@ -450,13 +458,7 @@
     <%--8 món ăn được giảm giá nhất --%>
 
 
-    <h2 style="padding-top: 40px">
-
-        <c:choose>
-            <c:when test="${empty tagSearch}">MÓN ĂN GIẢM GIÁ</c:when>
-            <c:otherwise>${tagSearch}</c:otherwise>
-        </c:choose>
-    </h2>
+    <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
             <div class="col-md-3 col-6  item"
@@ -475,7 +477,7 @@
                             <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
                             <h5 class="card-title"
 
-                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
+                                style=" width: 100%;height: 56px;font-weight: bold;font-size: 22px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
                                 - ${productBestSale.restaurantName}
                             </h5>
                             <p class="card-text ">
@@ -525,7 +527,7 @@
                             <input type="hidden" name="action" value="restaurant"/>
                             <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
                             <h5 class="card-title"
-                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName}
+                                style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">

@@ -35,6 +35,17 @@ public class UserDAO implements UserInterface {
     private final String CREATE_ADDRESS_QUERY = "{CALL CREATE_ADDRESS(?,?,?,?)}";
     private final String GET_ALL_USER_ADDRESS_QUERY = "{CALL GET_ALL_USER_ADDRESS(?)}";
     private final String UPDATE_ADDRESS_QUERY = "{CALL UPDATE_ADDRESS(?,?,?,?)}";
+    private final String DELETE_ADDRESS_QUERY = "CALL DELETE_ADDRESS(?)";
+
+
+    public void deleteAddress(int idAddress) throws SQLException, ClassNotFoundException {
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(DELETE_ADDRESS_QUERY);
+        callableStatement.setInt(1,idAddress);
+        callableStatement.executeUpdate();
+    }
+
+
 
     public boolean checkDuplicate(String email) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();

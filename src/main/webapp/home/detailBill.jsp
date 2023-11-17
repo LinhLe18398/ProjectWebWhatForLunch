@@ -43,16 +43,6 @@
         </div>
 
         <div class="item item2">
-            <form action="/products?action=search" method="post">
-                <div class="ab box search">
-                    <div class="search-box">
-                        <input type="text" name="keyword" class="search-input "/>
-                        <button class="search-btn" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
         </div>
 
 
@@ -73,50 +63,47 @@
         </div>
     </div>
 
-    <div class="clearfix"></div>
-    <br/>
-    <div class="clearfix"></div>
-    <br/>
-
+    <div class="clearfix"></div><br/>
 
     <div class="cb box">
         <div class="col-div-12">
             <div class="content-box">
                 <div class="form-detail">
                     <div class="detail-return">
-                        <a href="#" id="d" onclick="listClick(this.id)"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
+                        <a href="/bill?action=bill-merchant" id="d"><i class="fa fa-chevron-left icons"></i> Trở lại</a>
                     </div>
 
                     <div class="detail-status">
-                        <ul class="progressbar">
-                            <li class="complete">Chờ nhận hàng</li>
-                            <li class="complete">Đang chế biến</li>
-                            <li class="complete">Đã nhận món</li>
-                            <li class="complete">Đang giao</li>
-                            <li class="active">Đã hoàn thành</li>
+                        <input type="hidden" id="inputStatus" value="<c:out value="${bill.getBillStatus()}"/>">
+                        <ul id="my-ul" class="progressbar">
+                            <li>Chờ nhận hàng</li>
+                            <li>Đang chế biến</li>
+                            <li>Đã nhận món</li>
+                            <li>Đang giao</li>
+                            <li>Đã hoàn thành</li>
                         </ul>
                     </div>
 
                     <hr>
 
                     <div class="detail-cancel-order">
-                        <button class="dt-cancel-order"
-                                type="submit"><a style="text-decoration: none"href="/products?action=home-merchant">Huỷ đơn hàng</a></button>
+                        <button class="dt-cancel-order" id="dt-cancel-button"
+                                type="submit"><a id="dt-cancel-a" style="text-decoration: none"href="/products?action=home-merchant">Huỷ đơn hàng</a></button>
                     </div>
 
                     <hr>
-                    <c:set value="${bill.getRecipientName}"/>
+
                     <div class="detail-time-address">
                         <div class="detail-address">
                             <h2>Địa chỉ nhận hàng</h2>
-                            <p></p>
-                            <span class="detail-sp">(+84)Số điện thoại</span><br>
-                            <span class="detail-sp">Địa chỉ</span>
+                            <p><c:out value="${bill.getRecipientName()}" /></p>
+                            <span class="detail-sp">(+84)<c:out value="${bill.getRecipientPhone()}" /></span><br>
+                            <span class="detail-sp"><c:out value="${bill.getRecipientAddress()}" /></span>
                         </div>
                         <div class="detail-time">
                             <h2>Thời gian nhận hàng</h2>
-                            <p>Thời gian đặt</p><span class="detail-sp time">Thời gian đặt</span>
-                            <p>Thời dự kiến </p><span class="detail-sp time">Thời gian dự kiến</span>
+                            <span>Thời gian đặt</span><span class="detail-sp time"><c:out value="${bill.getTimeOrder()}" /></span><br>
+                            <span>Thời gian dự kiến </span><span class="detail-sp time"><c:out value="${bill.getDeliveryTime()}"/></span>
                         </div>
                     </div>
 
@@ -124,49 +111,50 @@
 
 
                     <div class="detail-orders">
-                        <h3 class="detail-h3">MÃ ĐƠN HÀNG.</h3>
+                        <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}" /></h3>
                         <hr>
-                        <div class="detail-order">
-                            <img src="#">
-                            <div class="infor-product">
-                                <h3>Tên sản phẩm</h3>
-                                <p>Phân loại hàng</p>
-                                <p>x Số lượng</p>
+                        <c:forEach items="${billProduct}" var="billProduct">
+                            <div class="detail-order">
+                                <img src="${billProduct.getProductImg()}">
+                                <div class="infor-product">
+                                    <h3>${billProduct.getProductName()}</h3>
+                                    <p>${billProduct.getNote()}</p>
+                                    <p>x ${billProduct.getQuantity()}</p>
+                                </div>
+                                <div class="price-product">
+                                    <span class="price-sale">₫${billProduct.getSale()}</span>
+                                    <span class="price-simple">₫${billProduct.getPrice()}</span>
+                                </div>
                             </div>
-                            <div class="price-product">
-                                <span class="price-sale">₫Giá gốc</span>
-                                <span class="price-simple">₫Đơn giá</span>
-                            </div>
-                        </div>
-
+                        </c:forEach>
                     </div>
                     <div class="detail-money-bill">
                         <div class="detair-summary">
                             <div class="order-item">
                                 <span class="item-label">Tổng tiền hàng:</span>
-                                <span class="item-value">1,000,000 VND</span>
+                                <span class="item-value"><c:out value="${bill.getTotalPrice()}" /></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí giao hàng:</span>
-                                <span class="item-value">50,000 VND</span>
+                                <span class="item-value"><c:out value="0"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí dịch vụ:</span>
-                                <span class="item-value">20,000 VND</span>
+                                <span class="item-value"><c:out value="${bill.getTotalService()}" /></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Giảm giá:</span>
-                                <span class="item-value">-100,000 VND</span>
+                                <span class="item-value"><c:out value="${bill.getTotalSale()}" /></span>
                             </div>
                         </div>
                         <div class="detail-total">
                             <div class="order-item">
                                 <h3 class="item-label">Thành tiền:</h3>
-                                <h3 class="item-value">-100,000 VND</h3>
+                                <h3 class="item-value"><c:out value="${bill.getFinalTotal()}"/></h3>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phương thức thanh toán:</span>
-                                <span class="item-value">50,000 VND</span>
+                                <span class="item-value"><c:out value="${bill.getPaymentMethod()}"/></span>
                             </div>
                         </div>
                     </div>
@@ -189,116 +177,35 @@
         $(".noti-icon").click(function () {
             $(".notification-div").toggle();
         });
-
     });
 
+    let liElements = document.querySelectorAll("#my-ul li");
+    let status = document.getElementById("inputStatus").value;
+    for (let i = 0; i < liElements.length; i++) {
+        let li = liElements[i];
+        let liElement = li.textContent;
+        li.classList.add("complete");
+        if (liElement == "Chờ nhận hàng" && status == "Huỷ") {
+            li.innerHTML = "Huỷ";
 
-    function listClick(id) {
-        var idDiv = id;
-        var myElement = document.getElementsByClassName("box");
-        for (var i = 0; i < myElement.length; i++) {
-            myElement[i].style.display = "none";
-        }
-        myElement = document.getElementsByClassName(idDiv + "b");
-        for (var i = 0; i < myElement.length; i++) {
-            myElement[i].style.display = "flex";
-        }
-
-    }
-
-    function changeColor(buttonIndex) {
-        var buttons = document.getElementsByClassName('group-button');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
+            break;
         }
 
-        buttons[buttonIndex].classList.add('active');
-
-        // Lấy thẻ tbody
-        var tbody = document.querySelector("#table-order tbody");
-        var rows = tbody.getElementsByTagName("tr");
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            row.style.display = "none";
+        if (liElement == status) {
+            li.classList.remove("complete");
+            li.classList.add("active");
+            break;
         }
-
-        var trList = document.querySelectorAll("#table-order tr");
-
-        var sumOrder = trList.length - 1;
-
-        for (var i = 1; i < trList.length; i++) {
-            var tr = trList[i];
-            var td = tr.querySelector("#table-order tbody td:nth-child(5)");
-            var cellValue = td.textContent;
-
-            tr.style.display = "";
-
-
-            if (buttonIndex == 0) {
-                tr.style.display = "";
-            }
-
-            if (buttonIndex == 1 && cellValue !== "Chờ nhận hàng") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 2 && cellValue !== "Đang chế biến") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 3 && cellValue !== "Đã nhận món") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 4 && cellValue !== "Đang giao") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 5 && cellValue !== "Đã hoàn thành") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 6 && cellValue !== "Huỷ") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            document.getElementById("sum-order").textContent = sumOrder + " Đơn hàng";
-        }
-
-
     }
 
 
-    var statusCells = document.querySelectorAll("#table-order tbody td:nth-child(5)");
-    statusCells.forEach(function (cell) {
-        var status = cell.textContent.trim();
-        switch (status) {
-            case "Chờ nhận hàng":
-                cell.style.color = "brown";
-                break;
-            case "Đang chế biến":
-                cell.style.color = "orange";
-                break;
-            case "Đã nhận món":
-                cell.style.color = "purple";
-                break;
-            case "Đang giao":
-                cell.style.color = "blue";
-                break;
-            case "Đã hoàn thành":
-                cell.style.color = "green";
-                break;
-            case "Huỷ":
-                cell.style.color = "red";
-                break;
-        }
-    });
+    let aElement = document.getElementById("dt-cancel-a");
+    let buttonElement = document.getElementById("dt-cancel-button");
+    if (status == "Huỷ") {
+        aElement.innerHTML = "Đơn hàng đã huỷ";
+        buttonElement.disabled = true;
+        aElement.disabled = true;
+    }
 
     let numberElements = document.getElementsByClassName("price");
     for (let i = 0; i < numberElements.length; i++) {
@@ -307,16 +214,15 @@
         let formattedNumber = number.toLocaleString();
         numberElement.textContent = formattedNumber+"₫";
     }
-    function declineStatus(idBill) {
-        document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 0;
-        location.reload();
-    }
+
     function approveStatus(idBill) {
         document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 1;
+        document.getElementById("active").value = 2;
         location.reload();
     }
+
+
+
 </script>
 
 </html>
