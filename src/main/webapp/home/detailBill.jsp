@@ -60,7 +60,7 @@
         </div>
     </div>
 
-     <div class="clearfix"></div>
+    <div class="clearfix"></div>
     <br/>
 
     <div class="cb box">
@@ -85,8 +85,7 @@
                     <hr>
                     <form method="post" action="/bill?action=status-bill"/>
                     <div class="detail-cancel-order">
-
-                         <c:choose>
+                        <c:choose>
                             <c:when test="${bill.getBillStatus() == 'Chờ nhận hàng'}">
                                 <button class="dt-cancel-order" id="dt-cancel-button"
                                         onclick="declineStatus(<c:out value="${bill.getIdBill()}"/>)"
@@ -106,7 +105,7 @@
                                     <a style="text-decoration: none">Không thể huỷ đơn hàng</a></button>
                             </c:otherwise>
                         </c:choose>
-                     </div>
+                    </div>
                     </form>
 
                     <hr>
@@ -114,15 +113,7 @@
                     <div class="detail-time-address">
                         <div class="detail-address">
                             <h2>Địa chỉ nhận hàng</h2>
-                             <p><c:out value="${bill.getRecipientName()}" /></p>
-                            <span class="detail-sp">(+84)<c:out value="${bill.getRecipientPhone()}" /></span><br>
-                            <span class="detail-sp"><c:out value="${bill.getRecipientAddress()}" /></span>
-                        </div>
-                        <div class="detail-time">
-                            <h2>Thời gian nhận hàng</h2>
-                            <span>Thời gian đặt</span><span class="detail-sp time"><c:out value="${bill.getTimeOrder()}" /></span><br>
-                            <span>Thời gian dự kiến </span><span class="detail-sp time"><c:out value="${bill.getDeliveryTime()}"/></span>
-                             <p><c:out value="${bill.getRecipientName()}"/></p>
+                            <p><c:out value="${bill.getRecipientName()}"/></p>
                             <span class="detail-sp" id="phoneNumber"><c:out value="${bill.getRecipientPhone()}"/></span><br>
                             <span class="detail-sp"><c:out value="${bill.getRecipientAddress()}"/></span>
                         </div>
@@ -132,37 +123,30 @@
                             &emsp;&nbsp;<span class="detail-sp-tm" id="timeStart"><c:out value="${bill.getTimeOrder()}"/></span><br>
                             <span class="detail-tm">Thời gian dự kiến </span>
                             <span class="detail-sp-tm" id="timeEnd"><c:out value="${bill.getTimeWait()}"/></span>
-                         </div>
+                        </div>
                     </div>
 
                     <hr>
 
                     <div class="detail-orders">
-                         <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}" /></h3>
+                        <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}"/></h3>
                         <hr>
                     </div>
 
 
                     <div class="detail-orders1">
-                         <c:forEach items="${billProduct}" var="billProduct">
+                        <c:forEach items="${billProduct}" var="billProduct">
                             <div class="detail-order">
                                 <img src="${billProduct.getProductImg()}">
                                 <div class="infor-product">
                                     <h3>${billProduct.getProductName()}</h3>
-                                     <p>${billProduct.getNote()}</p>
-                                    <p>x ${billProduct.getQuantity()}</p>
-                                </div>
-                                <div class="price-product">
-                                    <span class="price-sale">₫${billProduct.getSale()}</span>
-                                    <span class="price-simple">₫${billProduct.getPrice()}</span>
-
                                     <span>Phân loại sản phẩm</span><span>${billProduct.getNote()}</span><br>
                                     <span class="dt-number">x ${billProduct.getQuantity()}</span>
                                 </div>
                                 <div class="price-product">
                                     <span class="price-sale price" id="sale">${billProduct.getPrice()}</span>
                                     <span class="price-simple price" id="cost">${billProduct.getPrice() - billProduct.getSale()}</span>
-                                 </div>
+                                </div>
                             </div>
                         </c:forEach>
                     </div>
@@ -170,20 +154,7 @@
                         <div class="detail-summary">
                             <div class="order-item">
                                 <span class="item-label">Tổng tiền hàng:</span>
-                                 <span class="item-value"><c:out value="${bill.getTotalPrice()}" /></span>
-                            </div>
-                            <div class="order-item">
-                                <span class="item-label">Phí giao hàng:</span>
-                                <span class="item-value"><c:out value="0"/></span>
-                            </div>
-                            <div class="order-item">
-                                <span class="item-label">Phí dịch vụ:</span>
-                                <span class="item-value"><c:out value="${bill.getTotalService()}" /></span>
-                            </div>
-                            <div class="order-item">
-                                <span class="item-label">Giảm giá:</span>
-                                <span class="item-value"><c:out value="${bill.getTotalSale()}" /></span>
-                                 <span class="item-value price"><c:out value="${bill.getTotalPrice()}"/></span>
+                                <span class="item-value price"><c:out value="${bill.getTotalPrice()}"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí giao hàng:</span>
@@ -196,15 +167,16 @@
                             <div class="order-item">
                                 <span class="item-label">Giảm giá:</span>
                                 <span class="item-value price"><c:out value="${bill.getTotalSale()}"/></span>
-                             </div>
+                            </div>
                         </div>
                         <div class="detail-total">
+                            <div class="order-item">
                                 <p class="item-label">Thành tiền:</p>
                                 <p class="item-value price"><c:out value="${bill.getFinalTotal()}"/></p>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phương thức thanh toán: </span>
-                                 <span class="item-value"><c:out value="${bill.getPaymentMethod()}"/></span>
+                                <span class="item-value"><c:out value="${bill.getPaymentMethod()}"/></span>
                             </div>
                         </div>
                     </div>
@@ -270,11 +242,7 @@
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 2;
         location.reload();
-     }
-
-
-
-
+    }
 
     //Xử lí đối tượng DOM
     function formatNumberPhone() {
@@ -305,6 +273,6 @@
         document.getElementById("active").value = 0;
     }
 
- </script>
+</script>
 
 </html>
