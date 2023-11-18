@@ -25,7 +25,7 @@ public class BillServlet extends HttpServlet {
     private ProductDAO productDAO;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         billDAO = new BillDAO();
         productDAO = new ProductDAO();
     }
@@ -43,6 +43,7 @@ public class BillServlet extends HttpServlet {
             case "bill-merchant":
                 getBillMerchant(request, response);
                 break;
+
         }
     }
 
@@ -66,7 +67,7 @@ public class BillServlet extends HttpServlet {
     }
 
 
-    private void getBillUser(HttpServletRequest request, HttpServletResponse response) {
+     private void getBillUser(HttpServletRequest request, HttpServletResponse response) {
         List<Bill> billList = billDAO.getBillUser(2);
     }
 
@@ -74,7 +75,7 @@ public class BillServlet extends HttpServlet {
         List<Bill> merchantList = billDAO.getBillMerchant("M10");
     }
 
-    private void searchBillUser(HttpServletRequest request, HttpServletResponse response) {
+     private void searchBillUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
         String idMerchant = merchant.getIdMerchant();
@@ -149,7 +150,8 @@ public class BillServlet extends HttpServlet {
     }
 
     private void statusBill(HttpServletRequest request, HttpServletResponse response) {
-        int number = Integer.parseInt(request.getParameter("active"));
+        int number= Integer.parseInt(request.getParameter("active"));
+        System.out.println(number);
         if (number == 2) {
             showDetailBill(request, response);
         } else {
@@ -172,7 +174,21 @@ public class BillServlet extends HttpServlet {
                 case 1:
                     billDAO.acceptBill(idBill, 0);
                     break;
+                default:
+                    break;
             }
+            sendListToHomeMerchant(request, response);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Merchant merchant = (Merchant) session.getAttribute("merchant");
+        try {
             List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
             List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
             request.setAttribute("productList", productList);
@@ -201,5 +217,5 @@ public class BillServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException | IOException e) {
             throw new RuntimeException(e);
         }
-    }
+      }
 }
