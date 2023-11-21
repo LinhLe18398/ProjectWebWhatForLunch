@@ -1,0 +1,280 @@
+.header {
+    /*display: flex;*/
+    background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-color: rgb(255, 255, 255, 0.5) !important;
+    padding-top: 11px;
+    height: 95px;
+}
+
+
+::placeholder {
+    color: rgb(128, 128, 128);
+}
+
+#button-group {
+    padding: 10px 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------- */
+
+/* Giao diện chi tiết hoá đơn */
+
+/* -------------------------------------------------------- */
+
+.detail-return a {
+    font-size: 25px;
+    text-decoration: none;
+    color: #5f5454;
+}
+/* -------------------------------------------------------- */
+.progressbar {
+    counter-reset: step;
+    padding: 0;
+    margin: 35px auto;
+    max-width: 800px;
+}
+
+.progressbar li {
+    display:inline-block;
+    list-style: none;
+    position: relative;
+    text-align: center;
+    width: 19%;
+}
+
+.progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    display: block;
+    background: #fff;
+    color: #bebebe;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #bebebe;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    font-weight: 700;
+    line-height: 50px;
+    text-align: center;
+}
+
+.progressbar li:after {
+    background: #979797;
+    content: '';
+    height: 5px;
+    left: -50%;
+    top: 25px;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+}
+.progressbar li:first-child:after {
+    content: none;
+}
+
+.progressbar li.active:after,
+.progressbar li.complete:after {
+    background: orangered;
+}
+
+.progressbar li.active:before,
+.progressbar li.complete:before {
+    background: orangered;
+    border-color: orangered;
+    color: #fff;
+}
+
+.progressbar li.active {
+    color: orangered;
+    font-weight: 700;
+}
+
+/* ------------------------------------------------ */
+/* Huỷ đơn hàng */
+.detail-cancel-order {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 0px 30px 0px;
+}
+
+.dt-cancel-order {
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 0px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: red;
+}
+
+.dt-cancel-order:hover {
+    background: rgb(220, 50, 50);
+}
+.dt-cancel-order a {
+    color: white;
+}
+
+/*Xét trường hợp đơn hàng đã huỷ hoặc qua trạng thái chờ*/
+
+.dt-cancel-order1 {
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 0px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+}
+
+.dt-cancel-order1 a {
+    color: black;
+}
+/* ------------------------------------------------ */
+/* Địa chỉ giao hàng và thời gian dự kiến */
+
+.detail-time-address {
+    height: 150px;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+.detail-time, .detail-address {
+    width: 49%;
+    height: 100%;
+    flex-basis: 50%;
+}
+.detail-address {
+    float: left;
+ }
+
+.detail-time {
+    float: right;
+ }
+
+
+.detail-time-address h2{
+    padding-left: 20px;
+}
+.detail-time-address p {
+    padding-left: 20px;
+
+}
+
+.detail-sp {
+    opacity: 0.7;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.detail-tm {
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.detail-sp-tm {
+    opacity: 0.7;
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+
+
+
+/* -------------------------------------------------------------------- */
+/* Thông tin từng đơn hàng */
+.detail-orders{
+    padding-bottom: 10px;
+
+}
+
+.detail-h3 {
+    text-align: right;
+}
+
+.detail-order {
+    display: flex;
+    padding: 10px;
+    background-color: rgb(244, 243, 242);
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.detail-order img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.detail-order h3 {
+    margin-top: 0px;
+}
+.infor-product {
+    flex: 1;
+    float: left;
+}
+
+.price-product {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.price-sale {
+    text-decoration: line-through;
+    opacity: 0.6;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.price-simple {
+    opacity: 0.8;
+    font-size: 18px;
+    margin-right: 10px;
+    color: orangered;
+}
+/* -------------------------------------------------- */
+/* Tổng hoá đơn */
+
+.detail-summary {
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.item-label {
+    font-weight: bold;
+}
+
+.item-value {
+    color: #333;
+    font-size: 20px;
+}
+
+.detail-total {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-top: 10px;
+}
+
