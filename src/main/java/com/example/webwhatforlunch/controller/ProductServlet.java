@@ -35,6 +35,7 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -153,6 +154,7 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -186,8 +188,6 @@ public class ProductServlet extends HttpServlet {
 
 
     private void createProduct(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-
         HttpSession session = req.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
         String idMerchant = merchant.getIdMerchant();

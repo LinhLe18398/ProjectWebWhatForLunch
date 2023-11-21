@@ -285,7 +285,7 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" method="get">
+                            <form id="search-name" action="/bill" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
@@ -320,11 +320,8 @@
                                                     <h6>${productBestSale.productName}</h6>
 
                                                     <p style="color:black;">${productBestSale.price}&#8363</p>
-
                                                 </a>
-
                                             </div>
-
                                         </div>
                                     </div>
 
