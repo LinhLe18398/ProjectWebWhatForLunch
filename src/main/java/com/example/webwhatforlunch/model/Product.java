@@ -114,6 +114,17 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public Product(String idProduct, String idMerchant, String productName, String productImg, int price, String note, int quantity) {
+        this.idProduct = idProduct;
+        this.idMerchant = idMerchant;
+        this.productName = productName;
+        this.productImg = productImg;
+        this.price = price;
+        this.note = note;
+        this.quantity = quantity;
+    }
+
+
     @Override
     public String toString() {
         return idProduct + "/" + productName + "/" + waitTime + "/" + price + "/" + note + "/" + sale + "/" + serviceFee + "/" + quantity;

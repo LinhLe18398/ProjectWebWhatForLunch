@@ -97,40 +97,42 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${productCart}" var="pro">
+        <c:set var="products" value="${requestScope.products}" />
+        <c:set var="restaurants" value="${requestScope.restaurants}" />
+        <c:forEach items="${products}" var="product" varStatus="loop">
+            <input type="hidden" id="${product.idProduct}" value="${product.idMerchant}">
+            <c:set var="nameRes" value="${restaurants[loop.index]}" />
             <tr>
                 <td data-th="Product">
                     <div class="row">
                         <div class="col-sm-2 hidden-xs">
-                            <img src="${pro.productImg}"
-                                 alt="${pro.idProduct}" width="100">
+                            <img src="${product.productImg}"
+                                 alt="${product.idProduct}" width="100">
                         </div>
                         <div class="col-sm-10">
-                            <h4 class="nomargin" style="padding-left: 5px">${pro.productName}</h4>
-                            <p style="padding-left: 5px">${pro.note}</p>
+                            <h4 class="nomargin" id="" style="padding-left: 5px">${product.productName} - <c:out value="${nameRes}" /></h4>
+                            <p style="padding-left: 5px">${product.note}</p>
                         </div>
                     </div>
                 </td>
-                <td data-th="Price">${pro.price} ₫</td>
+                <td data-th="Price">${product.price} ₫</td>
                 <td data-th="Quantity" style="display: flex">
-                    <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
-
+                    <input type="hidden" value="${product.price}" id="price${product.idProduct}">
                     <a style="margin-right: 8px; margin-top: 8px"
-                       href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i
+                       href="/products?action=update-quantity&id=${product.idProduct}&isAdd=0"><i
                             class="fa-solid fa-minus"></i></a>
-                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
+                    <input class="form-control quantity-input" id="quantity${product.idProduct}" value="${product.quantity}"
                            type="text">
                     <a style="margin-left: 6px; margin-top: 8px"
-                       href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i
+                       href="/products?action=update-quantity&id=${product.idProduct}&isAdd=1"><i
                             class="fa-solid fa-plus"></i></a>
                 </td>
                 <td data-th="Subtotal" class="text-center"></td>
 
                 <td class="actions" data-th="">
-                    <input type="checkbox" id="${pro.idProduct}" name="check" onclick="sumProduct(this.id)">
-                    <input type="text" id="checkbox" name="check" value="${pro.idProduct}" hidden="hidden">
+                    <input type="checkbox" id="${product.idProduct}" name="check" onclick="sumProduct(this.id,`${[loop.index]}`)">
+                    <input type="text" id="checkbox" name="check" value="${product.idProduct}" hidden="hidden">
                 </td>
-
             </tr>
         </c:forEach>
         </tbody>
@@ -188,21 +190,28 @@
     });
 
     let priceCart = 0;
+    let listRes = [];
 
-    function sumProduct(thisId) {
+    function sumProduct(thisId,nameRes) {
         let checkBox = document.getElementById(thisId);
         let idQuantity = "quantity" + thisId;
         let idPrice = "price" + thisId;
-
         let quantity = Number(document.getElementById(idQuantity).value);
         let price = Number(document.getElementById(idPrice).value);
-        if (checkBox.checked) {
+        if (!checkBox.checked) {
             priceCart = priceCart + (quantity * price);
             addDataIntoFormHidden(thisId, quantity, true);
+            listRes.push(nameRes);
         } else {
             priceCart = priceCart - (quantity * price);
             addDataIntoFormHidden(thisId, quantity, false);
+            listRes = listRes.filter(function(item) {
+                return item !== nameRes;
+            });
         }
+
+        let check = listRes[0];
+        for ()
         document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + "₫";
     }
 
