@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDAO implements UserInterface {
     private final String username = "root";
 
-    private final String password = "1111";
+    private final String password = "password";
 
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
