@@ -169,33 +169,42 @@
                         </div>
                         <div class="modal-body">
                            <div class="form-check " style="margin-bottom: 0">
-                               <a href="#xmas-popup" class="button"
-                                  style="text-decoration: none;float: right">Cập Nhập</a>
                                <div id="xmas-popup" class="popup" href="#">
                                     <div class="popup-content">
                                         <label>Cập nhật địa chỉ</label>
                                         <hr>
+                                        <form id="updateForm" action="/users?action=updateAddress" method="post">
                                         <div style="padding: 10px">
-                                          <form action="" method="post">
                                               <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" id="update-name">
-                                            <input type="text" placeholder="Số điện thoại" id="update-phone">
+                                            <input type="text" placeholder="Họ và tên" id="update-name" name="name">
+                                            <input type="text" placeholder="Số điện thoại" id="update-phone"
+                                                   name="phone">
                                             </p>
                                             <p>
                                                 <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
-                                                       id="update-Address">
+                                                       id="update-Address" name="address">
                                             </p>
-                                          </form>
+                                              <div id="successMessage" style="display: none;">
+                                                Cập nhật thành công!
+                                            </div>
                                          <p>
-                                            <a href="#" class="btn btn-outline-secondary">Hủy</a>
-                                            <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
+                                            <a href="" class="btn btn-outline-secondary" onclick="closePopup()">Hủy</a>
+                                            <button type="button" class="btn btn-outline-primary"
+                                                    onclick="submitUpdateForm()">Xác Nhận</button>
                                          </p>
                                         </div>
+                                        </form>
                                     </div>
                                </div>
                                <form action="/users?action=delete-address" method="post">
                                <c:forEach items="${address}" var="showAddress">
+
+                                   <a href="#xmas-popup"
+                                      onclick="selectAddressForUpdate('${showAddress.idAddress}', '${showAddress.recipientName}', '${showAddress.recipientPhone}', '${showAddress.detailedAddress}')"
+                                      class="button"
+                                      style="text-decoration: none;float: right">Cập Nhập</a>
+
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})"
                                               type="radio" name="flexRadioDefault" id="flexRadioDefault1"
@@ -235,7 +244,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-<%--                            <button type="button" class="btn btn-secondary">Hủy</button>--%>
+                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
                             <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác Nhận</button>
                         </div>
                     </div>
@@ -355,10 +364,66 @@
        </table>
     </span>
     </div>
+
+
 </form>
 
 </body>
 <script>
+    function submitUpdateForm() {
+        var addressId = document.getElementById("updateAddressId").value;
+        var name = document.getElementById("update-name").value;
+        var phone = document.getElementById("update-phone").value;
+        var address = document.getElementById("update-Address").value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/users?action=updateAddress", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                showSuccessMessage();
+            }
+        };
+
+
+        var data = "addressId=" + encodeURIComponent(addressId) +
+            "&name=" + encodeURIComponent(name) +
+            "&phone=" + encodeURIComponent(phone) +
+            "&address=" + encodeURIComponent(address);
+
+        xhr.send(data);
+    }
+
+    function showSuccessMessage() {
+        var successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+    }
+
+    console.log(document.getElementById("updateForm"));
+
+    function selectAddressForUpdate(id, name, phone, address) {
+        document.getElementById("updateAddressId").value = id;
+        document.getElementById("update-name").value = name;
+        document.getElementById("update-phone").value = phone;
+        document.getElementById("update-Address").value = address;
+
+        openPopup();
+    }
+
+    function openPopup() {
+        var popup = document.getElementById("xmas-popup");
+
+        popup.style.display = "block";
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("xmas-popup");
+
+        popup.style.display = "none";
+    }
+
+
     let totalProduct = 0;
     let price = document.getElementsByClassName("price");
     let id = document.getElementsByClassName("id");
