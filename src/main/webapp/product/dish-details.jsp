@@ -50,7 +50,8 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light"
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px">Trang chủ</a>
+                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px">Trang
+                    chủ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -61,9 +62,7 @@
                         <li class="nav-item dropdown" style="margin-left: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"
-                               style="color: white; font-size: 20px">
-                                Nhà hàng
-                            </a>
+                               style="color: white; font-size: 20px">Nhà hàng</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
                                     nhà hàng của tôi</a></li>
@@ -117,18 +116,35 @@
 
     <div class="right-content" style="float: left">
 
-       <p style="margin-left: 100px; font-size: 40px; font-weight: bold">${product.productName} </p>
-        <p style="margin-left: 100px; font-size: 20px; margin-top: 26px"><i class="fa-solid fa-eye" style="color: #ff4501;"></i>   Lượt xem: ${product.view}  </p>
+        <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
+        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i>   Lượt xem: ${product.view}  </p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt đã đặt: ${product.orders}</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi chú: ${product.note}</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời gian chế biến: ${product.waitTime} phút</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i> Giá tiền: ${product.price} &#8363</p>
-<p>
-        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;"
-              onclick="redirectToUsers(this.id)">
+        <p>
+            <c:if test="${sessionScope.isLogin==true}">
+                <a style="width: 76px;margin-left: 98px; background-color: orangered; height: 35px "
+                   href="/products?action=add-product-cart&id=${product.idProduct}"
+                   class="btn btn-primary"> <i style="font-size: 20px" class='bx bx-cart'></i> </a>
+            </c:if>
+        </p>
 
-            <a style="margin-left: 650px; color: orangered; font-size: 16px" href="merchant/merchantProfile.jsp">Chi tiết nhà hàng</a></form>
-</p>
+        <p>
+        <form method="get" action="/users" id="restaurant${product.idMerchant}" style="cursor: pointer;">
+            <%--              onclick="redirectToUsers(this.id)">--%>
+            <%--    <input type="hidden" value="/users?action=restaurant">--%>
+            <%--&lt;%&ndash;            <a style="margin-left: 650px; color: orangered; font-size: 16px" href="/users?action=restaurant">Chi tiết nhà hàng</a>&ndash;%&gt;--%>
+
+            <%--        <input type="hidden" name="idMerchant" value="${product.idMerchant}">--%>
+
+            <input type="hidden" name="action" value="restaurant"/>
+            <input type="hidden" name="idMerchant" value="${product.idMerchant}"/>
+            <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered" value="Chi tiết nhà hàng >">
+        </form>
+        </p>
+
+
 
     </div>
 </div>
@@ -221,6 +237,7 @@
 
 <script>
     function redirectToUsers(id) {
+        alert(id);
         document.getElementById(id).submit();
     }
 </script>

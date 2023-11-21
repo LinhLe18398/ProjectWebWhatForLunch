@@ -76,9 +76,11 @@ public class ProductServlet extends HttpServlet {
     private void getProductByIdToDishDetail(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
+
         String productId = req.getParameter("productId");
         Product product = productDAO.getProductById(productId);
         req.setAttribute("product",product);
+        req.setAttribute("user", user);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
         requestDispatcher.forward(req,resp);
     }

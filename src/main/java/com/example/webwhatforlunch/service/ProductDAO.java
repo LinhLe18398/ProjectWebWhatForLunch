@@ -11,6 +11,7 @@ public class ProductDAO implements ProductInterface{
 
     private String password = "mySQL7122023@";
 
+
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
     private final String CREATE_PRODUCT_QUERY = "{CALL CREATE_NEW_PRODUCT(?,?,?,?,?,?,?,?)}";
