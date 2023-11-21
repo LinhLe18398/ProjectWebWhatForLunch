@@ -7,7 +7,10 @@ public class DeliveryAddress {
     private String recipientPhone;
     private String detailedAddress;
 
-    public DeliveryAddress(int idAddress, int idU,String recipientName, String recipientPhone, String detailedAddress) {
+    public DeliveryAddress() {
+    }
+
+    public DeliveryAddress(int idAddress, int idU, String recipientName, String recipientPhone, String detailedAddress) {
         this.idAddress = idAddress;
         this.idUser = idU;
         this.recipientName = recipientName;
@@ -15,8 +18,8 @@ public class DeliveryAddress {
         this.detailedAddress = detailedAddress;
     }
 
-    public DeliveryAddress(String idAddress, String recipientName, String recipientPhone, String detailedAddress) {
-        this.idAddress = Integer.parseInt(idAddress);
+    public DeliveryAddress(int idAddress, String recipientName, String recipientPhone, String detailedAddress) {
+        this.idAddress = idAddress;
         this.recipientName = recipientName;
         this.recipientPhone = recipientPhone;
         this.detailedAddress = detailedAddress;

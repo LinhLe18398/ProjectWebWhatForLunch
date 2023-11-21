@@ -271,7 +271,16 @@ public class  UserServlet extends HttpServlet {
                 break;
             case "delete-address":
                 try {
-                    deleteAddress(req,resp);
+                    deleteAddress(req, resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "updateAddress":
+                try {
+                    updateAddress(req, resp);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (ClassNotFoundException e) {
@@ -281,11 +290,30 @@ public class  UserServlet extends HttpServlet {
         }
     }
 
-    private void deleteAddress(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException {
+    private void updateAddress(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        DeliveryAddress deliveryAddress;
+        int addressId = Integer.parseInt(req.getParameter("addressId"));
+        String name = req.getParameter("name");
+        String phone = req.getParameter("phone");
+        String address = req.getParameter("address");
+        deliveryAddress = new DeliveryAddress(addressId,name,phone,address);
+        userDAO.updateAddress(deliveryAddress);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void deleteAddress(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
         int selectedAddressId = Integer.parseInt(req.getParameter("flexRadioDefault"));
         if (selectedAddressId != 0) {
             userDAO.deleteAddress(selectedAddressId);
-            resp.sendRedirect("display/comfirmOrder.jsp");
+            HttpSession httpSession = req.getSession();
+            User user = (User) httpSession.getAttribute("user");
+            int id = user.getId();
+            List<DeliveryAddress> deliveryAddress = userDAO.getAllUserAddress(id);
+            req.setAttribute("address", deliveryAddress);
+
+            RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
+            dispatcher.forward(req, resp);
         } else {
             resp.getWriter().println("Vui lòng chọn một địa chỉ để xóa.");
         }
@@ -456,11 +484,13 @@ public class  UserServlet extends HttpServlet {
         User user = (User) httpSession.getAttribute("user");
         int id = user.getId();
         String name = new String(req.getParameter("name").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String gender = new String(req.getParameter("gender").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);;
+        String gender = new String(req.getParameter("gender").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
         String phoneNumber = req.getParameter("phoneNumber");
         String birthday = req.getParameter("birthday");
         String img = req.getParameter("img");
-        String address = new String( req.getParameter("address").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);;
+        String address = new String(req.getParameter("address").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
         user = new User(id, name, gender, phoneNumber, birthday, img, address);
         httpSession.setAttribute("user", user);
         userDAO.updateUser(user);
