@@ -62,9 +62,7 @@
                         <li class="nav-item dropdown" style="margin-left: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"
-                               style="color: white; font-size: 20px">
-                                Nhà hàng
-                            </a>
+                               style="color: white; font-size: 20px">Nhà hàng</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
                                     nhà hàng của tôi</a></li>
@@ -118,7 +116,7 @@
 
     <div class="right-content" style="float: left">
 
-       <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
+        <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
         <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i>   Lượt xem: ${product.view}  </p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt đã đặt: ${product.orders}</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi chú: ${product.note}</p>
@@ -132,19 +130,19 @@
             </c:if>
         </p>
 
-<p>
+        <p>
         <form method="get" action="/users" id="restaurant${product.idMerchant}" style="cursor: pointer;">
-<%--              onclick="redirectToUsers(this.id)">--%>
-<%--    <input type="hidden" value="/users?action=restaurant">--%>
-<%--&lt;%&ndash;            <a style="margin-left: 650px; color: orangered; font-size: 16px" href="/users?action=restaurant">Chi tiết nhà hàng</a>&ndash;%&gt;--%>
+            <%--              onclick="redirectToUsers(this.id)">--%>
+            <%--    <input type="hidden" value="/users?action=restaurant">--%>
+            <%--&lt;%&ndash;            <a style="margin-left: 650px; color: orangered; font-size: 16px" href="/users?action=restaurant">Chi tiết nhà hàng</a>&ndash;%&gt;--%>
 
-    <%--        <input type="hidden" name="idMerchant" value="${product.idMerchant}">--%>
+            <%--        <input type="hidden" name="idMerchant" value="${product.idMerchant}">--%>
 
-    <input type="hidden" name="action" value="restaurant"/>
-    <input type="hidden" name="idMerchant" value="${product.idMerchant}"/>
-    <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered" value="Chi tiết nhà hàng >">
-    </form>
-</p>
+            <input type="hidden" name="action" value="restaurant"/>
+            <input type="hidden" name="idMerchant" value="${product.idMerchant}"/>
+            <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered" value="Chi tiết nhà hàng >">
+        </form>
+        </p>
 
 
 

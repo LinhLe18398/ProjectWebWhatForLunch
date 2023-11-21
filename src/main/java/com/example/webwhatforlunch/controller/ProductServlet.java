@@ -74,9 +74,13 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void getProductByIdToDishDetail(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+
         String productId = req.getParameter("productId");
         Product product = productDAO.getProductById(productId);
         req.setAttribute("product",product);
+        req.setAttribute("user", user);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
         requestDispatcher.forward(req,resp);
     }
@@ -237,10 +241,16 @@ public class ProductServlet extends HttpServlet {
         String idProduct = req.getParameter("id");
         int idUser = user.getId();
         List<Product> productList = null;
+        List<Product> productBestSale = null;
+        List<Product> productRecommend = null;
         try {
             productDAO.addProductToCart(idUser, idProduct);
             productList = userDAO.get_All_Product();
+            productBestSale = productDAO.getBestSaleProduct();
+            productRecommend = productDAO.getRecommendProduct();
             httpSession.setAttribute("pro", productList);
+            httpSession.setAttribute("productBestSale", productBestSale);
+            httpSession.setAttribute("productRecommend", productRecommend);
             req.getRequestDispatcher("home/userHome.jsp").forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {
             e.printStackTrace();

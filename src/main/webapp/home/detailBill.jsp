@@ -210,7 +210,6 @@
         li.classList.add("complete");
         if (liElement == "Chờ nhận hàng" && status == "Huỷ") {
             li.innerHTML = "Huỷ";
-
             break;
         }
 
@@ -219,15 +218,6 @@
             li.classList.add("active");
             break;
         }
-    }
-
-
-    let aElement = document.getElementById("dt-cancel-a");
-    let buttonElement = document.getElementById("dt-cancel-button");
-    if (status == "Huỷ") {
-        aElement.innerHTML = "Đơn hàng đã huỷ";
-        buttonElement.disabled = true;
-        aElement.disabled = true;
     }
 
     let numberElements = document.getElementsByClassName("price");
