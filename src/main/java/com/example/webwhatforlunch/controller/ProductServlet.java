@@ -220,10 +220,16 @@ public class ProductServlet extends HttpServlet {
         String idProduct = req.getParameter("id");
         int idUser = user.getId();
         List<Product> productList = null;
+        List<Product> productBestSale = null;
+        List<Product> productRecommend = null;
         try {
             productDAO.addProductToCart(idUser, idProduct);
             productList = userDAO.get_All_Product();
+            productBestSale = productDAO.getBestSaleProduct();
+            productRecommend = productDAO.getRecommendProduct();
             httpSession.setAttribute("pro", productList);
+            httpSession.setAttribute("productBestSale", productBestSale);
+            httpSession.setAttribute("productRecommend", productRecommend);
             req.getRequestDispatcher("home/userHome.jsp").forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {
             e.printStackTrace();
