@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "userServlet", value = "/users")
-public class UserServlet extends HttpServlet {
+public class  UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
     private BillDAO billDAO;
@@ -81,15 +81,8 @@ public class UserServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "billUser":
-                showBillUser(req, resp);
-                break;
-        }
-    }
 
-    private void showBillUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("display/billUser.jsp");
-        dispatcher.forward(req, resp);
+        }
     }
 
     private void showComFirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {

@@ -228,7 +228,7 @@
                                         tin</a></li>
                                     <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="/users?action=billUser">Đơn đã đặt</a></li>
+                                    <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
