@@ -18,4 +18,6 @@ public interface ProductInterface {
     void updateQuantityProduct(int idUser, String idProduct, int isAdd) throws SQLException, ClassNotFoundException;
     List<Product> getBestSaleProduct() throws SQLException, ClassNotFoundException;
     List<Product> getRecommendProduct() throws SQLException, ClassNotFoundException;
+
+    String getStatusFavourite(int idUser, int idProduct) throws SQLException, ClassNotFoundException;
 }
