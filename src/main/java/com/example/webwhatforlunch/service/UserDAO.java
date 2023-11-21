@@ -252,13 +252,13 @@ public class UserDAO implements UserInterface {
         }
         return addressList;
     }
-    public void updateAddress(int idAddress, String name ,String phone, String address) throws SQLException, ClassNotFoundException {
+    public void updateAddress(DeliveryAddress deliveryAddress) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(UPDATE_ADDRESS_QUERY);
-        callableStatement.setInt(1,idAddress);
-        callableStatement.setString(2,name);
-        callableStatement.setString(3,phone);
-        callableStatement.setString(4,address);
+        callableStatement.setInt(1,deliveryAddress.getIdAddress());
+        callableStatement.setString(2,deliveryAddress.getRecipientName());
+        callableStatement.setString(3,deliveryAddress.getRecipientPhone());
+        callableStatement.setString(4,deliveryAddress.getDetailedAddress());
         callableStatement.executeUpdate();
     }
 }
