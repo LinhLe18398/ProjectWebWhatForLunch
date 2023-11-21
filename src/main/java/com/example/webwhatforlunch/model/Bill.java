@@ -43,6 +43,7 @@ public class Bill {
         return toString;
     }
 
+
     public int getTotalPrice() {
         int total = 0;
         for (Product product : productList) {
@@ -75,6 +76,13 @@ public class Bill {
         return totalService;
     }
 
+    public int getTimeWait() {
+        int totalWaitTime = 0;
+        for (Product product : productList) {
+            totalWaitTime += product.getWaitTime();
+        }
+        return totalWaitTime;
+    }
     public int getFinalTotal() { //Tổng tiền phải trả
         return getTotalPrice() + getTotalService() - getTotalSale();
     }
@@ -185,4 +193,5 @@ public class Bill {
     public String getPaymentMethod() {
         return paymentMethod;
     }
+
 }
