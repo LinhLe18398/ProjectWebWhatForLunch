@@ -148,12 +148,8 @@ public class BillServlet extends HttpServlet {
             }
 
             request.setAttribute("name",recipientName);
-            request.getRequestDispatcher("display/billUser.jsp").forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
+            getListBillUser(request, response);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
