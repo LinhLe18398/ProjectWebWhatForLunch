@@ -284,7 +284,7 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" method="get">
+                            <form id="search-name" action="/bill" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
@@ -319,11 +319,8 @@
                                                     <h6>${productBestSale.productName}</h6>
 
                                                     <p style="color:black;">${productBestSale.price}&#8363</p>
-
                                                 </a>
-
                                             </div>
-
                                         </div>
                                     </div>
 
@@ -401,8 +398,6 @@
 
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
-
-
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
                  style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
@@ -451,10 +446,6 @@
             </div>
         </c:forEach>
     </div>
-
-
-
-
 
     <%--8 món ăn được giảm giá nhất --%>
 

@@ -12,7 +12,6 @@ import java.util.List;
 public class UserDAO implements UserInterface {
     private final String username = "root";
 
-
     private final String password = "password";
 
 

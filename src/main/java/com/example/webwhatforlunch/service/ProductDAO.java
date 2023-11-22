@@ -13,8 +13,10 @@ public class ProductDAO implements ProductInterface{
       private String password = "password";
 
 
-     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
-     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
+
+
+    private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
+    private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
     private final String CREATE_PRODUCT_QUERY = "{CALL CREATE_NEW_PRODUCT(?,?,?,?,?,?,?,?)}";
     private final String UPDATE_PRODUCT_QUERY = "{CALL UPDATE_PRODUCT_BY_ID(?,?,?,?,?,?,?,?)}";
     private final String DELETE_PRODUCT_QUERY = "{CALL DELETE_PRODUCT_BY_ID(?)}";
@@ -30,6 +32,7 @@ public class ProductDAO implements ProductInterface{
     private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
     private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
 
+    private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?)}";
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
         Class.forName("com.mysql.jdbc.Driver");
@@ -327,5 +330,19 @@ public class ProductDAO implements ProductInterface{
             productList.add(new Product(idProduct,idMerchant,productName,restaurantName,productImg,waitTime,price, sale,address));
         }
         return productList;
+    }
+
+    @Override
+    public String getStatusFavourite(int idUser, int idProduct) throws SQLException, ClassNotFoundException {
+        String status = "";
+        CallableStatement callableStatement = getConnection().prepareCall(GET_STATUS_FAVOURITE_PRODUCT);
+        callableStatement.setInt(1, idUser);
+        callableStatement.setInt(2, idProduct);
+        callableStatement.registerOutParameter(3, Types.VARCHAR);
+
+        callableStatement.execute();
+
+        status = callableStatement.getString(3);
+        return status;
     }
 }
