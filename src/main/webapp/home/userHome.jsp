@@ -189,7 +189,6 @@
         </a>
     </div>
     <div style="clear: both"></div>
-
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -416,10 +415,10 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="restaurant"/>
-                            <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
+                            <input type="hidden" name="action" value="dish-detail"/>
+                            <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
                             <h5 class="card-title"
 
                                 style=" width: 100%; height: 56px;font-weight: bold;font-size: 23px ;margin-top: 10px;overflow: hidden">${productRecommend.productName}
@@ -454,6 +453,9 @@
     </div>
 
 
+
+
+
     <%--8 món ăn được giảm giá nhất --%>
 
 
@@ -470,10 +472,10 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="restaurant"/>
-                            <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
+                            <input type="hidden" name="action" value="dish-detail"/>
+                            <input type="hidden" name="productId" value="${productBestSale.idProduct}"/>
                             <h5 class="card-title"
 
                                 style=" width: 100%;height: 56px;font-weight: bold;font-size: 22px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
@@ -505,8 +507,6 @@
                 </div>
             </div>
         </c:forEach>
-
-
     </div>
     <%--Menu main--%>
     <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
@@ -521,10 +521,10 @@
                 <div class="card-body"
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="restaurant"/>
-                            <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
+                            <input type="hidden" name="action" value="dish-detail"/>
+                            <input type="hidden" name="productId" value="${pro.idProduct}"/>
                             <h5 class="card-title"
                                 style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
                                 - ${pro.restaurantName}
@@ -610,6 +610,9 @@
         <p style="color:white;">© 2023 WebWhatForLunch</p>
     </div>
 </footer>
+
+
+<a href="/product/dish-details.jsp">aasdadasdad</a>
 
 
 </body>

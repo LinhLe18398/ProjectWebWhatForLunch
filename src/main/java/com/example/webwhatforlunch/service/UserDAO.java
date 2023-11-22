@@ -12,7 +12,9 @@ import java.util.List;
 public class UserDAO implements UserInterface {
     private final String username = "root";
 
+
     private final String password = "password";
+
 
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -36,18 +38,6 @@ public class UserDAO implements UserInterface {
     private final String GET_ALL_USER_ADDRESS_QUERY = "{CALL GET_ALL_USER_ADDRESS(?)}";
     private final String UPDATE_ADDRESS_QUERY = "{CALL UPDATE_ADDRESS(?,?,?,?)}";
     private final String DELETE_ADDRESS_QUERY = "CALL DELETE_ADDRESS(?)";
-    private final String UPDATE_ADDRESS_SHIP_QUERY = "CALL UPDATE_ADDRESS(?,?,?,?)";
-
-
-    public void updateAddressShip(int idAddress,String name,String phone,String address) throws SQLException, ClassNotFoundException {
-        Connection connection = getConnection();
-        CallableStatement callableStatement = connection.prepareCall(UPDATE_ADDRESS_SHIP_QUERY);
-        callableStatement.setString(1,name);
-        callableStatement.setString(2,phone);
-        callableStatement.setString(3,address);
-        callableStatement.setInt(4,idAddress);
-        callableStatement.executeUpdate();
-    }
 
 
     public void deleteAddress(int idAddress) throws SQLException, ClassNotFoundException {

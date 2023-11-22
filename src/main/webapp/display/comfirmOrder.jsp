@@ -153,7 +153,7 @@
        <div style="display: flex">
            <input class="detail-address" style="width:200px;font-weight: 800" type="text" id="recipient-name" readonly
                   disabled>
-           <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone"
+           <input class="detail-address" style="width: 125px; font-weight: 800" type="text" id="recipient-phone"
                   readonly disabled>
            <input class="detail-address" style="width: 400px" type="text" id="recipient-Address" readonly disabled>
 
