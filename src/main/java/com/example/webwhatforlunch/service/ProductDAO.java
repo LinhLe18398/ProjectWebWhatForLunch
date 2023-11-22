@@ -10,7 +10,9 @@ public class ProductDAO implements ProductInterface{
     private String username = "root";
 
 
+
       private String password = "password";
+
 
 
 

@@ -118,6 +118,18 @@
     <div class="right-content" style="float: left">
 
         <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
+        <%--<<<<<<< HEAD--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i> Lượt--%>
+        <%--            xem: ${product.view}  </p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt--%>
+        <%--            đã đặt: ${product.orders}</p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi--%>
+        <%--            chú: ${product.note}</p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời--%>
+        <%--            gian chế biến: ${product.waitTime} phút</p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>--%>
+        <%--            Giá tiền: ${product.price} &#8363</p>--%>
+        <%--=======--%>
         <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i> Lượt
             xem: ${product.view}  </p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt
@@ -128,6 +140,7 @@
             gian chế biến: ${product.waitTime} phút</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>
             Giá tiền: ${product.price} &#8363</p>
+        <%-->>>>>>> 349c2a98f07389335a1ef2162a81a29270cb09e7--%>
         <p>
             <c:if test="${sessionScope.isLogin==true}">
                 <a style="width: 76px;margin-left: 98px; background-color: orangered; height: 35px "
@@ -144,14 +157,13 @@
 
             <%--        <input type="hidden" name="idMerchant" value="${product.idMerchant}">--%>
 
+
             <input type="hidden" name="action" value="restaurant"/>
             <input type="hidden" name="idMerchant" value="${product.idMerchant}"/>
             <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered"
                    value="Chi tiết nhà hàng >">
         </form>
         </p>
-
-
     </div>
 </div>
 
@@ -175,8 +187,8 @@
                             <input type="hidden" name="action" value="dish-detail"/>
                             <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
                             <div class="card-body">
-                                <h5 class="card-title">${productRecommend.productName}</h5>
-                                <p class="card-text"><i class="fa-solid fa-sack-dollar"></i> ${productRecommend.price}
+                                <h5 class="card-title" style="padding-bottom: 5px">${productRecommend.productName}</h5>
+                                <p class="card-text"><i class="fa-solid fa-sack-dollar" style="color: #ff4501"></i> ${productRecommend.price}
                                     &#8363</p>
                                 <c:if test="${sessionScope.isLogin==true}">
                                     <a style="width: 60px;border: orangered;background: orangered"
