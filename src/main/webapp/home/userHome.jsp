@@ -209,13 +209,24 @@
                                    style="color: white; font-size: 18px">
                                     Nhà hàng
                                 </a>
+
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
-                                        nhà hàng của tôi</a></li>
+                                    <c:if test="${sessionScope.isLogin == true}">
+                                        <li id="button-hidden">
+                                            <a class="dropdown-item" href="/users?action=merchant">Đăng ký nhà hàng</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.isLogin == true}">
+                                        <input type="text" hidden="hidden" id="IdMerchant"
+                                               value="${merchantId.idMerchant}">
+                                        <li id="button-merchant">
+                                            <a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                                nhà hàng của tôi</a>
+                                        </li>
+                                    </c:if>
                                 </ul>
+
                             </li>
-
-
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
@@ -225,8 +236,6 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                         tin</a></li>
-                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                    </li>
                                     <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -410,7 +419,8 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}"
+                              style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="dish-detail"/>
                             <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
@@ -462,7 +472,8 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}"
+                              style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="dish-detail"/>
                             <input type="hidden" name="productId" value="${productBestSale.idProduct}"/>
@@ -561,7 +572,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
+                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
@@ -640,6 +651,22 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
+
+
+    var idMerchant = document.getElementById("IdMerchant").value;
+    if (idMerchant !== "") {
+        document.getElementById("button-merchant").style.display = "block";
+    } else {
+        document.getElementById("button-merchant").style.display = "none";
+    }
+    var idMerchant = document.getElementById("IdMerchant").value;
+    if (idMerchant !== "") {
+        document.getElementById("button-hidden").style.display = "none";
+    } else {
+        document.getElementById("button-hidden").style.display = "block";
+    }
+
+
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');
