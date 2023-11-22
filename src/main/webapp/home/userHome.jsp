@@ -189,7 +189,6 @@
         </a>
     </div>
     <div style="clear: both"></div>
-
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -399,8 +398,6 @@
 
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
-
-
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
                  style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
@@ -449,15 +446,6 @@
             </div>
         </c:forEach>
     </div>
-
-
-<<<<<<< HEAD
-      <div><a href="/product/dish-details.jsp">aasdadasdad</a></div>
-=======
-
->>>>>>> 4375c7666840eca201c003d6a128469d27839bbd
-
-
     <%--8 món ăn được giảm giá nhất --%>
 
 

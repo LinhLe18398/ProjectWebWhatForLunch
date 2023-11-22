@@ -12,7 +12,12 @@ import java.util.List;
 public class BillDAO {
     private String username = "root";
 
-    private String password = "1111";
+
+
+
+    private String password = "password";
+
+
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 

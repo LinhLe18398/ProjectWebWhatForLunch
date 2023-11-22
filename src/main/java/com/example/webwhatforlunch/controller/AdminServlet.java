@@ -17,7 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/admin")
 
-public class AdminServlet extends HttpServlet {
+public class  AdminServlet extends HttpServlet {
     private AdminDAO adminDAO;
     private UserDAO userDAO;
 

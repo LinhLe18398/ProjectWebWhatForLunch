@@ -82,6 +82,8 @@ public class ProductServlet extends HttpServlet {
         Product product = productDAO.getProductById(productId);
         req.setAttribute("product",product);
         req.setAttribute("user", user);
+        List<Product> productRecommend = productDAO.getRecommendProduct();
+        req.setAttribute("productRecommend", productRecommend);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
         requestDispatcher.forward(req,resp);
     }

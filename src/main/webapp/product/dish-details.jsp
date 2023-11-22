@@ -1,5 +1,3 @@
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -28,7 +26,6 @@
     }
 
 
-
     .overlay {
         position: absolute;
         top: 0;
@@ -39,7 +36,13 @@
         pointer-events: none;
     }
 
+    .price {
+        margin-bottom: 0;
+    }
 
+    li {
+        list-style-type: none;
+    }
 </style>
 </head>
 <body>
@@ -96,7 +99,6 @@
                                style="color: white; font-size: 19px">
                                 Giỏ hàng
                             </a>
-
                         </li>
                     </ul>
                 </div>
@@ -104,7 +106,6 @@
         </nav>
     </div>
 </div>
-
 
 
 <div class="container" style=" margin-top: 50px">
@@ -117,11 +118,29 @@
     <div class="right-content" style="float: left">
 
         <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
-        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i>   Lượt xem: ${product.view}  </p>
-        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt đã đặt: ${product.orders}</p>
-        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi chú: ${product.note}</p>
-        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời gian chế biến: ${product.waitTime} phút</p>
-        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i> Giá tiền: ${product.price} &#8363</p>
+        <%--<<<<<<< HEAD--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i> Lượt--%>
+        <%--            xem: ${product.view}  </p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt--%>
+        <%--            đã đặt: ${product.orders}</p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi--%>
+        <%--            chú: ${product.note}</p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời--%>
+        <%--            gian chế biến: ${product.waitTime} phút</p>--%>
+        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>--%>
+        <%--            Giá tiền: ${product.price} &#8363</p>--%>
+        <%--=======--%>
+        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i> Lượt
+            xem: ${product.view}  </p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt
+            đã đặt: ${product.orders}</p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi
+            chú: ${product.note}</p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời
+            gian chế biến: ${product.waitTime} phút</p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>
+            Giá tiền: ${product.price} &#8363</p>
+        <%-->>>>>>> 349c2a98f07389335a1ef2162a81a29270cb09e7--%>
         <p>
             <c:if test="${sessionScope.isLogin==true}">
                 <a style="width: 76px;margin-left: 98px; background-color: orangered; height: 35px "
@@ -138,53 +157,52 @@
 
             <%--        <input type="hidden" name="idMerchant" value="${product.idMerchant}">--%>
 
+
             <input type="hidden" name="action" value="restaurant"/>
             <input type="hidden" name="idMerchant" value="${product.idMerchant}"/>
-            <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered" value="Chi tiết nhà hàng >">
+            <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered"
+                   value="Chi tiết nhà hàng >">
         </form>
         </p>
-
-
-
     </div>
 </div>
 
 
-
 <hr class="container" style="color: black; margin-top: 380px">
 
-<form action="/products?action=home-merchant">
-    <main class="container" style="padding-top: 100px">
-        <h2>GỢI Ý</h2>
-        <c:forEach items="${products}" var="products">
-            <div class="card mb-6" style="width: 328px; display: inline-block">
-                <div class="row g-0 mb-6">
-                    <div class="col-md-4" style="max-height: 154px ; max-width: 100%">
-                        <img src="${products.productImg}"
-                             width="100" class="img-fluid rounded-start" alt="..."
-                             style="max-width: 100%;height: 108px">
+<div class="container">
+    <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
+    <div class="row mb-2" style="padding-top: 50px;">
+        <c:forEach items="${productRecommend}" var="productRecommend">
+            <div class="card" style="width: 500px;height: 139px;margin-right: 50px;margin-bottom: 20px">
+                <div class="row no-gutters">
+                    <div class="col-sm-5" style="padding: 0;height: 139px">
+                        <img class="card-img" src="${productRecommend.productImg}" alt="Suresh Dasari Card"
+                             style="height: 138px">
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body" style="padding: 10px; max-width: 100%;height: 155px">
-                            <h5 class="card-title">${products.productName}</h5>
-                            <p class="card-text">${products.price}</p>
-                            <c:if test="${sessionScope.isLogin==true}">
-                                <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
-                            </c:if>
-                        </div>
+                    <div class="col-sm-7" style="float: right">
+                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}"
+                              style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="dish-detail"/>
+                            <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
+                            <div class="card-body">
+                                <h5 class="card-title" style="padding-bottom: 5px">${productRecommend.productName}</h5>
+                                <p class="card-text"><i class="fa-solid fa-sack-dollar" style="color: #ff4501"></i> ${productRecommend.price}
+                                    &#8363</p>
+                                <c:if test="${sessionScope.isLogin==true}">
+                                    <a style="width: 60px;border: orangered;background: orangered"
+                                       href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
+                                       class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
+                                </c:if>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </c:forEach>
-        <div style="padding-top: 20px">
-            <td class="container">
-                <a href="/users?action=home" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Trang chủ</a>
-            </td>
-        </div>
-    </main>
-
-</form>
-
+    </div>
+</div>
 
 
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -237,7 +255,6 @@
 
 <script>
     function redirectToUsers(id) {
-        alert(id);
         document.getElementById(id).submit();
     }
 </script>
