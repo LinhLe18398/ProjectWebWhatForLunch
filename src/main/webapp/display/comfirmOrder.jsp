@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <style>
     .header {
@@ -39,7 +40,7 @@
         width: 500px;
         height: 400px;
         background: white;
-        margin: 100px auto;
+        margin: 210px auto;
         position: relative;
         border: 5px solid #fff;
     }
@@ -83,6 +84,18 @@
         color: red;
         float: right;
     }
+
+    .close-btn {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        background: none;
+        border: none;
+        color: #000;
+    }
+
 </style>
 <body>
 <form action="/users?action=order" method="get">
@@ -148,7 +161,7 @@
     <span style="box-sizing: inherit; line-height: 2.0em">
         <span style="color: #FF7F3F;font-weight: 700">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
-            Địa Chỉ Nhận Hàng
+            Địa chỉ nhận hàng
         </span>
        <div style="display: flex">
            <input class="detail-address" style="width:200px;font-weight: 800" type="text" id="recipient-name" readonly
@@ -158,40 +171,44 @@
            <input class="detail-address" style="width: 400px" type="text" id="recipient-Address" readonly disabled>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
-             style="text-decoration: none; color: blue;padding-left: 450px ">Thay Đổi</a>
+             style="text-decoration: none; color: blue;padding-left: 450px ">Thay đổi</a>
            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog" style="margin-top: 210px">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Địa Chỉ Của Tôi</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Địa chỉ của tôi</h5>
                         </div>
                         <div class="modal-body">
                            <div class="form-check " style="margin-bottom: 0">
                                <div id="xmas-popup" class="popup" href="#">
                                     <div class="popup-content">
-                                        <label>Cập nhật địa chỉ</label>
+                                        <div style="display: inline-block">
+                                            <h5>Cập nhật địa chỉ</h5>
+                                        </div>
+                                        <div style="float: right;padding: 5px">
+                                           <a href="/users?action=order" style="list-style-type: none; float: right"><i style="color: red;padding-top: 3px; padding-right:5px; font-size: 22px" class="fas fa-times"></i></a>
+                                        </div>
                                         <hr>
                                         <form id="updateForm" action="/users?action=updateAddress" method="post">
                                         <div style="padding: 10px">
                                               <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" id="update-name" name="name">
-                                            <input type="text" placeholder="Số điện thoại" id="update-phone"
+                                            <input type="text" style="margin-right: 21px;width: 220px" placeholder="Họ và tên" id="update-name" name="name">
+                                            <input type="text" style="width: 220px" placeholder="Số điện thoại" id="update-phone"
                                                    name="phone">
                                             </p>
                                             <p>
                                                 <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
                                                        id="update-Address" name="address">
                                             </p>
-                                              <div id="successMessage" style="display: none;">
+                                              <div id="successMessage" style="display: none;color: green">
                                                 Cập nhật thành công!
                                             </div>
                                          <p>
-                                            <a href="" class="btn btn-outline-secondary" onclick="closePopup()">Hủy</a>
                                             <button type="button" class="btn btn-outline-primary"
-                                                    onclick="submitUpdateForm()">Xác Nhận</button>
+                                                    onclick="submitUpdateForm()">Xác nhận</button>
                                          </p>
                                         </div>
                                         </form>
@@ -203,7 +220,7 @@
                                    <a href="#xmas-popup"
                                       onclick="selectAddressForUpdate('${showAddress.idAddress}', '${showAddress.recipientName}', '${showAddress.recipientPhone}', '${showAddress.detailedAddress}')"
                                       class="button"
-                                      style="text-decoration: none;float: right">Cập Nhập</a>
+                                      style="text-decoration: none;float: right">Cập nhật</a>
 
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})"
@@ -237,7 +254,7 @@
                                         </p>
                                         <p>
                                         <button type="button" class="btn btn-outline-secondary" onclick="closeForm()">Hủy</button>
-                                        <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
+                                        <button type="submit" class="btn btn-outline-primary">Xác nhận</button>
                                     </p>
                                     </form>
                                 </div>
@@ -245,7 +262,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
-                            <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác Nhận</button>
+                            <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác nhận</button>
                         </div>
                     </div>
                 </div>
@@ -259,10 +276,10 @@
        <table id="cart" class="table table-condensed">
             <thead>
                 <tr>
-                    <th style="width:50%">Sản Phẩm</th>
-                    <th style="width:10%">Đơn Giá</th>
+                    <th style="width:50%">Sản phẩm</th>
+                    <th style="width:10%">Đơn giá</th>
                     <th style="width:8%">Số lượng</th>
-                    <th style="width:22%" class="text-center">Thành tiền</th>
+                    <th style="width:22%" class="text-center">Thành Tiền</th>
                 </tr>
             </thead>
 
@@ -308,7 +325,7 @@
                     <div style="margin-right: 600px">
                         <select name="paymentMethod" class="form-select" aria-label="Default select example"
                                 style="width: 400px" onchange="select(this.value)">
-                          <option selected>Phương Thức Thanh Toán</option>
+                          <option selected>Phương thức thanh toán</option>
                           <option value="COD">Thanh toán khi nhận hàng</option>
                           <option value="Card">Thanh toán luôn</option>
                         </select>
@@ -357,7 +374,7 @@
                 <tr style="float: left;padding-top: 10px">
                      <td style="float: left">
                           <a style="float: left;text-decoration: none;color: #FF7F3F" href="/users?action=home"><i
-                                  class="fa fa-angle-left"></i>Trang chủ</a>
+                                  class="fa fa-angle-left"></i>Trang Chủ</a>
                      </td>
                 </tr>
            </tfoot>
@@ -376,31 +393,33 @@
         var phone = document.getElementById("update-phone").value;
         var address = document.getElementById("update-Address").value;
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/users?action=updateAddress", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(xhr.responseText);
-                showSuccessMessage();
-            }
-        };
+        var confirmation = confirm("Bạn có chắc muốn cập nhật địa chỉ?");
+        if (confirmation) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/users?action=updateAddress", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    showSuccessMessage();
+                }
+            };
+            var data = "addressId=" + encodeURIComponent(addressId) +
+                "&name=" + encodeURIComponent(name) +
+                "&phone=" + encodeURIComponent(phone) +
+                "&address=" + encodeURIComponent(address);
 
+            xhr.send(data);
+        }else {
+            hidePopup();
+        }
 
-        var data = "addressId=" + encodeURIComponent(addressId) +
-            "&name=" + encodeURIComponent(name) +
-            "&phone=" + encodeURIComponent(phone) +
-            "&address=" + encodeURIComponent(address);
-
-        xhr.send(data);
     }
 
     function showSuccessMessage() {
         var successMessage = document.getElementById("successMessage");
         successMessage.style.display = "block";
     }
-
-    console.log(document.getElementById("updateForm"));
 
     function selectAddressForUpdate(id, name, phone, address) {
         document.getElementById("updateAddressId").value = id;
@@ -413,13 +432,12 @@
 
     function openPopup() {
         var popup = document.getElementById("xmas-popup");
-
         popup.style.display = "block";
     }
 
-    function closePopup() {
+    function hidePopup(event) {
+        event.preventDefault();
         var popup = document.getElementById("xmas-popup");
-
         popup.style.display = "none";
     }
 
