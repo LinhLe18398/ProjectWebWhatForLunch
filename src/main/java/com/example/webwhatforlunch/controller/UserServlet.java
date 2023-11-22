@@ -454,6 +454,11 @@ public class  UserServlet extends HttpServlet {
             List<Product> productList = userDAO.get_All_Product();
             req.setAttribute("pro", productList);
             session.getAttribute("user");
+            HttpSession httpSession = req.getSession();
+            Merchant idMerchant = userDAO.returnIdMerchantByIdUser(user.getId());
+            httpSession.setAttribute("merchantId",idMerchant);
+            httpSession.getAttribute("merchantId");
+            httpSession.setAttribute("isLoginMerchant", true);
             dispatcher = req.getRequestDispatcher("home/userHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");

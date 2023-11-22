@@ -15,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 
@@ -136,28 +137,6 @@
     </div>
 </div>
 
-<%--<div class="container" id="button-group"--%>
-<%--     style="margin-top: 30px; box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px">--%>
-
-<%--    <div class="group-button" onclick="changeColor(0)">Tất cả</div>--%>
-<%--    <div class="group-button" onclick="changeColor(1)">Chờ nhận hàng</div>--%>
-<%--    <div class="group-button" onclick="changeColor(2)">Đang chế biến</div>--%>
-<%--    <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>--%>
-<%--    <div class="group-button" onclick="changeColor(4)">Đang giao</div>--%>
-<%--    <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>--%>
-<%--    <div class="group-button" onclick="changeColor(6)">Huỷ</div>--%>
-<%--</div>--%>
-
-
-<%--<div class="search" style="margin-top: 30px; ">--%>
-<%--    <div class="container"--%>
-<%--         style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px">--%>
-<%--        <input type="search"--%>
-<%--               style="width: 1320px; height: 50px; border: thin solid grey;margin-left: -15px ; background-color: #f4f4f4 "--%>
-<%--               placeholder="&#128269; Bạn có thể tìm kiếm theo tên Cửa hàng, Id đơn hàng hoặc tên Món ăn">--%>
-<%--    </div>--%>
-
-<%--</div>--%>
 <form method="post" action="/bill?action=event-bill-from-user">
     <c:forEach items="${listBillUser}" var="listBillUser">
         <div class="bill container"
@@ -169,8 +148,8 @@
                 <div style="margin-top: 15px; float: left; margin-left: 30px">
                     <p style="font-weight: bold;">${listBillUser.getRestaurantName()}</p>
                 </div>
-                <div style="background-color: orangered; width: 70px ;margin-top: 15px; float: left; height: 25px; margin-left: 30px">
-                    <p style="color: white; font-size: 14px; text-align: center">Chat</p>
+                <div style=" width: 70px ;margin-top: 15px; float: left; height: 25px; margin-left: -8px">
+                    <p style="font-size: 24px; text-align: center"><i class="fa-solid fa-comments fa-beat-fade"></i></p>
                 </div>
                 <div style="justify-content: flex-end; padding-top: 15px; padding-right:25px;display: flex; height: 25px; margin-left: 30px">
                     <p p style="color: red; font-size: 30px; ">${listBillUser.getBillStatus()}</p>
@@ -184,12 +163,12 @@
                     </div>
                     <div style="float: left; margin-left: 20px; margin-top: 20px">
                         <p style="font-size: 20px">${product.getProductName()}</p>
-                        <p style="font-size: 20px; color: grey">Phân loại đồ ăn: ${product.getNote()}</p>
+                        <p style="font-size: 20px; color: grey">Mô tả: ${product.getNote()}</p>
                         <p style="font-size: 18px">X ${product.getQuantity()}</p>
                         <p class="price"
                            style="font-size: 20px;margin-top: -44px ;margin-left: 900px; color: grey; text-decoration-line: line-through">${product.getPrice()}</p>
                         <p class="price"
-                           style="font-size: 20px;margin-top: -44px ;margin-left: 1000px; color: orangered">${product.getPrice()-product.getSale()}</p>
+                           style="font-size: 20px;margin-top: -44px ;margin-left: 1000px">${product.getPrice()-product.getSale()}</p>
                     </div>
                 </div>
             </c:forEach>
@@ -197,23 +176,23 @@
 
             <div class="footer-bill">
                 <div style="display: flex; justify-content: flex-end; padding-top: 15px; padding-right:25px; height: 25px;">
-                    <p style="font-size: 20px; margin-left: 10px">Thành tiền: </p>
+                    <p style="font-size: 20px; margin-left: 10px; padding-right: 11px">Thành tiền: </p>
                     <p class="price"
-                       style="display:inline; font-size: 25px; font-weight: bold; color: orangered">${listBillUser.getFinalTotal()}</p>
+                       style="display:inline; font-size: 25px; font-weight: bold">${listBillUser.getFinalTotal()}</p>
                 </div>
                 <div>
                     <p style="justify-content:flex-start; color: grey; font-size: 18px">Đặt ngày ${listBillUser.getTimeOrder()}</p>
                     <div style="display: flex; justify-content: flex-end; text-align: center; padding-bottom: 10px; ">
                         <c:choose>
                             <c:when test="${listBillUser.getBillStatus() == 'Chờ nhận hàng'}">
-                                <button style="display: inline; height: 45px; width: 190px; color: orangered"
-                                        type="submit" class="btn btn-outline-dark"
+                                <button style="display: inline; height: 45px; width: 190px"
+                                        type="submit" class="btn btn-outline-danger"
                                         onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
 
                             <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">
-                                <button style="display: inline;  height: 45px; width: 190px; color: orangered"
-                                        type="submit" class="btn btn-outline-dark">Mua lại</button>
+                                <button style="display: inline;  height: 45px; width: 190px;"
+                                        type="submit" class="btn btn-outline-danger">Mua lại</button>
                             </c:when>
 
                             <c:otherwise>
@@ -222,10 +201,10 @@
                             </c:otherwise>
                         </c:choose>
 
-                        <button style="display: inline; color: orangered; margin-left: 22px;height: 45px; width: 190px"
-                                type="submit" class="btn btn-outline-dark" onclick="showDetailBill(${listBillUser.getIdBill()})">Xem chi tiết đơn</button>
-                        <button style="display: inline; color: orangered; margin-left: 22px; ;height: 45px; width: 190px"
-                                type="submit" class="btn btn-outline-dark">Liên hệ cửa hàng</button>
+                        <button style="display: inline; margin-left: 22px;height: 45px; width: 190px"
+                                type="submit" class="btn btn-outline-danger" onclick="showDetailBill(${listBillUser.getIdBill()})">Xem chi tiết đơn</button>
+                        <button style="display: inline; margin-left: 22px; ;height: 45px; width: 190px"
+                                type="submit" class="btn btn-outline-danger">Liên hệ cửa hàng</button>
                     </div>
 
                 </div>

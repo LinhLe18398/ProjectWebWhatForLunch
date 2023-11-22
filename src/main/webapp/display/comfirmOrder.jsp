@@ -85,17 +85,6 @@
         float: right;
     }
 
-    .close-btn {
-        position: absolute;
-        top: 0;
-        right: 10px;
-        cursor: pointer;
-        font-size: 18px;
-        background: none;
-        border: none;
-        color: #000;
-    }
-
 </style>
 <body>
 <form action="/users?action=order" method="get">
@@ -109,7 +98,7 @@
                     <nav class="navbar navbar-expand-lg navbar-light bg-light"
                          style="background-color: rgb(255,255,255,0) !important; padding-top: 0">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="#" style="color: #ffffff">Trang Chủ</a>
+                            <a class="navbar-brand" href="/users?action=home" style="color: #ffffff">Trang Chủ</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -134,17 +123,20 @@
 
                                     <li class="nav-item dropdown" style="margin-left: 20px">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
+                                           data-bs-toggle="dropdown" aria-expanded="false"
+                                           style="color: white; font-size: 18px">
                                             ${user.name}
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa
-                                                thông
+                                            <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                                 tin</a></li>
+                                            <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
+
                                             <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
                                         </ul>
                                     </li>
                                 </ul>
@@ -279,7 +271,7 @@
                     <th style="width:50%">Sản phẩm</th>
                     <th style="width:10%">Đơn giá</th>
                     <th style="width:8%">Số lượng</th>
-                    <th style="width:22%" class="text-center">Thành Tiền</th>
+                    <th style="width:22%" class="text-center">Thành tiền</th>
                 </tr>
             </thead>
 
@@ -307,8 +299,8 @@
                 </tr>
                  <td>
                     <div style="padding: 10px; width: 100%">
-                      <label style="padding-right: 10px">Lời Nhắn:</label>
-                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
+                      <label style="padding-right: 10px">Lời nhắn:</label>
+                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho người bán...">
                     </div>
                  </td>
              </c:forEach>
@@ -455,8 +447,8 @@
         let dataPrice = price[i].innerHTML;
         let dataQuantity = quantity[i].innerHTML;
         let totalPrice = dataPrice * dataQuantity;
-        total[i].innerHTML = totalPrice + "₫";
-        price[i].innerHTML = dataPrice + "₫";
+        total[i].innerHTML = totalPrice + " ₫";
+        price[i].innerHTML = dataPrice + " ₫";
         quantity[i].innerHTML = dataQuantity;
         listId.value += "/" + id[i].value;
         listQuantity.value += "/" + quantity[i].innerHTML;
@@ -465,7 +457,7 @@
     console.log(listId.value)
     console.log(listQuantity.value)
 
-    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + "₫";
+    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + " ₫";
 
     function openForm() {
         let address = document.getElementsByClassName("card-address");
