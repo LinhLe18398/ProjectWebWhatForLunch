@@ -210,7 +210,7 @@
                     </div>
                 </td>
                 <td data-th="Price">${pro.price} ₫</td>
-                <td data-th="Quantity" style="display: flex">
+                <td data-th="Quantity" style="display: flex;border: none">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
 
                     <a style="margin-right: 8px; margin-top: 8px"
@@ -234,7 +234,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td ><a  href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px "><i class="fa fa-angle-left"></i>Trang chủ</a>
+            <td ><a  href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px"><i class="fa fa-angle-left"></i>Trang Chủ</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
