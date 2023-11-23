@@ -54,13 +54,6 @@ body{
     background-color:orange;
 }
 
-.box {
-    display: none;
-}
-
-.cb{
-    display: flex;
-}
 /* ---------------------------------------------- */
 
 .logo1{
@@ -87,6 +80,11 @@ body{
     margin-left: -8px;
 }
 
+.icons:hover {
+    color: orangered;
+}
+
+
 
 /* ---------------------------------------------- */
 
@@ -104,11 +102,10 @@ body{
 }
 
 /* ---------------------------------------------- */
-
 .nav{
     font-size: 30px;
     cursor: pointer;
-    color: #6c7293;
+    color: orangered;
     margin: 11px 0px;
 }
 
@@ -137,7 +134,7 @@ body{
 .profile {
     display: block;
     float: right ;
-    width: 200px;
+    padding-right: 15px;
 }
 
 .profile p{
@@ -149,13 +146,10 @@ body{
     cursor: pointer;
     color: black;
     background-color: white;
-    font-weight: 500;
-    font-size: 15px;
 }
 
 .profile-div{
     background-color: white;
-    width: 140px;
     border: 1px solid #ddd;
     padding: 10px 0px;
     right: 2%;
@@ -173,7 +167,6 @@ body{
 
 .profile-div a {
     color: black;
-    font-family: arial, sans-serif;
     text-decoration: none;
 }
 .profile-div:after{
@@ -181,7 +174,8 @@ body{
     position: absolute;
     height: 10px;
     width: 10px;
-    background-color: white;
+    background-color: orangered;
+    color: white;
     top: -6px;
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
@@ -189,15 +183,19 @@ body{
     right: 10%;
 }
 
-
 .profile-div p:hover{
     margin: 0px;
     padding: 10px 20px;
-    background-color: orange;
-    border-radius: 0px;
+    background-color: orangered;
     color: white;
+    border-radius: 0px;
 }
 
+
+.profile-div a:hover {
+    color: black;
+    text-decoration: none;
+}
 /* ---------------------------------------------- */
 
 
@@ -405,7 +403,7 @@ table p {
     counter-reset: step;
     padding: 0;
     margin: 35px auto;
-    max-width: 800px;
+    max-width: 850px;
 }
 
 .progressbar li {
@@ -448,18 +446,18 @@ table p {
 
 .progressbar li.active:after,
 .progressbar li.complete:after {
-    background: #3aac5d;
+    background: orangered;
 }
 
 .progressbar li.active:before,
 .progressbar li.complete:before {
-    background: #3aac5d;
-    border-color: #3aac5d;
+    background: orangered;
+    border-color: orangered;
     color: #fff;
 }
 
 .progressbar li.active {
-    color: #3aac5d;
+    color: orangered;
     font-weight: 700;
 }
 
@@ -567,7 +565,9 @@ table p {
 }
 
 .detail-h3 {
-    text-align: right;
+    text-align: left;
+    margin: 30px 0px 30px 0px;
+
 }
 
 .detail-order {
@@ -609,7 +609,11 @@ table p {
     opacity: 0.8;
     font-size: 18px;
     margin-right: 10px;
-    color: red;
+    color: black;
+}
+
+.dt-number {
+    padding-top: 10px;
 }
 /* -------------------------------------------------- */
 /* Tổng hoá đơn */
@@ -625,11 +629,11 @@ table p {
     margin-bottom: 5px;
 }
 
-.item-label {
+.item-value {
     font-weight: bold;
 }
 
-.item-value {
+.item-label {
     color: #333;
 }
 
@@ -637,4 +641,8 @@ table p {
     background-color: #f2f2f2;
     padding: 10px;
     margin-top: 10px;
+}
+
+button:focus {
+    border-color: white;
 }

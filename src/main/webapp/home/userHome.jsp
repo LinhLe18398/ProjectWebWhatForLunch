@@ -433,8 +433,6 @@
         </c:forEach>
     </div>
     <%--8 món ăn được giảm giá nhất --%>
-
-
     <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
@@ -533,13 +531,9 @@
             </div>
         </c:forEach>
     </div>
-    <ul class="listPage"></ul>
-</div>
-<!-- Footer -->
+ </div>
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
-<%--    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--%>
-<%--    </section>--%>
     <section class="" style="padding-top: 10px; margin-top: 30px">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
@@ -587,10 +581,6 @@
         <p style="color:white;">© 2023 WebWhatForLunch</p>
     </div>
 </footer>
-
-
-
-
 
 </body>
 </html>

@@ -189,10 +189,12 @@
                                         type="submit" class="btn btn-outline-danger"
                                         onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
-
-                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">
-                                <button style="display: inline;  height: 45px; width: 190px;"
-                                        type="submit" class="btn btn-outline-danger">Mua lại</button>
+                            <c:when test="${(listBillUser.getBillStatus() == 'Huỷ' ||
+                            listBillUser.getBillStatus() == 'Nhà hàng từ chối đơn' ||
+                            listBillUser.getBillStatus() == 'Khách hàng huỷ đơn') ||
+                            listBillUser.getBillStatus() == 'Đã hoàn thành' }">
+                                <button style="display: inline;  height: 45px; width: 190px; color: orangered"
+                                        type="submit" class="btn btn-outline-dark">Mua lại</button>
                             </c:when>
 
                             <c:otherwise>
@@ -271,29 +273,6 @@
 
 
 </body>
-<%--<script>--%>
-<%--    var billStatus = "${listBillUser.getBillStatus()}";--%>
-
-<%--    // Lấy thẻ p--%>
-<%--    var pElement = document.getElementById("billStatus1");--%>
-
-<%--    // Đặt màu sắc và nội dung dựa trên giá trị trạng thái--%>
-<%--    switch (billStatus) {--%>
-<%--        case "Đã hoàn thành":--%>
-<%--            pElement.style.color = "green";--%>
-<%--            break;--%>
-<%--        case "Huỷ":--%>
-<%--            pElement.style.color = "red";--%>
-<%--            break;--%>
-<%--        default:--%>
-<%--            pElement.style.color = "black";--%>
-<%--    }--%>
-
-<%--    // pElement.textContent = billStatus;--%>
-<%--</script>--%>
-
-
-
 <script>
     function changeColor(buttonIndex) {
         var buttons = document.getElementsByClassName('group-button');
@@ -314,7 +293,7 @@
 
     function cancelBill(idBill) {
         document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 3;
+        document.getElementById("active").value = 1;
     }
 
     function showDetailBill(idBill) {

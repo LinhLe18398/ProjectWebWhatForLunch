@@ -122,7 +122,6 @@ public class  UserServlet extends HttpServlet {
     private void search(HttpServletRequest req, HttpServletResponse resp) {
         String nameSearch = req.getParameter("name_search");
         String quickSearch = req.getParameter("quick_search");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
         List<Product> productList = null;
         try {
             if (nameSearch != null) {
@@ -135,14 +134,11 @@ public class  UserServlet extends HttpServlet {
             req.setAttribute("nameSearch", nameSearch);
             req.setAttribute("tagSearch", quickSearch);
             req.setAttribute("pro", productList);
-            requestDispatcher.forward(req, resp);
+
+            showHomeForm(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -158,7 +154,7 @@ public class  UserServlet extends HttpServlet {
     }
 
     private void showHomeMerchant(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("merchant/merchantHome.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -388,7 +384,7 @@ public class  UserServlet extends HttpServlet {
             req.setAttribute("user", user);
             req.setAttribute("productList", productList);
             req.setAttribute("billList", billList);
-            dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
+            dispatcher = req.getRequestDispatcher("merchant/merchantHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai mật khẩu");
             dispatcher = req.getRequestDispatcher("display/comFirmPassword.jsp");

@@ -11,13 +11,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/home/merchantHome.css" type="text/css" rel="stylesheet"/>
+    <link href="/merchant/merchantHome.css" type="text/css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
+
     <title>Merchant Home</title>
 </head>
 
@@ -25,14 +28,14 @@
 
 <div class="mySidenav">
     <p class="logo1"><span class="menu1">☰</span></p>
-    <a href="#" class="icon-a" id="a" onclick="listClick(this.id)"><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
-    <a href="#" class="icon-a" id="b" onclick="listClick(this.id)"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
+    <a href="/products?action=home-merchant" class="icon-a" id="a"><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
+    <a href="/bill?action=bill-merchant" class="icon-a" id="b"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
 </div>
 <div id="main">
 
     <div class="constructor">
         <div class="item item1">
-            <p class="nav"> What For Lunch?</p>
+            <p class="nav"> Merchant</p>
 
         </div>
 
@@ -51,17 +54,13 @@
 
 
         <div class="item item3">
-            <div class="notification-div">
-                <hr class="hr"/>
-            </div>
             <div class="profile">
                 <img src="https://demoda.vn/wp-content/uploads/2022/09/avatar-facebook-doc-ff.jpg"
                      class="pro-img"/>
                 <p class="profile-name"><i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
                 <div class="profile-div">
-                    <p><i class="fa fa-user "><a href="/merchants?action=profile"> Profile</a></i></p>
-                    <p><i class="fa fa-cogs "><a href="/merchants?action=setting"> Settings</a></i></p>
-                    <p><i class="fa fa fa-sign-out "><a href="/users?action=home"> Log Out</a></i></p>
+                    <p><i class="fa fa-user "></i><a href="/merchants?action=profile">  Thông tin</a></p>
+                    <p><i class="fa fa fa-sign-out "></i><a href="/users?action=home">  Đăng xuất</a></p>
                 </div>
             </div>
         </div>
@@ -72,66 +71,6 @@
     <div class="clearfix"></div>
     <br/>
 
-    <div class="ab box">
-        <div class="col-div-12">
-            <div class="content-box">
-                <p class="list"> Category Selling food
-                    <span>
-                            <button class="ip-add" type="submit"><a style="text-decoration: none"
-                                                                    href="/products?action=create-product">+Thêm</a></button>
-                            <button class="ip-selectAll" type="submit"><a style="text-decoration: none"
-                                                                          href="/products?action=home-merchant">Quay lại</a></button>
-                    </span>
-                </p>
-                <br/>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Món ăn</th>
-                        <th>Ảnh</th>
-                        <th>Giá tiền</th>
-                        <th>Thời gian chờ</th>
-                        <th>Tags</th>
-                        <th>Lượt xem</th>
-                        <th>Số đơn</th>
-                        <th>Ghi chú</th>
-                        <th style="width: 120px; text-align: center;">Giữ/Xoá</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${productList}" var="list">
-                        <tr>
-                            <td>${list.productName}</td>
-                            <td><img style="width: 100px; height: 100px;" src="${list.productImg}"></td>
-                            <td>
-                                Giá sản phẩm:&nbsp;<span class="price">${list.price}</span><br>
-                                Mức giảm giá:&ensp;<span class="price">${list.sale}</span><br>
-                                Phí dịch vụ:&ensp;&emsp;<span class="price">${list.serviceFee}</span>
-                            </td>
-                            <td>${list.waitTime}</td>
-                            <td>${list.view}</td>
-                            <td>${list.view}</td>
-                            <td>${list.orders}</td>
-                            <td>${list.note}</td>
-                            <td style="text-align: center;">
-                                <button class="ip-update" type="button"
-                                        onclick="location.href='/products?action=update-product&id=${list.idProduct}'">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                                <button class="ip-delete" type="button"
-                                        onclick="location.href='/products?action=delete-product&id=${list.idProduct}'">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="bb box">
         <div class="col-div-12">
             <div class="content-box">
                 <div id="button-group">
@@ -174,7 +113,7 @@
 
                 <br/>
                 <form method="post" action="/bill?action=status-bill"/>
-                <table id="table-order">
+                <table class="table-order" id="table-order">
                     <thead>
                     <tr>
                         <th>Thời gian đặt</th>
@@ -182,7 +121,7 @@
                         <th>Tổng món</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái đơn</th>
-                        <th style=" text-align: center;">Thao tác đơn</th>
+                        <th>Thao tác đơn</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -191,9 +130,9 @@
                             <td>${billList.getTimeOrder()}</td>
                             <td>${billList.getRecipientName()}</td>
                             <td>${billList.GetTotalQuantity()}</td>
-                            <td class="price">${billList.getFinalTotal()}</td>
+                            <td class="price" >${billList.getFinalTotal()}</td>
                             <td>${billList.getBillStatus()}</td>
-                            <td style=" text-align: center;">
+                            <td>
                                 <div>
                                     <c:choose>
                                         <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
@@ -227,14 +166,13 @@
                 </form>
             </div>
         </div>
-    </div>
-
 
 </div>
 <div class="clearfix"></div>
 </div>
 </body>
 <script>
+
     $(document).ready(function () {
         $(".profile p").click(function () {
             $(".profile-div").toggle();
@@ -247,18 +185,6 @@
     });
 
 
-    function listClick(id) {
-        var idDiv = id;
-        var myElement = document.getElementsByClassName("box");
-        for (var i = 0; i < myElement.length; i++) {
-            myElement[i].style.display = "none";
-        }
-        myElement = document.getElementsByClassName(idDiv + "b");
-        for (var i = 0; i < myElement.length; i++) {
-            myElement[i].style.display = "flex";
-        }
-
-    }
 
     function changeColor(buttonIndex) {
         var buttons = document.getElementsByClassName('group-button');
@@ -317,7 +243,10 @@
                 sumOrder--;
             }
 
-            if (buttonIndex == 6 && cellValue !== "Huỷ") {
+            if (buttonIndex == 6 && cellValue !== ("Nhà hàng từ chối đơn" || "Khách hàng huỷ đơn")) {
+                tr.style.display = "none";
+                sumOrder--;
+            } else if (buttonIndex == 6 && cellValue !== ("Huỷ")) {
                 tr.style.display = "none";
                 sumOrder--;
             }
@@ -335,6 +264,12 @@
         switch (status) {
             case "Đã hoàn thành":
                 cell.style.color = "green";
+                break;
+            case "Nhà hàng từ chối đơn":
+                cell.style.color = "red";
+                break;
+            case "Khách hàng huỷ đơn":
+                cell.style.color = "red";
                 break;
             case "Huỷ":
                 cell.style.color = "red";
@@ -359,12 +294,14 @@
     }
     function approveStatus(idBill) {
         document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 1;
+        document.getElementById("active").value = 2;
     }
     function showDetail(idBill) {
         document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 2;
+        document.getElementById("active").value = 3;
     }
+
+
 </script>
 
 </html>

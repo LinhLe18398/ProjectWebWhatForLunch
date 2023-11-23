@@ -28,33 +28,25 @@
 
 <div class="mySidenav">
     <p class="logo1"><span class="menu1">☰</span></p>
-    <a href="#" class="icon-a" id="a" onclick="listClick(this.id)"><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
-    <a href="#" class="icon-a" id="b" onclick="listClick(this.id)"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
+    <a href="/products?action=home-merchant" class="icon-a" id="a"><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
+    <a href="/bill?action=bill-merchant" class="icon-a" id="b"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
 </div>
 <div id="main">
 
     <div class="constructor">
         <div class="item item1">
-            <p class="nav"> What For Lunch?</p>
+            <p class="nav"> Merchant</p>
 
         </div>
-
-        <div class="item item2">
-        </div>
-
 
         <div class="item item3">
-            <div class="notification-div">
-                <hr class="hr"/>
-            </div>
             <div class="profile">
                 <img src="https://demoda.vn/wp-content/uploads/2022/09/avatar-facebook-doc-ff.jpg"
                      class="pro-img"/>
                 <p class="profile-name"><i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
                 <div class="profile-div">
-                    <p><i class="fa fa-user "><a href="/merchants?action=profile"> Profile</a></i></p>
-                    <p><i class="fa fa-cogs "><a href="/merchants?action=setting"> Settings</a></i></p>
-                    <p><i class="fa fa fa-sign-out "><a href="/users?action=home"> Log Out</a></i></p>
+                    <p><i class="fa fa-user "></i><a href="/merchants?action=profile">  Thông tin</a></p>
+                    <p><i class="fa fa fa-sign-out "></i><a href="/users?action=home">  Đăng xuất</a></p>
                 </div>
             </div>
         </div>
@@ -63,7 +55,6 @@
     <div class="clearfix"></div>
     <br/>
 
-    <div class="cb box">
         <div class="col-div-13">
             <div class="content-box">
                 <div class="form-detail">
@@ -90,12 +81,12 @@
                                 <button class="dt-cancel-order" id="dt-cancel-button"
                                         onclick="declineStatus(<c:out value="${bill.getIdBill()}"/>)"
                                         type="submit"><a id="dt-cancel-a" style="text-decoration: none"
-                                                         href="/products?action=home-merchant">Huỷ đơn hàng</a></button>
+                                                         href="/bill?action=status-bill">Huỷ đơn hàng</a></button>
                                 <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
                                 <input type="text" hidden="hidden" id="active" name="active" value="">
                             </c:when>
 
-                            <c:when test="${bill.getBillStatus() == 'Huỷ'}">
+                            <c:when test="${bill.getBillStatus() == 'Nhà hàng từ chối đơn' || bill.getBillStatus() == 'Khách hàng huỷ đơn' }">
                                 <button class="dt-cancel-order1" type="submit" disabled>
                                     <a style="text-decoration: none">Đơn hàng đã huỷ</a></button>
                             </c:when>
@@ -113,15 +104,15 @@
                     <div class="detail-time-address">
                         <div class="detail-address">
                             <h2>Địa chỉ nhận hàng</h2>
-                            <p><c:out value="${bill.getRecipientName()}"/></p>
+                            <span class="detail-sp"><c:out value="${bill.getRecipientName()}"/></span><br>
                             <span class="detail-sp" id="phoneNumber"><c:out value="${bill.getRecipientPhone()}"/></span><br>
                             <span class="detail-sp"><c:out value="${bill.getRecipientAddress()}"/></span>
                         </div>
                         <div class="detail-time">
                             <h2>Thời gian nhận hàng</h2>
-                            <span class="detail-tm">Thời gian đặt</span>&emsp;
-                            &emsp;&nbsp;<span class="detail-sp-tm" id="timeStart"><c:out value="${bill.getTimeOrder()}"/></span><br>
-                            <span class="detail-tm">Thời gian dự kiến </span>
+                            <span class="detail-sp">Thời gian đặt</span>&emsp;
+                            &emsp;<span class="detail-sp-tm" id="timeStart"><c:out value="${bill.getTimeOrder()}"/></span><br>
+                            <span class="detail-sp">Thời gian dự kiến </span>
                             <span class="detail-sp-tm" id="timeEnd"><c:out value="${bill.getTimeWait()}"/></span>
                         </div>
                     </div>
@@ -129,7 +120,7 @@
                     <hr>
 
                     <div class="detail-orders">
-                        <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}"/></h3>
+                        <h3 class="detail-h3">MÃ ĐƠN HÀNG: <c:out value="${bill.getIdBill()}"/></h3>
                         <hr>
                     </div>
 
@@ -140,7 +131,7 @@
                                 <img src="${billProduct.getProductImg()}">
                                 <div class="infor-product">
                                     <h3>${billProduct.getProductName()}</h3>
-                                    <span>Phân loại sản phẩm</span><span>${billProduct.getNote()}</span><br>
+                                    <span>Phân loại sản phẩm: </span><span>${billProduct.getNote()}</span><br>
                                     <span class="dt-number">x ${billProduct.getQuantity()}</span>
                                 </div>
                                 <div class="price-product">
@@ -154,19 +145,19 @@
                         <div class="detail-summary">
                             <div class="order-item">
                                 <span class="item-label">Tổng tiền hàng:</span>
-                                <span class="item-value price"><c:out value="${bill.getTotalPrice()}"/></span>
+                                <span class="price-simple price"><c:out value="${bill.getTotalPrice()}"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí giao hàng:</span>
-                                <span class="item-value price"><c:out value="0"/></span>
+                                <span class="price-simple price"><c:out value="0"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phí dịch vụ:</span>
-                                <span class="item-value price"><c:out value="${bill.getTotalService()}"/></span>
+                                <span class="price-simple price"><c:out value="${bill.getTotalService()}"/></span>
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Giảm giá:</span>
-                                <span class="item-value price"><c:out value="${bill.getTotalSale()}"/></span>
+                                <span class="price-simple price"><c:out value="${bill.getTotalSale()}"/></span>
                             </div>
                         </div>
                         <div class="detail-total">
@@ -176,7 +167,7 @@
                             </div>
                             <div class="order-item">
                                 <span class="item-label">Phương thức thanh toán: </span>
-                                <span class="item-value"><c:out value="${bill.getPaymentMethod()}"/></span>
+                                <span class="item-value "><c:out value="${bill.getPaymentMethod()}"/></span>
                             </div>
                         </div>
                     </div>
@@ -184,8 +175,6 @@
 
             </div>
         </div>
-    </div>
-
 </div>
 <div class="clearfix"></div>
 </div>
@@ -208,8 +197,9 @@
         let li = liElements[i];
         let liElement = li.textContent;
         li.classList.add("complete");
-        if (liElement == "Chờ nhận hàng" && status == "Huỷ") {
-            li.innerHTML = "Huỷ";
+        if (liElement == "Chờ nhận hàng" &&
+            (status == "Huỷ" || status == "Nhà hàng từ chối đơn" || status == "Khách hàng huỷ đơn")) {
+            li.innerHTML = status;
             break;
         }
 
@@ -239,7 +229,7 @@
         let numberElement = document.getElementById("phoneNumber");
         let number = numberElement.textContent;
         let del_number = number.replace('84', '');
-        numberElement.textContent = "(+84)" + del_number;
+        numberElement.textContent = "(+84) " + del_number;
     }
 
     formatNumberPhone();
@@ -262,6 +252,8 @@
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 0;
     }
+
+
 
 </script>
 

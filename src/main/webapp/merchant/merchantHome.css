@@ -35,7 +35,7 @@ body{
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #858585b8;
+    background-color: rgb(128, 128, 128);
     overflow: hidden;
     padding-top: 30px;
     transition: ease-in-out 0.1s;
@@ -43,24 +43,13 @@ body{
 }
 
 .mySidenav a {
-    padding: 15px 8px 15px 28px;
+    padding: 20px 8px 27px 24px;
     text-decoration: none;
     font-size: 20px;
     color: white;
     display: block;
 }
 
-.icon-a:hover {
-    background-color:orange;
-}
-
-.box {
-    display: none;
-}
-
-.bb{
-    display: flex;
-}
 /* ---------------------------------------------- */
 
 .logo1{
@@ -87,6 +76,9 @@ body{
     margin-left: -8px;
 }
 
+.icons:hover {
+    color: orangered;
+}
 
 /* ---------------------------------------------- */
 
@@ -108,7 +100,7 @@ body{
 .nav{
     font-size: 30px;
     cursor: pointer;
-    color: #6c7293;
+    color: orangered;
     margin: 11px 0px;
 }
 
@@ -137,7 +129,7 @@ body{
 .profile {
     display: block;
     float: right ;
-    width: 200px;
+    padding-right: 15px;
 }
 
 .profile p{
@@ -149,13 +141,10 @@ body{
     cursor: pointer;
     color: black;
     background-color: white;
-    font-weight: 500;
-    font-size: 15px;
 }
 
 .profile-div{
     background-color: white;
-    width: 140px;
     border: 1px solid #ddd;
     padding: 10px 0px;
     right: 2%;
@@ -166,6 +155,7 @@ body{
 
 }
 
+
 .profile-div p{
     margin: 0px;
     padding: 10px 20px;
@@ -173,7 +163,6 @@ body{
 
 .profile-div a {
     color: black;
-    font-family: arial, sans-serif;
     text-decoration: none;
 }
 .profile-div:after{
@@ -181,7 +170,8 @@ body{
     position: absolute;
     height: 10px;
     width: 10px;
-    background-color: white;
+    background-color: orangered;
+    color: white;
     top: -6px;
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
@@ -189,15 +179,19 @@ body{
     right: 10%;
 }
 
-
 .profile-div p:hover{
     margin: 0px;
     padding: 10px 20px;
-    background-color: orange;
-    border-radius: 0px;
+    background-color: orangered;
     color: white;
+    border-radius: 0px;
 }
 
+
+.profile-div a:hover {
+    color: black;
+    text-decoration: none;
+}
 /* ---------------------------------------------- */
 
 
@@ -210,93 +204,6 @@ body{
 
 /* ---------------------------------------------- */
 
-
-.notification-div{
-    background-color: white;
-    width: 240px;
-    border: 1px solid #ddd;
-    padding: 10px 0px;
-    right: 16%;
-    border-radius: 5px;
-    top: 12%;
-    position: absolute;
-    z-index: 9;
-    display: none;
-
-}
-.notification-div:after{
-    content: '';
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background-color: white;
-    top: -6px;
-    border-left: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    transform: rotate(45deg);
-    right: 10%;
-}
-.noti-head{
-    display: block;
-    margin: 0px;
-    color: #6c7293;
-}
-.noti-head:hover{
-    background-color: white!important;
-    color: #6c7293!important;
-}
-.noti-head span{
-    position: absolute;
-    right: 8%;
-    top: 10%;
-    background-color: #5643ff;
-    padding: 1px 5px;
-    color: white;
-    border-radius: 20px;
-}
-
-.notification-div{
-    background-color: white;
-    width: 240px;
-    border: 1px solid #ddd;
-    padding: 10px 0px;
-    right: 16%;
-    border-radius: 5px;
-    top: 12%;
-    position: absolute;
-    z-index: 9;
-    display: none;
-
-}
-.notification-div:after{
-    content: '';
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background-color: white;
-    top: -6px;
-    border-left: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    transform: rotate(45deg);
-    right: 10%;
-}
-.notification-div p{
-    margin: 0px;
-    padding: 10px 20px;
-    color: #6c7293;
-}
-.notification-div p span{
-    font-size: 11px;
-    display: block;
-}
-
-.notification-div p:hover{
-    margin: 0px;
-    padding: 10px 20px;
-    background-color: #5643ff;
-    border-radius: 0px;
-    color: white;
-}
 
 /* ---------------------------------------------- */
 
@@ -360,6 +267,20 @@ table p {
     color: black;
 }
 
+.tb-th {
+    width: 120px;
+    text-align: center;
+}
+
+.tb-td {
+    text-align: center;
+
+}
+
+.table-order th, .table-order td {
+    text-align: center;
+}
+
 /* ---------------------------------------------- */
 
 
@@ -371,7 +292,7 @@ table p {
 }
 
 .search-box {
-    width: 400px;
+    width: 900px;
     height: 45px;
     border: 1px solid #dddddd;
     border-radius: 21px;
@@ -424,27 +345,41 @@ table p {
     cursor: pointer;
 }
 .ip-add {
-    background-color:black;
+    background-color:orangered;
     color:  white;
     border-radius: 3px 0px 0px 3px;
 }
 .ip-selectAll {
     padding-left: 0px;
     border-radius: 0px 3px 3px 0px;
-    background-color: orange;
-    color: white;
+    border:1px solid orangered;
+    background-color: white;
+    color: orangered;
 }
 
-.ip-add a,
-.ip-selectAll a {
+.ip-add a {
     text-decoration: none;
     color: white;
 }
-.ip-selectAll:hover {
-    background: rgb(225, 147, 0);
+
+.ip-selectAll a {
+    text-decoration: none;
+    color: orangered;
 }
+.ip-selectAll:hover {
+    background: rgb(212, 209, 203);
+}
+
+.ip-selectAll a:hover {
+    color: orangered;
+}
+
+.ip-add a:hover {
+    color: white;
+}
+
 .ip-add:hover {
-    background: rgb(61, 50, 50);
+    background: rgb(203, 53, 53);
 }
 
 .ip-update, .ip-delete, .ip-view {
@@ -495,6 +430,7 @@ table p {
     border: 1px solid brown;
 }
 
+
 /* ---------------------------------------------- */
 
 /* Xem trạng thái đơn hàng */
@@ -520,6 +456,7 @@ table p {
 .form-group {
     display: flex;
     margin: 30px 0px 30px 0px;
+    justify-content: flex-end;
 }
 
 .form-search-one input {
@@ -581,7 +518,7 @@ table p {
     border: none;
     margin-right: 15px;
     color: white;
-    background-color: orange;
+    background-color: orangered;
 }
 
 .sp-return {
@@ -590,14 +527,15 @@ table p {
 }
 
 .sp-selectAll:hover {
-    background: rgb(225, 147, 0);
+    background: rgb(225, 67, 0);
 }
 .sp-search:hover {
-    background: rgb(225, 147, 0);
+    background: rgb(225, 41, 0);
 }
 .sp-return:hover {
     background: rgb(233, 228, 228);
 }
+
 
 
 /* ------------------------------------------------------------- */
@@ -819,4 +757,13 @@ table p {
     background-color: #f2f2f2;
     padding: 10px;
     margin-top: 10px;
+}
+
+#main-footer {
+    background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hinh-anh-background-ban-do-the-gioi_034909785.jpg");
+}
+
+#bot-footer {
+    background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hinh-anh-background-ban-do-the-gioi_034909785.jpg");
+
 }
