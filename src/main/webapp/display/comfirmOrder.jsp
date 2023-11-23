@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <style>
     .header {
@@ -39,7 +40,7 @@
         width: 500px;
         height: 400px;
         background: white;
-        margin: 100px auto;
+        margin: 210px auto;
         position: relative;
         border: 5px solid #fff;
     }
@@ -83,6 +84,7 @@
         color: red;
         float: right;
     }
+
 </style>
 <body>
 <form action="/users?action=order" method="get">
@@ -96,7 +98,7 @@
                     <nav class="navbar navbar-expand-lg navbar-light bg-light"
                          style="background-color: rgb(255,255,255,0) !important; padding-top: 0">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="#" style="color: #ffffff">Trang Chủ</a>
+                            <a class="navbar-brand" href="/users?action=home" style="color: #ffffff">Trang Chủ</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -121,17 +123,20 @@
 
                                     <li class="nav-item dropdown" style="margin-left: 20px">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
+                                           data-bs-toggle="dropdown" aria-expanded="false"
+                                           style="color: white; font-size: 18px">
                                             ${user.name}
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa
-                                                thông
+                                            <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                                 tin</a></li>
+                                            <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
+
                                             <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
                                         </ul>
                                     </li>
                                 </ul>
@@ -148,54 +153,67 @@
     <span style="box-sizing: inherit; line-height: 2.0em">
         <span style="color: #FF7F3F;font-weight: 700">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
-            Địa Chỉ Nhận Hàng
+            Địa chỉ nhận hàng
         </span>
        <div style="display: flex">
            <input class="detail-address" style="width:200px;font-weight: 800" type="text" id="recipient-name" readonly
                   disabled>
-           <input class="detail-address" style="width: 100px; font-weight: 800" type="text" id="recipient-phone"
+           <input class="detail-address" style="width: 125px; font-weight: 800" type="text" id="recipient-phone"
                   readonly disabled>
            <input class="detail-address" style="width: 400px" type="text" id="recipient-Address" readonly disabled>
 
           <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
-             style="text-decoration: none; color: blue;padding-left: 450px ">Thay Đổi</a>
+             style="text-decoration: none; color: blue;padding-left: 450px ">Thay đổi</a>
            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog" style="margin-top: 210px">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Địa Chỉ Của Tôi</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Địa chỉ của tôi</h5>
                         </div>
                         <div class="modal-body">
                            <div class="form-check " style="margin-bottom: 0">
-                               <a href="#xmas-popup" class="button"
-                                  style="text-decoration: none;float: right">Cập Nhập</a>
                                <div id="xmas-popup" class="popup" href="#">
                                     <div class="popup-content">
-                                        <label>Cập nhật địa chỉ</label>
+                                        <div style="display: inline-block">
+                                            <h5>Cập nhật địa chỉ</h5>
+                                        </div>
+                                        <div style="float: right;padding: 5px">
+                                           <a href="/users?action=order" style="list-style-type: none; float: right"><i style="color: red;padding-top: 3px; padding-right:5px; font-size: 22px" class="fas fa-times"></i></a>
+                                        </div>
                                         <hr>
+                                        <form id="updateForm" action="/users?action=updateAddress" method="post">
                                         <div style="padding: 10px">
-                                          <form action="" method="post">
                                               <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" placeholder="Họ và tên" id="update-name">
-                                            <input type="text" placeholder="Số điện thoại" id="update-phone">
+                                            <input type="text" style="margin-right: 21px;width: 220px" placeholder="Họ và tên" id="update-name" name="name">
+                                            <input type="text" style="width: 220px" placeholder="Số điện thoại" id="update-phone"
+                                                   name="phone">
                                             </p>
                                             <p>
                                                 <input style="width: 100%" type="text" placeholder="Nhập Địa chỉ"
-                                                       id="update-Address">
+                                                       id="update-Address" name="address">
                                             </p>
-                                          </form>
+                                              <div id="successMessage" style="display: none;color: green">
+                                                Cập nhật thành công!
+                                            </div>
                                          <p>
-                                            <a href="#" class="btn btn-outline-secondary">Hủy</a>
-                                            <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
+                                            <button type="button" class="btn btn-outline-primary"
+                                                    onclick="submitUpdateForm()">Xác nhận</button>
                                          </p>
                                         </div>
+                                        </form>
                                     </div>
                                </div>
                                <form action="/users?action=delete-address" method="post">
                                <c:forEach items="${address}" var="showAddress">
+
+                                   <a href="#xmas-popup"
+                                      onclick="selectAddressForUpdate('${showAddress.idAddress}', '${showAddress.recipientName}', '${showAddress.recipientPhone}', '${showAddress.detailedAddress}')"
+                                      class="button"
+                                      style="text-decoration: none;float: right">Cập nhật</a>
+
                                    <label class="form-check-label" for="flexRadioDefault1" style="padding-right: 10px">
                                        <input class="form-check-input" onclick="selectAddress(${showAddress.idAddress})"
                                               type="radio" name="flexRadioDefault" id="flexRadioDefault1"
@@ -228,15 +246,15 @@
                                         </p>
                                         <p>
                                         <button type="button" class="btn btn-outline-secondary" onclick="closeForm()">Hủy</button>
-                                        <button type="submit" class="btn btn-outline-primary">Xác Nhận</button>
+                                        <button type="submit" class="btn btn-outline-primary">Xác nhận</button>
                                     </p>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-<%--                            <button type="button" class="btn btn-secondary">Hủy</button>--%>
-                            <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác Nhận</button>
+                            <button type="button" class="btn btn-secondary ss" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-primary ss" data-bs-dismiss="modal">Xác nhận</button>
                         </div>
                     </div>
                 </div>
@@ -250,8 +268,8 @@
        <table id="cart" class="table table-condensed">
             <thead>
                 <tr>
-                    <th style="width:50%">Sản Phẩm</th>
-                    <th style="width:10%">Đơn Giá</th>
+                    <th style="width:50%">Sản phẩm</th>
+                    <th style="width:10%">Đơn giá</th>
                     <th style="width:8%">Số lượng</th>
                     <th style="width:22%" class="text-center">Thành tiền</th>
                 </tr>
@@ -281,8 +299,8 @@
                 </tr>
                  <td>
                     <div style="padding: 10px; width: 100%">
-                      <label style="padding-right: 10px">Lời Nhắn:</label>
-                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho Người bán...">
+                      <label style="padding-right: 10px">Lời nhắn:</label>
+                      <input name="orderNote" style="height: 30px" type="text" placeholder="Lưu ý cho người bán...">
                     </div>
                  </td>
              </c:forEach>
@@ -299,7 +317,7 @@
                     <div style="margin-right: 600px">
                         <select name="paymentMethod" class="form-select" aria-label="Default select example"
                                 style="width: 400px" onchange="select(this.value)">
-                          <option selected>Phương Thức Thanh Toán</option>
+                          <option selected>Phương thức thanh toán</option>
                           <option value="COD">Thanh toán khi nhận hàng</option>
                           <option value="Card">Thanh toán luôn</option>
                         </select>
@@ -348,17 +366,74 @@
                 <tr style="float: left;padding-top: 10px">
                      <td style="float: left">
                           <a style="float: left;text-decoration: none;color: #FF7F3F" href="/users?action=home"><i
-                                  class="fa fa-angle-left"></i>Trang chủ</a>
+                                  class="fa fa-angle-left"></i>Trang Chủ</a>
                      </td>
                 </tr>
            </tfoot>
        </table>
     </span>
     </div>
+
+
 </form>
 
 </body>
 <script>
+    function submitUpdateForm() {
+        var addressId = document.getElementById("updateAddressId").value;
+        var name = document.getElementById("update-name").value;
+        var phone = document.getElementById("update-phone").value;
+        var address = document.getElementById("update-Address").value;
+
+        var confirmation = confirm("Bạn có chắc muốn cập nhật địa chỉ?");
+        if (confirmation) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/users?action=updateAddress", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    showSuccessMessage();
+                }
+            };
+            var data = "addressId=" + encodeURIComponent(addressId) +
+                "&name=" + encodeURIComponent(name) +
+                "&phone=" + encodeURIComponent(phone) +
+                "&address=" + encodeURIComponent(address);
+
+            xhr.send(data);
+        }else {
+            hidePopup();
+        }
+
+    }
+
+    function showSuccessMessage() {
+        var successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+    }
+
+    function selectAddressForUpdate(id, name, phone, address) {
+        document.getElementById("updateAddressId").value = id;
+        document.getElementById("update-name").value = name;
+        document.getElementById("update-phone").value = phone;
+        document.getElementById("update-Address").value = address;
+
+        openPopup();
+    }
+
+    function openPopup() {
+        var popup = document.getElementById("xmas-popup");
+        popup.style.display = "block";
+    }
+
+    function hidePopup(event) {
+        event.preventDefault();
+        var popup = document.getElementById("xmas-popup");
+        popup.style.display = "none";
+    }
+
+
     let totalProduct = 0;
     let price = document.getElementsByClassName("price");
     let id = document.getElementsByClassName("id");
@@ -372,8 +447,8 @@
         let dataPrice = price[i].innerHTML;
         let dataQuantity = quantity[i].innerHTML;
         let totalPrice = dataPrice * dataQuantity;
-        total[i].innerHTML = totalPrice + "₫";
-        price[i].innerHTML = dataPrice + "₫";
+        total[i].innerHTML = totalPrice + " ₫";
+        price[i].innerHTML = dataPrice + " ₫";
         quantity[i].innerHTML = dataQuantity;
         listId.value += "/" + id[i].value;
         listQuantity.value += "/" + quantity[i].innerHTML;
@@ -382,7 +457,7 @@
     console.log(listId.value)
     console.log(listQuantity.value)
 
-    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + "₫";
+    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + " ₫";
 
     function openForm() {
         let address = document.getElementsByClassName("card-address");

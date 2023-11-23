@@ -11,8 +11,9 @@ public class ProductDAO implements ProductInterface{
 
       private String password = "1111";
 
-     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
-     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
+
+    private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
+    private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
     private final String CREATE_PRODUCT_QUERY = "{CALL CREATE_NEW_PRODUCT(?,?,?,?,?,?,?,?)}";
     private final String UPDATE_PRODUCT_QUERY = "{CALL UPDATE_PRODUCT_BY_ID(?,?,?,?,?,?,?,?)}";
     private final String DELETE_PRODUCT_QUERY = "{CALL DELETE_PRODUCT_BY_ID(?)}";
@@ -30,6 +31,7 @@ public class ProductDAO implements ProductInterface{
 
     private final String GET_RESTAURANT_MERCHANT = "{CALL GET_RESTAURANT_MERCHANT(?)}";
 
+    private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?)}";
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
         Class.forName("com.mysql.jdbc.Driver");
@@ -335,12 +337,26 @@ public class ProductDAO implements ProductInterface{
         CallableStatement callableStatement = connection.prepareCall(GET_RESTAURANT_MERCHANT);
         for (Product product : products) {
             String idMerchant = product.getIdMerchant();
-            callableStatement.setString(1,idMerchant);
+            callableStatement.setString(1, idMerchant);
             ResultSet resultSet = callableStatement.executeQuery();
             resultSet.next();
             restaurantNames.add(resultSet.getString("restaurantName"));
             resultSet.close();
         }
         return restaurantNames;
+    }
+
+    @Override
+    public String getStatusFavourite(int idUser, int idProduct) throws SQLException, ClassNotFoundException {
+        String status = "";
+        CallableStatement callableStatement = getConnection().prepareCall(GET_STATUS_FAVOURITE_PRODUCT);
+        callableStatement.setInt(1, idUser);
+        callableStatement.setInt(2, idProduct);
+        callableStatement.registerOutParameter(3, Types.VARCHAR);
+
+        callableStatement.execute();
+
+        status = callableStatement.getString(3);
+        return status;
     }
 }

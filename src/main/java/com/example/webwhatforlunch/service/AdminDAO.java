@@ -39,5 +39,4 @@ public class AdminDAO implements AdminInterface{
         callableStatement.setInt(2, number);
         callableStatement.executeUpdate();
     }
-
 }

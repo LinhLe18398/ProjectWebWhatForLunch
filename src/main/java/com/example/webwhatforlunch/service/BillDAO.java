@@ -114,7 +114,26 @@ public class BillDAO {
         return billList;
     }
 
-
+    public List<Product> getProductListInBill(Connection connection, int idBill) throws SQLException {
+        CallableStatement callableStatement = connection.prepareCall(GET_PRODUCT_IN_BILL);
+        callableStatement.setInt(1, idBill);
+        ResultSet rs = callableStatement.executeQuery();
+        List<Product> productList = new ArrayList<>();
+        while (rs.next()) {
+            String idProduct = rs.getString("idProduct");
+            String productImg = rs.getString("productImg");
+            String productName = rs.getString("productName");
+            String note = rs.getString("note");
+            int waitTime = rs.getInt("waitTime");
+            int price = rs.getInt("price");
+            int sale = rs.getInt("sale");
+            int serviceFee = rs.getInt("serviceFee");
+            int quantity = rs.getInt("quantity");
+            Product product = new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee, quantity);
+            productList.add(product);
+        }
+        return productList;
+    }
 
     private List<Bill> filterIdMerchant(String idBill, List<Bill> billList) {
         List<Bill> listBillFilter = new ArrayList<Bill>();
@@ -250,25 +269,6 @@ public class BillDAO {
         }
         return productList;
     }
-    public List<Product> getProductListInBill(Connection connection, int idBill) throws SQLException {
-        CallableStatement callableStatement = connection.prepareCall(GET_PRODUCT_IN_BILL);
-        callableStatement.setInt(1, idBill);
-        ResultSet rs = callableStatement.executeQuery();
-        List<Product> productList = new ArrayList<>();
-        while (rs.next()) {
-            String idProduct = rs.getString("idProduct");
-            String productImg = rs.getString("productImg");
-            String productName = rs.getString("productName");
-            String note = rs.getString("note");
-            int waitTime = rs.getInt("waitTime");
-            int price = rs.getInt("price");
-            int sale = rs.getInt("sale");
-            int serviceFee = rs.getInt("serviceFee");
-            int quantity = rs.getInt("quantity");
-            Product product = new Product(idProduct, productName, productImg, waitTime, price, note, sale, serviceFee, quantity);
-            productList.add(product);
-        }
-        return productList;
-    }
+
 
 }

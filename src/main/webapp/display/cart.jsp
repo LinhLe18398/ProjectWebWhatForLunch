@@ -13,8 +13,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
 </head>
 <style>
+
     @media screen and (max-width: 600px) {
         table#cart tbody td .form-control {
             width: 20%;
@@ -73,10 +82,97 @@
 
     .form-control {
         width: 30px;
-        padding: 5px;
+        text-align: center;
     }
+
+    .header {
+        /*display: flex;*/
+        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-color: rgb(255, 255, 255, 0.5) !important;
+        padding-top: 11px;
+        height: 95px;
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+    }
+
+
 </style>
 </style>
+
+<body>
+<div class="header container">
+    <div class="overlay"></div>
+    <div class="navbar" style="margin-left: 600px">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"
+             style="background-color: rgb(255,255,255,0) !important;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px; padding-top: 13px">Trang
+                    chủ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown" style="margin-left: 20px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false"
+                               style="color: white; font-size: 20px">Nhà hàng</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                    nhà hàng của tôi</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item dropdown" style="margin-left: 20px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false"
+                               style="color: white; font-size: 20px">
+                                ${user.name}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
+                                    tin</a></li>
+                                <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown" style="margin-left: 20px">
+                            <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
+                               style="color: white; font-size: 19px">
+                                Giỏ hàng
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
 <nav>
     <div class="container">
         <div style="color:#FF7F3F ; padding: 20px ; font-size: 50px">
@@ -84,9 +180,11 @@
         </div>
     </div>
 </nav>
-<body>
-<div class="container">
-    <table id="cart" class="table table-hover table-condensed">
+
+
+
+<div class="container" style="min-height: 500px" >
+    <table id="cart" class="table table-hover table-condensed" style=" min-height: 300px">
         <thead>
         <tr>
             <th style="width:50%">Mặt hàng</th>
@@ -138,13 +236,13 @@
         </tbody>
         <tfoot>
         <tr>
-            <td><a href="/users?action=home" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Trang chủ</a>
+            <td ><a  href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px "><i class="fa fa-angle-left"></i>Trang chủ</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
             <td>
                 <form action="/users?action=order" method="post">
-                    <input type="submit" id="btnn" class="btn btn-success btn-block" value="Mua">
+                    <input type="submit" id="btnn" class="btn btn-success btn-block" value="Mua" style="width: 107px; height: 37px; font-size: 16px; margin-top: 15px">
                     <input hidden="hidden" type="text" id="idProduct" name="idProduct" value="${param.idProduct}">
                     <input hidden="hidden" type="text" id="quantity" name="quantity" value="${param.quantity}">
                 </form>
@@ -153,6 +251,58 @@
         </tfoot>
     </table>
 </div>
+
+
+<footer class="text-center text-lg-start bg-light text-muted">
+    <section style="height: 54px" class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    </section>
+    <section class="" style="height: 243px">
+        <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 104px">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
+                    </h6>
+                    <p style="font-size: 16px">
+                        Here you can order all delicious Vietnamese dishes.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        Sản phẩm
+                    </h6>
+                    <p style="font-size: 16px">Thông tin</p>
+                    <p style="font-size: 16px">Trợ giúp</p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        Thành viên
+                    </h6>
+                    <p style="font-size: 16px">Ngoc Linh</p>
+                    <p style="font-size: 16px">Van Tuan</p>
+                    <p style="font-size: 16px">Cat Hai</p>
+                    <p style="font-size: 16px">Gia Minh</p>
+                    <p style="font-size: 16px">Minh Hieu</p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        Liên hệ
+                    </h6>
+                    <p style="font-size: 16px">Hoài Đức - Hà Nội</p>
+                    <p style="font-size: 16px">
+                        WebWhatForLunch@gmail.com
+                    </p>
+                    <p style="font-size: 16px"> +84 88658023</p>
+                    <p style="font-size: 16px"> +84 38301773</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center p-4" style="background-color: lightgray; height: 70px;font-size: 21px; text-align: center">
+        © 2023 WebWhatForLunch
+    </div>
+</footer>
+
 </body>
 </html>
 <script>
@@ -211,7 +361,6 @@
         }
 
         let check = listRes[0];
-        for ()
         document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + "₫";
     }
 

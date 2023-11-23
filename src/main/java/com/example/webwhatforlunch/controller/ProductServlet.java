@@ -35,6 +35,7 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -61,7 +62,30 @@ public class ProductServlet extends HttpServlet {
             case "update-quantity":
                 updateQuantity(req, resp);
                 break;
+            case "dish-detail":
+                try {
+                    getProductByIdToDishDetail(req,resp);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
         }
+    }
+
+    private void getProductByIdToDishDetail(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+
+        String productId = req.getParameter("productId");
+        Product product = productDAO.getProductById(productId);
+        req.setAttribute("product",product);
+        req.setAttribute("user", user);
+        List<Product> productRecommend = productDAO.getRecommendProduct();
+        req.setAttribute("productRecommend", productRecommend);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
+        requestDispatcher.forward(req,resp);
     }
 
     private void showProductInCart(HttpServletRequest req, HttpServletResponse resp) {
@@ -134,6 +158,7 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -167,8 +192,6 @@ public class ProductServlet extends HttpServlet {
 
 
     private void createProduct(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-
         HttpSession session = req.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
         String idMerchant = merchant.getIdMerchant();
@@ -222,10 +245,16 @@ public class ProductServlet extends HttpServlet {
         String idProduct = req.getParameter("id");
         int idUser = user.getId();
         List<Product> productList = null;
+        List<Product> productBestSale = null;
+        List<Product> productRecommend = null;
         try {
             productDAO.addProductToCart(idUser, idProduct);
             productList = userDAO.get_All_Product();
+            productBestSale = productDAO.getBestSaleProduct();
+            productRecommend = productDAO.getRecommendProduct();
             httpSession.setAttribute("pro", productList);
+            httpSession.setAttribute("productBestSale", productBestSale);
+            httpSession.setAttribute("productRecommend", productRecommend);
             req.getRequestDispatcher("home/userHome.jsp").forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {
             e.printStackTrace();

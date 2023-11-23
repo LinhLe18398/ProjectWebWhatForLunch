@@ -17,7 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/admin")
 
-public class AdminServlet extends HttpServlet {
+public class  AdminServlet extends HttpServlet {
     private AdminDAO adminDAO;
     private UserDAO userDAO;
 
@@ -29,6 +29,7 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -63,6 +64,7 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
