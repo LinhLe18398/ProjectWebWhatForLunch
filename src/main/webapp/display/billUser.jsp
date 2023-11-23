@@ -189,14 +189,20 @@
                                         type="submit" class="btn btn-outline-danger"
                                         onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4ac1de2eac672a1bae2a31c962c672baa98b5b6
                             <c:when test="${(listBillUser.getBillStatus() == 'Huỷ' ||
                             listBillUser.getBillStatus() == 'Nhà hàng từ chối đơn' ||
                             listBillUser.getBillStatus() == 'Khách hàng huỷ đơn') ||
                             listBillUser.getBillStatus() == 'Đã hoàn thành' }">
                                 <button style="display: inline;  height: 45px; width: 190px; color: orangered"
                                         type="submit" class="btn btn-outline-dark">Mua lại</button>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4ac1de2eac672a1bae2a31c962c672baa98b5b6
                             </c:when>
 
                             <c:otherwise>
@@ -275,7 +281,10 @@
 
 
 </body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4ac1de2eac672a1bae2a31c962c672baa98b5b6
 <script>
     function changeColor(buttonIndex) {
         var buttons = document.getElementsByClassName('group-button');

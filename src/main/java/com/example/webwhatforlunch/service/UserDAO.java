@@ -14,6 +14,7 @@ public class UserDAO implements UserInterface {
 
     private final String password = "mySQL7122023@";
 
+
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {

@@ -61,19 +61,8 @@
 
 </head>
 <style>
-    .btn {
-        box-shadow: none !important;
-    }
-    ::placeholder {
-        font-size: 16px;
-    }
-
     body {
         max-height: 100%;
-    }
-
-    .col-md-3 {
-        flex: 0 0 23%;
     }
 
     @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
@@ -103,7 +92,6 @@
     .text-content {
         /*margin-top: 40px;*/
         text-align: center;
-        margin-top: 28px;
     }
 
     .search {
@@ -112,12 +100,10 @@
     }
 
     .header {
-        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+        background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-food-overlooking-the-background-banner-image_138613.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        position: relative;
         background-color: rgb(255, 255, 255, 0.5) !important;
-        height: 700px;
     }
 
     .listPage {
@@ -132,14 +118,6 @@
         display: inline-block;
         margin: 0 10px;
         cursor: pointer;
-    }
-
-    .header .overlay {
-        opacity: 0.5;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
     }
 
     .listPage .active {
@@ -181,17 +159,15 @@
 </style>
 <body>
 <div class="header">
-    <div class="overlay"></div>
     <input type="text" value="${user.id}" id="idUser" hidden="hidden">
     <div class="div-login-signup" id="button-full" style="float: right; margin:8px 6px 0px 0px">
         <a href="/users?action=login">
-            <button type="submit" class="btn btn-primary btn-sm" style="position: relative">Đăng Nhập</button>
+            <button type="submit" class="btn btn-primary btn-sm">Đăng Nhập</button>
         </a>
         <a href="/users?action=create">
-            <button type="submit" class="btn btn-secondary btn-sm" style="position: relative">Đăng Kí</button>
+            <button type="submit" class="btn btn-secondary btn-sm">Đăng Kí</button>
         </a>
     </div>
-    <div style="clear: both"></div>
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -206,30 +182,20 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
                                    style="color: white; font-size: 18px">
                                     Nhà hàng
                                 </a>
-
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <c:if test="${sessionScope.isLogin == true}">
-                                        <li id="button-hidden">
-                                            <a class="dropdown-item" href="/users?action=merchant">Đăng ký nhà hàng</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.isLogin == true}">
-                                        <input type="text" hidden="hidden" id="IdMerchant"
-                                               value="${merchantId.idMerchant}">
-                                        <li id="button-merchant">
-                                            <a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
-                                                nhà hàng của tôi</a>
-                                        </li>
-                                    </c:if>
+                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                        nhà hàng của tôi</a></li>
                                 </ul>
-
                             </li>
+
+
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
@@ -239,13 +205,12 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                         tin</a></li>
-                                    <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
+                                    </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
-
                                 </ul>
                             </li>
 
@@ -263,8 +228,8 @@
         </div>
     </c:if>
     <div class="text-content">
-        <h1 style="color: white; position: relative">Khám phá những món ăn ngon nhất &</h1>
-        <h1 style="color: white; position: relative">Đồ uống ở Hà Nội</h1>
+        <h1 style="color: white;">Khám phá những món ăn ngon nhất &</h1>
+        <h1 style="color: white">Đồ uống ở Hà Nội</h1>
     </div>
     <%--search--%>
     <div class="search">
@@ -296,11 +261,11 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" action="/bill" method="get">
+                            <form id="search-name" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
-                                <button type="submit" style="height: 60px; font-size: 16px" class="btn btn-danger"
+                                <button type="submit" style="height: 60px" class="btn btn-danger"
                                         onclick="searchByName()">Tìm kiếm
                                 </button>
                             </form>
@@ -331,26 +296,6 @@
                                                     <h6>${productBestSale.productName}</h6>
 
                                                     <p style="color:black;">${productBestSale.price}&#8363</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="owl-item cloned" style="width: 91.25px;">
-
-                                        <div class="item">
-
-                                            <div class="osahan-category-item" style="height: 120px">
-
-                                                <a href="#">
-
-                                                    <img class="img-fluid" style="height: 65px"
-                                                         src="${productBestSale.productImg}">
-
-                                                    <h6>${productBestSale.productName}</h6>
-
-                                                    <p style="color: black">${productBestSale.price}&#8363</p>
 
                                                 </a>
 
@@ -384,6 +329,8 @@
                                 </c:forEach>
 
 
+
+
                             </div>
                         </div>
                         <div class="owl-nav">
@@ -410,9 +357,11 @@
 
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
+
+
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
 
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productRecommend.productImg}" alt="Card image cap"
@@ -422,14 +371,13 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}"
-                              style="cursor: pointer;"
+                        <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
                             <h5 class="card-title"
 
-                                style=" width: 100%; height: 56px;font-weight: bold;font-size: 23px ;margin-top: 10px;overflow: hidden">${productRecommend.productName}
+                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productRecommend.productName}
                                 - ${productRecommend.restaurantName}
                             </h5>
                             <p class="card-text ">
@@ -453,12 +401,16 @@
                                href="/products?action=add-product-cart&id=${productRecommend.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
+
                         </p>
                     </div>
                 </div>
             </div>
         </c:forEach>
+
     </div>
+
+
     <%--8 món ăn được giảm giá nhất --%>
 
 
@@ -466,7 +418,7 @@
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid lightgray ;width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${productBestSale.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -475,14 +427,13 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}"
-                              style="cursor: pointer;"
+                        <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${productBestSale.idProduct}"/>
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
                             <h5 class="card-title"
 
-                                style=" width: 100%;height: 56px;font-weight: bold;font-size: 22px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
+                                style=" width: 100%; height: 46px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
                                 - ${productBestSale.restaurantName}
                             </h5>
                             <p class="card-text ">
@@ -506,18 +457,21 @@
                                href="/products?action=add-product-cart&id=${productBestSale.idProduct}"
                                class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i> </a>
                         </c:if>
+
                         </p>
                     </div>
                 </div>
             </div>
         </c:forEach>
+
+
     </div>
     <%--Menu main--%>
     <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
     <div class="row mb-2 list" style="padding-top: 50px;">
         <c:forEach items="${pro}" var="pro">
             <div class="col-md-3 col-6  item"
-                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                 style="width:20%; border-radius: 20px 20px 20px 20px; padding: 10px; max-height: 100%; max-width: 100%">
                 <div style="width: 100%; height: 210px">
                     <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
                          style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
@@ -525,15 +479,16 @@
                 <div class="card-body"
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
+                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${pro.idProduct}"/>
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
                             <h5 class="card-title"
-                                style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
+                                style=" width: 100%; height: 46px; margin: 0;overflow: hidden">${pro.productName}
                                 - ${pro.restaurantName}
                             </h5>
                             <p class="card-text ">
+
                                 <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
                             <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
                                                              style="color: #2b3240;"></i></div>
@@ -565,9 +520,9 @@
 <!-- Footer -->
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
-    <%--    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--%>
-    <%--    </section>--%>
-    <section class="" style="padding-top: 10px; margin-top: 30px">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    </section>
+    <section class="">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 40px">
@@ -575,7 +530,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
+                        Here you can order all delicious Vietnamese dishes.
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
@@ -616,9 +571,6 @@
 </footer>
 
 
-
-
-
 </body>
 </html>
 <script>
@@ -654,21 +606,6 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
-
-
-    var idMerchant = document.getElementById("IdMerchant").value;
-    if (idMerchant !== "") {
-        document.getElementById("button-merchant").style.display = "block";
-    } else {
-        document.getElementById("button-merchant").style.display = "none";
-    }
-    var idMerchant = document.getElementById("IdMerchant").value;
-    if (idMerchant !== "") {
-        document.getElementById("button-hidden").style.display = "none";
-    } else {
-        document.getElementById("button-hidden").style.display = "block";
-    }
-
 
     let thisPage = 1;
     let limit = 8;

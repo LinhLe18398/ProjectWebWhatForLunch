@@ -116,6 +116,9 @@ public class ProductServlet extends HttpServlet {
             req.setAttribute("user", user);
         }
         req.setAttribute("product",product);
+        req.setAttribute("user", user);
+        List<Product> productRecommend = productDAO.getRecommendProduct();
+        req.setAttribute("productRecommend", productRecommend);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
         requestDispatcher.forward(req,resp);
     }
@@ -125,7 +128,9 @@ public class ProductServlet extends HttpServlet {
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("user");
             List<Product> productCart = productDAO.getAllProductByIdUser(user.getId());
-            req.setAttribute("productCart", productCart);
+            List<String> nameMerchant = productDAO.getRestaurants(productCart);
+            req.setAttribute("products", productCart);
+            req.setAttribute("restaurants", nameMerchant);
             RequestDispatcher dispatcher = req.getRequestDispatcher("display/cart.jsp");
             dispatcher.forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {

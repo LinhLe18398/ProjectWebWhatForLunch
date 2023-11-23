@@ -29,6 +29,8 @@ public class ProductDAO implements ProductInterface{
     private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
     private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
 
+    private final String GET_RESTAURANT_MERCHANT = "{CALL GET_RESTAURANT_MERCHANT(?)}";
+
     private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?, ?)}";
 
     private final String ADD_TO_FAVOURITE = "{CALL ADD_TO_FAVORITE(?, ?)}";
@@ -269,13 +271,13 @@ public class ProductDAO implements ProductInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
             String productImg = resultSet.getString("productImg");
             int price = resultSet.getInt("price");
             String note = resultSet.getString("note");
             int quantity = resultSet.getInt("quantity");
-            productList.add(new Product(idProduct, productName, productImg, price, note, quantity));
-
+            productList.add(new Product(idProduct,idMerchant,productName,productImg,price,note,quantity));
         }
         return productList;
     }
@@ -331,6 +333,21 @@ public class ProductDAO implements ProductInterface{
             productList.add(new Product(idProduct,idMerchant,productName,restaurantName,productImg,waitTime,price, sale,address));
         }
         return productList;
+    }
+
+    public List<String> getRestaurants(List<Product> products) throws SQLException, ClassNotFoundException {
+        List<String> restaurantNames = new ArrayList<String>();
+        Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(GET_RESTAURANT_MERCHANT);
+        for (Product product : products) {
+            String idMerchant = product.getIdMerchant();
+            callableStatement.setString(1, idMerchant);
+            ResultSet resultSet = callableStatement.executeQuery();
+            resultSet.next();
+            restaurantNames.add(resultSet.getString("restaurantName"));
+            resultSet.close();
+        }
+        return restaurantNames;
     }
 
     @Override

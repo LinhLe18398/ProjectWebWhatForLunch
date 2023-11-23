@@ -112,10 +112,10 @@
     <div class="left-content" style="float: left">
         <img style="height: 321px; width: 516px; "
              src="${product.productImg}">
-
     </div>
 
     <div class="right-content" style="float: left">
+<<<<<<< HEAD
 
         <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
 
@@ -129,6 +129,20 @@
             gian chế biến: ${product.waitTime} phút</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>
             Giá tiền: ${product.price} &#8363</p>
+=======
+        <div style="display: flex">
+            <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
+            <c:if test="${sessionScope.isLogin==true}">
+                <a style="margin-left: auto;padding:5px 5px 0px 5px; color: white; text-decoration: none; background-color: orangered"
+                   href="/products?action=set-status-like&idProduct=${product.idProduct}">${statusLike}</a>
+            </c:if>
+        </div>
+        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i>   Lượt xem: ${product.view}  </p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt đã đặt: ${product.orders}</p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi chú: ${product.note}</p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời gian chế biến: ${product.waitTime} phút</p>
+        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i> Giá tiền: ${product.price} &#8363</p>
+>>>>>>> b4ac1de2eac672a1bae2a31c962c672baa98b5b6
         <p>
             <c:if test="${sessionScope.isLogin==true}">
                 <a style="margin-left: 98px; background-color: orangered; height: 38px "

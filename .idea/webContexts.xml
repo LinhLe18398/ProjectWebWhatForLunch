@@ -5,10 +5,17 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/display/comfirmOrder.jsp" value="file://$PROJECT_DIR$/src/main/webapp/display" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <entry key="file://$PROJECT_DIR$/src/main/webapp/merchant/merchantHome.jsp" value="file://$PROJECT_DIR$/src/main/webapp/merchant" />
 =======
         <entry key="file://$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" value="file://$PROJECT_DIR$/src/main/webapp/home" />
 >>>>>>> d6e2b067010382f582014db7520648241c0f5601
+=======
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/home/userHome.jsp" value="file://$PROJECT_DIR$/src/main/webapp/home" />
+=======
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/merchant/merchantHome.jsp" value="file://$PROJECT_DIR$/src/main/webapp/merchant" />
+>>>>>>> e4f7adfc74ef17a87ab6a42a3d6dd50ae6d587cd
+>>>>>>> b4ac1de2eac672a1bae2a31c962c672baa98b5b6
         <entry key="file://$PROJECT_DIR$/src/main/webapp/product/dish-details.jsp" value="file://$PROJECT_DIR$/src/main/webapp/product" />
       </map>
     </option>
