@@ -273,10 +273,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Đồ ăn sáng</option>
-                                    <option value="Coffee">Cafe</option>
-                                    <option value="Lunch">Đồ ăn trưa</option>
-                                    <option value="Dinner">Đồ ăn tối</option>
+                                    <option value="Bữa sáng">Đồ ăn sáng</option>
+                                    <option value="Cà phê">Cafe</option>
+                                    <option value="Bữa trưa">Đồ ăn trưa</option>
+                                    <option value="Bữa tối">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
