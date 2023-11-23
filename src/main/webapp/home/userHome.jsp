@@ -284,10 +284,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Đồ ăn sáng</option>
-                                    <option value="Coffee">Cafe</option>
-                                    <option value="Lunch">Đồ ăn trưa</option>
-                                    <option value="Dinner">Đồ ăn tối</option>
+                                    <option value="Bữa sáng">Bữa sáng</option>
+                                    <option value="Cà phê">Cà phê</option>
+                                    <option value="Bữa trưa">Bữa trưa</option>
+                                    <option value="Bữa tối">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
@@ -296,7 +296,7 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" action="/bill" method="get">
+                            <form id="search-name" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
@@ -562,12 +562,11 @@
     </div>
     <ul class="listPage"></ul>
 </div>
-<!-- Footer -->
+
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
-<%--    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--%>
-<%--    </section>--%>
-    <section class="" style="padding-top: 10px; margin-top: 30px">
+
+    <section class="" style="padding-top: 2px; margin-top: 60px;">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 40px">
@@ -575,7 +574,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
+                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
@@ -616,9 +615,6 @@
 </footer>
 
 
-
-
-
 </body>
 </html>
 <script>
@@ -654,22 +650,6 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
-
-
-    var idMerchant = document.getElementById("IdMerchant").value;
-    if (idMerchant !== "") {
-        document.getElementById("button-merchant").style.display = "block";
-    } else {
-        document.getElementById("button-merchant").style.display = "none";
-    }
-    var idMerchant = document.getElementById("IdMerchant").value;
-    if (idMerchant !== "") {
-        document.getElementById("button-hidden").style.display = "none";
-    } else {
-        document.getElementById("button-hidden").style.display = "block";
-    }
-
-
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');
