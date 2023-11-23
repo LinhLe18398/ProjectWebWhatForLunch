@@ -555,8 +555,7 @@
             </div>
         </c:forEach>
     </div>
-    <ul class="listPage"></ul>
-</div>
+ </div>
 <!-- Footer -->
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">

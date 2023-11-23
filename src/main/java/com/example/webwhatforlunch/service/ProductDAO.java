@@ -113,7 +113,7 @@ public class ProductDAO implements ProductInterface{
 
         rowUpdated = callableStatement.executeUpdate() > 0;
 
-        return true;
+        return rowUpdated;
     }
 
     @Override

@@ -46,9 +46,7 @@ public class ProductServlet extends HttpServlet {
             case "update-product":
                 showUpdateProductForm(req, resp);
                 break;
-            case "delete-product":
-                deleteProduct(req, resp);
-                break;
+
             case "home-merchant":
                 showAllProductMerchant(req, resp);
                 break;
@@ -206,6 +204,9 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "update-product" :
                 updateProduct(req, resp);
+                break;
+            case "delete-product":
+                deleteProduct(req, resp);
                 break;
             case "search":
                 try {

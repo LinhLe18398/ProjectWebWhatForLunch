@@ -99,7 +99,7 @@
                 <c:forEach items="${productList}" var="list">
                     <tr>
                         <td>${list.productName}</td>
-                        <td><img style="width: 100px; height: 100px;" src="${list.productImg}"></td>
+                        <td><img style="width: 150px; height: 100px;" src="${list.productImg}"></td>
                         <td>
                             Giá sản phẩm:&nbsp;<span class="price">${list.price}</span><br>
                             Mức giảm giá:&ensp;<span class="price">${list.sale}</span><br>
@@ -110,7 +110,7 @@
                         <td class="tb-td">${list.view}</td>
                         <td class="tb-td">${list.orders}</td>
                         <td>${list.note}</td>
-                        <td class="tb-td">
+                        <td style="text-align: center;">
                             <button class="ip-update" type="button"
                                     onclick="location.href='/products?action=update-product&id=${list.idProduct}'">
                                 <i class="fa fa-pencil"></i>
