@@ -189,6 +189,7 @@
         </a>
     </div>
     <div style="clear: both"></div>
+
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -209,24 +210,13 @@
                                    style="color: white; font-size: 18px">
                                     Nhà hàng
                                 </a>
-
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <c:if test="${sessionScope.isLogin == true}">
-                                        <li id="button-hidden">
-                                            <a class="dropdown-item" href="/users?action=merchant">Đăng ký nhà hàng</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.isLogin == true}">
-                                        <input type="text" hidden="hidden" id="IdMerchant"
-                                               value="${merchantId.idMerchant}">
-                                        <li id="button-merchant">
-                                            <a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
-                                                nhà hàng của tôi</a>
-                                        </li>
-                                    </c:if>
+                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                        nhà hàng của tôi</a></li>
                                 </ul>
-
                             </li>
+
+
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
@@ -236,7 +226,9 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                         tin</a></li>
-                                    <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/users?action=billUser">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -281,10 +273,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Đồ ăn sáng</option>
-                                    <option value="Coffee">Cafe</option>
-                                    <option value="Lunch">Đồ ăn trưa</option>
-                                    <option value="Dinner">Đồ ăn tối</option>
+                                    <option value="Bữa sáng">Bữa sáng</option>
+                                    <option value="Cà phê">Cà phê</option>
+                                    <option value="Bữa trưa">Bữa trưa</option>
+                                    <option value="Bữa tối">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
@@ -293,7 +285,7 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" action="/bill" method="get">
+                            <form id="search-name" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
@@ -328,8 +320,11 @@
                                                     <h6>${productBestSale.productName}</h6>
 
                                                     <p style="color:black;">${productBestSale.price}&#8363</p>
+
                                                 </a>
+
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -407,6 +402,8 @@
 
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
+
+
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
                  style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
@@ -419,11 +416,10 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}"
-                              style="cursor: pointer;"
+                        <form method="get" id="restaurant${productRecommend.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productRecommend.idMerchant}"/>
                             <h5 class="card-title"
 
                                 style=" width: 100%; height: 56px;font-weight: bold;font-size: 23px ;margin-top: 10px;overflow: hidden">${productRecommend.productName}
@@ -455,7 +451,10 @@
                 </div>
             </div>
         </c:forEach>
+
     </div>
+
+
     <%--8 món ăn được giảm giá nhất --%>
 
 
@@ -472,11 +471,10 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}"
-                              style="cursor: pointer;"
+                        <form method="get" id="restaurant${productBestSale.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${productBestSale.idProduct}"/>
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${productBestSale.idMerchant}"/>
                             <h5 class="card-title"
 
                                 style=" width: 100%;height: 56px;font-weight: bold;font-size: 22px; margin-top: 10px;overflow: hidden">${productBestSale.productName}
@@ -508,6 +506,8 @@
                 </div>
             </div>
         </c:forEach>
+
+
     </div>
     <%--Menu main--%>
     <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
@@ -522,10 +522,10 @@
                 <div class="card-body"
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
+                        <form method="get" id="restaurant${pro.idMerchant}" style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${pro.idProduct}"/>
+                            <input type="hidden" name="action" value="restaurant"/>
+                            <input type="hidden" name="idMerchant" value="${pro.idMerchant}"/>
                             <h5 class="card-title"
                                 style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
                                 - ${pro.restaurantName}
@@ -572,7 +572,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
+                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
@@ -613,9 +613,6 @@
 </footer>
 
 
-<a href="/product/dish-details.jsp">aasdadasdad</a>
-
-
 </body>
 </html>
 <script>
@@ -651,22 +648,6 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
-
-
-    var idMerchant = document.getElementById("IdMerchant").value;
-    if (idMerchant !== "") {
-        document.getElementById("button-merchant").style.display = "block";
-    } else {
-        document.getElementById("button-merchant").style.display = "none";
-    }
-    var idMerchant = document.getElementById("IdMerchant").value;
-    if (idMerchant !== "") {
-        document.getElementById("button-hidden").style.display = "none";
-    } else {
-        document.getElementById("button-hidden").style.display = "block";
-    }
-
-
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');

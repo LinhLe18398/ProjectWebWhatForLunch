@@ -125,6 +125,8 @@ public class  UserServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
         List<Product> productList = null;
         try {
+            List<Product> productBestSale = productDAO.getBestSaleProduct();
+            List<Product> productRecommend = productDAO.getRecommendProduct();
             if (nameSearch != null) {
                 productList = productDAO.searchProductByName(nameSearch);
             } else if (nameSearch != null && quickSearch != null) {
@@ -135,7 +137,9 @@ public class  UserServlet extends HttpServlet {
             req.setAttribute("nameSearch", nameSearch);
             req.setAttribute("tagSearch", quickSearch);
             req.setAttribute("pro", productList);
-            requestDispatcher.forward(req, resp);
+            req.setAttribute("productBestSale", productBestSale);
+            req.setAttribute("productRecommend", productRecommend);
+            requestDispatcher.forward(req,resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
