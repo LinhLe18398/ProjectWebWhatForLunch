@@ -118,18 +118,7 @@
     <div class="right-content" style="float: left">
 
         <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
-        <%--<<<<<<< HEAD--%>
-        <%--        <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i> Lượt--%>
-        <%--            xem: ${product.view}  </p>--%>
-        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt--%>
-        <%--            đã đặt: ${product.orders}</p>--%>
-        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi--%>
-        <%--            chú: ${product.note}</p>--%>
-        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời--%>
-        <%--            gian chế biến: ${product.waitTime} phút</p>--%>
-        <%--        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>--%>
-        <%--            Giá tiền: ${product.price} &#8363</p>--%>
-        <%--=======--%>
+
         <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i> Lượt
             xem: ${product.view}  </p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt
@@ -140,12 +129,11 @@
             gian chế biến: ${product.waitTime} phút</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>
             Giá tiền: ${product.price} &#8363</p>
-        <%-->>>>>>> 349c2a98f07389335a1ef2162a81a29270cb09e7--%>
         <p>
             <c:if test="${sessionScope.isLogin==true}">
-                <a style="width: 76px;margin-left: 98px; background-color: orangered; height: 35px "
+                <a style="margin-left: 98px; background-color: orangered; height: 38px "
                    href="/products?action=add-product-cart&id=${product.idProduct}"
-                   class="btn btn-primary"> <i style="font-size: 20px" class='bx bx-cart'></i> </a>
+                   class="btn btn-primary"> Thêm vào giỏ hàng </a>
             </c:if>
         </p>
 
@@ -174,11 +162,11 @@
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productRecommend}" var="productRecommend">
-            <div class="card" style="width: 500px;height: 139px;margin-right: 50px;margin-bottom: 20px">
+            <div class="card" style="width: 500px;height: 162px;margin-right: 50px;margin-bottom: 20px">
                 <div class="row no-gutters">
                     <div class="col-sm-5" style="padding: 0;height: 139px">
                         <img class="card-img" src="${productRecommend.productImg}" alt="Suresh Dasari Card"
-                             style="height: 138px">
+                             style="height: 160px">
                     </div>
                     <div class="col-sm-7" style="float: right">
                         <form method="get" action="/products" id="restaurant${productRecommend.idProduct}"
@@ -237,6 +225,9 @@
                     <p>Minh Hieu</p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
+                    <h6 class=" text-uppercase fw-bold mb-4">
+                        Liên hệ
+                    </h6>
                     <p>Hoài Đức - Hà Nội</p>
                     <p>
                         WebWhatForLunch@gmail.com

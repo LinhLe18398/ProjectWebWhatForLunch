@@ -61,6 +61,9 @@
 
 </head>
 <style>
+    .btn {
+        box-shadow: none !important;
+    }
     ::placeholder {
         font-size: 16px;
     }
@@ -562,9 +565,9 @@
 <!-- Footer -->
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    </section>
-    <section class="">
+<%--    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--%>
+<%--    </section>--%>
+    <section class="" style="padding-top: 10px; margin-top: 30px">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 40px">
@@ -613,7 +616,7 @@
 </footer>
 
 
-<a href="/product/dish-details.jsp">aasdadasdad</a>
+
 
 
 </body>
