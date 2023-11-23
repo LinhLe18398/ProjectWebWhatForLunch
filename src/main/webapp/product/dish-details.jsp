@@ -49,7 +49,7 @@
 
 <div class="header container">
     <div class="overlay"></div>
-    <div class="navbar" style="margin-left: 600px">
+    <div class="navbar" style="margin-left: 20px">
         <nav class="navbar navbar-expand-lg navbar-light bg-light"
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
@@ -60,48 +60,50 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown" style="margin-left: 20px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false"
-                               style="color: white; font-size: 20px">Nhà hàng</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
-                                    nhà hàng của tôi</a></li>
-                            </ul>
-                        </li>
+                <c:if test="${sessionScope.isLogin==true}">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 700px">
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="color: white; font-size: 20px">Nhà hàng</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                        nhà hàng của tôi</a></li>
+                                </ul>
+                            </li>
 
 
-                        <li class="nav-item dropdown" style="margin-left: 20px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false"
-                               style="color: white; font-size: 20px">
-                                ${user.name}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
-                                    tin</a></li>
-                                <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="color: white; font-size: 20px">
+                                        ${user.name}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
+                                        tin</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
 
-                                <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+                                    <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
 
-                        <li class="nav-item dropdown" style="margin-left: 20px">
-                            <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
-                               style="color: white; font-size: 19px">
-                                Giỏ hàng
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
+                                   style="color: white; font-size: 19px">
+                                    Giỏ hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </c:if>
             </div>
         </nav>
     </div>
