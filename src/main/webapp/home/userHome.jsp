@@ -61,6 +61,9 @@
 
 </head>
 <style>
+    .btn {
+        box-shadow: none !important;
+    }
     ::placeholder {
         font-size: 16px;
     }
@@ -189,7 +192,6 @@
         </a>
     </div>
     <div style="clear: both"></div>
-
     <c:if test="${sessionScope.isLogin==true}">
         <div class="navbar" style="margin-left: 900px">
             <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -210,13 +212,24 @@
                                    style="color: white; font-size: 18px">
                                     Nhà hàng
                                 </a>
+
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
-                                        nhà hàng của tôi</a></li>
+                                    <c:if test="${sessionScope.isLogin == true}">
+                                        <li id="button-hidden">
+                                            <a class="dropdown-item" href="/users?action=merchant">Đăng ký nhà hàng</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.isLogin == true}">
+                                        <input type="text" hidden="hidden" id="IdMerchant"
+                                               value="${merchantId.idMerchant}">
+                                        <li id="button-merchant">
+                                            <a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                                nhà hàng của tôi</a>
+                                        </li>
+                                    </c:if>
                                 </ul>
+
                             </li>
-
-
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false"
@@ -226,8 +239,6 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                         tin</a></li>
-                                    <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                    </li>
                                     <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -285,7 +296,7 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" method="get">
+                            <form id="search-name" action="/bill" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
@@ -320,11 +331,8 @@
                                                     <h6>${productBestSale.productName}</h6>
 
                                                     <p style="color:black;">${productBestSale.price}&#8363</p>
-
                                                 </a>
-
                                             </div>
-
                                         </div>
                                     </div>
 
@@ -402,8 +410,6 @@
 
     <h2 style="padding-top: 40px">GỢI Ý MÓN ĂN</h2>
     <div class="row mb-2" style="padding-top: 50px;">
-
-
         <c:forEach items="${productRecommend}" var="productRecommend">
             <div class="col-md-3 col-6  item"
                  style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px;  max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0 ">
@@ -416,7 +422,8 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${productRecommend.idProduct}"
+                              style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="dish-detail"/>
                             <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
@@ -452,9 +459,6 @@
             </div>
         </c:forEach>
     </div>
-
-
-
     <%--8 món ăn được giảm giá nhất --%>
 
 
@@ -471,7 +475,8 @@
                      style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
 
                     <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}" style="cursor: pointer;"
+                        <form method="get" action="/products" id="restaurant${productBestSale.idProduct}"
+                              style="cursor: pointer;"
                               onclick="redirectToUsers(this.id)">
                             <input type="hidden" name="action" value="dish-detail"/>
                             <input type="hidden" name="productId" value="${productBestSale.idProduct}"/>
@@ -555,13 +560,14 @@
             </div>
         </c:forEach>
     </div>
- </div>
+    <ul class="listPage"></ul>
+</div>
 <!-- Footer -->
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    </section>
-    <section class="">
+    <%--    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--%>
+    <%--    </section>--%>
+    <section class="" style="padding-top: 10px; margin-top: 30px">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 40px">
@@ -569,7 +575,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
+                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
@@ -612,6 +618,7 @@
 
 
 
+
 </body>
 </html>
 <script>
@@ -647,6 +654,22 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
+
+
+    var idMerchant = document.getElementById("IdMerchant").value;
+    if (idMerchant !== "") {
+        document.getElementById("button-merchant").style.display = "block";
+    } else {
+        document.getElementById("button-merchant").style.display = "none";
+    }
+    var idMerchant = document.getElementById("IdMerchant").value;
+    if (idMerchant !== "") {
+        document.getElementById("button-hidden").style.display = "none";
+    } else {
+        document.getElementById("button-hidden").style.display = "block";
+    }
+
+
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');

@@ -13,6 +13,7 @@ import javax.servlet.http.*;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class  UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -201,6 +203,7 @@ public class  UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -451,6 +454,11 @@ public class  UserServlet extends HttpServlet {
             List<Product> productList = userDAO.get_All_Product();
             req.setAttribute("pro", productList);
             session.getAttribute("user");
+            HttpSession httpSession = req.getSession();
+            Merchant idMerchant = userDAO.returnIdMerchantByIdUser(user.getId());
+            httpSession.setAttribute("merchantId",idMerchant);
+            httpSession.getAttribute("merchantId");
+            httpSession.setAttribute("isLoginMerchant", true);
             dispatcher = req.getRequestDispatcher("home/userHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai tên tài khoản hoặc mật khẩu");
@@ -459,7 +467,8 @@ public class  UserServlet extends HttpServlet {
         showHomeForm(req, resp);
     }
 
-    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) {
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         int id = user.getId();

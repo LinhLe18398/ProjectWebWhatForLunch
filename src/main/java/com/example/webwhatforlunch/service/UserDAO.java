@@ -70,6 +70,18 @@ public class UserDAO implements UserInterface {
         statement.executeUpdate();
     }
 
+    public Merchant returnIdMerchantByIdUser(int idUser) throws SQLException, ClassNotFoundException {
+        Merchant merchant = new Merchant();
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select idMerchant from merchant where idUser = ?");
+        preparedStatement.setInt(1,idUser);
+        ResultSet resultSet =  preparedStatement.executeQuery();
+        if (resultSet.next()){
+            merchant.setIdMerchant(resultSet.getString("idMerchant"));
+        }
+        return merchant;
+    }
+
     @Override
     public void createUser(User user) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
