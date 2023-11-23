@@ -380,9 +380,10 @@ public class UserServlet extends HttpServlet {
 
         RequestDispatcher dispatcher;
         Merchant merchant = userDAO.checkLoginMerchant(id, password);
-        List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-        List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
-        if (merchant != null) {
+        if (merchant != null && merchant.getIdMerchant() != null) {
+            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
+            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+
             HttpSession session = req.getSession();
             session.setAttribute("merchant", merchant);
             req.setAttribute("user", user);
@@ -394,7 +395,6 @@ public class UserServlet extends HttpServlet {
             dispatcher = req.getRequestDispatcher("display/comFirmPassword.jsp");
         }
         dispatcher.forward(req, resp);
-
     }
 
     private void logOutUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -434,7 +434,7 @@ public class UserServlet extends HttpServlet {
             userDAO.createUser(user);
             req.setAttribute("success", "tài khoản được tạo");
         } else {
-            req.setAttribute("error", "tai khoản không được tạo");
+            req.setAttribute("error", " tài khoản không được tạo");
         }
         dispatcher.forward(req, resp);
     }

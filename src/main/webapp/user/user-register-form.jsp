@@ -35,7 +35,7 @@
             color: red;
         }
     </style>
-    <title>User Register</title>
+    <title>WhatForLunch</title>
 </head>
 
 <body>
