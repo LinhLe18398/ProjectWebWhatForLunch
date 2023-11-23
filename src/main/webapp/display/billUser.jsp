@@ -65,7 +65,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.3);
         pointer-events: none;
     }
 
@@ -152,7 +152,7 @@
                     <p style="font-size: 24px; text-align: center"><i class="fa-solid fa-comments fa-beat-fade"></i></p>
                 </div>
                 <div style="justify-content: flex-end; padding-top: 15px; padding-right:25px;display: flex; height: 25px; margin-left: 30px">
-                    <p p style="color: red; font-size: 30px; ">${listBillUser.getBillStatus()}</p>
+                    <p id="billStatus1" style="font-size: 30px;">${listBillUser.getBillStatus()}</p>
                 </div>
             </div>
             <hr style="margin-top:35px; color: black;">
@@ -217,7 +217,82 @@
 </form>
 
 
+
+
+<footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 100px">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    </section>
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 104px">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
+                    </h6>
+                    <p>
+                        Here you can order all delicious Vietnamese dishes.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Sản phẩm
+                    </h6>
+                    <p>Thông tin</p>
+                    <p>Trợ giúp</p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Thành viên
+                    </h6>
+                    <p>Ngoc Linh</p>
+                    <p>Van Tuan</p>
+                    <p>Cat Hai</p>
+                    <p>Gia Minh</p>
+                    <p>Minh Hieu</p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
+                    <h6 class=" text-uppercase fw-bold mb-4">
+                        Liên hệ
+                    </h6>
+                    <p>Hoài Đức - Hà Nội</p>
+                    <p>
+                        WebWhatForLunch@gmail.com
+                    </p>
+                    <p> +84 88658023</p>
+                    <p> +84 38301773</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center p-4" style="background-color: lightgray;">
+        © 2023 WebWhatForLunch
+    </div>
+</footer>
+
+
 </body>
+<%--<script>--%>
+<%--    var billStatus = "${listBillUser.getBillStatus()}";--%>
+
+<%--    // Lấy thẻ p--%>
+<%--    var pElement = document.getElementById("billStatus1");--%>
+
+<%--    // Đặt màu sắc và nội dung dựa trên giá trị trạng thái--%>
+<%--    switch (billStatus) {--%>
+<%--        case "Đã hoàn thành":--%>
+<%--            pElement.style.color = "green";--%>
+<%--            break;--%>
+<%--        case "Huỷ":--%>
+<%--            pElement.style.color = "red";--%>
+<%--            break;--%>
+<%--        default:--%>
+<%--            pElement.style.color = "black";--%>
+<%--    }--%>
+
+<%--    // pElement.textContent = billStatus;--%>
+<%--</script>--%>
+
+
 
 <script>
     function changeColor(buttonIndex) {
