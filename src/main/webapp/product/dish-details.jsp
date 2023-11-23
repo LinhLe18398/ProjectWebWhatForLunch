@@ -115,8 +115,13 @@
     </div>
 
     <div class="right-content" style="float: left">
-
-        <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
+        <div style="display: flex">
+            <p style="margin-left: 100px; font-size: 40px;margin-top: -12px ; font-weight: bold">${product.productName} </p>
+            <c:if test="${sessionScope.isLogin==true}">
+                <a style="margin-left: auto;padding:5px 5px 0px 5px; color: white; text-decoration: none; background-color: orangered"
+                   href="/products?action=set-status-like&idProduct=${product.idProduct}">${statusLike}</a>
+            </c:if>
+        </div>
         <p style="margin-left: 100px; font-size: 20px;"><i class="fa-solid fa-eye" style="color: #ff4501;"></i>   Lượt xem: ${product.view}  </p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-truck" style="color: #ff4501;"></i> Số lượt đã đặt: ${product.orders}</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-book" style="color: #ff4501;"></i> Ghi chú: ${product.note}</p>

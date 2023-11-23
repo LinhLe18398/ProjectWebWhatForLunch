@@ -70,8 +70,40 @@ public class ProductServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "set-status-like":
+                setStatusLike(req, resp);
+                break;
         }
     }
+    private void setStatusLike(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        String idProduct = req.getParameter("idProduct");
+        System.out.println(user.getId() + idProduct);
+        try {
+            String status = productDAO.getStatusFavourite(user.getId(), idProduct);
+            productDAO.setStatusFavourite(user.getId(), idProduct, status);
+            String statusLike = productDAO.getStatusFavourite(user.getId(), idProduct);
+            Product product = productDAO.getProductById(idProduct);
+            req.setAttribute("statusLike", statusLike);
+            req.setAttribute("user", user);
+            req.setAttribute("product", product);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
+            requestDispatcher.forward(req,resp);
+//            getProductByIdToDishDetail(req, resp);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
     private void getProductByIdToDishDetail(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
         HttpSession session = req.getSession();
@@ -79,8 +111,13 @@ public class ProductServlet extends HttpServlet {
 
         String productId = req.getParameter("productId");
         Product product = productDAO.getProductById(productId);
+
+        if (user != null) {
+            String statusLike = productDAO.getStatusFavourite(user.getId(), productId);
+            req.setAttribute("statusLike", statusLike);
+            req.setAttribute("user", user);
+        }
         req.setAttribute("product",product);
-        req.setAttribute("user", user);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
         requestDispatcher.forward(req,resp);
     }
@@ -129,7 +166,7 @@ public class ProductServlet extends HttpServlet {
             List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
             req.setAttribute("productList", productList);
             req.setAttribute("merchant", merchant);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("merchant/merchantHome.jsp");
             dispatcher.forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {
             e.printStackTrace();
@@ -144,7 +181,7 @@ public class ProductServlet extends HttpServlet {
             productDAO.deleteProduct(idProduct);
             productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
             req.setAttribute("productList", productList);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("merchant/merchantHome.jsp");
             dispatcher.forward(req, resp);
         } catch (SQLException | ClassNotFoundException | ServletException | IOException e) {
             e.printStackTrace();
@@ -182,7 +219,6 @@ public class ProductServlet extends HttpServlet {
 
         }
     }
-
 
 
     private void createProduct(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
@@ -264,7 +300,7 @@ public class ProductServlet extends HttpServlet {
         String keyword = req.getParameter("keyword");
         List<Product> productList = productDAO.searchProductByName(idMerchant,keyword);
         req.setAttribute("productList",productList);
-        req.getRequestDispatcher("home/merchantHome.jsp").forward(req,resp);
+        req.getRequestDispatcher("merchant/merchantHome.jsp").forward(req,resp);
     }
 
     private void updateQuantity(HttpServletRequest req, HttpServletResponse resp) {

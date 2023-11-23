@@ -29,7 +29,11 @@ public class ProductDAO implements ProductInterface{
     private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
     private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
 
-    private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?)}";
+    private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?, ?)}";
+
+    private final String ADD_TO_FAVOURITE = "{CALL ADD_TO_FAVORITE(?, ?)}";
+    private final String REMOTE_FROM_FAVORITE = "{CALL REMOTE_FROM_FAVORITE(?, ?)}";
+
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection;
         Class.forName("com.mysql.jdbc.Driver");
@@ -330,16 +334,29 @@ public class ProductDAO implements ProductInterface{
     }
 
     @Override
-    public String getStatusFavourite(int idUser, int idProduct) throws SQLException, ClassNotFoundException {
+    public String getStatusFavourite(int idUser, String idProduct) throws SQLException, ClassNotFoundException {
         String status = "";
         CallableStatement callableStatement = getConnection().prepareCall(GET_STATUS_FAVOURITE_PRODUCT);
         callableStatement.setInt(1, idUser);
-        callableStatement.setInt(2, idProduct);
+        callableStatement.setString(2, idProduct);
         callableStatement.registerOutParameter(3, Types.VARCHAR);
 
         callableStatement.execute();
 
         status = callableStatement.getString(3);
         return status;
+    }
+
+    @Override
+    public void setStatusFavourite(int idUser, String idProduct, String status) throws SQLException, ClassNotFoundException {
+        CallableStatement statement = null;
+        if (status == "true") {
+            statement = getConnection().prepareCall(REMOTE_FROM_FAVORITE);
+        } else if (status == "false") {
+            statement = getConnection().prepareCall(ADD_PRODUCT_CART);
+        }
+        statement.setInt(1, idUser);
+        statement.setString(2, idProduct);
+        statement.executeUpdate();
     }
 }

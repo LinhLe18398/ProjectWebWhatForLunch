@@ -211,7 +211,10 @@
                                         onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
 
-                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">
+                            <c:when test="${(listBillUser.getBillStatus() == 'Huỷ' ||
+                            listBillUser.getBillStatus() == 'Nhà hàng từ chối đơn' ||
+                            listBillUser.getBillStatus() == 'Khách hàng huỷ đơn') ||
+                            listBillUser.getBillStatus() == 'Đã hoàn thành' }">
                                 <button style="display: inline;  height: 45px; width: 190px; color: orangered"
                                         type="submit" class="btn btn-outline-dark">Mua lại</button>
                             </c:when>
@@ -260,7 +263,7 @@
 
     function cancelBill(idBill) {
         document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 3;
+        document.getElementById("active").value = 1;
     }
 
     function showDetailBill(idBill) {

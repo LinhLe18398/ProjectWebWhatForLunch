@@ -156,7 +156,7 @@ public class  UserServlet extends HttpServlet {
     }
 
     private void showHomeMerchant(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("merchant/merchantHome.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -385,7 +385,7 @@ public class  UserServlet extends HttpServlet {
             req.setAttribute("user", user);
             req.setAttribute("productList", productList);
             req.setAttribute("billList", billList);
-            dispatcher = req.getRequestDispatcher("home/merchantHome.jsp");
+            dispatcher = req.getRequestDispatcher("merchant/merchantHome.jsp");
         } else {
             JOptionPane.showMessageDialog(null, "Sai mật khẩu");
             dispatcher = req.getRequestDispatcher("display/comFirmPassword.jsp");

@@ -454,12 +454,6 @@
     </div>
 
 
-<<<<<<< HEAD
-      <div><a href="/product/dish-details.jsp">aasdadasdad</a></div>
-=======
-
->>>>>>> 4375c7666840eca201c003d6a128469d27839bbd
-
 
     <%--8 món ăn được giảm giá nhất --%>
 
@@ -617,7 +611,6 @@
 </footer>
 
 
-<a href="/product/dish-details.jsp">aasdadasdad</a>
 
 
 </body>
