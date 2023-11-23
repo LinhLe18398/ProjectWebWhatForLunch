@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "userServlet", value = "/users")
-public class  UserServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
     private BillDAO billDAO;
@@ -299,7 +299,7 @@ public class  UserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String address = req.getParameter("address");
-        deliveryAddress = new DeliveryAddress(addressId,name,phone,address);
+        deliveryAddress = new DeliveryAddress(addressId, name, phone, address);
         userDAO.updateAddress(deliveryAddress);
         RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
         dispatcher.forward(req, resp);
@@ -414,7 +414,7 @@ public class  UserServlet extends HttpServlet {
         String phoneNumber = request.getParameter("restaurantPhoneNumber");
         String email = request.getParameter("restaurantEmail");
         String address = request.getParameter("restaurantAddress");
-        Merchant merchant = new Merchant(idUser, name, phoneNumber, email, address);
+        Merchant merchant = new Merchant(idUser, name, email, phoneNumber, address);
 
         userDAO.requestUserToMerchant(merchant);
         request.setAttribute("alert", "đợi admin duyêt tài khoản");
@@ -456,7 +456,7 @@ public class  UserServlet extends HttpServlet {
             session.getAttribute("user");
             HttpSession httpSession = req.getSession();
             Merchant idMerchant = userDAO.returnIdMerchantByIdUser(user.getId());
-            httpSession.setAttribute("merchantId",idMerchant);
+            httpSession.setAttribute("merchantId", idMerchant);
             httpSession.getAttribute("merchantId");
             httpSession.setAttribute("isLoginMerchant", true);
             dispatcher = req.getRequestDispatcher("home/userHome.jsp");
