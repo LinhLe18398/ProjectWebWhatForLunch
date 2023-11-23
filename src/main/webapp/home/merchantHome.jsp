@@ -95,7 +95,7 @@
                         <th>Lượt xem</th>
                         <th>Số đơn</th>
                         <th>Ghi chú</th>
-                        <th style="width: 120px; text-align: center;">Giữ/Xoá</th>
+                        <th style="width: 120px; text-align: center;">Cập nhật/Xoá</th>
                     </tr>
                     </thead>
                     <tbody>
