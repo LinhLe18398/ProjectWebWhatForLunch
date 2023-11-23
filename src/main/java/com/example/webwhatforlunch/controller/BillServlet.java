@@ -181,7 +181,7 @@ public class BillServlet extends HttpServlet {
                 default:
                     break;
             }
-            sendListToHomeMerchant(request, response);
+            sendListToBillMerchant(request, response);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -220,25 +220,22 @@ public class BillServlet extends HttpServlet {
     }
 
     private void getBillMerchant(HttpServletRequest request, HttpServletResponse response) {
-        sendListToHomeMerchant(request, response);
+       sendListToBillMerchant(request, response);
     }
 
-    private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
+    private void sendListToBillMerchant(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");
         try {
             List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
-            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-            request.setAttribute("productList", productList);
             request.setAttribute("billList", billList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/listBillMerchant.jsp");
             dispatcher.forward(request, response);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException | ServletException | IOException e) {
+        } catch (ServletException | IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 
 
     private void eventBillFromUser(HttpServletRequest request, HttpServletResponse response) {

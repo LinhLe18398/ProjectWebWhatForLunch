@@ -18,8 +18,10 @@ public class Bill {
     private List<Product> productList;
     private int sale;
     private int serviceFee;
+    private int idCoupon;
+    private int couponValue;
 
-    public Bill(int idBill, int idUserDB, String idMerchant, String recipientName, String recipientPhone, String recipientAddress, String paymentMethod, String billStatus, String timeOrder, String restaurantName, String restaurantAddress, List<Product> productList) {
+    public Bill(int idBill, int idUserDB, String idMerchant, String recipientName, String recipientPhone, String recipientAddress, String paymentMethod, String billStatus, String timeOrder, int idCoupon, int couponValue, String restaurantName, String restaurantAddress, List<Product> productList) {
         this.idBill = idBill;
         this.idUser = idUserDB;
         this.idMerchant = idMerchant;
@@ -194,4 +196,19 @@ public class Bill {
         return paymentMethod;
     }
 
+    public int getIdCoupon() {
+        return idCoupon;
+    }
+
+    public void setIdCoupon(int idCoupon) {
+        this.idCoupon = idCoupon;
+    }
+
+    public int getCouponValue() {
+        return couponValue;
+    }
+
+    public void setCouponValue(int couponValue) {
+        this.couponValue = couponValue;
+    }
 }

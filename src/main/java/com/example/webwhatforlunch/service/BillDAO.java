@@ -12,7 +12,7 @@ import java.util.List;
 public class BillDAO {
     private String username = "root";
 
-    private String password = "";
+    private String password = "mySQL7122023@";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -104,10 +104,12 @@ public class BillDAO {
                 String paymentMethod = rs.getString("paymentMethods");
                 String billStatus = rs.getString("billStatus");
                 String timeOrder = rs.getString("timeOrder");
+                int idCoupon = rs.getInt("idCoupon");
+                int couponValue = rs.getInt("couponValue");
                 String restaurantName = rs.getString("restaurantName");
                 String restaurantAddress = rs.getString("restaurantAddress");
                 List<Product> product = getProductListInBill(connection, idBill);
-                Bill bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientAddress, paymentMethod, billStatus, timeOrder, restaurantName, restaurantAddress, product);
+                Bill bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientAddress, paymentMethod, billStatus, timeOrder, idCoupon, couponValue, restaurantName, restaurantAddress, product);
                 billList.add(bill);
             }
         }
@@ -239,10 +241,12 @@ public class BillDAO {
             String paymentMethod = rs.getString("paymentMethods");
             String billStatus = rs.getString("billStatus");
             String timeOrder = rs.getString("timeOrder");
+            int idCoupon = rs.getInt("idCoupon");
+            int couponValue = rs.getInt("couponValue");
             String restaurantName = rs.getString("restaurantName");
             String restaurantAddress = rs.getString("restaurantAddress");
             List<Product> product = getProductListInBill(connection, idBill);
-            bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientAddress, paymentMethod, billStatus, timeOrder, restaurantName, restaurantAddress, product);
+            bill = new Bill(idBill, idUserDB, idMerchant, recipientName, recipientPhone, recipientAddress, paymentMethod, billStatus, timeOrder, idCoupon, couponValue, restaurantName, restaurantAddress, product);
         }
         return bill;
     }

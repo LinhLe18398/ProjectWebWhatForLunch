@@ -59,8 +59,8 @@
                      class="pro-img"/>
                 <p class="profile-name"><i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
                 <div class="profile-div">
-                    <p><i class="fa fa-user "></i><a href="/merchants?action=profile"> Thông tin</a></p>
-                    <p><i class="fa fa fa-sign-out "></i><a href="/users?action=home"> Đăng xuất</a></p>
+                    <p><i class="fa fa-user "></i><a href="/merchants?action=profile">  Thông tin</a></p>
+                    <p><i class="fa fa fa-sign-out "></i><a href="/users?action=home">  Đăng xuất</a></p>
                 </div>
             </div>
         </div>
@@ -70,62 +70,103 @@
     <br/>
     <div class="clearfix"></div>
     <br/>
+
     <div class="col-div-12">
         <div class="content-box">
-            <p class="list"> Category Selling food
-                <span>
-                            <button class="ip-add" type="submit"><a style="text-decoration: none"
-                                                                    href="/products?action=create-product">+Thêm</a></button>
-                            <button class="ip-selectAll" type="submit"><a style="text-decoration: none"
-                                                                          href="/products?action=home-merchant">Quay lại</a></button>
-                    </span>
-            </p>
+            <div id="button-group">
+                <div class="group-button" onclick="changeColor(0)">Tất cả</div>
+                <div class="group-button" onclick="changeColor(1)">Chờ nhận hàng</div>
+                <div class="group-button" onclick="changeColor(2)">Đang chế biến</div>
+                <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>
+                <div class="group-button" onclick="changeColor(4)">Đang giao</div>
+                <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>
+                <div class="group-button" onclick="changeColor(6)">Huỷ</div>
+            </div>
+
+            <hr>
+
+            <div>
+                <form method="post" action="/bill?action=search-bill">
+                    <div class="form-group">
+                        <div class="form-search-one">
+
+                            <input type="number" name="idBill" placeholder="Mã đơn hàng">
+                            <input type="number" name="numberPhone" placeholder="Số điện thoại">
+                            <input type="text" name="nameUser" placeholder="Tên khách hàng">
+                        </div>
+                        <div class="form-search-two">
+                            <div class="form-input-four">
+                                <input class="search-sp" type="text" name="filter" placeholder="Thông tin bất kì đơn hàng">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <button class="sp-search reset" type="submit">Tìm kiếm</button>
+                            <button class="sp-return" type="submit">Đặt lại</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <hr>
+
+            <p class="list" id="sum-order"></p>
+
             <br/>
-            <table>
+            <form method="post" action="/bill?action=status-bill"/>
+            <table class="table-order" id="table-order">
                 <thead>
                 <tr>
-                    <th>Món ăn</th>
-                    <th class="tb-th">Ảnh</th>
-                    <th>Giá tiền</th>
-                    <th class="tb-th">Thời gian chờ</th>
-                    <th class="tb-th">Tags</th>
-                    <th class="tb-th">Lượt xem</th>
-                    <th class="tb-th">Số đơn</th>
-                    <th>Ghi chú</th>
-                    <th class="tb-th">Giữ/Xoá</th>
+                    <th>Thời gian đặt</th>
+                    <th>Người đặt</th>
+                    <th>Tổng món</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái đơn</th>
+                    <th>Thao tác đơn</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${productList}" var="list">
+                <c:forEach items="${billList}" var="billList">
                     <tr>
-                        <td>${list.productName}</td>
-                        <td><img style="width: 150px; height: 100px;" src="${list.productImg}"></td>
+                        <td>${billList.getTimeOrder()}</td>
+                        <td>${billList.getRecipientName()}</td>
+                        <td>${billList.GetTotalQuantity()}</td>
+                        <td class="price" >${billList.getFinalTotal()}</td>
+                        <td>${billList.getBillStatus()}</td>
                         <td>
-                            Giá sản phẩm:&nbsp;<span class="price">${list.price}</span><br>
-                            Mức giảm giá:&ensp;<span class="price">${list.sale}</span><br>
-                            Phí dịch vụ:&ensp;&emsp;<span class="price">${list.serviceFee}</span>
-                        </td>
-                        <td class="tb-td">${list.waitTime}</td>
-                        <td class="tb-td">${list.view}</td>
-                        <td class="tb-td">${list.view}</td>
-                        <td class="tb-td">${list.orders}</td>
-                        <td>${list.note}</td>
-                        <td style="text-align: center;">
-                            <button class="ip-update" type="button"
-                                    onclick="location.href='/products?action=update-product&id=${list.idProduct}'">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                            <button class="ip-delete" type="button"
-                                    onclick="location.href='/products?action=delete-product&id=${list.idProduct}'">
-                                <i class="fa fa-trash"></i>
-                            </button>
+                            <div>
+                                <c:choose>
+                                    <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
+                                        <button class="ip-delete" type="submit" onclick="declineStatus(${billList.idBill})">
+                                            <i class="fa fa-x"></i>
+                                        </button>
+                                        <button class="ip-update" type="submit" onclick="approveStatus(${billList.idBill})">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </div>
+
                         </td>
                     </tr>
                 </c:forEach>
+                <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
+                <input type="text" hidden="hidden" id="active" name="active" value="">
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
+
 </div>
 <div class="clearfix"></div>
 </div>
@@ -142,6 +183,7 @@
         });
 
     });
+
 
 
     function changeColor(buttonIndex) {
@@ -201,7 +243,10 @@
                 sumOrder--;
             }
 
-            if (buttonIndex == 6 && cellValue !== "Huỷ") {
+            if (buttonIndex == 6 && cellValue !== ("Nhà hàng từ chối đơn" || "Khách hàng huỷ đơn")) {
+                tr.style.display = "none";
+                sumOrder--;
+            } else if (buttonIndex == 6 && cellValue !== ("Huỷ")) {
                 tr.style.display = "none";
                 sumOrder--;
             }
@@ -220,6 +265,12 @@
             case "Đã hoàn thành":
                 cell.style.color = "green";
                 break;
+            case "Nhà hàng từ chối đơn":
+                cell.style.color = "red";
+                break;
+            case "Khách hàng huỷ đơn":
+                cell.style.color = "red";
+                break;
             case "Huỷ":
                 cell.style.color = "red";
                 break;
@@ -234,24 +285,23 @@
         let numberElement = numberElements[i];
         let number = parseInt(numberElement.textContent);
         let formattedNumber = number.toLocaleString();
-        numberElement.textContent = formattedNumber + "₫";
+        numberElement.textContent = formattedNumber+"₫";
     }
-
     function declineStatus(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 0;
 
     }
-
     function approveStatus(idBill) {
-        document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 1;
-    }
-
-    function showDetail(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 2;
     }
+    function showDetail(idBill) {
+        document.getElementById("idBill").value = idBill;
+        document.getElementById("active").value = 3;
+    }
+
+
 </script>
 
 </html>
