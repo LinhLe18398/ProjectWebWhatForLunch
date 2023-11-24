@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>&#128722; Cart</title>
+    <title>WhatForLunch</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -210,7 +210,7 @@
                     </div>
                 </td>
                 <td data-th="Price">${pro.price} ₫</td>
-                <td data-th="Quantity" style="display: flex">
+                <td data-th="Quantity" style="display: flex;border: none">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
 
                     <a style="margin-right: 8px; margin-top: 8px"
@@ -234,7 +234,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td ><a  href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px "><i class="fa fa-angle-left"></i>Trang chủ</a>
+            <td ><a  href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px"><i class="fa fa-angle-left"></i>Trang Chủ</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>

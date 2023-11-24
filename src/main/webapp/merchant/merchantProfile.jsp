@@ -9,73 +9,162 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>WhatForLunch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+<style>
+    .header {
+        /*display: flex;*/
+        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-color: rgb(255, 255, 255, 0.5) !important;
+        padding-top: 11px;
+        height: 95px;
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+    }
+
+    .title-nav {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+</style>
 <body>
+<div class="header container">
+    <div class="overlay"></div>
 
-<header class="container"
-        style="box-shadow: 0px 2px 2px rgba(0,0,0,0.5); position: fixed; top: 0 ;left: 0;right: 0;background-color: white">
-    <div style="float: left">
-        <h1>&#8962; | Merchant</h1>
+    <div class="navbar" style="margin-left: 20px">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"
+             style="background-color: rgb(255,255,255,0) !important;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px">Trang
+                    chủ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <c:if test="${sessionScope.isLogin==true}">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left:630px">
+                        <li class="nav-item dropdown" style="margin-left: 20px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false"
+                               style="color: white; font-size: 20px">Nhà hàng</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                    nhà hàng của tôi</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item dropdown" style="margin-left: 20px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false"
+                               style="color: white; font-size: 20px">
+                                    ${user.name}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
+                                    tin</a></li>
+                                <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown" style="margin-left: 20px">
+                            <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
+                               style="color: white; font-size: 19px">
+                                Giỏ hàng
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                </c:if>
+            </div>
+        </nav>
     </div>
-    <input type="text" value="${user.id}" id="idUser" hidden="hidden">
-    <div class="div-login-signup" id="button-full" style="float: right">
-        <a href="/users?action=login">
-            <button type="submit" class="btn btn-primary btn-sm">Đăng Nhập</button>
-        </a>
-        <a href="/users?action=create">
-            <button type="submit" class="btn btn-secondary btn-sm">Đăng Kí</button>
-        </a>
-    </div>
-</header>
+
+</div>
+
 <form action="/users?action=restaurant">
-    <main class="container" style="padding-top: 100px">
-
-        <div style="padding-bottom: 50px">
+    <div class="container">
+        <div class="title-nav">
             <h1>${merchants.restaurantName}</h1>
             <div style="display: flex">
-                <p style="padding-right: 30px">&#9734; 4,3</p>
-                <p>&#8855; 40 phút &#8226; 2,6km</p>
+                <p style="padding-right: 30px"><i style="padding-top: 5px" class="fa-regular fa-envelope"></i></p>
+                <p>${merchants.email}</p>
             </div>
             <div style="display: flex">
-                <p style="padding-right: 30px">Địa Chỉ</p>
+                <p style="padding-right: 30px"><i style="padding-top: 3px" class="fa-solid fa-phone"></i></p>
+                <p>${merchants.numberPhone}</p>
+            </div>
+            <div style="display: flex">
+                <p style="padding-right: 30px"><i style="padding-top: 3px" class="fa-solid fa-location-dot"></i></p>
                 <p>${merchants.address}</p>
             </div>
         </div>
-
-
         <hr>
 
-        <h2>Menu</h2>
-        <c:forEach items="${products}" var="products">
-            <div class="card mb-6" style="width: 328px; display: inline-block">
-                <div class="row g-0 mb-6">
-                    <div class="col-md-4" style="max-height: 154px ; max-width: 100%">
-                        <img src="${products.productImg}"
-                             width="100" class="img-fluid rounded-start" alt="..."
-                             style="max-width: 100%;height: 108px">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body" style="padding: 10px; max-width: 100%;height: 155px">
-                            <h5 class="card-title">${products.productName}</h5>
-                            <p class="card-text">${products.price}</p>
-                            <c:if test="${sessionScope.isLogin==true}">
-                                <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
-                            </c:if>
+        <h2 style="padding-top: 40px;padding-left: 80px">Gợi ý món ăn</h2>
+        <div class="row mb-2" style="padding-top: 50px;padding-left: 90px">
+            <c:forEach items="${products}" var="product">
+                <div class="card" style="width: 500px;height: 162px;margin-right: 50px;margin-bottom: 20px">
+                    <div class="row no-gutters">
+                        <div class="col-sm-5" style="padding: 0;height: 139px">
+                            <img class="card-img" src="${product.productImg}" alt="Suresh Dasari Card"
+                                 style="height: 160px">
+                        </div>
+                        <div class="col-sm-7" style="float: right">
+                            <form method="get" action="/products" id="restaurant${product.idProduct}"
+                                  style="cursor: pointer;"
+                                  onclick="redirectToUsers(this.id)">
+                                <input type="hidden" name="action" value="dish-detail"/>
+                                <input type="hidden" name="productId" value="${product.idProduct}"/>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="padding-bottom: 5px">${product.productName}</h5>
+                                    <p class="card-text"><i class="fa-solid fa-sack-dollar"
+                                                            style="color: #ff4501"></i> ${product.price}
+                                        &#8363</p>
+                                    <c:if test="${sessionScope.isLogin==true}">
+                                        <a style="width: 60px;border: orangered;background: orangered"
+                                           href="/products?action=add-product-cart&id=${product.idProduct}"
+                                           class="btn btn-primary"><i style="font-size: 20px" class='bx bx-cart'></i>
+                                        </a>
+                                    </c:if>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
-        <div style="padding-top: 20px">
-            <td class="container">
-                <a href="/users?action=home" style="color:#FF7F3F "><i class="fa fa-angle-left"></i>Home</a>
-            </td>
+            </c:forEach>
         </div>
-    </main>
-
+    </div>
 </form>
 
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -84,7 +173,7 @@
     <section class="">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
-                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4">
+                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 104px">
                     <h6 class="text-uppercase fw-bold mb-4">
                         <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
                     </h6>
@@ -110,6 +199,9 @@
                     <p>Minh Hieu</p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
+                    <h6 class=" text-uppercase fw-bold mb-4">
+                        Liên hệ
+                    </h6>
                     <p>Hoài Đức - Hà Nội</p>
                     <p>
                         WebWhatForLunch@gmail.com
@@ -126,11 +218,11 @@
 </footer>
 </body>
 <script>
-    let idUser = document.getElementById("idUser").value;
-    if (idUser != 0) {
-        document.getElementById("button-full").hidden = true;
-    } else {
-        document.getElementById("button-full").hidden = false;
+
+    function redirectToUsers(id) {
+        document.getElementById(id).submit();
     }
+
+    <
 </script>
 </html>

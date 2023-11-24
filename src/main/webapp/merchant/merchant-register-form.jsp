@@ -42,7 +42,7 @@
       text-align: center;
     }
   </style>
-  <title>Merchant Register</title>
+  <title>WhatForLunch</title>
 </head>
 <section class="h-100 ">
   <div class="container py-5 h-100">

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Detail Bill</title>
+    <title>WhatForLunch</title>
 </head>
 <head>
     <meta charset="UTF-8">

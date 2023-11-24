@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "userServlet", value = "/users")
-public class  UserServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
     private UserDAO userDAO;
     private ProductDAO productDAO;
     private BillDAO billDAO;
@@ -125,6 +125,8 @@ public class  UserServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
         List<Product> productList = null;
         try {
+            List<Product> productBestSale = productDAO.getBestSaleProduct();
+            List<Product> productRecommend = productDAO.getRecommendProduct();
             if (nameSearch != null) {
                 productList = productDAO.searchProductByName(nameSearch);
             } else if (nameSearch != null && quickSearch != null) {
@@ -135,7 +137,9 @@ public class  UserServlet extends HttpServlet {
             req.setAttribute("nameSearch", nameSearch);
             req.setAttribute("tagSearch", quickSearch);
             req.setAttribute("pro", productList);
-            requestDispatcher.forward(req, resp);
+//            req.setAttribute("productBestSale", productBestSale);
+//            req.setAttribute("productRecommend", productRecommend);
+            requestDispatcher.forward(req,resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -299,7 +303,7 @@ public class  UserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String address = req.getParameter("address");
-        deliveryAddress = new DeliveryAddress(addressId,name,phone,address);
+        deliveryAddress = new DeliveryAddress(addressId, name, phone, address);
         userDAO.updateAddress(deliveryAddress);
         RequestDispatcher dispatcher = req.getRequestDispatcher("display/comfirmOrder.jsp");
         dispatcher.forward(req, resp);
@@ -380,9 +384,10 @@ public class  UserServlet extends HttpServlet {
 
         RequestDispatcher dispatcher;
         Merchant merchant = userDAO.checkLoginMerchant(id, password);
-        List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-        List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
-        if (merchant != null) {
+        if (merchant != null && merchant.getIdMerchant() != null) {
+            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
+            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+
             HttpSession session = req.getSession();
             session.setAttribute("merchant", merchant);
             req.setAttribute("user", user);
@@ -394,7 +399,6 @@ public class  UserServlet extends HttpServlet {
             dispatcher = req.getRequestDispatcher("display/comFirmPassword.jsp");
         }
         dispatcher.forward(req, resp);
-
     }
 
     private void logOutUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -414,7 +418,7 @@ public class  UserServlet extends HttpServlet {
         String phoneNumber = request.getParameter("restaurantPhoneNumber");
         String email = request.getParameter("restaurantEmail");
         String address = request.getParameter("restaurantAddress");
-        Merchant merchant = new Merchant(idUser, name, phoneNumber, email, address);
+        Merchant merchant = new Merchant(idUser, name, email, phoneNumber, address);
 
         userDAO.requestUserToMerchant(merchant);
         request.setAttribute("alert", "đợi admin duyêt tài khoản");
@@ -434,7 +438,7 @@ public class  UserServlet extends HttpServlet {
             userDAO.createUser(user);
             req.setAttribute("success", "tài khoản được tạo");
         } else {
-            req.setAttribute("error", "tai khoản không được tạo");
+            req.setAttribute("error", " tài khoản không được tạo");
         }
         dispatcher.forward(req, resp);
     }
@@ -456,7 +460,7 @@ public class  UserServlet extends HttpServlet {
             session.getAttribute("user");
             HttpSession httpSession = req.getSession();
             Merchant idMerchant = userDAO.returnIdMerchantByIdUser(user.getId());
-            httpSession.setAttribute("merchantId",idMerchant);
+            httpSession.setAttribute("merchantId", idMerchant);
             httpSession.getAttribute("merchantId");
             httpSession.setAttribute("isLoginMerchant", true);
             dispatcher = req.getRequestDispatcher("home/userHome.jsp");

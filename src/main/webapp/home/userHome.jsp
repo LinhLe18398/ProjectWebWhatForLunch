@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>User Home</title>
+    <title>WhatForLunch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -215,7 +215,7 @@
 
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <c:if test="${sessionScope.isLogin == true}">
-                                        <li id="button-hidden">
+                                        <li id="button-header">
                                             <a class="dropdown-item" href="/users?action=merchant">Đăng ký nhà hàng</a>
                                         </li>
                                     </c:if>
@@ -284,10 +284,10 @@
                                             <c:otherwise>${tagSearch}</c:otherwise>
                                         </c:choose>
                                     </option>
-                                    <option value="Breakfast">Đồ ăn sáng</option>
-                                    <option value="Coffee">Cafe</option>
-                                    <option value="Lunch">Đồ ăn trưa</option>
-                                    <option value="Dinner">Đồ ăn tối</option>
+                                    <option value="Bữa sáng">Bữa sáng</option>
+                                    <option value="Cà phê">Cà phê</option>
+                                    <option value="Bữa trưa">Bữa trưa</option>
+                                    <option value="Bữa tối">Đồ ăn tối</option>
                                 </select>
                             </form>
                         </div>
@@ -296,7 +296,7 @@
                                    placeholder="Nhập tên món ăn " value="${nameSearch}">
                         </div>
                         <div style="margin: 5px; display: inline-block">
-                            <form id="search-name" action="/bill" method="get">
+                            <form id="search-name" method="get">
                                 <input type="hidden" name="action" value="search">
                                 <input type="hidden" id="hidden_tag_search" name="quick_search" value="">
                                 <input type="hidden" id="hidden-name-search" name="name_search" value="">
@@ -461,7 +461,6 @@
     </div>
     <%--8 món ăn được giảm giá nhất --%>
 
-
     <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
@@ -513,61 +512,60 @@
         </c:forEach>
     </div>
     <%--Menu main--%>
-    <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
-    <div class="row mb-2 list" style="padding-top: 50px;">
-        <c:forEach items="${pro}" var="pro">
-            <div class="col-md-3 col-6  item"
-                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
-                <div style="width: 100%; height: 210px">
-                    <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
-                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
-                </div>
-                <div class="card-body"
-                     style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
-                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
-                              onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${pro.idProduct}"/>
-                            <h5 class="card-title"
-                                style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
-                                - ${pro.restaurantName}
-                            </h5>
-                            <p class="card-text ">
-                                <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
-                            <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
-                                                             style="color: #2b3240;"></i></div>
-                            <div style="padding-left: 7px">${pro.address}</div>
-                            <li class="icon-tag" style="font-size: large"><i
-                                    class="fa-solid fa-clock"></i> ${pro.waitTime} phút
-                            </li>
-                            <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
-                                    class="fa-solid fa-sack-dollar"></i>
-                                <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
-                            </li>
+        <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
+        <div class="row mb-2 list" style="padding-top: 50px;">
+            <c:forEach items="${pro}" var="pro">
+                <div class="col-md-3 col-6  item"
+                     style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                    <div style="width: 100%; height: 210px">
+                        <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
+                    </div>
+                    <div class="card-body"
+                         style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                            <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
+                                  onclick="redirectToUsers(this.id)">
+                                <input type="hidden" name="action" value="dish-detail"/>
+                                <input type="hidden" name="productId" value="${pro.idProduct}"/>
+                                <h5 class="card-title"
+                                    style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
+                                    - ${pro.restaurantName}
+                                </h5>
+                                <p class="card-text ">
+                                    <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
+                                <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
+                                                                 style="color: #2b3240;"></i></div>
+                                <div style="padding-left: 7px">${pro.address}</div>
+                                <li class="icon-tag" style="font-size: large"><i
+                                        class="fa-solid fa-clock"></i> ${pro.waitTime} phút
+                                </li>
+                                <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
+                                        class="fa-solid fa-sack-dollar"></i>
+                                    <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
+                                </li>
 
+                                </p>
+                            </form>
+                            <p style="margin: 0">
+                                <c:if test="${sessionScope.isLogin==true}">
+                                    <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
+                                       class="btn btn-primary"><i
+                                            style="font-size: 20px" class='bx bx-cart'></i></a>
+                                </c:if>
                             </p>
-                        </form>
-                        <p style="margin: 0">
-                            <c:if test="${sessionScope.isLogin==true}">
-                                <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
-                                   class="btn btn-primary"><i
-                                        style="font-size: 20px" class='bx bx-cart'></i></a>
-                            </c:if>
-                        </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
-    </div>
-    <ul class="listPage"></ul>
+            </c:forEach>
+        </div>
+        <ul class="listPage"></ul>
 </div>
-<!-- Footer -->
+
 
 <footer class="text-center text-lg-start bg-light text-muted" id="main-footer">
-<%--    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--%>
-<%--    </section>--%>
-    <section class="" style="padding-top: 10px; margin-top: 30px">
+
+    <section class="" style="padding-top: 2px; margin-top: 60px;">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class=" col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 40px">
@@ -575,7 +573,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
+                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">
@@ -616,9 +614,6 @@
 </footer>
 
 
-
-
-
 </body>
 </html>
 <script>
@@ -655,7 +650,6 @@
         document.getElementById("button-full").hidden = false;
     }
 
-
     var idMerchant = document.getElementById("IdMerchant").value;
     if (idMerchant !== "") {
         document.getElementById("button-merchant").style.display = "block";
@@ -664,9 +658,9 @@
     }
     var idMerchant = document.getElementById("IdMerchant").value;
     if (idMerchant !== "") {
-        document.getElementById("button-hidden").style.display = "none";
+        document.getElementById("button-header").style.display = "none";
     } else {
-        document.getElementById("button-hidden").style.display = "block";
+        document.getElementById("button-header").style.display = "block";
     }
 
 

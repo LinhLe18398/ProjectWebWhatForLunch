@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDAO implements UserInterface {
     private final String username = "root";
 
-    private final String password = "";
+    private final String password = "password";
 
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
@@ -123,7 +123,7 @@ public class UserDAO implements UserInterface {
         callableStatement.setInt(1, id);
         callableStatement.setString(2, password);
         ResultSet resultSet = callableStatement.executeQuery();
-        if (resultSet.next()) {
+        if (resultSet != null && resultSet.next()) {
             merchant.setIdMerchant(resultSet.getString("idMerchant"));
             merchant.setIdUser(resultSet.getInt("idUser"));
             merchant.setRestaurantName(resultSet.getString("restaurantName"));

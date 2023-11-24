@@ -183,12 +183,8 @@ public class ProductServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-
         }
     }
-
-
-
     private void createProduct(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, IOException, ServletException {
         HttpSession session = req.getSession();
         Merchant merchant = (Merchant) session.getAttribute("merchant");

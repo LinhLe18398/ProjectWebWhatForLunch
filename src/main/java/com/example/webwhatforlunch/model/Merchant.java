@@ -11,11 +11,11 @@ public class Merchant {
     private String password;
     private String status;
 
-    public Merchant(int idUser, String name, String phoneNumber, String email, String address) {
+    public Merchant(int idUser, String name, String email, String phoneNumber, String address) {
         this.idUser = idUser;
         this.restaurantName = name;
-        this.numberPhone = phoneNumber;
         this.email = email;
+        this.numberPhone = phoneNumber;
         this.address = address;
     }
 

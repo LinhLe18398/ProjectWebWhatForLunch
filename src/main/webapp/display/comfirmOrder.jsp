@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>&#128722; Thanh Toán</title>
+    <title>WhatForLunch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -83,6 +83,12 @@
         border: none;
         color: red;
         float: right;
+    }
+    .icon{
+        color: black;
+    }
+    .icon:hover{
+        color: red;
     }
 
 </style>
@@ -180,7 +186,7 @@
                                             <h5>Cập nhật địa chỉ</h5>
                                         </div>
                                         <div style="float: right;padding: 5px">
-                                           <a href="/users?action=order" style="list-style-type: none; float: right"><i style="color: red;padding-top: 3px; padding-right:5px; font-size: 22px" class="fas fa-times"></i></a>
+                                           <a href="/users?action=order" style="list-style-type: none; float: right" class="icon"><i style="padding-top: 3px; padding-right:5px; font-size: 22px" class="fas fa-times"></i></a>
                                         </div>
                                         <hr>
                                         <form id="updateForm" action="/users?action=updateAddress" method="post">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tuan
@@ -8,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Title</title>
+  <title>WhatForLunch</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <style>
@@ -21,10 +22,23 @@
     font-family: 'Poppins', sans-serif;
   }
 
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+
   body {
-    background: linear-gradient(120deg, #3ca7ee, #9b408f);
-    height: 100vh;
-    overflow: hidden;
+    /*background: linear-gradient(120deg, #3ca7ee, #9b408f);*/
+    /*height: 100vh;*/
+    /*overflow: hidden;*/
+    background-image: url("https://static.vecteezy.com/system/resources/previews/016/030/491/non_2x/top-view-of-traditional-korean-food-on-a-table-illustration-delicious-korean-bbq-grill-with-all-small-side-dishes-set-beef-and-pork-korean-barbecue-asian-food-background-vector.jpg");
+ background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .container {
@@ -85,7 +99,7 @@
     left: 0;
     width: 0%;
     height: 2px;
-    background: #2691d9;
+    background: #49b571;
     transition: 0.3s;
   }
 
@@ -98,7 +112,7 @@
     width: 100%;
     height: 50px;
     border: 1px solid;
-    background: #2691d9;
+    background: #49b571;
     border-radius: 25px;
     font-size: 18px;
     color: #e9f4fb;
@@ -109,11 +123,11 @@
   }
 
   input[type='submit']:hover {
-    background-color: #08609a;
+    background-color: #49b571;
   }
 
   .signup_link a {
-    color: #2691d9;
+    color: #49b571;
     text-decoration: none;
   }
 
@@ -123,13 +137,17 @@
 
 </style>
 <body>
+<div class="overlay"></div>
 <div class="container">
-  <h1>Login merchant</h1>
+
+  <h1 style="margin-top: 50px">Login merchant</h1>
+
   <form action="/users?action=comfirmpassword" method="post">
+
     <div class="form-control">
       <input type="password" id="password" placeholder="Password" name="password">
     </div>
-    <input type="submit" value="Login"/>
+    <input style="margin-bottom: 100px" type="submit" value="Login"/>
   </form>
 </div>
 </body>
