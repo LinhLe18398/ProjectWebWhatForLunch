@@ -64,7 +64,7 @@
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 700px">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left:630px">
                         <li class="nav-item dropdown" style="margin-left: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"

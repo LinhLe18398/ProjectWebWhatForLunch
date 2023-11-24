@@ -650,6 +650,20 @@
     } else {
         document.getElementById("button-full").hidden = false;
     }
+
+
+    var idMerchant = document.getElementById("IdMerchant").value;
+    if (idMerchant !== "") {
+        document.getElementById("button-merchant").style.display = "block";
+    } else {
+        document.getElementById("button-merchant").style.display = "none";
+    }
+    var idMerchant = document.getElementById("IdMerchant").value;
+    if (idMerchant !== "") {
+        document.getElementById("button-hidden").style.display = "none";
+    } else {
+        document.getElementById("button-hidden").style.display = "block";
+    }
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');
