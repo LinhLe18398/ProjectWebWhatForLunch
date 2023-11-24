@@ -215,7 +215,7 @@
 
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <c:if test="${sessionScope.isLogin == true}">
-                                        <li id="button-hidden">
+                                        <li id="button-header">
                                             <a class="dropdown-item" href="/users?action=merchant">Đăng ký nhà hàng</a>
                                         </li>
                                     </c:if>
@@ -461,7 +461,6 @@
     </div>
     <%--8 món ăn được giảm giá nhất --%>
 
-
     <h2 style="padding-top: 40px">MÓN ĂN GIẢM GIÁ</h2>
     <div class="row mb-2" style="padding-top: 50px;">
         <c:forEach items="${productBestSale}" var="productBestSale">
@@ -513,54 +512,54 @@
         </c:forEach>
     </div>
     <%--Menu main--%>
-    <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
-    <div class="row mb-2 list" style="padding-top: 50px;">
-        <c:forEach items="${pro}" var="pro">
-            <div class="col-md-3 col-6  item"
-                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
-                <div style="width: 100%; height: 210px">
-                    <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
-                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
-                </div>
-                <div class="card-body"
-                     style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
-                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                        <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
-                              onclick="redirectToUsers(this.id)">
-                            <input type="hidden" name="action" value="dish-detail"/>
-                            <input type="hidden" name="productId" value="${pro.idProduct}"/>
-                            <h5 class="card-title"
-                                style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
-                                - ${pro.restaurantName}
-                            </h5>
-                            <p class="card-text ">
-                                <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
-                            <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
-                                                             style="color: #2b3240;"></i></div>
-                            <div style="padding-left: 7px">${pro.address}</div>
-                            <li class="icon-tag" style="font-size: large"><i
-                                    class="fa-solid fa-clock"></i> ${pro.waitTime} phút
-                            </li>
-                            <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
-                                    class="fa-solid fa-sack-dollar"></i>
-                                <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
-                            </li>
+        <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
+        <div class="row mb-2 list" style="padding-top: 50px;">
+            <c:forEach items="${pro}" var="pro">
+                <div class="col-md-3 col-6  item"
+                     style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                    <div style="width: 100%; height: 210px">
+                        <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
+                    </div>
+                    <div class="card-body"
+                         style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                            <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
+                                  onclick="redirectToUsers(this.id)">
+                                <input type="hidden" name="action" value="dish-detail"/>
+                                <input type="hidden" name="productId" value="${pro.idProduct}"/>
+                                <h5 class="card-title"
+                                    style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
+                                    - ${pro.restaurantName}
+                                </h5>
+                                <p class="card-text ">
+                                    <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
+                                <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
+                                                                 style="color: #2b3240;"></i></div>
+                                <div style="padding-left: 7px">${pro.address}</div>
+                                <li class="icon-tag" style="font-size: large"><i
+                                        class="fa-solid fa-clock"></i> ${pro.waitTime} phút
+                                </li>
+                                <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
+                                        class="fa-solid fa-sack-dollar"></i>
+                                    <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
+                                </li>
 
+                                </p>
+                            </form>
+                            <p style="margin: 0">
+                                <c:if test="${sessionScope.isLogin==true}">
+                                    <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
+                                       class="btn btn-primary"><i
+                                            style="font-size: 20px" class='bx bx-cart'></i></a>
+                                </c:if>
                             </p>
-                        </form>
-                        <p style="margin: 0">
-                            <c:if test="${sessionScope.isLogin==true}">
-                                <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
-                                   class="btn btn-primary"><i
-                                        style="font-size: 20px" class='bx bx-cart'></i></a>
-                            </c:if>
-                        </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
-    </div>
-    <ul class="listPage"></ul>
+            </c:forEach>
+        </div>
+        <ul class="listPage"></ul>
 </div>
 
 
@@ -651,7 +650,6 @@
         document.getElementById("button-full").hidden = false;
     }
 
-
     var idMerchant = document.getElementById("IdMerchant").value;
     if (idMerchant !== "") {
         document.getElementById("button-merchant").style.display = "block";
@@ -660,10 +658,12 @@
     }
     var idMerchant = document.getElementById("IdMerchant").value;
     if (idMerchant !== "") {
-        document.getElementById("button-hidden").style.display = "none";
+        document.getElementById("button-header").style.display = "none";
     } else {
-        document.getElementById("button-hidden").style.display = "block";
+        document.getElementById("button-header").style.display = "block";
     }
+
+
     let thisPage = 1;
     let limit = 8;
     let list = document.querySelectorAll('.list .item');
