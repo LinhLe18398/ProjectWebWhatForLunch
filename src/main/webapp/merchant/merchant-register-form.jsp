@@ -57,7 +57,7 @@
                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; max-width: 100%"/>
             </div>
             <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
+              <div class="card-body p-md-5 text-black" style="margin-top: 200px">
                 <h2 class="mb-4 text-uppercase text-success fw-normal">Đăng ký nhà hàng</h2>
                 <form action="/users?action=merchant" method="post">
 
@@ -73,7 +73,7 @@
                       <div class="form-outline">
                         <input type="text" id="form3Example1n"
                                class="form-control form-control-lg"
-                               placeholder="số điện thoại nhà hàng" name="restaurantPhoneNumber">
+                               placeholder="số điện thoại" name="restaurantPhoneNumber">
                       </div>
                     </div>
                   </div>
@@ -83,14 +83,14 @@
                       <div class="form-outline">
                         <input type="email" id="form3Example1m1"
                                class="form-control form-control-lg"
-                               placeholder="email nhà hàng" name="restaurantEmail">
+                               placeholder="email" name="restaurantEmail">
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
                         <input type="text" id="form3Example1n1"
                                class="form-control form-control-lg"
-                               placeholder="địa chỉ nhà hàng" name="restaurantAddress">
+                               placeholder="địa chỉ" name="restaurantAddress">
                       </div>
                     </div>
                   </div>
@@ -109,7 +109,9 @@
                           class="text">Đăng nhập</u></a></p>
                 </form>
                 <a href="/users?action=home" class="back">
-                  <button type="submit" class="btn btn-secondary btn-sm" style="background-color: white; border: none;color: black"><i
+                  <button type="submit" class="btn btn-secondary btn-sm" style="background-color: white; border: none; color: green;
+    text-decoration: underline;
+    font-size: 19px;"><i
                           class="fa fa-angle-left"></i>Trở về</button>
                 </a>
               </div>
