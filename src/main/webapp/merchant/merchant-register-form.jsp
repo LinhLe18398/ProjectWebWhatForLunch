@@ -9,6 +9,7 @@
           crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
   <style>
     body {
       top: 0;
@@ -57,8 +58,7 @@
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
-                <h2 class="mb-4 text-uppercase text-success fw-normal">Restaurant registration</h2>
-                <p style="color: red">(*) Please enter correct information.</p><br>
+                <h2 class="mb-4 text-uppercase text-success fw-normal">Đăng ký nhà hàng</h2>
                 <form action="/users?action=merchant" method="post">
 
                   <div class="row">
@@ -66,14 +66,14 @@
                       <div class="form-outline">
                         <input type="text" id="form3Example1m"
                                class="form-control form-control-lg"
-                               placeholder="Restaurant Name*" name="restaurantName">
+                               placeholder="tên nhà hàng" name="restaurantName">
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
                         <input type="text" id="form3Example1n"
                                class="form-control form-control-lg"
-                               placeholder="Restaurant Phone*" name="restaurantPhoneNumber">
+                               placeholder="số điện thoại nhà hàng" name="restaurantPhoneNumber">
                       </div>
                     </div>
                   </div>
@@ -83,14 +83,14 @@
                       <div class="form-outline">
                         <input type="email" id="form3Example1m1"
                                class="form-control form-control-lg"
-                               placeholder="Restaurant Email*" name="restaurantEmail">
+                               placeholder="email nhà hàng" name="restaurantEmail">
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
                         <input type="text" id="form3Example1n1"
                                class="form-control form-control-lg"
-                               placeholder="Restaurant Address" name="restaurantAddress">
+                               placeholder="địa chỉ nhà hàng" name="restaurantAddress">
                       </div>
                     </div>
                   </div>
@@ -99,17 +99,18 @@
                   <div class="d-flex justify-content-center">
                     <input type="submit" id="submit_button"
                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body col-10"
-                           value="Register"/>
+                           value="Đăng ký"/>
                   </div>
                   <c:if test="${ not empty alert}">
                     <h3 class="alert">${alert}</h3>
                   </c:if>
-                  <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                  <p class="text-center text-muted mt-5 mb-0">Bạn đã có nhà hàng? <a
                           href="/users?action=comfirmpassword" class="fw-bold text-body"><u
-                          class="text-warning">Login here</u></a></p>
+                          class="text">Đăng nhập</u></a></p>
                 </form>
                 <a href="/users?action=home" class="back">
-                  <button type="submit" class="btn btn-secondary btn-sm">&#8592; back</button>
+                  <button type="submit" class="btn btn-secondary btn-sm" style="background-color: white; border: none;color: black"><i
+                          class="fa fa-angle-left"></i>Trở về</button>
                 </a>
               </div>
             </div>

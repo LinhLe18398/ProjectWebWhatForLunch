@@ -132,7 +132,7 @@
             chú: ${product.note}</p>
         <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-clock" style="color: #ff4501;"></i> Thời
             gian chế biến: ${product.waitTime} phút</p>
-        <p style="margin-left: 100px; font-size: 20px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>
+        <p style="margin-left: 100px; font-size: 20px" ><i class="fa-solid fa-sack-dollar" style="color: #ff4501;"></i>
             Giá tiền: ${product.price} &#8363</p>
         <p>
             <c:if test="${sessionScope.isLogin==true}">
@@ -174,7 +174,7 @@
                             <input type="hidden" name="productId" value="${productRecommend.idProduct}"/>
                             <div class="card-body">
                                 <h5 class="card-title" style="padding-bottom: 5px">${productRecommend.productName}</h5>
-                                <p class="card-text"><i class="fa-solid fa-sack-dollar" style="color: #ff4501"></i> ${productRecommend.price}
+                                <p class="card-text price" style="padding-bottom: 10px"><i class="fa-solid fa-sack-dollar" style="color: #ff4501"></i> ${productRecommend.price}
                                     &#8363</p>
                                 <c:if test="${sessionScope.isLogin==true}">
                                     <a style="width: 60px;border: orangered;background: orangered"
@@ -245,6 +245,13 @@
 <script>
     function redirectToUsers(id) {
         document.getElementById(id).submit();
+    }
+    let numberElements = document.getElementsByClassName("price");
+    for (let i = 0; i < numberElements.length; i++) {
+        let numberElement = numberElements[i];
+        let number = parseInt(numberElement.textContent);
+        let formattedNumber = number.toLocaleString();
+        numberElement.textContent = formattedNumber + "₫";
     }
 </script>
 </html>

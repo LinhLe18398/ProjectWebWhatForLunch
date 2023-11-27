@@ -76,11 +76,11 @@
 
 <div class="header container">
     <div class="overlay"></div>
-    <div class="navbar" style="margin-left: 600px">
+    <div class="navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light"
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px">Trang
+                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px;padding-right: 650px">Trang
                     chủ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

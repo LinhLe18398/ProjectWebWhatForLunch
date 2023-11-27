@@ -95,10 +95,12 @@
     pointer-events: none;
   }
   .button-activity1{
+    color: green;
     border: none;
     background-color: white;
   }
   .button-activity2{
+    color: red;
     border: none;
     background-color: white;
   }
@@ -145,9 +147,10 @@
   </div>
 </div>
 
-<div class="container" style="padding-top: 50px">
+<div class="container" style="padding-top: 37px">
+  <h2>Danh sách đăng ký nhà hàng</h2>
 <form action="/admin?action=clickStatus" method="post">
-  <table class="table">
+  <table class="table" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em;margin-top: 30px">
     <tr>
       <th scope="col">MerchantId</th>
       <th scope="col">RestaurantName</th>
@@ -180,7 +183,7 @@
 </div>
 
 <footer class="text-center text-lg-start bg-light text-muted">
-  <section style="min-height: 120px" class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+  <section style="min-height: 80px" class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
   </section>
   <section class="" style="height: 243px">
     <div class="container text-center text-md-start mt-5">

@@ -74,12 +74,6 @@
         }
     }
 
-
-    .quantity {
-        padding-top: 10px;
-        padding-right: 5px;
-    }
-
     .form-control {
         width: 30px;
         text-align: center;
@@ -103,10 +97,9 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.2);
         pointer-events: none;
     }
-
 
 </style>
 </style>
@@ -114,12 +107,12 @@
 <body>
 <div class="header container">
     <div class="overlay"></div>
-    <div class="navbar" style="margin-left: 600px">
+    <div class="navbar" style="margin-left: -106px">
         <nav class="navbar navbar-expand-lg navbar-light bg-light"
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/users?action=home"
-                   style="color: white; font-size: 20px; padding-top: 13px">Trang
+                   style="color: white; font-size: 20px;padding-top: 14px">Trang
                     chủ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -127,36 +120,30 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 723px">
                         <li class="nav-item dropdown" style="margin-left: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"
-                               style="color: white; font-size: 20px">Nhà hàng</a>
+                               style="color: white; font-size: 20px;text-decoration: none">Nhà hàng</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
                                     nhà hàng của tôi</a></li>
                             </ul>
                         </li>
-
-
                         <li class="nav-item dropdown" style="margin-left: 20px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"
-                               style="color: white; font-size: 20px">
+                               style="color: white; font-size: 20px;text-decoration: none">
                                 ${user.name}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
                                     tin</a></li>
-                                <li><a class="dropdown-item" href="/users?action=merchant">Đăng ký quán</a>
-                                </li>
                                 <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-
                                 <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
-
                             </ul>
                         </li>
                     </ul>
@@ -204,7 +191,7 @@
                     </div>
                 </td>
                 <td data-th="Price">${pro.price} ₫</td>
-                <td data-th="Quantity" style="display: flex;border: none">
+                <td data-th="Quantity" style="display: flex;padding-bottom: 70px">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
 
                     <a style="margin-right: 8px; margin-top: 8px"
@@ -228,7 +215,8 @@
         </tbody>
         <tfoot>
         <tr>
-            <td><a href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px"><i
+            <td><a href="/users?action=home"
+                   style="color:#FF7F3F; margin-top: 15px; font-size: 20px;text-decoration: none"><i
                     class="fa fa-angle-left"></i>Trang Chủ</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
@@ -300,6 +288,14 @@
 </body>
 </html>
 <script>
+
+    let numberElements = document.getElementsByClassName("price");
+    for (let i = 0; i < numberElements.length; i++) {
+        let numberElement = numberElements[i];
+        let number = parseInt(numberElement.textContent);
+        let formattedNumber = number.toLocaleString();
+        numberElement.textContent = formattedNumber + "₫";
+    }
 
     var form = document.getElementById('myForm');
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
