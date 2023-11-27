@@ -175,7 +175,7 @@
     <c:when test="${billStatus eq 'Đã hoàn thành'}">
              color: green;
     </c:when>
-    <c:when test="${billStatus eq 'Huỷ'}">
+    <c:when test="${billStatus eq 'Khách hàng huỷ đơn'}">
            color: red;
     </c:when>
     <c:when test="${billStatus eq 'Đang chế biến'}">
