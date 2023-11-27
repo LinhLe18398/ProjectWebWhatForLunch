@@ -99,8 +99,12 @@ public class BillServlet extends HttpServlet {
         List<Bill> billList = billDAO.searchInMerchantBillList(idMerchant, idBill, numberPhone, nameUser, filter);
 
         try {
+//            request.setAttribute("billList", billList);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
+//            dispatcher.forward(request, response);
+
             request.setAttribute("billList", billList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/billMerchant.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
@@ -159,7 +163,12 @@ public class BillServlet extends HttpServlet {
 
     private void statusBill(HttpServletRequest request, HttpServletResponse response) {
         int number= Integer.parseInt(request.getParameter("active"));
-        if (number == 2) {
+//        if (number == 2) {
+//            showDetailBillMerchant(request, response);
+//        } else {
+//            setStatusBill(request, response);
+//        }
+        if (number == 3) {
             showDetailBillMerchant(request, response);
         } else {
             setStatusBill(request, response);
@@ -171,12 +180,22 @@ public class BillServlet extends HttpServlet {
         int number = Integer.parseInt(request.getParameter("active"));
 
         try {
+//            switch (number) {
+//                case 0:
+//                    billDAO.cancelBill(idBill, 0);
+//                    break;
+//                case 1:
+//                    billDAO.acceptBill(idBill, 0);
+//                    break;
+//                default:
+//                    break;
+//            }
             switch (number) {
                 case 0:
-                    billDAO.cancelBill(idBill, 0);
+                    billDAO.cancelBill(idBill, 1);
                     break;
-                case 1:
-                    billDAO.acceptBill(idBill, 0);
+                case 2:
+                    billDAO.acceptBill(idBill, 1);
                     break;
                 default:
                     break;
@@ -223,22 +242,34 @@ public class BillServlet extends HttpServlet {
         sendListToHomeMerchant(request, response);
     }
 
-    private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        Merchant merchant = (Merchant) session.getAttribute("merchant");
-        try {
-            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
-            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-            request.setAttribute("productList", productList);
-            request.setAttribute("billList", billList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
-            dispatcher.forward(request, response);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException | ServletException | IOException e) {
-            throw new RuntimeException(e);
-        }
+//    private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
+//        HttpSession session = request.getSession();
+//        Merchant merchant = (Merchant) session.getAttribute("merchant");
+//        try {
+//            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+//            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
+//            request.setAttribute("productList", productList);
+//            request.setAttribute("billList", billList);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
+//            dispatcher.forward(request, response);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException | ServletException | IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
+    HttpSession session = request.getSession();
+    Merchant merchant = (Merchant) session.getAttribute("merchant");
+    try {
+        List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+        request.setAttribute("billList", billList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/billMerchant.jsp");
+        dispatcher.forward(request, response);
+    } catch (ServletException | IOException e) {
+        throw new RuntimeException(e);
     }
+}
 
 
     private void eventBillFromUser(HttpServletRequest request, HttpServletResponse response) {
