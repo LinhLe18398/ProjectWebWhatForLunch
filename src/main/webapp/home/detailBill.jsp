@@ -506,7 +506,7 @@
         // }
 
         if (liElement == "Chờ nhận hàng" &&
-            (status == "Huỷ" || status == "Nhà hàng từ chối đơn" || status == "Khách hàng huỷ đơn")) {
+            (status == "Nhà hàng từ chối đơn" || status == "Khách hàng huỷ đơn")) {
             li.innerHTML = status;
             break;
         }

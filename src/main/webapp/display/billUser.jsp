@@ -190,14 +190,26 @@
                                         onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
 
-                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">
+<%--                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">--%>
+<%--                                <button style="display: inline;  height: 45px; width: 190px;"--%>
+<%--                                        type="submit" class="btn btn-outline-danger">Mua lại</button>--%>
+<%--                            </c:when>--%>
+                            <c:when test="${
+                            listBillUser.getBillStatus() == 'Nhà hàng từ chối đơn' ||
+                            listBillUser.getBillStatus() == 'Khách hàng huỷ đơn'   ||
+                            listBillUser.getBillStatus() == 'Đã hoàn thành' }">
                                 <button style="display: inline;  height: 45px; width: 190px;"
-                                        type="submit" class="btn btn-outline-danger">Mua lại</button>
+                                        type="submit" class="btn btn-outline-danger"
+                                        onclick="location.href='/products?action=cart' ">Mua lại</button>
                             </c:when>
 
+<%--                            <c:otherwise>--%>
+<%--                                <button style="display: inline;  height: 45px; width: 190px; color: orangered"--%>
+<%--                                        type="submit" class="btn btn-outline-dark" disabled>Đang giao</button>--%>
+<%--                            </c:otherwise>--%>
                             <c:otherwise>
                                 <button style="display: inline;  height: 45px; width: 190px; color: orangered"
-                                        type="submit" class="btn btn-outline-dark" disabled>Đang giao</button>
+                                        type="submit" class="btn btn-outline-danger" disabled>Đang giao</button>
                             </c:otherwise>
                         </c:choose>
 
@@ -312,14 +324,24 @@
         numberElement.textContent = formattedNumber + "₫";
     }
 
+    // function cancelBill(idBill) {
+    //     document.getElementById("idBill").value = idBill;
+    //     document.getElementById("active").value = 3;
+    // }
+    //
+    // function showDetailBill(idBill) {
+    //     document.getElementById("idBill").value = idBill;
+    //     document.getElementById("active").value = 4;
+    // }
     function cancelBill(idBill) {
         document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 3;
+        document.getElementById("active").value = 1;
     }
 
     function showDetailBill(idBill) {
         document.getElementById("idBill").value = idBill;
         document.getElementById("active").value = 4;
     }
+
 </script>
 </html>

@@ -277,13 +277,24 @@ private void sendListToHomeMerchant(HttpServletRequest request, HttpServletRespo
         int number = Integer.parseInt(request.getParameter("active"));
         System.out.println(number);
         try {
+//            switch (number) {
+//                case 3 :
+//                    billDAO.cancelBill(idBill, 0);
+//                    getListBillUser(request, response);
+//                    break;
+//                case 4 :
+//                    showDetailBillUser(request, response);
+//                default:
+//                    break;
+//            }
             switch (number) {
-                case 3 :
+                case 1 :
                     billDAO.cancelBill(idBill, 0);
                     getListBillUser(request, response);
                     break;
                 case 4 :
                     showDetailBillUser(request, response);
+                    break;
                 default:
                     break;
             }

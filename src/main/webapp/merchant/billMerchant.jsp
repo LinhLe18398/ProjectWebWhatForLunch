@@ -355,9 +355,6 @@
             if (buttonIndex == 6 && cellValue !== ("Nhà hàng từ chối đơn" || "Khách hàng huỷ đơn")) {
                 tr.style.display = "none";
                 sumOrder--;
-            } else if (buttonIndex == 6 && cellValue !== ("Huỷ")) {
-                tr.style.display = "none";
-                sumOrder--;
             }
             document.getElementById("sum-order").textContent = sumOrder + " Đơn hàng";
         }
@@ -373,9 +370,9 @@
             case "Đã hoàn thành":
                 cell.style.color = "green";
                 break;
-            case "Huỷ":
-                cell.style.color = "red";
-                break;
+            // case "Huỷ":
+            //     cell.style.color = "red";
+            //     break;
             case "Nhà hàng từ chối đơn":
                 cell.style.color = "red";
                 break;
