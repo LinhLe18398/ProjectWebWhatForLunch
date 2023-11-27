@@ -1,7 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page import="com.example.webwhatforlunch.model.Bill" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.webwhatforlunch.model.Product" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: tuan
@@ -32,9 +34,6 @@
         background-color: rgb(255, 255, 255, 0.5) !important;
     }
 
-    .hh {
-        background-color: white;
-    }
 
     #xmas-popup .popup-content {
         width: 500px;
@@ -59,9 +58,6 @@
         display: block;
     }
 
-    .bill-address {
-        border: none;
-    }
 
     .detail-address {
         border-top-style: hidden;
@@ -84,75 +80,105 @@
         color: red;
         float: right;
     }
-    .icon{
+
+    .icon {
         color: black;
     }
-    .icon:hover{
+
+    .icon:hover {
         color: red;
+    }
+
+    .header {
+        /*display: flex;*/
+        background-image: url("https://gofood.in/public/assets/webs/img/bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-color: rgb(255, 255, 255, 0.5) !important;
+        padding-top: 11px;
+        height: 95px;
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+    }
+
+
+    li {
+        list-style-type: none;
+    }
+
+    .btn-primary {
+        --bs-btn-border-color: FF4500FF;
     }
 
 </style>
 <body>
 <form action="/users?action=order" method="get">
-    <header style="margin-bottom: 15px">
-        <div class="hh">
-            <div class="header container">
-                <div style="color:#FF7F3F ; padding: 20px ; font-size: 30px;display: inline-block">
-                    &#128722; | Thanh Toán
-                </div>
-                <div class="navbar" style="padding-bottom: 0;margin-left: 600px">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light"
-                         style="background-color: rgb(255,255,255,0) !important; padding-top: 0">
-                        <div class="container-fluid">
-                            <a class="navbar-brand" href="/users?action=home" style="color: #ffffff">Trang Chủ</a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item dropdown" style="margin-left: 20px">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
-                                            Trang
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="#">1</a></li>
-                                            <li><a class="dropdown-item" href="#">2</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">3</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item dropdown" style="margin-left: 20px">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false"
-                                           style="color: white; font-size: 18px">
-                                            ${user.name}
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
-                                                tin</a></li>
-                                            <li><a class="dropdown-item" href="/bill?action=bill-user">Đơn đã đặt</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-
-                                            <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
-
-                                        </ul>
-                                    </li>
+    <div class="header container">
+        <div class="overlay"></div>
+        <div class="navbar" style="margin-left: 20px">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light"
+                 style="background-color: rgb(255,255,255,0) !important;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px">Trang
+                        chủ</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 630px">
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="color: white; font-size: 20px">Nhà hàng</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/users?action=comfirmpassword">Chuyển sang
+                                        nhà hàng của tôi</a></li>
                                 </ul>
-                            </div>
-                        </div>
-                    </nav>
+                            </li>
+
+
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="color: white; font-size: 20px">
+                                    ${user.name}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/users?action=edit&id=${user.id}">Sửa thông
+                                        tin</a></li>
+                                    <li><a class="dropdown-item" href="/display/billUser.jsp">Đơn đã đặt</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
+                                   style="color: white; font-size: 19px">
+                                    Giỏ hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </nav>
         </div>
-    </header>
+    </div>
+
 
     <div class="container"
          style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px;">
@@ -186,15 +212,20 @@
                                             <h5>Cập nhật địa chỉ</h5>
                                         </div>
                                         <div style="float: right;padding: 5px">
-                                           <a href="/users?action=order" style="list-style-type: none; float: right" class="icon"><i style="padding-top: 3px; padding-right:5px; font-size: 22px" class="fas fa-times"></i></a>
+                                           <a href="/users?action=order" style="list-style-type: none; float: right"
+                                              class="icon"><i
+                                                   style="padding-top: 3px; padding-right:5px; font-size: 22px"
+                                                   class="fas fa-times"></i></a>
                                         </div>
                                         <hr>
                                         <form id="updateForm" action="/users?action=updateAddress" method="post">
                                         <div style="padding: 10px">
                                               <input type="hidden" id="updateAddressId" name="addressId">
                                             <p>
-                                            <input type="text" style="margin-right: 21px;width: 220px" placeholder="Họ và tên" id="update-name" name="name">
-                                            <input type="text" style="width: 220px" placeholder="Số điện thoại" id="update-phone"
+                                            <input type="text" style="margin-right: 21px;width: 220px"
+                                                   placeholder="Họ và tên" id="update-name" name="name">
+                                            <input type="text" style="width: 220px" placeholder="Số điện thoại"
+                                                   id="update-phone"
                                                    name="phone">
                                             </p>
                                             <p>
@@ -280,6 +311,7 @@
                     <th style="width:22%" class="text-center">Thành tiền</th>
                 </tr>
             </thead>
+           
 
             <tbody>
              <c:forEach items="${product}" var="product">
@@ -340,11 +372,11 @@
             </tbody>
             <tfoot>
                 <tr style="display: flex; float: right">
-                    <td style="float: right">
+                    <td style="float: right;border: none">
                         <form method="post" action="/bill?action=confirm-bill">
                             <input type="hidden" name="listId" id="listId" value="">
                             <input type="hidden" name="listQuantity" id="listQuantity" value="">
-                            <input style="float: right" type="submit" class="btn btn-success btn-block "
+                            <input style="float: right;border: none" type="submit" class="btn btn-success btn-block "
                                    value="Đặt Hàng">
                             <c:forEach items="${address}" var="showAddress">
                                    <label hidden="hidden" class="form-check-label" for="flexRadioDefault1"
@@ -370,8 +402,8 @@
                     </td>
                 </tr>
                 <tr style="float: left;padding-top: 10px">
-                     <td style="float: left">
-                          <a style="float: left;text-decoration: none;color: #FF7F3F" href="/users?action=home"><i
+                     <td style="float: left;border: none">
+                          <a style="float: left;text-decoration: none;color: #FF7F3F;" href="/users?action=home"><i
                                   class="fa fa-angle-left"></i>Trang Chủ</a>
                      </td>
                 </tr>
@@ -379,9 +411,58 @@
        </table>
     </span>
     </div>
-
-
 </form>
+
+<footer class="text-center text-lg-start bg-light text-muted">
+    <section style="height: 54px" class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    </section>
+    <section class="" style="height: 243px">
+        <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 104px">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
+                    </h6>
+                    <p style="font-size: 16px">
+                        Here you can order all delicious Vietnamese dishes.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        Sản phẩm
+                    </h6>
+                    <p style="font-size: 16px">Thông tin</p>
+                    <p style="font-size: 16px">Trợ giúp</p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 text-left mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        Thành viên
+                    </h6>
+                    <p style="font-size: 16px">Ngoc Linh</p>
+                    <p style="font-size: 16px">Van Tuan</p>
+                    <p style="font-size: 16px">Cat Hai</p>
+                    <p style="font-size: 16px">Gia Minh</p>
+                    <p style="font-size: 16px">Minh Hieu</p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+                        Liên hệ
+                    </h6>
+                    <p style="font-size: 16px">Hoài Đức - Hà Nội</p>
+                    <p style="font-size: 16px">
+                        WebWhatForLunch@gmail.com
+                    </p>
+                    <p style="font-size: 16px"> +84 88658023</p>
+                    <p style="font-size: 16px"> +84 38301773</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center p-4" style="background-color: lightgray; height: 70px;font-size: 21px; text-align: center">
+        © 2023 WebWhatForLunch
+    </div>
+</footer>
+
 
 </body>
 <script>
@@ -408,7 +489,7 @@
                 "&address=" + encodeURIComponent(address);
 
             xhr.send(data);
-        }else {
+        } else {
             hidePopup();
         }
 

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,23 +39,15 @@ public class  AdminServlet extends HttpServlet {
             case "login":
                 showLoginForm(req, resp);
                 break;
-            case "showMerchant":
-                try {
-                    ShowMerchant(req, resp);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+            case "logout":
+                showLogoutForm(req,resp);
                 break;
         }
     }
 
-    private void ShowMerchant(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
-        List<Merchant> merchantList = userDAO.showMerchant();
-        req.setAttribute("merchant", merchantList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("display/showMerchant.jsp");
-        dispatcher.forward(req, resp);
+    private void showLogoutForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("home/homeAdmin.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private void showLoginForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -89,9 +82,10 @@ public class  AdminServlet extends HttpServlet {
         try {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
-
             RequestDispatcher dispatcher;
             if (adminDAO.checkAdmin(email, password)) {
+                List<Merchant> merchantList = userDAO.showMerchant();
+                req.setAttribute("merchant", merchantList);
                 dispatcher = req.getRequestDispatcher("home/homeAdmin.jsp");
                 dispatcher.forward(req, resp);
             } else {
@@ -114,6 +108,6 @@ public class  AdminServlet extends HttpServlet {
         adminDAO.setStatusMerchant(id, number);
         List<Merchant> merchantList = userDAO.showMerchant();
         req.setAttribute("merchant", merchantList);
-        req.getRequestDispatcher("display/showMerchant.jsp").forward(req, resp);
+        req.getRequestDispatcher("home/homeAdmin.jsp").forward(req, resp);
     }
 }
