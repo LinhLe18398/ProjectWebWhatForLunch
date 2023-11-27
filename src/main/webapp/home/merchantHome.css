@@ -25,34 +25,34 @@ body{
 
 /* ---------------------------------------------- */
 
-.mySidenav {
-    top: 0;
-    right: 25px;
-    font-size: 30px;
-    height: 100%;
-    width: 60px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #858585b8;
-    overflow: hidden;
-    padding-top: 30px;
-    transition: ease-in-out 0.1s;
-    border-radius: 3px;
-}
+/*.mySidenav {*/
+/*    top: 0;*/
+/*    right: 25px;*/
+/*    font-size: 30px;*/
+/*    height: 100%;*/
+/*    width: 60px;*/
+/*    position: fixed;*/
+/*    z-index: 1;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    background-color: #858585b8;*/
+/*    overflow: hidden;*/
+/*    padding-top: 30px;*/
+/*    transition: ease-in-out 0.1s;*/
+/*    border-radius: 3px;*/
+/*}*/
 
-.mySidenav a {
-    padding: 15px 8px 15px 28px;
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    display: block;
-}
+/*.mySidenav a {*/
+/*    padding: 15px 8px 15px 28px;*/
+/*    text-decoration: none;*/
+/*    font-size: 20px;*/
+/*    color: white;*/
+/*    display: block;*/
+/*}*/
 
-.icon-a:hover {
-    background-color:orange;
-}
+/*.icon-a:hover {*/
+/*    background-color:orange;*/
+/*}*/
 
 .box {
     display: none;
@@ -77,15 +77,15 @@ body{
 /* ---------------------------------------------- */
 
 
-.icon-a {
-    color: white;
-    visibility: hidden;
-    height: 25px;
-}
-.icons {
-    visibility: visible;
-    margin-left: -8px;
-}
+/*.icon-a {*/
+/*    color: white;*/
+
+
+/*}*/
+/*.icons {*/
+/*    visibility: visible;*/
+/*    margin-left: -8px;*/
+/*}*/
 
 
 /* ---------------------------------------------- */
@@ -351,7 +351,6 @@ thead th {
 }
 
 td, th {
-    text-align: left;
     padding: 10px;
 }
 

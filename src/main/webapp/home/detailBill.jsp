@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>WhatForLunch</title>
+    <title>Detail Bill</title>
 </head>
 <head>
     <meta charset="UTF-8">
@@ -28,8 +28,8 @@
 
 <div class="mySidenav">
     <p class="logo1"><span class="menu1">☰</span></p>
-    <a href="#" class="icon-a" id="a" onclick="listClick(this.id)"><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
-    <a href="#" class="icon-a" id="b" onclick="listClick(this.id)"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
+    <a href="/products?action=home-merchant" class="icon-a" ><i class="fa fa-utensils icons"></i> Quản lí sản phẩm</a>
+    <a href="/bill?action=bill-merchant" class="icon-a"><i class="fa fa-dolly-flatbed icons"></i> Quản lí đơn</a>
 </div>
 <div id="main">
 
@@ -52,9 +52,7 @@
                      class="pro-img"/>
                 <p class="profile-name"><i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
                 <div class="profile-div">
-                    <p><i class="fa fa-user "><a href="/merchants?action=profile"> Profile</a></i></p>
-                    <p><i class="fa fa-cogs "><a href="/merchants?action=setting"> Settings</a></i></p>
-                    <p><i class="fa fa fa-sign-out "><a href="/users?action=home"> Log Out</a></i></p>
+                    <p><i class="fa fa fa-sign-out "><a style="font-weight: normal" href="/users?action=home"> Log out</a></i></p>
                 </div>
             </div>
         </div>

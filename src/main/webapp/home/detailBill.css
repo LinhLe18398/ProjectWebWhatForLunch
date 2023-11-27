@@ -79,7 +79,7 @@ body{
 
 .icon-a {
     color: white;
-    visibility: hidden;
+    /*visibility: hidden;*/
     height: 25px;
 }
 .icons {
@@ -369,7 +369,7 @@ table p {
 /* ---------------------------------------------- */
 
 
-/* Xem trạng thái đơn hàng */
+/* Xem tráº¡ng thÃ¡i Ä‘Æ¡n hÃ ng */
 #button-group {
     padding: 10px 0px;
     margin-bottom: 10px;
@@ -391,7 +391,7 @@ table p {
 
 /* ------------------------------------------------------------- */
 
-/* Giao diện chi tiết hoá đơn */
+/* Giao diá»‡n chi tiáº¿t hoÃ¡ Ä‘Æ¡n */
 
 /* -------------------------------------------------------- */
 
@@ -464,7 +464,7 @@ table p {
 }
 
 /* ------------------------------------------------ */
-/* Huỷ đơn hàng */
+/* Huá»· Ä‘Æ¡n hÃ ng */
 .detail-cancel-order {
     display: flex;
     justify-content: flex-end;
@@ -489,7 +489,7 @@ table p {
     color: white;
 }
 
-/*Xét trường hợp đơn hàng đã huỷ hoặc qua trạng thái chờ*/
+/*XÃ©t trÆ°á»ng há»£p Ä‘Æ¡n hÃ ng Ä‘Ã£ huá»· hoáº·c qua tráº¡ng thÃ¡i chá»*/
 
 .dt-cancel-order1 {
     height: 40px;
@@ -506,7 +506,7 @@ table p {
     color: black;
 }
 /* ------------------------------------------------ */
-/* Địa chỉ giao hàng và thời gian dự kiến */
+/* Äá»‹a chá»‰ giao hÃ ng vÃ  thá»i gian dá»± kiáº¿n */
 
 .detail-time-address {
     height: 150px;
@@ -560,7 +560,7 @@ table p {
 
 
 /* -------------------------------------------------------------------- */
-/* Thông tin từng đơn hàng */
+/* ThÃ´ng tin tá»«ng Ä‘Æ¡n hÃ ng */
 .detail-orders{
     padding-bottom: 10px;
 
@@ -612,7 +612,7 @@ table p {
     color: red;
 }
 /* -------------------------------------------------- */
-/* Tổng hoá đơn */
+/* Tá»•ng hoÃ¡ Ä‘Æ¡n */
 
 .detail-summary {
     background-color: #f2f2f2;
