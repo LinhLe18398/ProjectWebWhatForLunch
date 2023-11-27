@@ -25,7 +25,6 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-
     <link href="https://gofood.in/public/assets/webs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://gofood.in/public/assets/webs/vendor/fontawesome/css/all.min.css" rel="stylesheet">

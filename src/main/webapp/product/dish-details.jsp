@@ -43,6 +43,9 @@
     li {
         list-style-type: none;
     }
+    .btn-primary {
+        --bs-btn-border-color: FF4500FF;
+    }
 </style>
 </head>
 <body>
@@ -141,13 +144,6 @@
 
         <p>
         <form method="get" action="/users" id="restaurant${product.idMerchant}" style="cursor: pointer;">
-            <%--              onclick="redirectToUsers(this.id)">--%>
-            <%--    <input type="hidden" value="/users?action=restaurant">--%>
-            <%--&lt;%&ndash;            <a style="margin-left: 650px; color: orangered; font-size: 16px" href="/users?action=restaurant">Chi tiết nhà hàng</a>&ndash;%&gt;--%>
-
-            <%--        <input type="hidden" name="idMerchant" value="${product.idMerchant}">--%>
-
-
             <input type="hidden" name="action" value="restaurant"/>
             <input type="hidden" name="idMerchant" value="${product.idMerchant}"/>
             <input type="submit" style="margin-left: 610px; background-color: white; border: none; color: orangered"

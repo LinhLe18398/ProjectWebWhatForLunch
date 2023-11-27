@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Merchant Home</title>
+    <title>WhatForLunch</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 
     <div class="constructor">
         <div class="item item1">
-            <p class="nav"> What For Lunch?</p>
+            <p class="nav" style="color: black">What For Lunch</p>
 
         </div>
 
@@ -40,7 +40,7 @@
             <form action="/products?action=search" method="post">
                 <div class="ab box search">
                     <div class="search-box">
-                        <input type="text" name="keyword" class="search-input "/>
+                        <input type="text" name="keyword" class="search-input" placeholder="Tìm kiếm món ăn"/>
                         <button class="search-btn" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
@@ -75,7 +75,7 @@
     <div class="ab box">
         <div class="col-div-12">
             <div class="content-box">
-                <p class="list"> Category Selling food
+                <p class="list"> Mặt Hàng
                     <span>
                             <button class="ip-add" type="submit"><a style="text-decoration: none"
                                                                     href="/products?action=create-product">+Thêm</a></button>
@@ -95,7 +95,7 @@
                         <th>Lượt xem</th>
                         <th>Số đơn</th>
                         <th>Ghi chú</th>
-                        <th style="width: 120px; text-align: center;">Cập nhật/Xoá</th>
+                        <th style="width: 120px; text-align: center;">Thao tác</th>
                     </tr>
                     </thead>
                     <tbody>

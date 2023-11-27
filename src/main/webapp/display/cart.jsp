@@ -118,7 +118,8 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light"
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px; padding-top: 13px">Trang
+                <a class="navbar-brand" href="/users?action=home"
+                   style="color: white; font-size: 20px; padding-top: 13px">Trang
                     chủ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -158,13 +159,6 @@
 
                             </ul>
                         </li>
-
-                        <li class="nav-item dropdown" style="margin-left: 20px">
-                            <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
-                               style="color: white; font-size: 19px">
-                                Giỏ hàng
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -182,8 +176,7 @@
 </nav>
 
 
-
-<div class="container" style="min-height: 500px" >
+<div class="container" style="min-height: 500px">
     <table id="cart" class="table table-hover table-condensed" style=" min-height: 300px">
         <thead>
         <tr>
@@ -204,7 +197,8 @@
                                  alt="${pro.idProduct}" style="width: 127px; height: 100px">
                         </div>
                         <div class="col-sm-10">
-                            <h4 class="nomargin" style="padding-left: 5px; margin-left: 18px; font-weight: bold;font-size: 20px">${pro.productName}</h4>
+                            <h4 class="nomargin"
+                                style="padding-left: 5px; margin-left: 18px; font-weight: bold;font-size: 20px">${pro.productName}</h4>
                             <p style="padding-left: 5px; margin-left: 18px">${pro.note}</p>
                         </div>
                     </div>
@@ -234,13 +228,15 @@
         </tbody>
         <tfoot>
         <tr>
-            <td ><a  href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px"><i class="fa fa-angle-left"></i>Trang Chủ</a>
+            <td><a href="/users?action=home" style="color:#FF7F3F; margin-top: 15px; font-size: 20px"><i
+                    class="fa fa-angle-left"></i>Trang Chủ</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
             <td>
                 <form action="/users?action=order" method="post">
-                    <input type="submit" id="btnn" class="btn btn-success btn-block" value="Mua" style="width: 107px; height: 37px; font-size: 16px; margin-top: 15px">
+                    <input type="submit" id="btnn" class="btn btn-success btn-block" value="Mua"
+                           style="width: 107px; height: 37px; font-size: 16px; margin-top: 15px">
                     <input hidden="hidden" type="text" id="idProduct" name="idProduct" value="${param.idProduct}">
                     <input hidden="hidden" type="text" id="quantity" name="quantity" value="${param.quantity}">
                 </form>
