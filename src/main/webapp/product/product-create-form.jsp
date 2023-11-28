@@ -58,6 +58,55 @@
         width: 100%;
         margin-top: 20px;
     }
+
+    .form .image-container .input-box {
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .form .image-container .input-box input{
+        margin-bottom: 20px;
+    }
+
+    .image-container {
+        display: flex;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        margin-top: 20px;
+        justify-content: space-between;
+    }
+
+    .image-container > div {
+        flex: 1;
+        margin-right: 15px;
+    }
+
+    .image-container > div:last-child {
+        margin-right: 0;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .select-tag select {
+        font-size: 16px;
+        padding: 10px;
+        height: 50px;
+        margin-top: 15px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        color: #707070;
+        font-size: 1rem;
+        display: inline;
+    }
+
+    .select-tag label {
+        display: flex;
+        flex-direction: column;
+    }
     .input-box label {
         color: #333;
     }
@@ -158,17 +207,18 @@
 <section class="container">
     <header>Thêm món ăn</header>
     <form action="/products?action=create-product" method="post" class="form">
-        <div class="input-box">
-            <label>Tên món ăn</label>
-            <input id="product_name" name="product_name" placeholder="Tên món ăn"
-                   required="" type="text">
+        <div class="image-container">
+            <div>
+                <img id="preview_img" src="">
+            </div>
+            <div class="input-box">
+                <label>URL ảnh</label>
+                <input name="product_image" placeholder="URL ảnh" required="" onchange="updateImg(this.value)" type="text"/>
+                <label>Tên món ăn</label>
+                <input id="product_name" name="product_name" placeholder="Tên món ăn"
+                       required="" type="text">
+            </div>
         </div>
-
-        <div class="input-box">
-            <label>Ảnh</label>
-            <input name="product_image" placeholder="Ảnh" required="" type="text"/>
-        </div>
-
         <div class="column">
             <div class="input-box">
                 <label>Thời gian</label>
@@ -179,9 +229,20 @@
                 <input  id="product_price" name="product_price" placeholder="Giá tiền" required="" type="text"/>
             </div>
         </div>
-        <div class="input-box address">
-            <label>Ghi chú</label>
-            <input id="product_description" name="product_note" placeholder="Ghi chú" />
+        <div class="column">
+            <div class="input-box address">
+                <label>Ghi chú</label>
+                <input id="product_description" name="product_note" placeholder="Ghi chú" />
+            </div>
+            <div class="input-box select-tag">
+                <label>Tag</label>
+                <select name="tag_product" id="tag_product">
+                    <option value="T1">Bữa sáng</option>
+                    <option value="T2">Bữa trưa</option>
+                    <option value="T3">Bữa tối</option>
+                    <option value="T4">Cà phê</option>
+                </select>
+            </div>
         </div>
         <div class="column">
             <div class="input-box">
@@ -201,4 +262,10 @@
     </form>
 </section>
 </body>
+<script>
+    function updateImg(img){
+       let previewImg = document.getElementById("preview_img");
+       previewImg.src = img;
+    }
+</script>
 </html>
