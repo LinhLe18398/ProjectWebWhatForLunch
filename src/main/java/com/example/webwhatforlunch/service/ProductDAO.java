@@ -29,6 +29,7 @@ public class ProductDAO implements ProductInterface{
     private final String UPDATE_QUANTITY_PRODUCT = "{CALL UPDATE_PRODUCT_CART(?, ?, ?)}";
     private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
     private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
+    private final String UPDATE_VIEW_PRODUCT = "{CALL UPDATE_VIEW_PRODUCT(?)}";
 
     private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?)}";
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -342,9 +343,15 @@ public class ProductDAO implements ProductInterface{
         callableStatement.setInt(2, idProduct);
         callableStatement.registerOutParameter(3, Types.VARCHAR);
 
-        callableStatement.execute();
+        callableStatement.executeQuery();
 
         status = callableStatement.getString(3);
         return status;
+    }
+
+    public void viewProduct(String idProduct) throws SQLException, ClassNotFoundException {
+        CallableStatement callableStatement = getConnection().prepareCall(UPDATE_VIEW_PRODUCT);
+        callableStatement.setString(1, idProduct);
+        callableStatement.execute();
     }
 }
