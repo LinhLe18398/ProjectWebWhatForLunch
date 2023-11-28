@@ -114,11 +114,29 @@
     <div class="col-div-12">
         <div class="content-box">
             <div>
-                <form method="post" action="#">
-                    <div class="form-group">
+                <div class="form-group">
+                        <div class="form-search-two">
+                            <div class="form-input-four">
+                                <input class="search-sp" type="text" name="filter"
+                                       placeholder="Nhập năm cần tìm">
+                                <i class="fa fa-search"></i>
+                            </div>
+
+                        </div>
+
+
                         <div class="form-search-one">
-                            <input type="datetime-local" name="idBill" placeholder="Ngày/Tháng/Năm">
+
+                            <select id="search-value-quarter" name="search-value-quarter">
+                                <option value="">Quý</option>
+                                <option value="1">Quý 1</option>
+                                <option value="2">Quý 2</option>
+                                <option value="3">Quý 3</option>
+                                <option value="4">Quý 4</option>
+                            </select>
+
                             <select id="search-value-month" name="search-value-month">
+                                <option value="">Tháng</option>
                                 <option value="1">Tháng 1</option>
                                 <option value="2">Tháng 2</option>
                                 <option value="3">Tháng 3</option>
@@ -132,121 +150,51 @@
                                 <option value="11">Tháng 11</option>
                                 <option value="12">Tháng 12</option>
                             </select>
-                            <select id="search-value-quarter" name="search-value-quarter">
-                                <option value="1">Quý 1</option>
-                                <option value="2">Quý 2</option>
-                                <option value="3">Quý 3</option>
-                                <option value="4">Quý 4</option>
-                            </select>
-                        </div>
-                        <div class="form-search-two">
-                            <div class="form-input-four">
-                                <input class="search-sp" type="text" name="filter"
-                                       placeholder="Nhập năm cần tìm">
-                                <i class="fa fa-search"></i>
-                            </div>
-                            <button class="sp-search reset" type="submit">Tìm kiếm</button>
-                            <button class="sp-return" type="submit">Đặt lại</button>
-                        </div>
 
+                            <input type="date" name="idBill" id="search-value-day">
+
+
+                        </div>
+                        <button class="sp-search reset" type="submit" onclick="revenueYear()">Tìm kiếm</button>
+                        <button class="sp-return" type="submit">Đặt lại</button>
                     </div>
-                </form>
             </div>
-
-
-            <hr>
 
             <div class="sum-number">
                 <div class="sum-box">
                     <h3>Tổng số đơn</h3>
-                    <p>dsfdsfdsf</p>
+                    <p id="bill-Amount"></p>
                 </div>
                 <div class="sum-box line">
                     <h3>Tổng tiền</h3>
-                    <p><c:out value="${bill.getRecipientName()}"/></p>
+                    <p id="total-Amount"></p>
                 </div>
                 <div class="sum-box line">
                     <h3></h3>
-                    <p><c:out value="${bill.getRecipientName()}"/></p>
+                    <p></p>
                 </div>
                 <div class="sum-box line">
                     <h3></h3>
-                    <p><c:out value="${bill.getRecipientName()}"/></p>
+                    <p></p>
                 </div>
             </div>
-
-
-            <hr>
-
-            <div id="button-group">
-                <div class="group-button" onclick="changeColor(0)">Tất cả</div>
-                <div class="group-button" onclick="changeColor(1)">Chờ nhận hàng</div>
-                <div class="group-button" onclick="changeColor(2)">Đang chế biến</div>
-                <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>
-                <div class="group-button" onclick="changeColor(4)">Đang giao</div>
-                <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>
-                <div class="group-button" onclick="changeColor(6)">Đơn đã huỷ</div>
-            </div>
-
-            <hr>
-
-            <p class="list" id="sum-order"></p>
-
             <br/>
-            <form method="post" action="/bill?action=status-bill"/>
             <table id="table-order">
-                <thead>
-                <tr>
+                 <tr>
                     <th>Thời gian đặt</th>
                     <th>Người đặt</th>
                     <th>Tổng món</th>
                     <th>Tổng tiền</th>
-                    <th>Trạng thái đơn</th>
-                    <th style=" text-align: center;">Thao tác đơn</th>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${billList}" var="billList">
+                 <c:forEach items="${billList}" var="billList">
                     <tr>
                         <td>${billList.getTimeOrder()}</td>
                         <td>${billList.getRecipientName()}</td>
                         <td>${billList.GetTotalQuantity()}</td>
                         <td class="price">${billList.getFinalTotal()}</td>
-                        <td>${billList.getBillStatus()}</td>
-                        <td style=" text-align: center;">
-                            <div>
-                                <c:choose>
-                                    <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
-                                        <button class="ip-delete" type="submit"
-                                                onclick="declineStatus(${billList.idBill})">
-                                            <i class="fa fa-x"></i>
-                                        </button>
-                                        <button class="ip-update" type="submit"
-                                                onclick="approveStatus(${billList.idBill})">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                    </c:otherwise>
-                                </c:choose>
-
-                            </div>
-
-                        </td>
                     </tr>
                 </c:forEach>
-                <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
-                <input type="text" hidden="hidden" id="active" name="active" value="">
-                </tbody>
-            </table>
-            </form>
+             </table>
         </div>
     </div>
 </div>
@@ -309,111 +257,6 @@
 
 </body>
 <script>
-    $(document).ready(function () {
-        $(".profile p").click(function () {
-            $(".profile-div").toggle();
-
-        });
-        $(".noti-icon").click(function () {
-            $(".notification-div").toggle();
-        });
-
-    });
-
-
-    function changeColor(buttonIndex) {
-        var buttons = document.getElementsByClassName('group-button');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-        }
-
-        buttons[buttonIndex].classList.add('active');
-
-        // Lấy thẻ tbody
-        var tbody = document.querySelector("#table-order tbody");
-        var rows = tbody.getElementsByTagName("tr");
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            row.style.display = "none";
-        }
-
-        var trList = document.querySelectorAll("#table-order tr");
-
-        var sumOrder = trList.length - 1;
-
-        for (var i = 1; i < trList.length; i++) {
-            var tr = trList[i];
-            var td = tr.querySelector("#table-order tbody td:nth-child(5)");
-            var cellValue = td.textContent;
-
-            tr.style.display = "";
-
-
-            if (buttonIndex == 0) {
-                tr.style.display = "";
-            }
-
-            if (buttonIndex == 1 && cellValue !== "Chờ nhận hàng") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 2 && cellValue !== "Đang chế biến") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 3 && cellValue !== "Đã nhận món") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 4 && cellValue !== "Đang giao") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            if (buttonIndex == 5 && cellValue !== "Đã hoàn thành") {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-
-            // if (buttonIndex == 6 && cellValue !== "Huỷ") {
-            //     tr.style.display = "none";
-            //     sumOrder--;
-            // }
-            if (buttonIndex == 6 && cellValue !== ("Nhà hàng từ chối đơn" || "Khách hàng huỷ đơn")) {
-                tr.style.display = "none";
-                sumOrder--;
-            }
-            document.getElementById("sum-order").textContent = sumOrder + " Đơn hàng";
-        }
-
-
-    }
-
-
-    var statusCells = document.querySelectorAll("#table-order tbody td:nth-child(5)");
-    statusCells.forEach(function (cell) {
-        var status = cell.textContent.trim();
-        switch (status) {
-            case "Đã hoàn thành":
-                cell.style.color = "green";
-                break;
-            // case "Huỷ":
-            //     cell.style.color = "red";
-            //     break;
-            case "Nhà hàng từ chối đơn":
-                cell.style.color = "red";
-                break;
-            case "Khách hàng huỷ đơn":
-                cell.style.color = "red";
-                break;
-            default:
-                cell.style.color = "orange";
-                break;
-        }
-    });
 
     let numberElements = document.getElementsByClassName("price");
     for (let i = 0; i < numberElements.length; i++) {
@@ -423,19 +266,81 @@
         numberElement.textContent = formattedNumber + "₫";
     }
 
-    function declineStatus(idBill) {
-        document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 0;
+    function addValueTotal(totalAmount, countBill) {
+        let formattedNumber = totalAmount.toLocaleString();
+        document.getElementById("total-Amount").textContent = formattedNumber + "₫";
+        document.getElementById("bill-Amount").textContent = countBill;
+    }
 
+    function convertPrice(price) {
+        const cleanedStr = price.replace("₫", "");
+        const numberStr = cleanedStr.replace(".", "");
+        const number = parseInt(numberStr);
+        return number;
     }
-    function approveStatus(idBill) {
-        document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 2;
+
+    function getDateComponent(dateString, component) {
+        const dateParts = dateString.split(" ")[0].split("-");
+        const year = dateParts[0];
+        const month = dateParts[1];
+        const day = dateParts[2];
+        switch (component) {
+            case "year":
+                return year;
+            case "month":
+                return month;
+            case "day":
+                return day;
+        }
     }
-    function showDetail(idBill) {
-        document.getElementById("idBill").value = idBill;
-        document.getElementById("active").value = 3;
+
+    function returnDisplay() {
+        const productTable = document.getElementById('table-order');
+        const tableRows = productTable.getElementsByTagName('tr');
+        for (let i = 1; i < tableRows.length; i++) {
+            tableRows[i].style.display = "";
+        }
     }
+
+    function revenueYear() {
+        const inputYear = document.querySelector('.search-sp[name="filter"]');
+        const optionQuarter = document.getElementById("search-value-quarter");
+        const optionMonth = document.getElementById("search-value-month");
+        const inputDay = document.getElementById("search-value-day");
+
+        const filterValue = inputYear.value;
+
+        const productTable = document.getElementById('table-order');
+        const tableRows = productTable.getElementsByTagName('tr');
+
+        let countBill = 0;
+        let totalAmount = 0;
+
+        returnDisplay();
+
+        for (let i = 1; i < tableRows.length; i++) {
+            const row = tableRows[i];
+
+            const dateCell = row.cells[0];
+            const dateString = dateCell.textContent;
+            const year = getDateComponent(dateString, "year");
+
+            const amountCell = row.cells[3];
+            const amount = amountCell.textContent;
+            const number = convertPrice(amount);
+
+
+            if (year === filterValue) {
+                countBill ++;
+                totalAmount += number;
+            } else {
+                tableRows[i].style.display = "none";
+            }
+
+        }
+        addValueTotal(totalAmount, countBill);
+    }
+
 </script>
 
 </html>

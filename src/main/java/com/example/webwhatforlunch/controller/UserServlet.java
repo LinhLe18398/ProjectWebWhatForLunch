@@ -122,7 +122,8 @@ public class UserServlet extends HttpServlet {
     private void search(HttpServletRequest req, HttpServletResponse resp) {
         String nameSearch = req.getParameter("name_search");
         String quickSearch = req.getParameter("quick_search");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/userHome.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home/searchProduct.jsp");
         List<Product> productList = null;
         try {
             List<Product> productBestSale = productDAO.getBestSaleProduct();
