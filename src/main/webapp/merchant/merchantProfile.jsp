@@ -218,11 +218,8 @@
 </footer>
 </body>
 <script>
-
     function redirectToUsers(id) {
         document.getElementById(id).submit();
     }
-
-    <
 </script>
 </html>

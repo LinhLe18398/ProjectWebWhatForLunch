@@ -13,6 +13,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link href='https://cdn.jsdelivr.net/gh/startinhit/font-awesome/css/all.css' rel='stylesheet'/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
 <style>
   body {
@@ -32,79 +33,127 @@
 </style>
 <body>
 <div class="container bootstrap snippets bootdey">
-  <h1 class="text-primary">Edit Profile</h1>
+  <h1 class="text-primary">Trang cá nhân</h1>
   <hr>
   <form action="/users?action=edit" method="post">
     <div class="row">
-      <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="${user.img}"
+          <img src="${user.getImg()}"
                class="avatar img-circle img-thumbnail"
                alt="avatar" >
-          <h6>Upload a different photo...</h6>
-
-          <input type="file" class="form-control" name="img">
-
+          <div style="padding-top: 5px;padding-left: 53px">
+          <input type="url" class="form-control" name="img" style="width: 200px" placeholder="nhập đường dẫn ảnh">
+          </div>
         </div>
       </div>
 
-      <!-- edit form column -->
       <div class="col-md-9 personal-info">
-        <h3>User info</h3>
+        <h3>Thông tin người dùng</h3>
         <form class="form-horizontal" role="form" method="post">
-          <%--          <input type="hidden" name="id" value="${user.id}">--%>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Name:</label>
+            <label class="col-lg-3 control-label">Họ và tên</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="name" value="${user.name}">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
+            <label class="col-lg-3 control-label">Email</label>
             <div class="col-lg-8">
               <input class="form-control" type="email" name="email" value="${user.email}" disabled>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Phone Number:</label>
+            <label class="col-lg-3 control-label">Số điện thoại</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="phoneNumber" value="${user.phoneNumber}">
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-lg-3 control-label">Birthday:</label>
+            <label class="col-lg-3 control-label">Ngày sinh</label>
             <div class="col-lg-8">
               <input class="form-control" type="date" name="birthday" value="${user.birthday}">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Gender:</label>
+            <label class="col-lg-3 control-label">Giới tính</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="gender" value="${user.gender}">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Address:</label>
+            <label class="col-lg-3 control-label">Địa chỉ</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="address" value="${user.address}">
             </div>
           </div>
-          <p style="padding-top: 5px">
+          <p style="padding-top: 10px;padding-right: 324px">
             <input style="border-radius: 20px 20px 20px 20px" class="btn btn-primary" type="submit"
-                   value="Edit">
+                   value="Sửa">
           </p>
         </form>
       </div>
     </div>
   </form>
   <a href="/users?action=home" class="back">
-    <button type="submit" class="btn btn-secondary btn-sm">&#8592; back</button>
+    <button type="submit" class="btn btn-secondary btn-sm" style="background-color: white; border: none;color: black"><i
+            class="fa fa-angle-left"></i> Trở về</button>
   </a>
 
 </div>
-<hr>
+
+
+<footer class="text-center text-lg-start bg-light text-muted">
+  <section style="height: 54px" class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+  </section>
+  <section class="" style="height: 243px">
+    <div class="container text-center text-md-start mt-5">
+      <div class="row mt-3">
+        <div class="col-md-3 col-lg-4 col-xl-3 text-left mb-4" style="margin-left: 104px">
+          <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+            <i class="fas fa-gem me-3"></i>CT CNHH 5 thành viên
+          </h6>
+          <p style="font-size: 16px">
+            Here you can order all delicious Vietnamese dishes.
+          </p>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 text-left mb-4">
+          <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+            Sản phẩm
+          </h6>
+          <p style="font-size: 16px">Thông tin</p>
+          <p style="font-size: 16px">Trợ giúp</p>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 text-left mb-4">
+          <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+            Thành viên
+          </h6>
+          <p style="font-size: 16px">Ngoc Linh</p>
+          <p style="font-size: 16px">Van Tuan</p>
+          <p style="font-size: 16px">Cat Hai</p>
+          <p style="font-size: 16px">Gia Minh</p>
+          <p style="font-size: 16px">Minh Hieu</p>
+        </div>
+        <div class="col-md-4 col-lg-3 col-xl-3 text-left mb-md-0 mb-4">
+          <h6 class="text-uppercase fw-bold mb-4" style="font-size: 19px">
+            Liên hệ
+          </h6>
+          <p style="font-size: 16px">Hoài Đức - Hà Nội</p>
+          <p style="font-size: 16px">
+            WebWhatForLunch@gmail.com
+          </p>
+          <p style="font-size: 16px"> +84 88658023</p>
+          <p style="font-size: 16px"> +84 38301773</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="text-center p-4" style="background-color: lightgray; height: 70px;font-size: 21px; text-align: center">
+    © 2023 WebWhatForLunch
+  </div>
+</footer>
+
 <script>
   const ipnElement = document.querySelector('#ipnPassword')
   const btnElement = document.querySelector('#btnPassword')

@@ -62,36 +62,36 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
-                            <h2 class="text-uppercase text-center mb-5">Create Account</h2>
+                            <h2 class="text-uppercase text-center mb-5">Đăng ký tài khoản</h2>
 
                             <form method="post" action="/users?action=create">
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="input-name">Your Name</label>
+                                    <label class="form-label" for="input-name">Họ và tên</label>
                                     <input type="text" id="input-name" name="name"
-                                           class="form-control form-control-lg" placeholder="name"/>
+                                           class="form-control form-control-lg" placeholder="họ và tên"/>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="input-email">Your Email</label>
+                                    <label class="form-label" for="input-email">Email</label>
                                     <input type="email" id="input-email" name="email"
                                            class="form-control form-control-lg"
                                            oninput="check_email()" placeholder="email"/>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="input-password">Password</label>
+                                    <label class="form-label" for="input-password">Mật khẩu</label>
                                     <input type="password" id="input-password" name="password"
                                            class="form-control form-control-lg password"
-                                           oninput="check_password()" placeholder="password"/>
+                                           oninput="check_password()" placeholder="mật khẩu"/>
                                     <p id="alert_password"></p>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="retype-password">Repeat your password</label>
+                                    <label class="form-label" for="retype-password">Xác nhận mật khẩu</label>
                                     <input type="password" id="retype-password"
                                            class="form-control form-control-lg password"
-                                           oninput="check_retype_password()" placeholder="repeat password"/>
+                                           oninput="check_retype_password()" placeholder="xác nhận mật khẩu"/>
                                     <p id="alert_retype_password" readonly></p>
                                 </div>
 
@@ -105,13 +105,12 @@
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" id="submit_button"
                                             class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                                        Register
+                                        Đăng ký
                                     </button>
                                 </div>
-
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
-                                        href="/users?action=login" class="fw-bold text-body"><u>Login
-                                    here</u></a></p>
+                                <p class="text-center text-muted mt-5 mb-0">Tôi đã có tài khoản?<a
+                                        href="/users?action=login" class="fw-bold text-body"><u> Đăng nhập
+                                </u></a></p>
                             </form>
                         </div>
                     </div>

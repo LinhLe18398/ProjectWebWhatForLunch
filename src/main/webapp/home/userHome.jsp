@@ -25,7 +25,6 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-
     <link href="https://gofood.in/public/assets/webs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://gofood.in/public/assets/webs/vendor/fontawesome/css/all.min.css" rel="stylesheet">
@@ -64,6 +63,7 @@
     .btn {
         box-shadow: none !important;
     }
+
     ::placeholder {
         font-size: 16px;
     }
@@ -228,7 +228,6 @@
                                         </li>
                                     </c:if>
                                 </ul>
-
                             </li>
                             <li class="nav-item dropdown" style="margin-left: 20px">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
@@ -243,9 +242,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-
                                     <li><a class="dropdown-item" href="/users?action=logout">Đăng xuất</a></li>
-
                                 </ul>
                             </li>
 
@@ -512,54 +509,54 @@
         </c:forEach>
     </div>
     <%--Menu main--%>
-        <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
-        <div class="row mb-2 list" style="padding-top: 50px;">
-            <c:forEach items="${pro}" var="pro">
-                <div class="col-md-3 col-6  item"
-                     style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
-                    <div style="width: 100%; height: 210px">
-                        <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
-                             style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
-                    </div>
-                    <div class="card-body"
-                         style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
-                        <div style="max-width: 100% ;max-height: 100% ; margin: 0">
-                            <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
-                                  onclick="redirectToUsers(this.id)">
-                                <input type="hidden" name="action" value="dish-detail"/>
-                                <input type="hidden" name="productId" value="${pro.idProduct}"/>
-                                <h5 class="card-title"
-                                    style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
-                                    - ${pro.restaurantName}
-                                </h5>
-                                <p class="card-text ">
-                                    <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
-                                <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
-                                                                 style="color: #2b3240;"></i></div>
-                                <div style="padding-left: 7px">${pro.address}</div>
-                                <li class="icon-tag" style="font-size: large"><i
-                                        class="fa-solid fa-clock"></i> ${pro.waitTime} phút
-                                </li>
-                                <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
-                                        class="fa-solid fa-sack-dollar"></i>
-                                    <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
-                                </li>
+    <h2 style="padding-top: 40px">CÓ THỂ BẠN CẦN TÌM</h2>
+    <div class="row mb-2 list" style="padding-top: 50px;">
+        <c:forEach items="${pro}" var="pro">
+            <div class="col-md-3 col-6  item"
+                 style="border: thin solid lightgray; width:20%; border-radius: 20px 20px 20px 20px; max-height: 100%; max-width: 100%; margin-right: 15px; margin-bottom: 15px; padding: 0">
+                <div style="width: 100%; height: 210px">
+                    <img class="card-img-top" src="${pro.productImg}" alt="Card image cap"
+                         style="border-top-left-radius: 20px;border-top-right-radius: 20px ; box-shadow: rgb(128,128,128); width: 100% ;height: 100%">
+                </div>
+                <div class="card-body"
+                     style="background-color: #f5efe8 ; border-bottom-right-radius: 20px; border-bottom-left-radius:20px; max-width: 200% ;height: 280px; padding: 10px ">
+                    <div style="max-width: 100% ;max-height: 100% ; margin: 0">
+                        <form method="get" action="/products" id="restaurant${pro.idProduct}" style="cursor: pointer;"
+                              onclick="redirectToUsers(this.id)">
+                            <input type="hidden" name="action" value="dish-detail"/>
+                            <input type="hidden" name="productId" value="${pro.idProduct}"/>
+                            <h5 class="card-title"
+                                style="height: 56px;font-weight: bold;font-size: 22px ; width: 100%; margin: 0;overflow: hidden">${pro.productName}
+                                - ${pro.restaurantName}
+                            </h5>
+                            <p class="card-text ">
+                                <li class="icon-tag" style="font-size: large; height: 55px;display: flex">
+                            <div style="padding-top: 6px"><i class="fa-solid fa-location-dot"
+                                                             style="color: #2b3240;"></i></div>
+                            <div style="padding-left: 7px">${pro.address}</div>
+                            <li class="icon-tag" style="font-size: large"><i
+                                    class="fa-solid fa-clock"></i> ${pro.waitTime} phút
+                            </li>
+                            <li class="icon-tag" style="font-size: large; padding-top: 5px"><i
+                                    class="fa-solid fa-sack-dollar"></i>
+                                <p style="font-size: large; color: black" class="price">${pro.price}</p> &#8363
+                            </li>
 
-                                </p>
-                            </form>
-                            <p style="margin: 0">
-                                <c:if test="${sessionScope.isLogin==true}">
-                                    <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
-                                       class="btn btn-primary"><i
-                                            style="font-size: 20px" class='bx bx-cart'></i></a>
-                                </c:if>
                             </p>
-                        </div>
+                        </form>
+                        <p style="margin: 0">
+                            <c:if test="${sessionScope.isLogin==true}">
+                                <a style="width: 60px" href="/products?action=add-product-cart&id=${pro.idProduct}"
+                                   class="btn btn-primary"><i
+                                        style="font-size: 20px" class='bx bx-cart'></i></a>
+                            </c:if>
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
-        </div>
-        <ul class="listPage"></ul>
+            </div>
+        </c:forEach>
+    </div>
+    <ul class="listPage"></ul>
 </div>
 
 
@@ -573,7 +570,7 @@
                         <i class="fas fa-gem me-3" style="color: white"></i>CT CNHH 5 thành viên
                     </h6>
                     <p style="color: white">
-                        Bạn có thể đặt tất cả đồ ăn ngon  của Việt Nam tại đây
+                        Bạn có thể đặt tất cả đồ ăn ngon của Việt Nam tại đây
                     </p>
                 </div>
                 <div class=" col-md-2 col-lg-2 col-xl-2 text-left mb-4" style="margin-left: 40px">

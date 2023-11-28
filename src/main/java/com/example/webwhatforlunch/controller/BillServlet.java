@@ -45,8 +45,12 @@ public class BillServlet extends HttpServlet {
             case "bill-merchant":
                 getBillMerchant(request, response);
                 break;
+            case "income-merchant":
+                getIncomeMerchant(request, response);
+                break;
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
@@ -303,4 +307,17 @@ private void sendListToHomeMerchant(HttpServletRequest request, HttpServletRespo
         }
 
     }
+    private void getIncomeMerchant(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Merchant merchant = (Merchant) session.getAttribute("merchant");
+        try {
+            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
+            request.setAttribute("billList", billList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/incomeMerchant.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

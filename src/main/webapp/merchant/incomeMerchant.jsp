@@ -1,9 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: tuan
-  Date: 24/10/2023
-  Time: 22:46
+  User: phamh
+  Date: 11/28/2023
+  Time: 1:29 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/merchant/billMerchant.css" type="text/css" rel="stylesheet"/>
+    <link href="/merchant/incomeMerchant.css" type="text/css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
@@ -67,44 +67,26 @@
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a href="#" id="a" onclick="listClick(this.id)"--%>
-<%--                           style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none">Quản lí sản--%>
-<%--                            phẩm</a>--%>
-<%--                    </li>--%>
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a href="#" id="b" onclick="listClick(this.id)"--%>
-<%--                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>--%>
-<%--                    </li>--%>
-    <li style="padding-top: 8px">
-        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
-           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
-            phẩm</a>
-    </li>
-    <li style="padding-top: 8px">
-        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
-           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
-    </li>
-<%--                    <li class="nav-item dropdown" style="margin-left: 20px">--%>
-<%--                        <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"--%>
-<%--                           style="color: white; font-size: 19px; ">--%>
-<%--                            Giỏ hàng--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
 
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none; margin-left: 30px"--%>
-<%--                           href="/users?action=home">Đăng xuất</a>--%>
-<%--                    </li>--%>
-    <li class="nav-item dropdown" style="margin-left: 20px">
-        <a class="nav-link" href="/bill?action=income-merchant" role="button" aria-expanded="false"
-           style="color: white; font-size: 19px; ">Doanh thu</a>
-    </li>
+                    <li style="padding-top: 8px">
+                        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
+                           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản phẩm</a>
+                    </li>
 
-    <li style="padding-top: 8px">
-        <a style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none; margin-left: 20px"
-           href="/users?action=home">Đăng xuất</a>
-    </li>
+
+                    <li style="padding-top: 8px">
+                        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
+                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-left: 20px">
+                        <a class="nav-link" href="/bill?action=income-merchant" role="button" aria-expanded="false"
+                           style="color: white; font-size: 19px; ">Doanh thu</a>
+                    </li>
+
+                    <li style="padding-top: 8px">
+                        <a style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none; margin-left: 20px"
+                           href="/users?action=home">Đăng xuất</a>
+                    </li>
                 </ul>
             </div>
             </c:if>
@@ -128,35 +110,39 @@
 <div class="clearfix"></div>
 <br/>
 
-<div class="container bb box">
+<div class="container">
     <div class="col-div-12">
         <div class="content-box">
-            <div id="button-group">
-                <div class="group-button" onclick="changeColor(0)">Tất cả</div>
-                <div class="group-button" onclick="changeColor(1)">Chờ nhận hàng</div>
-                <div class="group-button" onclick="changeColor(2)">Đang chế biến</div>
-                <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>
-                <div class="group-button" onclick="changeColor(4)">Đang giao</div>
-                <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>
-<%--                <div class="group-button" onclick="changeColor(6)">Huỷ</div>--%>
-                <div class="group-button" onclick="changeColor(6)">Đơn đã huỷ</div>
-            </div>
-
-            <hr>
-
             <div>
-                <form method="post" action="/bill?action=search-bill">
+                <form method="post" action="#">
                     <div class="form-group">
                         <div class="form-search-one">
-
-                            <input type="number" name="idBill" placeholder="Mã đơn hàng">
-                            <input type="number" name="numberPhone" placeholder="Số điện thoại">
-                            <input type="text" name="nameUser" placeholder="Tên khách hàng">
+                            <input type="datetime-local" name="idBill" placeholder="Ngày/Tháng/Năm">
+                            <select id="search-value-month" name="search-value-month">
+                                <option value="1">Tháng 1</option>
+                                <option value="2">Tháng 2</option>
+                                <option value="3">Tháng 3</option>
+                                <option value="4">Tháng 4</option>
+                                <option value="5">Tháng 5</option>
+                                <option value="6">Tháng 6</option>
+                                <option value="7">Tháng 7</option>
+                                <option value="8">Tháng 8</option>
+                                <option value="9">Tháng 9</option>
+                                <option value="10">Tháng 10</option>
+                                <option value="11">Tháng 11</option>
+                                <option value="12">Tháng 12</option>
+                            </select>
+                            <select id="search-value-quarter" name="search-value-quarter">
+                                <option value="1">Quý 1</option>
+                                <option value="2">Quý 2</option>
+                                <option value="3">Quý 3</option>
+                                <option value="4">Quý 4</option>
+                            </select>
                         </div>
                         <div class="form-search-two">
                             <div class="form-input-four">
                                 <input class="search-sp" type="text" name="filter"
-                                       placeholder="Thông tin bất kì đơn hàng">
+                                       placeholder="Nhập năm cần tìm">
                                 <i class="fa fa-search"></i>
                             </div>
                             <button class="sp-search reset" type="submit">Tìm kiếm</button>
@@ -165,6 +151,41 @@
 
                     </div>
                 </form>
+            </div>
+
+
+            <hr>
+
+            <div class="sum-number">
+                <div class="sum-box">
+                    <h3>Tổng số đơn</h3>
+                    <p>dsfdsfdsf</p>
+                </div>
+                <div class="sum-box line">
+                    <h3>Tổng tiền</h3>
+                    <p><c:out value="${bill.getRecipientName()}"/></p>
+                </div>
+                <div class="sum-box line">
+                    <h3></h3>
+                    <p><c:out value="${bill.getRecipientName()}"/></p>
+                </div>
+                <div class="sum-box line">
+                    <h3></h3>
+                    <p><c:out value="${bill.getRecipientName()}"/></p>
+                </div>
+            </div>
+
+
+            <hr>
+
+            <div id="button-group">
+                <div class="group-button" onclick="changeColor(0)">Tất cả</div>
+                <div class="group-button" onclick="changeColor(1)">Chờ nhận hàng</div>
+                <div class="group-button" onclick="changeColor(2)">Đang chế biến</div>
+                <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>
+                <div class="group-button" onclick="changeColor(4)">Đang giao</div>
+                <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>
+                <div class="group-button" onclick="changeColor(6)">Đơn đã huỷ</div>
             </div>
 
             <hr>

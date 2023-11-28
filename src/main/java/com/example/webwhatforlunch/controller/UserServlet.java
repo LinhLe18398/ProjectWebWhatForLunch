@@ -493,6 +493,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void editUser(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
         int id = user.getId();
@@ -501,12 +502,13 @@ public class UserServlet extends HttpServlet {
 
         String phoneNumber = req.getParameter("phoneNumber");
         String birthday = req.getParameter("birthday");
-        String img = req.getParameter("img");
+        String img = new String(req.getParameter("img").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         String address = new String(req.getParameter("address").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
         user = new User(id, name, gender, phoneNumber, birthday, img, address);
-        httpSession.setAttribute("user", user);
         userDAO.updateUser(user);
+        httpSession.setAttribute("user", user);
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("home/userHome.jsp");
         dispatcher.forward(req, resp);
     }

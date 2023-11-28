@@ -67,35 +67,44 @@
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a href="#" id="a" onclick="listClick(this.id)"--%>
-<%--                           style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none">Quản lí sản--%>
-<%--                            phẩm</a>--%>
-<%--                    </li>--%>
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a href="#" id="b" onclick="listClick(this.id)"--%>
-<%--                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>--%>
-<%--                    </li>--%>
-    <li style="padding-top: 8px">
-        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
-           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
-            phẩm</a>
-    </li>
-    <li style="padding-top: 8px">
-        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
-           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
-    </li>
-                    <li class="nav-item dropdown" style="margin-left: 20px">
-                        <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
-                           style="color: white; font-size: 19px; ">
-                            Giỏ hàng
-                        </a>
-                    </li>
-
+                        <%--                    <li style="padding-top: 8px">--%>
+                        <%--                        <a href="#" id="a" onclick="listClick(this.id)"--%>
+                        <%--                           style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none">Quản lí sản--%>
+                        <%--                            phẩm</a>--%>
+                        <%--                    </li>--%>
+                        <%--                    <li style="padding-top: 8px">--%>
+                        <%--                        <a href="#" id="b" onclick="listClick(this.id)"--%>
+                        <%--                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>--%>
+                        <%--                    </li>--%>
                     <li style="padding-top: 8px">
-                        <a style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none; margin-left: 30px"
-                           href="/users?action=home">Đăng xuất</a>
+                        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
+                           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
+                            phẩm</a>
                     </li>
+                    <li style="padding-top: 8px">
+                        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
+                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
+                    </li>
+<%--                    <li class="nav-item dropdown" style="margin-left: 20px">--%>
+<%--                        <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"--%>
+<%--                           style="color: white; font-size: 19px; ">--%>
+<%--                            Giỏ hàng--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+
+<%--                    <li style="padding-top: 8px">--%>
+<%--                        <a style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none; margin-left: 30px"--%>
+<%--                           href="/users?action=home">Đăng xuất</a>--%>
+<%--                    </li>--%>
+                            <li class="nav-item dropdown" style="margin-left: 20px">
+                                <a class="nav-link" href="/bill?action=income-merchant" role="button" aria-expanded="false"
+                                   style="color: white; font-size: 19px; ">Doanh thu</a>
+                            </li>
+
+                            <li style="padding-top: 8px">
+                                <a style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none; margin-left: 20px"
+                                   href="/users?action=home">Đăng xuất</a>
+                            </li>
                 </ul>
             </div>
             </c:if>
@@ -163,7 +172,7 @@
                 <tbody>
                 <c:forEach items="${productList}" var="list">
                     <tr>
-<%--                        <td style="float: left">${list.productName}</td>--%>
+                            <%--                        <td style="float: left">${list.productName}</td>--%>
                         <td>${list.productName}</td>
                         <td><img style="width: 162px; height: 100px;" src="${list.productImg}"></td>
                         <td>

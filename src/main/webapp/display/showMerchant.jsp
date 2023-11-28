@@ -16,8 +16,7 @@
 
 </head>
 <body>
-
-
+<div>
 <form action="/admin?action=clickStatus" method="post">
   <table class="table">
     <tr>

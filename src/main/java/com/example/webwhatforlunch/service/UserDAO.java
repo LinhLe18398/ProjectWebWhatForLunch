@@ -14,6 +14,7 @@ public class UserDAO implements UserInterface {
 
     private final String password = "mySQL7122023@";
 
+
     private final String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
 
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -138,7 +139,7 @@ public class UserDAO implements UserInterface {
     public User findUserById(int id) throws SQLException, ClassNotFoundException {
         User user = null;
         Connection connection = getConnection();
-        String query = "select name, email, phoneNumber, gender,birth ,address from user where IdUser =?";
+        String query = "select name, email, phoneNumber, gender,birth,imgUser ,address from user where IdUser =?";
         PreparedStatement callableStatement = connection.prepareStatement(query);
         callableStatement.setInt(1, id);
         ResultSet resultSet = callableStatement.executeQuery();
@@ -148,8 +149,9 @@ public class UserDAO implements UserInterface {
             String phoneNumber = resultSet.getString("phoneNumber");
             String gender = resultSet.getString("gender");
             String birthday = resultSet.getString("birth");
+            String img = resultSet.getString("imgUser");
             String address = resultSet.getString("address");
-            user = new User(name, email, phoneNumber, gender, birthday, address);
+            user = new User(name, email, phoneNumber, gender, birthday,img ,address);
         }
         return user;
     }

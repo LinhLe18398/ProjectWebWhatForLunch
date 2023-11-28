@@ -37,24 +37,25 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
-                            <h2 class="text-uppercase text-center mb-5">Login Admin Account</h2>
+                            <h2 class="text-uppercase text-center mb-5">Đăng nhập</h2>
                             <form method="post" action="/admin?action=login">
                                 <div class="form-outline mb-4">
-                                    <input style="font-family: 'Courier 10 Pitch' " type="email" id="form3Example3cg"
+                                    <label class="form-label" for="form3Example3cg">Email</label>
+                                    <input  type="email" id="form3Example3cg"
                                            name="email"
-                                           class="form-control form-control-lg" placeholder="Your Email"/>
-                                    <label class="form-label" for="form3Example3cg">Your Email</label>
+                                           class="form-control form-control-lg" placeholder="email"/>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input style="font-family: 'Courier 10 Pitch' " type="password" id="form3Example4cg"
+                                    <label class="form-label" for="form3Example4cg">Mật khẩu</label>
+                                    <input  type="password" id="form3Example4cg"
                                            name="password"
-                                           class="form-control form-control-lg" placeholder="Your Password"/>
-                                    <label class="form-label" for="form3Example4cg">Password</label>
+                                           class="form-control form-control-lg" placeholder="mật khẩu"/>
+
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <button type="submit"
-                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng nhập
                                     </button>
                                 </div>
                             </form>
