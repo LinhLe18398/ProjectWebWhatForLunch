@@ -23,44 +23,12 @@ body{
     display: block;
 }
 
-/* ---------------------------------------------- */
 
-/*.mySidenav {*/
-/*    top: 0;*/
-/*    right: 25px;*/
-/*    font-size: 30px;*/
-/*    height: 100%;*/
-/*    width: 60px;*/
-/*    position: fixed;*/
-/*    z-index: 1;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    background-color: #858585b8;*/
-/*    overflow: hidden;*/
-/*    padding-top: 30px;*/
-/*    transition: ease-in-out 0.1s;*/
-/*    border-radius: 3px;*/
-/*}*/
-
-/*.mySidenav a {*/
-/*    padding: 15px 8px 15px 28px;*/
-/*    text-decoration: none;*/
-/*    font-size: 20px;*/
-/*    color: white;*/
-/*    display: block;*/
-/*}*/
-
-/*.icon-a:hover {*/
-/*    background-color:orange;*/
-/*}*/
 
 .box {
     display: none;
 }
 
-/*.bb{*/
-/*    display: flex;*/
-/*}*/
 
 .ab{
     display: flex;
@@ -78,19 +46,6 @@ body{
     display: block;
     cursor: pointer;
 }
-
-/* ---------------------------------------------- */
-
-
-/*.icon-a {*/
-/*    color: white;*/
-
-
-/*}*/
-/*.icons {*/
-/*    visibility: visible;*/
-/*    margin-left: -8px;*/
-/*}*/
 
 
 /* ---------------------------------------------- */
@@ -428,28 +383,31 @@ table p {
     cursor: pointer;
 }
 .ip-add {
-    background-color:black;
+    background-color:orange;
     color:  white;
     border-radius: 3px 0px 0px 3px;
 }
 .ip-selectAll {
     padding-left: 0px;
+    border: 1px solid black;
     border-radius: 0px 3px 3px 0px;
-    background-color: orange;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .ip-add a,
 .ip-selectAll a {
     text-decoration: none;
-    color: white;
 }
 .ip-selectAll:hover {
-    background: rgb(225, 147, 0);
+    background: rgb(233, 228, 228);
 }
 .ip-add:hover {
-    background: rgb(61, 50, 50);
+    background: rgb(225, 147, 0);
 }
+
+/*------------------------------------------------------*/
+
 
 .ip-update, .ip-delete, .ip-view {
     width: 35px;
@@ -500,26 +458,6 @@ table p {
 }
 
 /* ---------------------------------------------- */
-
-/* Xem trạng thái đơn hàng */
-#button-group {
-    padding: 10px 0px;
-    margin-bottom: 10px;
-}
-
-.group-button {
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    display: inline;
-}
-
-.group-button.active {
-    color: orange;
-    border-bottom:2px solid orange;
-}
-
-/* ---------------------------------------------- */
 /* Search + Section*/
 .form-group {
     display: flex;
@@ -566,261 +504,4 @@ table p {
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-}
-
-
-/* -------------------------------------- */
-
-/* Nút Tìm kiếm, đặt lại, select all*/
-
-.sp-search, .sp-return {
-    font-size: 15.6px;
-    border-radius: 3px;
-    padding: 0px 15px;
-    cursor: pointer;
-}
-
-
-.sp-search {
-    border: none;
-    margin-right: 15px;
-    color: white;
-    background-color: orange;
-}
-
-.sp-return {
-    border: 1px ridge #9d9b9b;
-    background-color: white;
-}
-
-.sp-selectAll:hover {
-    background: rgb(225, 147, 0);
-}
-.sp-search:hover {
-    background: rgb(225, 147, 0);
-}
-.sp-return:hover {
-    background: rgb(233, 228, 228);
-}
-
-
-/* ------------------------------------------------------------- */
-
-/* Giao diện chi tiết hoá đơn */
-
-/* -------------------------------------------------------- */
-
-.detail-return a {
-    font-size: 25px;
-    text-decoration: none;
-    color: #5f5454;
-}
-/* -------------------------------------------------------- */
-.progressbar {
-    counter-reset: step;
-    padding: 0;
-    margin: 35px auto;
-    max-width: 800px;
-}
-
-.progressbar li {
-    display:inline-block;
-    list-style: none;
-    position: relative;
-    text-align: center;
-    width: 19%;
-}
-
-.progressbar li:before {
-    content: counter(step);
-    counter-increment: step;
-    display: block;
-    background: #fff;
-    color: #bebebe;
-    width: 50px;
-    height: 50px;
-    border: 2px solid #bebebe;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    font-weight: 700;
-    line-height: 50px;
-    text-align: center;
-}
-
-.progressbar li:after {
-    background: #979797;
-    content: '';
-    height: 5px;
-    left: -50%;
-    top: 25px;
-    width: 100%;
-    z-index: -1;
-    position: absolute;
-}
-.progressbar li:first-child:after {
-    content: none;
-}
-
-.progressbar li.active:after,
-.progressbar li.complete:after {
-    background: #3aac5d;
-}
-
-.progressbar li.active:before,
-.progressbar li.complete:before {
-    background: #3aac5d;
-    border-color: #3aac5d;
-    color: #fff;
-}
-
-.progressbar li.active {
-    color: #3aac5d;
-    font-weight: 700;
-}
-
-/* ------------------------------------------------ */
-/* Huỷ đơn hàng */
-.detail-cancel-order {
-    display: flex;
-    justify-content: flex-end;
-    margin: 30px 0px 30px 0px;
-}
-
-.dt-cancel-order {
-    height: 40px;
-    border-radius: 3px;
-    font-size: 15px;
-    padding: 0px 30px;
-    border: 0;
-    font-weight: bold;
-    cursor: pointer;
-    border: 1px solid black;
-    background-color: white;
-}
-.dt-cancel-order a {
-    text-decoration: none;
-    color: black;
-}
-.dt-cancel-order:hover {
-    background: rgb(237, 227, 225);
-}
-
-
-/* ------------------------------------------------ */
-/* Địa chỉ giao hàng và thời gian dự kiến */
-
-.detail-time-address {
-    height: 150px;
-    justify-content: space-between;
-    margin: 30px 0px;
-}
-.detail-time, .detail-address {
-    width: 49%;
-    height: 100%;
-    flex-basis: 50%;
-}
-.detail-address {
-    float: left;
-    border-left: 2px solid rgb(115, 112, 112);
-    border-bottom: 2px solid rgb(115, 112, 112);
-    /* background-color: rgb(67, 255, 139); */
-}
-
-.detail-time {
-    float: right;
-    border-left: 2px solid rgb(115, 112, 112);
-    border-bottom: 2px solid rgb(115, 112, 112);
-    /* background-color: rgb(67, 255, 139); */
-}
-
-
-.detail-time-address h2{
-    padding-left: 20px;
-}
-.detail-time-address p {
-    padding-left: 20px;
-
-}
-
-.detail-sp {
-    opacity: 0.7;
-    font-size: 15px;
-    padding-left: 20px;
-}
-
-
-
-/* -------------------------------------------------------------------- */
-/* Thông tin từng đơn hàng */
-
-.detail-h3 {
-    text-align: right;
-}
-
-.detail-order {
-    display: flex;
-    background-color: #3aac5d;
-    padding: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-}
-
-.detail-order img {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
-}
-
-.detail-order h3 {
-    margin-top: 0px;
-}
-.infor-product {
-    flex: 1;
-    float: left;
-}
-
-.price-product {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-}
-
-.price-sale {
-    text-decoration: line-through;
-    opacity: 0.6;
-    font-size: 18px;
-    margin-right: 10px;
-}
-
-.price-simple {
-    opacity: 0.8;
-    font-size: 18px;
-    margin-right: 10px;
-    color: red;
-}
-/* -------------------------------------------------- */
-/* Tổng hoá đơn */
-.detair-summary {
-    background-color: #f2f2f2;
-    padding: 10px;
-}
-
-.order-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-
-.item-label {
-    font-weight: bold;
-}
-
-.item-value {
-    color: #333;
-}
-
-.detail-total {
-    background-color: #f2f2f2;
-    padding: 10px;
-    margin-top: 10px;
 }

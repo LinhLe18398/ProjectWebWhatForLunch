@@ -9,12 +9,13 @@ import java.util.List;
 public class ProductDAO implements ProductInterface{
     private String username = "root";
 
-    private String password = "password";
+    private String password = "";
 
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/WebWhatForLunch";
     private final String GET_PRODUCT_BY_ID_MERCHANT_AND_NAME_PRODUCT = "{CALL SEARCH_MERCHANT_PRODUCT(?,?)}";
     private final String CREATE_PRODUCT_QUERY = "{CALL CREATE_NEW_PRODUCT(?,?,?,?,?,?,?,?)}";
+    private final String CREATE_TAG = "{CALL CREATE_TAG(?,?)}";
     private final String UPDATE_PRODUCT_QUERY = "{CALL UPDATE_PRODUCT_BY_ID(?,?,?,?,?,?,?,?)}";
     private final String DELETE_PRODUCT_QUERY = "{CALL DELETE_PRODUCT_BY_ID(?)}";
     private final String GET_ALL_PRODUCT_BY_ID_MERCHANT = "{CALL GET_ALL_PRODUCT_BY_ID_MERCHANT(?)}";
@@ -28,6 +29,7 @@ public class ProductDAO implements ProductInterface{
     private final String UPDATE_QUANTITY_PRODUCT = "{CALL UPDATE_PRODUCT_CART(?, ?, ?)}";
     private final String GET_BEST_SALE = "{CALL GET_TOP_SALE_PRODUCTS()}";
     private final String GET_RECOMMEND_PRODUCT = "{CALL GET_RECOMMEND_PRODUCT()}";
+    private final String UPDATE_VIEW_PRODUCT = "{CALL UPDATE_VIEW_PRODUCT(?)}";
 
     private final String GET_STATUS_FAVOURITE_PRODUCT = "{CALL CHECK_FAVORITE_STATUS(?, ?)}";
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -70,7 +72,7 @@ public class ProductDAO implements ProductInterface{
     }
 
     @Override
-    public void createProduct(Product product) throws SQLException, ClassNotFoundException {
+    public void createProduct(Product product,String tag) throws SQLException, ClassNotFoundException {
         Connection connection = getConnection();
         CallableStatement callableStatement = connection.prepareCall(CREATE_PRODUCT_QUERY);
         callableStatement.setString(1, product.getIdMerchant());
@@ -81,6 +83,10 @@ public class ProductDAO implements ProductInterface{
         callableStatement.setString(6, product.getNote());
         callableStatement.setDouble(7, product.getSale());
         callableStatement.setDouble(8, product.getServiceFee());
+        callableStatement.executeQuery();
+        callableStatement = connection.prepareCall(CREATE_TAG);
+        callableStatement.setString(1, product.getIdMerchant());
+        callableStatement.setString(2,tag);
         callableStatement.executeQuery();
     }
 
@@ -339,9 +345,15 @@ public class ProductDAO implements ProductInterface{
         callableStatement.setInt(2, idProduct);
         callableStatement.registerOutParameter(3, Types.VARCHAR);
 
-        callableStatement.execute();
+        callableStatement.executeQuery();
 
         status = callableStatement.getString(3);
         return status;
+    }
+
+    public void viewProduct(String idProduct) throws SQLException, ClassNotFoundException {
+        CallableStatement callableStatement = getConnection().prepareCall(UPDATE_VIEW_PRODUCT);
+        callableStatement.setString(1, idProduct);
+        callableStatement.execute();
     }
 }
