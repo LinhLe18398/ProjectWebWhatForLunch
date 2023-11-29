@@ -70,7 +70,8 @@
 
                     <li style="padding-top: 8px">
                         <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
-                           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản phẩm</a>
+                           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
+                            phẩm</a>
                     </li>
 
 
@@ -96,8 +97,6 @@
 </div>
 
 
-
-
 <div class="item item3">
     <div class="notification-div">
         <hr class="hr"/>
@@ -115,49 +114,50 @@
         <div class="content-box">
             <div>
                 <div class="form-group" id="form-group">
-                        <div class="form-search-two">
-                            <div class="form-input-four">
-                                <input class="search-sp" type="text" name="filter"
-                                       placeholder="Nhập năm cần tìm">
-                                <i class="fa fa-search"></i>
-                            </div>
-
+                    <div class="form-search-two">
+                        <div class="form-input-four">
+                            <input class="search-sp" type="text" name="filter"
+                                   placeholder="Nhập năm cần tìm">
+                            <i class="fa fa-search"></i>
                         </div>
 
-
-                        <div class="form-search-one">
-
-                            <select id="search-value-quarter" name="search-value-quarter">
-                                <option value="" >Quý</option>
-                                <option value="1">Quý 1</option>
-                                <option value="2">Quý 2</option>
-                                <option value="3">Quý 3</option>
-                                <option value="4">Quý 4</option>
-                            </select>
-
-<%--                            <select id="search-value-month" name="search-value-month" onchange="exchangeQuarterMonth()">--%>
-<%--                                <option value="" >Tháng</option>--%>
-<%--                                <option value="1">Tháng 1</option>--%>
-<%--                                <option value="2">Tháng 2</option>--%>
-<%--                                <option value="3">Tháng 3</option>--%>
-<%--                                <option value="4">Tháng 4</option>--%>
-<%--                                <option value="5">Tháng 5</option>--%>
-<%--                                <option value="6">Tháng 6</option>--%>
-<%--                                <option value="7">Tháng 7</option>--%>
-<%--                                <option value="8">Tháng 8</option>--%>
-<%--                                <option value="9">Tháng 9</option>--%>
-<%--                                <option value="10">Tháng 10</option>--%>
-<%--                                <option value="11">Tháng 11</option>--%>
-<%--                                <option value="12">Tháng 12</option>--%>
-<%--                            </select>--%>
-
-<%--                            <input type="date" name="idBill" id="search-value-day">--%>
-
-
-                        </div>
-                        <button class="sp-search reset" type="submit" onclick="totalAmount()">Tìm kiếm</button>
-                        <button class="sp-return" type="submit"><a class="nav-link" href="/bill?action=income-merchant" style="text-decoration: none" >Đặt lại</a></button>
                     </div>
+
+
+                    <div class="form-search-one">
+
+                        <select id="search-value-quarter" name="search-value-quarter" onchange="exchangeQuarterMonth()">
+                            <option value="">Quý</option>
+                            <option value="1">Quý 1</option>
+                            <option value="2">Quý 2</option>
+                            <option value="3">Quý 3</option>
+                            <option value="4">Quý 4</option>
+                        </select>
+
+                        <select id="search-value-month" name="search-value-month" onchange="exchangeQuarterMonth()">
+                            <option value="">Tháng</option>
+                            <option value="1">Tháng 1</option>
+                            <option value="2">Tháng 2</option>
+                            <option value="3">Tháng 3</option>
+                            <option value="4">Tháng 4</option>
+                            <option value="5">Tháng 5</option>
+                            <option value="6">Tháng 6</option>
+                            <option value="7">Tháng 7</option>
+                            <option value="8">Tháng 8</option>
+                            <option value="9">Tháng 9</option>
+                            <option value="10">Tháng 10</option>
+                            <option value="11">Tháng 11</option>
+                            <option value="12">Tháng 12</option>
+                        </select>
+
+                        <input type="date" name="date" id="search-value-day">
+
+
+                    </div>
+                    <button class="sp-search reset" type="submit" onclick="totalAmount()">Tìm kiếm</button>
+                    <button class="sp-return" type="submit"><a class="nav-link" href="/bill?action=income-merchant"
+                                                               style="text-decoration: none">Đặt lại</a></button>
+                </div>
             </div>
 
             <div class="sum-number">
@@ -180,13 +180,13 @@
             </div>
             <br/>
             <table id="table-order">
-                 <tr>
+                <tr>
                     <th>Thời gian đặt</th>
                     <th>Người đặt</th>
                     <th>Tổng món</th>
                     <th>Tổng tiền</th>
                 </tr>
-                 <c:forEach items="${billList}" var="billList">
+                <c:forEach items="${billList}" var="billList">
                     <tr>
                         <td>${billList.getTimeOrder()}</td>
                         <td>${billList.getRecipientName()}</td>
@@ -194,7 +194,7 @@
                         <td class="price">${billList.getFinalTotal()}</td>
                     </tr>
                 </c:forEach>
-             </table>
+            </table>
         </div>
     </div>
 </div>
@@ -294,20 +294,29 @@
         }
     }
 
+
     function returnDisplay() {
         const productTable = document.getElementById('table-order');
         const tableRows = productTable.getElementsByTagName('tr');
         for (let i = 1; i < tableRows.length; i++) {
             tableRows[i].style.display = "";
         }
-        addValueTotal(0,0);
+        addValueTotal(0, 0);
     }
 
+    function totalAmount() {
 
-
-    function revenueYear() {
         const inputYear = document.querySelector('.search-sp[name="filter"]');
         const filterValue = inputYear.value;
+
+        const optionQuarter = document.getElementById("search-value-quarter");
+        const quarter = optionQuarter.value;
+
+        const optionMonth = document.getElementById("search-value-month");
+        const monthValue = optionMonth.value;
+
+        const optionDay = document.getElementById("search-value-day");
+        const dayValue = optionDay.value;
 
         const productTable = document.getElementById('table-order');
         const tableRows = productTable.getElementsByTagName('tr');
@@ -317,49 +326,33 @@
 
         returnDisplay();
 
-        for (let i = 1; i < tableRows.length; i++) {
-            const row = tableRows[i];
+        if (filterValue != "" && quarter == "" & monthValue == "" && dayValue == "") {
 
-            const dateCell = row.cells[0];
-            const dateString = dateCell.textContent;
-            const year = getDateComponent(dateString, "year");
+            for (let i = 1; i < tableRows.length; i++) {
+                const row = tableRows[i];
 
-            const amountCell = row.cells[3];
-            const amount = amountCell.textContent;
-            const number = convertPrice(amount);
+                const dateCell = row.cells[0];
+                const dateString = dateCell.textContent;
+                const year = getDateComponent(dateString, "year");
 
+                const amountCell = row.cells[3];
+                const amount = amountCell.textContent;
+                const number = convertPrice(amount);
 
-            if (year === filterValue) {
-                countBill ++;
-                totalAmount += number;
-            } else {
-                tableRows[i].style.display = "none";
+                if (year === filterValue) {
+                    countBill++;
+                    totalAmount += number;
+                } else {
+                    tableRows[i].style.display = "none";
+                }
+
             }
-
-        }
-        addValueTotal(totalAmount, countBill);
-        if (countBill == 0) {
-            alert("Không có sản phẩm nào");
-            returnDisplay();
-        }
-    }
-    function totalAmount() {
-        const inputYear = document.querySelector('.search-sp[name="filter"]');
-        const filterValue = inputYear.value;
-
-        const optionQuarter = document.getElementById("search-value-quarter");
-        const quarter = optionQuarter.value;
-
-        if (quarter == "") {
-            revenueYear();
-        } else {
-            returnDisplay();
-
-            const productTable = document.getElementById('table-order');
-            const tableRows = productTable.getElementsByTagName('tr');
-
-            let countBill = 0;
-            let totalAmount = 0;
+            addValueTotal(totalAmount, countBill);
+            if (countBill == 0) {
+                alert("Không có sản phẩm nào theo năm!");
+                returnDisplay();
+            }
+        } else if (filterValue != "" && quarter != "" & monthValue == "" && dayValue == "") {
 
             for (let i = 1; i < tableRows.length; i++) {
                 const row = tableRows[i];
@@ -395,7 +388,6 @@
                                 totalAmount += number;
                             } else {
                                 tableRows[i].style.display = "none";
-
                             }
                             break;
                         case "3":
@@ -419,18 +411,196 @@
                     }
 
                 }
+            }
+            addValueTotal(totalAmount, countBill);
+            if (countBill == 0) {
+                alert("Không có sản phẩm nào theo quý!");
+                returnDisplay();
+
+            }
+        } else if (filterValue != "" && quarter != "" && monthValue != "" && dayValue == "") {
+
+            for (let i = 1; i < tableRows.length; i++) {
+                const row = tableRows[i];
+
+
+                const dateCell = row.cells[0];
+                const dateString = dateCell.textContent;
+                const year = getDateComponent(dateString, "year");
+                let month = getDateComponent(dateString, "month");
+
+
+                if (month[0] == "0") {
+                    month = month[1];
+                }
+
+                const amountCell = row.cells[3];
+                const amount = amountCell.textContent;
+                const number = convertPrice(amount);
+
+
+                if (year === filterValue && month === monthValue) {
+                    countBill++;
+                    totalAmount += number;
+                } else {
+                    tableRows[i].style.display = "none";
+                }
 
 
             }
             addValueTotal(totalAmount, countBill);
             if (countBill == 0) {
-                alert("Không có sản phẩm nào");
+                alert("Không có sản phẩm nào theo tháng!");
+                returnDisplay();
+            }
+        } else if (filterValue == "" && quarter == "" && monthValue == "" && dayValue != "") {
+
+            let yearInput = getDateComponent(dayValue, "year");
+            let monthInput = getDateComponent(dayValue, "month");
+            let dayInput = getDateComponent(dayValue, "day");
+
+            if (monthInput[0] == "0") {
+                monthInput = monthInput[1];
+            }
+
+            for (let i = 1; i < tableRows.length; i++) {
+                const row = tableRows[i];
+
+                const dateCell = row.cells[0];
+                const dateString = dateCell.textContent;
+                let yearTd = getDateComponent(dateString, "year");
+                let monthTd = getDateComponent(dateString, "month");
+                let dayTd = getDateComponent(dateString, "day");
+
+                if (monthTd[0] == "0") {
+                    monthTd = monthTd[1];
+                }
+
+                const amountCell = row.cells[3];
+                const amount = amountCell.textContent;
+                const number = convertPrice(amount);
+
+
+                if (yearInput = yearTd && monthInput == monthTd && dayInput == dayTd) {
+                    countBill++;
+                    totalAmount += number;
+                } else {
+                    tableRows[i].style.display = "none";
+                }
+            }
+
+            addValueTotal(totalAmount, countBill);
+            if (countBill == 0) {
+                alert("Không có sản phẩm nào theo ngày!");
+                returnDisplay();
+            }
+
+        } else if (dayValue != "") {
+            if (filterValue == "" && quarter == "" && monthValue != "" ||
+                filterValue == "" && quarter != "" && monthValue != "" ||
+                filterValue != "" && quarter == "" && monthValue == "" ||
+                filterValue != "" && quarter != "" && monthValue == "" ||
+                filterValue != "" && quarter != "" && monthValue != "" ||
+                filterValue != "" && quarter == "" && monthValue != "" ||
+                filterValue == "" && quarter != "" && monthValue == "" )
+            {
+                alert("Khi nhập ngày các ô khác phải để trống!");
                 returnDisplay();
 
             }
         }
+
     }
 
+        function hideOptionMonth(num1, num2, num3) {
+            let monthSelect = document.getElementById("search-value-month");
+            let options = monthSelect.options;
+            if (num1 == 0) {
+                for (let i = 0; i < options.length; i++) {
+                    let option = options[i];
+                    option.style.display = "";
+
+                }
+            } else {
+                for (let i = 0; i < options.length; i++) {
+                    let option = options[i];
+                    let value = parseInt(option.value);
+
+                    if (value == num1 || value == num2 || value == num3) {
+                        option.style.display = "";
+                    } else {
+                        option.style.display = "none";
+                    }
+                }
+            }
+            options[0].style.display = "";
+        }
+
+        function hideOptionQuarter(number) {
+            let quarterSelect = document.getElementById("search-value-quarter");
+            let options = quarterSelect.options;
+            if (number == "") {
+                for (let i = 0; i < options.length; i++) {
+                    let option = options[i];
+                    option.style.display = "";
+
+                }
+            } else {
+                for (let i = 0; i < options.length; i++) {
+                    let option = options[i];
+                    option.style.display = "none";
+                    if (i === 1 && (number == 1 || number == 2 || number == 3)) {
+                        option.style.display = "";
+                    }
+                    if (i === 2 && (number == 4 || number == 5 || number == 6)) {
+                        option.style.display = "";
+                    }
+                    if (i === 3 && (number == 7 || number == 8 || number == 9)) {
+                        option.style.display = "";
+                    }
+                    if (i === 4 && (number == 10 || number == 11 || number == 12)) {
+                        option.style.display = "";
+                    }
+                }
+            }
+            options[0].style.display = "";
+        }
+
+        function exchangeQuarterMonth() {
+            const optionQuarter = document.getElementById("search-value-quarter");
+            const optionMonth = document.getElementById("search-value-month");
+
+            let quarter = optionQuarter.value;
+            let month = optionMonth.value;
+            if (quarter == "") {
+                hideOptionMonth(0, 0, 0);
+                hideOptionQuarter("");
+            }
+            if (month == "") {
+                hideOptionQuarter("");
+            }
+            if (quarter != "") {
+                switch (quarter) {
+                    case "1":
+                        hideOptionMonth(1, 2, 3)
+                        break;
+                    case "2":
+                        hideOptionMonth(4, 5, 6);
+                        break;
+                    case "3":
+                        hideOptionMonth(7, 8, 9);
+                        break;
+                    case "4":
+                        hideOptionMonth(10, 11, 12);
+                        break;
+                }
+            }
+
+            if (month != "") {
+                hideOptionQuarter(month);
+            }
+
+        }
 
 </script>
 
