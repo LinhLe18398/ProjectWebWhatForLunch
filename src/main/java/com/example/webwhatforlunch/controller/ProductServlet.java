@@ -63,29 +63,34 @@ public class ProductServlet extends HttpServlet {
                 updateQuantity(req, resp);
                 break;
             case "dish-detail":
-                try {
                     getProductByIdToDishDetail(req,resp);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
                 break;
         }
     }
 
-    private void getProductByIdToDishDetail(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+    private void getProductByIdToDishDetail(HttpServletRequest req, HttpServletResponse resp){
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
+        try {
+            String productId = req.getParameter("productId");
+            productDAO.viewProduct(productId);
+            Product product = productDAO.getProductById(productId);
+            req.setAttribute("product",product);
+            req.setAttribute("user", user);
+            List<Product> productRecommend = productDAO.getRecommendProduct();
+            req.setAttribute("productRecommend", productRecommend);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
+            requestDispatcher.forward(req,resp);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-        String productId = req.getParameter("productId");
-        Product product = productDAO.getProductById(productId);
-        req.setAttribute("product",product);
-        req.setAttribute("user", user);
-        List<Product> productRecommend = productDAO.getRecommendProduct();
-        req.setAttribute("productRecommend", productRecommend);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("product/dish-details.jsp");
-        requestDispatcher.forward(req,resp);
     }
 
     private void showProductInCart(HttpServletRequest req, HttpServletResponse resp) {
@@ -198,10 +203,10 @@ public class ProductServlet extends HttpServlet {
         String note = req.getParameter("product_note");
         int sale = Integer.parseInt(req.getParameter("product_promotionalPrice"));
         int serviceFee = Integer.parseInt(req.getParameter("product_serviceCharge"));
-
+        String tag = req.getParameter("tag_product");
 
         Product product = new Product(productName, productImage, waiTime, price, note, sale, serviceFee, idMerchant);
-        productDAO.createProduct(product);
+        productDAO.createProduct(product,tag);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("product/product-create-form.jsp");
         dispatcher.forward(req, resp);

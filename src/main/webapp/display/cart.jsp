@@ -153,7 +153,7 @@
 </div>
 
 <div class="container" style="padding-top: 25px">
-    <p style="color: red;font-size: 13px">Lưu ý: Một lần mua bạn chỉ có thể mua từ một cửa hàng.</p>
+    <p style="color: red;font-size: 17px">Lưu ý: Một lần mua bạn chỉ có thể mua từ một cửa hàng.</p>
 </div>
 
 
@@ -191,13 +191,13 @@
                     <a style="margin-right: 8px; margin-top: 8px"
                        href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=0"><i
                             class="fa-solid fa-minus"></i></a>
-                    <input class="form-control quantity-input" id="quantity${pro.idProduct}" value="${pro.quantity}"
+                    <input class="form-control quantity-input " id="quantity${pro.idProduct}" value="${pro.quantity}"
                            type="text">
                     <a style="margin-left: 6px; margin-top: 8px"
-                       href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i
+                       href="/products?action=update-quantity&id=${pro.idProduct}&isAdd=1"><i       
                             class="fa-solid fa-plus"></i></a>
                 </td>
-                <td data-th="Subtotal" class="text-center"></td>
+                <td data-th="Subtotal" class="text-center price"></td>
 
                     <td class="actions" data-th="">
                         <input type="hidden" class="${pro.idMerchant} merchantlist" value="${pro.idMerchant}" id="merchant_${pro.idProduct}">
@@ -291,7 +291,7 @@
         let numberElement = numberElements[i];
         let number = parseInt(numberElement.textContent);
         let formattedNumber = number.toLocaleString();
-        numberElement.textContent = formattedNumber + " ₫";
+        numberElement.textContent = formattedNumber;
     }
 
     var form = document.getElementById('myForm');

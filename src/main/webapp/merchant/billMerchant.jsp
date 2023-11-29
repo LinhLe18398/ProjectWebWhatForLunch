@@ -67,33 +67,24 @@
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a href="#" id="a" onclick="listClick(this.id)"--%>
-<%--                           style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none">Quản lí sản--%>
-<%--                            phẩm</a>--%>
-<%--                    </li>--%>
-<%--                    <li style="padding-top: 8px">--%>
-<%--                        <a href="#" id="b" onclick="listClick(this.id)"--%>
-<%--                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>--%>
-<%--                    </li>--%>
-    <li style="padding-top: 8px">
-        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
-           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
-            phẩm</a>
-    </li>
-    <li style="padding-top: 8px">
-        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
-           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
-    </li>
+
+                    <li style="padding-top: 8px">
+                        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
+                           style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
+                            phẩm</a>
+                    </li>
+                    <li style="padding-top: 8px">
+                        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
+                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
+                    </li>
+
                     <li class="nav-item dropdown" style="margin-left: 20px">
-                        <a class="nav-link" href="/products?action=cart" role="button" aria-expanded="false"
-                           style="color: white; font-size: 19px; ">
-                            Giỏ hàng
-                        </a>
+                        <a class="nav-link" href="/bill?action=income-merchant" role="button" aria-expanded="false"
+                           style="color: white; font-size: 19px; ">Doanh thu</a>
                     </li>
 
                     <li style="padding-top: 8px">
-                        <a style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none; margin-left: 30px"
+                        <a style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none; margin-left: 20px"
                            href="/users?action=home">Đăng xuất</a>
                     </li>
                 </ul>
@@ -129,7 +120,7 @@
                 <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>
                 <div class="group-button" onclick="changeColor(4)">Đang giao</div>
                 <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>
-<%--                <div class="group-button" onclick="changeColor(6)">Huỷ</div>--%>
+                <%--                <div class="group-button" onclick="changeColor(6)">Huỷ</div>--%>
                 <div class="group-button" onclick="changeColor(6)">Đơn đã huỷ</div>
             </div>
 
@@ -187,21 +178,21 @@
                             <div>
                                 <c:choose>
                                     <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
-                                        <button class="ip-delete" type="submit"
+                                        <button class="ip-delete" type="submit" style="background: white; border: none"
                                                 onclick="declineStatus(${billList.idBill})">
                                             <i class="fa fa-x"></i>
                                         </button>
-                                        <button class="ip-update" type="submit"
+                                        <button style="background: white; border: none" class="ip-update" type="submit"
                                                 onclick="approveStatus(${billList.idBill})">
                                             <i class="fa fa-check"></i>
                                         </button>
-                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                        <button style="background: white; border: none" class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </c:when>
 
                                     <c:otherwise>
-                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                        <button style="background: white; border: none" class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </c:otherwise>
@@ -355,9 +346,6 @@
             if (buttonIndex == 6 && cellValue !== ("Nhà hàng từ chối đơn" || "Khách hàng huỷ đơn")) {
                 tr.style.display = "none";
                 sumOrder--;
-            } else if (buttonIndex == 6 && cellValue !== ("Huỷ")) {
-                tr.style.display = "none";
-                sumOrder--;
             }
             document.getElementById("sum-order").textContent = sumOrder + " Đơn hàng";
         }
@@ -373,9 +361,9 @@
             case "Đã hoàn thành":
                 cell.style.color = "green";
                 break;
-            case "Huỷ":
-                cell.style.color = "red";
-                break;
+            // case "Huỷ":
+            //     cell.style.color = "red";
+            //     break;
             case "Nhà hàng từ chối đơn":
                 cell.style.color = "red";
                 break;
