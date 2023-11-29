@@ -291,7 +291,7 @@
         let numberElement = numberElements[i];
         let number = parseInt(numberElement.textContent);
         let formattedNumber = number.toLocaleString();
-        numberElement.textContent = formattedNumber + "₫";
+        numberElement.textContent = formattedNumber + " ₫";
     }
 
     var form = document.getElementById('myForm');
@@ -366,17 +366,21 @@
 
     function remoteMerchant(idMerchant) {
         let index = merchantList.indexOf(idMerchant);
-
         if (index !== -1) {
             merchantList.splice(index, 1);
         }
-
         document.getElementById("btnn").disabled = false;
-        for (let i = 0; i < merchantList.length; i++) {
-            if (merchantList[i] != idMerchant) {
-                document.getElementById("btnn").disabled = true;
+        let mainMerchant = merchantList[0];
+        if (merchantList.length > 1) {
+            for (let i = 0; i < merchantList.length; i++) {
+                console.log(merchantList[i] + "a:b" + idMerchant);
+                if (merchantList[i] != mainMerchant) {
+                    console.log(true);
+                    document.getElementById("btnn").disabled = true;
+                }
             }
         }
+
     }
 
     let allIdProductChecked = "";
