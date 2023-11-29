@@ -186,7 +186,7 @@
             <div class="input-box">
                 <label>Tiền giảm giá</label>
                 <input id="product_promotional price" name="product_sale"
-                        required="" value="${product.getSale()}" type="number" />
+                       required="" value="${product.getSale()}" type="number" />
             </div>
             <div class="input-box">
                 <label>Tiền dịch vụ</label>

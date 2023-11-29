@@ -215,9 +215,9 @@
         let li = liElements[i];
         let liElement = li.textContent;
         li.classList.add("complete");
-        if (liElement == "Chờ nhận hàng" && status == "Huỷ") {
-            li.innerHTML = "Huỷ";
-
+        if (liElement == "Chờ nhận hàng" &&
+            (status == "Nhà hàng từ chối đơn" || status == "Khách hàng huỷ đơn")) {
+            li.innerHTML = status;
             break;
         }
 

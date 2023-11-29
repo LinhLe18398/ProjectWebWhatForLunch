@@ -307,11 +307,6 @@
         let li = liElements[i];
         let liElement = li.textContent;
         li.classList.add("complete");
-        // if (liElement == "Chờ nhận hàng" && status == "Huỷ") {
-        //     li.innerHTML = "Huỷ";
-        //     break;
-        // }
-
         if (liElement == "Chờ nhận hàng" &&
             (status == "Nhà hàng từ chối đơn" || status == "Khách hàng huỷ đơn")) {
             li.innerHTML = status;
