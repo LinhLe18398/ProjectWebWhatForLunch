@@ -503,7 +503,7 @@ public class UserServlet extends HttpServlet {
 
         String phoneNumber = req.getParameter("phoneNumber");
         String birthday = req.getParameter("birthday");
-        String img = new String(req.getParameter("img").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String img = req.getParameter("img");
         String address = new String(req.getParameter("address").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
         user = new User(id, name, gender, phoneNumber, birthday, img, address);

@@ -93,9 +93,11 @@ public class Product {
         this.orders = orders;
     }
 
-    public Product(String idProduct, String productName, String productImg, int price, String note, int quantity) {
+    public Product(String idProduct,String idMerchant ,String productName,String restaurantName ,String productImg, int price, String note, int quantity) {
         this.idProduct = idProduct;
+        this.idMerchant = idMerchant;
         this.productName = productName;
+        this.restaurantName = restaurantName;
         this.productImg = productImg;
         this.price = price;
         this.note = note;
