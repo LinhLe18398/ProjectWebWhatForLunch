@@ -66,7 +66,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 590px">
 
                     <li style="padding-top: 8px">
                         <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
