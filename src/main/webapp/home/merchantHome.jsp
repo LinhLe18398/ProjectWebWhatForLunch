@@ -131,9 +131,9 @@
         <div class="content-box">
             <p class="list"> Quản lý sản phẩm
                 <span>
-                            <button class="ip-add" type="submit"><a style="text-decoration: none"
+                            <button class="ip-add" type="submit"><a style="text-decoration: none; color: white"
                                                                     href="/products?action=create-product">+Thêm</a></button>
-                            <button class="ip-selectAll" type="submit"><a style="text-decoration: none"
+                            <button class="ip-selectAll" type="submit"><a style="text-decoration: none; color: black"
                                                                           href="/products?action=home-merchant">Quay lại</a></button>
                     </span>
             </p>
