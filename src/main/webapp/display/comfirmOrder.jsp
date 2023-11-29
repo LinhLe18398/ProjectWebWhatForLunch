@@ -403,8 +403,8 @@
                 </tr>
                 <tr style="float: left;padding-top: 10px">
                      <td style="float: left;border: none">
-                          <a style="float: left;text-decoration: none;color: #FF7F3F;" href="/users?action=home"><i
-                                  class="fa fa-angle-left"></i>Trang Chủ</a>
+                          <a style="float: left;text-decoration: none;color: #FF7F3F;" href="/products?action=cart"><i
+                                  class="fa fa-angle-left"></i>Trở về</a>
                      </td>
                 </tr>
            </tfoot>

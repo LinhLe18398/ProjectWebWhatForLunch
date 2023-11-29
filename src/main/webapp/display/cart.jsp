@@ -102,7 +102,6 @@
     }
 
 </style>
-</style>
 
 <body>
 <div class="header container">
@@ -112,7 +111,7 @@
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/users?action=home"
-                   style="color: white; font-size: 20px;padding-top: 14px">Trang
+                   style="color: white; font-size: 20px;padding-top: 14px;padding-left: 96px">Trang
                     chủ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -153,17 +152,12 @@
     </div>
 </div>
 
-
-<nav>
-    <div class="container">
-        <div style="color:#FF7F3F ; padding: 20px ; font-size: 50px">
-            &#128722; | Giỏ hàng
-        </div>
-    </div>
-</nav>
+<div class="container" style="padding-top: 25px">
+    <p style="color: red;font-size: 13px">Lưu ý: Một lần mua bạn chỉ có thể mua từ một cửa hàng.</p>
+</div>
 
 
-<div class="container" style="min-height: 500px">
+<div class="container" style="min-height: 500px;padding-top: 17px">
     <table id="cart" class="table table-hover table-condensed" style=" min-height: 300px">
         <thead>
         <tr>
@@ -185,7 +179,7 @@
                         </div>
                         <div class="col-sm-10">
                             <h4 class="nomargin"
-                                style="padding-left: 5px; margin-left: 18px; font-weight: bold;font-size: 20px">${pro.productName}</h4>
+                                style="padding-left: 5px; margin-left: 18px; font-weight: bold;font-size: 20px">${pro.productName} - ${pro.restaurantName}</h4>
                             <p style="padding-left: 5px; margin-left: 18px">${pro.note}</p>
                         </div>
                     </div>
@@ -205,10 +199,11 @@
                 </td>
                 <td data-th="Subtotal" class="text-center"></td>
 
-                <td class="actions" data-th="">
-                    <input type="checkbox" id="${pro.idProduct}" name="check" onclick="sumProduct(this.id)">
-                    <input type="text" id="checkbox" name="check" value="${pro.idProduct}" hidden="hidden">
-                </td>
+                    <td class="actions" data-th="">
+                        <input type="hidden" class="${pro.idMerchant} merchantlist" value="${pro.idMerchant}" id="merchant_${pro.idProduct}">
+                        <input type="checkbox" class="${pro.idMerchant} merchantlist"  id="${pro.idProduct}" name="check" onclick="sumProduct(this.id)">
+                        <input type="text" id="checkbox_${pro.idProduct}" name="check" value="${pro.idProduct}" hidden="hidden">
+                    </td>
 
             </tr>
         </c:forEach>
@@ -217,12 +212,12 @@
         <tr>
             <td><a href="/users?action=home"
                    style="color:#FF7F3F; margin-top: 15px; font-size: 20px;text-decoration: none"><i
-                    class="fa fa-angle-left"></i>Trang Chủ</a>
+                    class="fa fa-angle-left"></i>Trang chủ</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><h4 id="my-sum"></h4></td>
             <td>
-                <form action="/users?action=order" method="post">
+                <form action="/users?action=order" method="post" >
                     <input type="submit" id="btnn" class="btn btn-success btn-block" value="Mua"
                            style="width: 107px; height: 37px; font-size: 16px; margin-top: 15px">
                     <input hidden="hidden" type="text" id="idProduct" name="idProduct" value="${param.idProduct}">
@@ -289,12 +284,14 @@
 </html>
 <script>
 
+
+    let merchantList = [];
     let numberElements = document.getElementsByClassName("price");
     for (let i = 0; i < numberElements.length; i++) {
         let numberElement = numberElements[i];
         let number = parseInt(numberElement.textContent);
         let formattedNumber = number.toLocaleString();
-        numberElement.textContent = formattedNumber + "₫";
+        numberElement.textContent = formattedNumber + " ₫";
     }
 
     var form = document.getElementById('myForm');
@@ -333,19 +330,57 @@
 
     function sumProduct(thisId) {
         let checkBox = document.getElementById(thisId);
+        let merchantClass = Array.from(checkBox.classList);
         let idQuantity = "quantity" + thisId;
         let idPrice = "price" + thisId;
 
         let quantity = Number(document.getElementById(idQuantity).value);
         let price = Number(document.getElementById(idPrice).value);
+
         if (checkBox.checked) {
             priceCart = priceCart + (quantity * price);
             addDataIntoFormHidden(thisId, quantity, true);
+            checkMerchant(merchantClass[0]);
         } else {
             priceCart = priceCart - (quantity * price);
             addDataIntoFormHidden(thisId, quantity, false);
+            remoteMerchant(merchantClass[0]);
         }
-        document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + "₫";
+
+        document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + " ₫";
+    }
+
+    function checkMerchant(idMerchant){
+        if (merchantList.length < 1) {
+            merchantList.push(idMerchant);
+        } else {
+            document.getElementById("btnn").disabled = false;
+            for (let i = 0; i < merchantList.length; i++) {
+                if (merchantList[i] != idMerchant) {
+                    document.getElementById("btnn").disabled = true;
+                }
+            }
+            merchantList.push(idMerchant);
+        }
+    }
+
+    function remoteMerchant(idMerchant) {
+        let index = merchantList.indexOf(idMerchant);
+        if (index !== -1) {
+            merchantList.splice(index, 1);
+        }
+        document.getElementById("btnn").disabled = false;
+        let mainMerchant = merchantList[0];
+        if (merchantList.length > 1) {
+            for (let i = 0; i < merchantList.length; i++) {
+                console.log(merchantList[i] + "a:b" + idMerchant);
+                if (merchantList[i] != mainMerchant) {
+                    console.log(true);
+                    document.getElementById("btnn").disabled = true;
+                }
+            }
+        }
+
     }
 
     let allIdProductChecked = "";
