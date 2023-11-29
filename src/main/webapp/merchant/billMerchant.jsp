@@ -67,15 +67,7 @@
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
-                        <%--                    <li style="padding-top: 8px">--%>
-                        <%--                        <a href="#" id="a" onclick="listClick(this.id)"--%>
-                        <%--                           style="color: white; font-size: 19px; padding-right: 35px; text-decoration: none">Quản lí sản--%>
-                        <%--                            phẩm</a>--%>
-                        <%--                    </li>--%>
-                        <%--                    <li style="padding-top: 8px">--%>
-                        <%--                        <a href="#" id="b" onclick="listClick(this.id)"--%>
-                        <%--                           style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>--%>
-                        <%--                    </li>--%>
+
                     <li style="padding-top: 8px">
                         <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
                            style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
