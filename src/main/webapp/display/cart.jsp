@@ -153,7 +153,7 @@
 </div>
 
 <div class="container" style="padding-top: 25px">
-    <p style="color: red;font-size: 13px">Lưu ý: Một lần mua bạn chỉ có thể mua từ một cửa hàng.</p>
+    <p style="color: red;font-size: 17px">Lưu ý: Một lần mua bạn chỉ có thể mua từ một cửa hàng.</p>
 </div>
 
 
