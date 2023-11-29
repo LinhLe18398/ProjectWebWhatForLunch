@@ -114,7 +114,7 @@
     <div class="col-div-12">
         <div class="content-box">
             <div>
-                <div class="form-group">
+                <div class="form-group" id="form-group">
                         <div class="form-search-two">
                             <div class="form-input-four">
                                 <input class="search-sp" type="text" name="filter"
@@ -128,35 +128,35 @@
                         <div class="form-search-one">
 
                             <select id="search-value-quarter" name="search-value-quarter">
-                                <option value="0">Quý</option>
+                                <option value="" >Quý</option>
                                 <option value="1">Quý 1</option>
                                 <option value="2">Quý 2</option>
                                 <option value="3">Quý 3</option>
                                 <option value="4">Quý 4</option>
                             </select>
 
-                            <select id="search-value-month" name="search-value-month">
-                                <option value="">Tháng</option>
-                                <option value="1">Tháng 1</option>
-                                <option value="2">Tháng 2</option>
-                                <option value="3">Tháng 3</option>
-                                <option value="4">Tháng 4</option>
-                                <option value="5">Tháng 5</option>
-                                <option value="6">Tháng 6</option>
-                                <option value="7">Tháng 7</option>
-                                <option value="8">Tháng 8</option>
-                                <option value="9">Tháng 9</option>
-                                <option value="10">Tháng 10</option>
-                                <option value="11">Tháng 11</option>
-                                <option value="12">Tháng 12</option>
-                            </select>
+<%--                            <select id="search-value-month" name="search-value-month" onchange="exchangeQuarterMonth()">--%>
+<%--                                <option value="" >Tháng</option>--%>
+<%--                                <option value="1">Tháng 1</option>--%>
+<%--                                <option value="2">Tháng 2</option>--%>
+<%--                                <option value="3">Tháng 3</option>--%>
+<%--                                <option value="4">Tháng 4</option>--%>
+<%--                                <option value="5">Tháng 5</option>--%>
+<%--                                <option value="6">Tháng 6</option>--%>
+<%--                                <option value="7">Tháng 7</option>--%>
+<%--                                <option value="8">Tháng 8</option>--%>
+<%--                                <option value="9">Tháng 9</option>--%>
+<%--                                <option value="10">Tháng 10</option>--%>
+<%--                                <option value="11">Tháng 11</option>--%>
+<%--                                <option value="12">Tháng 12</option>--%>
+<%--                            </select>--%>
 
-                            <input type="date" name="idBill" id="search-value-day">
+<%--                            <input type="date" name="idBill" id="search-value-day">--%>
 
 
                         </div>
                         <button class="sp-search reset" type="submit" onclick="totalAmount()">Tìm kiếm</button>
-                        <button class="sp-return" type="submit" onclick="returnDisplay()">Đặt lại</button>
+                        <button class="sp-return" type="submit"><a class="nav-link" href="/bill?action=income-merchant" style="text-decoration: none" >Đặt lại</a></button>
                     </div>
             </div>
 
@@ -348,7 +348,7 @@
         const filterValue = inputYear.value;
 
         const optionQuarter = document.getElementById("search-value-quarter");
-        const quarter = parseInt(optionQuarter.value);
+        const quarter = optionQuarter.value;
 
         if (quarter == "") {
             revenueYear();
@@ -380,7 +380,7 @@
 
                 if (year === filterValue) {
                     switch (quarter) {
-                        case 1:
+                        case "1":
                             if (month == "1" || month == "2" || month == "3") {
                                 countBill++;
                                 totalAmount += number;
@@ -389,7 +389,7 @@
 
                             }
                             break;
-                        case 2:
+                        case "2":
                             if (month == "4" || month == "5" || month == "6") {
                                 countBill++;
                                 totalAmount += number;
@@ -398,7 +398,7 @@
 
                             }
                             break;
-                        case 3:
+                        case "3":
                             if (month == "7" || month == "8" || month == "9") {
                                 countBill++;
                                 totalAmount += number;
@@ -407,7 +407,7 @@
 
                             }
                             break;
-                        case 4:
+                        case "4":
                             if (month == "10" || month == "11" || month == "12") {
                                 countBill++;
                                 totalAmount += number;
@@ -430,14 +430,7 @@
             }
         }
     }
-    function exchangeQuarterMonth() {
-        const optionQuarter = document.getElementById("search-value-quarter");
-        const optionMonth = document.getElementById("search-value-quarter");
 
-        if (quarter != "") {
-        }
-
-    }
 
 </script>
 
