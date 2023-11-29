@@ -78,15 +78,15 @@
                            style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
                     </li>
 
-                            <li class="nav-item dropdown" style="margin-left: 20px">
-                                <a class="nav-link" href="/bill?action=income-merchant" role="button" aria-expanded="false"
-                                   style="color: white; font-size: 19px; ">Doanh thu</a>
-                            </li>
+                    <li class="nav-item dropdown" style="margin-left: 20px">
+                        <a class="nav-link" href="/bill?action=income-merchant" role="button" aria-expanded="false"
+                           style="color: white; font-size: 19px; ">Doanh thu</a>
+                    </li>
 
-                            <li style="padding-top: 8px">
-                                <a style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none; margin-left: 20px"
-                                   href="/users?action=home">Đăng xuất</a>
-                            </li>
+                    <li style="padding-top: 8px">
+                        <a style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none; margin-left: 20px"
+                           href="/users?action=home">Đăng xuất</a>
+                    </li>
                 </ul>
             </div>
             </c:if>

@@ -398,7 +398,7 @@ table p {
 .ip-add a,
 .ip-selectAll a {
     text-decoration: none;
- }
+}
 .ip-selectAll:hover {
     background: rgb(233, 228, 228);
 }
@@ -505,5 +505,3 @@ table p {
     right: 10px;
     transform: translateY(-50%);
 }
-
-

@@ -178,21 +178,21 @@
                             <div>
                                 <c:choose>
                                     <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
-                                        <button class="ip-delete" type="submit"
+                                        <button class="ip-delete" type="submit" style="background: white; border: none"
                                                 onclick="declineStatus(${billList.idBill})">
                                             <i class="fa fa-x"></i>
                                         </button>
-                                        <button class="ip-update" type="submit"
+                                        <button style="background: white; border: none" class="ip-update" type="submit"
                                                 onclick="approveStatus(${billList.idBill})">
                                             <i class="fa fa-check"></i>
                                         </button>
-                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                        <button style="background: white; border: none" class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </c:when>
 
                                     <c:otherwise>
-                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                        <button style="background: white; border: none" class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </c:otherwise>
