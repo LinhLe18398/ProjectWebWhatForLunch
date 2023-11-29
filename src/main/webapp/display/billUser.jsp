@@ -80,8 +80,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light"
              style="background-color: rgb(255,255,255,0) !important;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/users?action=home"
-                   style="color: white; font-size: 20px;padding-right: 650px">Trang
+                <a class="navbar-brand" href="/users?action=home" style="color: white; font-size: 20px;padding-right: 650px">Trang
                     chủ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -153,7 +152,23 @@
                     <p style="font-size: 24px; text-align: center"><i class="fa-solid fa-comments fa-beat-fade"></i></p>
                 </div>
                 <div style="justify-content: flex-end; padding-top: 15px; padding-right:25px;display: flex; height: 25px; margin-left: 30px">
-                    <c:set var="billStatus" value="${listBillUser.getBillStatus()}"/>
+                        <%--                    <p id="billStatus" style="font-size: 30px;--%>
+                        <%--                    <c:choose>--%>
+                        <%--                    <c:when test="${billStatus eq 'Đã hoàn thành'}">--%>
+                        <%--                            color: green;--%>
+                        <%--                    </c:when>--%>
+                        <%--                    <c:when test="${billStatus eq 'Đang chế biến'}">--%>
+                        <%--                            color: orange;--%>
+                        <%--                    </c:when>--%>
+                        <%--                    <c:when test="${billStatus eq 'Huỷ'}">--%>
+                        <%--                            color: red;--%>
+                        <%--                    </c:when>--%>
+                        <%--                    <c:otherwise>--%>
+                        <%--                            color: black;--%>
+                        <%--                    </c:otherwise>--%>
+                        <%--                    </c:choose>">--%>
+                        <%--                            ${listBillUser.getBillStatus()}</p>--%>
+                    <c:set var="billStatus" value="${listBillUser.getBillStatus()}" />
 
                     <p id="billStatus1" style="font-size: 30px;
                     <c:choose>
@@ -204,15 +219,13 @@
                        style="display:inline; font-size: 25px; font-weight: bold">${listBillUser.getFinalTotal()}</p>
                 </div>
                 <div>
-                    <p style="justify-content:flex-start; color: grey; font-size: 18px">Đặt
-                        ngày ${listBillUser.getTimeOrder()}</p>
+                    <p style="justify-content:flex-start; color: grey; font-size: 18px">Đặt ngày ${listBillUser.getTimeOrder()}</p>
                     <div style="display: flex; justify-content: flex-end; text-align: center; padding-bottom: 10px; ">
                         <c:choose>
                             <c:when test="${listBillUser.getBillStatus() == 'Chờ nhận hàng'}">
                                 <button style="display: inline; height: 45px; width: 190px"
                                         type="submit" class="btn btn-outline-danger"
-                                        onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn
-                                </button>
+                                        onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
 
                             <%--                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">--%>
@@ -225,8 +238,7 @@
                             listBillUser.getBillStatus() == 'Đã hoàn thành' }">
                                 <button style="display: inline;  height: 45px; width: 190px;"
                                         type="submit" class="btn btn-outline-danger"
-                                        onclick="location.href='/products?action=cart' ">Mua lại
-                                </button>
+                                        onclick="location.href='/products?action=cart' ">Mua lại</button>
                             </c:when>
 
                             <%--                            <c:otherwise>--%>
@@ -235,18 +247,14 @@
                             <%--                            </c:otherwise>--%>
                             <c:otherwise>
                                 <button style="display: inline;  height: 45px; width: 190px; color: orangered"
-                                        type="submit" class="btn btn-outline-danger" disabled>Đang giao
-                                </button>
+                                        type="submit" class="btn btn-outline-danger" disabled>Đang giao</button>
                             </c:otherwise>
                         </c:choose>
 
                         <button style="display: inline; margin-left: 22px;height: 45px; width: 190px"
-                                type="submit" class="btn btn-outline-danger"
-                                onclick="showDetailBill(${listBillUser.getIdBill()})">Xem chi tiết đơn
-                        </button>
+                                type="submit" class="btn btn-outline-danger" onclick="showDetailBill(${listBillUser.getIdBill()})">Xem chi tiết đơn</button>
                         <button style="display: inline; margin-left: 22px; ;height: 45px; width: 190px"
-                                type="submit" class="btn btn-outline-danger">Liên hệ cửa hàng
-                        </button>
+                                type="submit" class="btn btn-outline-danger">Liên hệ cửa hàng</button>
                     </div>
 
                 </div>
@@ -257,6 +265,8 @@
     <input type="text" hidden="hidden" id="idBill" name="idBill" value="">
     <input type="text" hidden="hidden" id="active" name="active" value="">
 </form>
+
+
 
 
 <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 100px">
@@ -311,6 +321,8 @@
 
 
 </body>
+
+
 
 
 <script>
