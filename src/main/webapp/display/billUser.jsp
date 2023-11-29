@@ -152,45 +152,45 @@
                     <p style="font-size: 24px; text-align: center"><i class="fa-solid fa-comments fa-beat-fade"></i></p>
                 </div>
                 <div style="justify-content: flex-end; padding-top: 15px; padding-right:25px;display: flex; height: 25px; margin-left: 30px">
-<%--                    <p id="billStatus" style="font-size: 30px;--%>
-<%--                    <c:choose>--%>
-<%--                    <c:when test="${billStatus eq 'Đã hoàn thành'}">--%>
-<%--                            color: green;--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${billStatus eq 'Đang chế biến'}">--%>
-<%--                            color: orange;--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${billStatus eq 'Huỷ'}">--%>
-<%--                            color: red;--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                            color: black;--%>
-<%--                    </c:otherwise>--%>
-<%--                    </c:choose>">--%>
-<%--                            ${listBillUser.getBillStatus()}</p>--%>
-    <c:set var="billStatus" value="${listBillUser.getBillStatus()}" />
+                        <%--                    <p id="billStatus" style="font-size: 30px;--%>
+                        <%--                    <c:choose>--%>
+                        <%--                    <c:when test="${billStatus eq 'Đã hoàn thành'}">--%>
+                        <%--                            color: green;--%>
+                        <%--                    </c:when>--%>
+                        <%--                    <c:when test="${billStatus eq 'Đang chế biến'}">--%>
+                        <%--                            color: orange;--%>
+                        <%--                    </c:when>--%>
+                        <%--                    <c:when test="${billStatus eq 'Huỷ'}">--%>
+                        <%--                            color: red;--%>
+                        <%--                    </c:when>--%>
+                        <%--                    <c:otherwise>--%>
+                        <%--                            color: black;--%>
+                        <%--                    </c:otherwise>--%>
+                        <%--                    </c:choose>">--%>
+                        <%--                            ${listBillUser.getBillStatus()}</p>--%>
+                    <c:set var="billStatus" value="${listBillUser.getBillStatus()}" />
 
-    <p id="billStatus1" style="font-size: 30px;
-    <c:choose>
-    <c:when test="${billStatus eq 'Đã hoàn thành'}">
-             color: green;
-    </c:when>
-    <c:when test="${billStatus eq 'Khách hàng huỷ đơn'}">
-           color: red;
-    </c:when>
-    <c:when test="${billStatus eq 'Đang chế biến'}">
-             color: orange;
-    </c:when>
-    <c:when test="${billStatus eq 'Nhà hàng từ chối đơn'}">
-            color: red;
-    </c:when>
+                    <p id="billStatus1" style="font-size: 30px;
+                    <c:choose>
+                    <c:when test="${billStatus eq 'Đã hoàn thành'}">
+                            color: green;
+                    </c:when>
+                    <c:when test="${billStatus eq 'Khách hàng huỷ đơn'}">
+                            color: red;
+                    </c:when>
+                    <c:when test="${billStatus eq 'Đang chế biến'}">
+                            color: orange;
+                    </c:when>
+                    <c:when test="${billStatus eq 'Nhà hàng từ chối đơn'}">
+                            color: red;
+                    </c:when>
 
-    <c:otherwise>
-             color: black;
-    </c:otherwise>
-    </c:choose>">
-            ${billStatus}
-    </p>
+                    <c:otherwise>
+                            color: black;
+                    </c:otherwise>
+                            </c:choose>">
+                            ${billStatus}
+                    </p>
                 </div>
             </div>
             <hr style="margin-top:35px; color: black;">
@@ -228,10 +228,10 @@
                                         onclick="cancelBill(${listBillUser.getIdBill()})">Huỷ đơn</button>
                             </c:when>
 
-<%--                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">--%>
-<%--                                <button style="display: inline;  height: 45px; width: 190px;"--%>
-<%--                                        type="submit" class="btn btn-outline-danger">Mua lại</button>--%>
-<%--                            </c:when>--%>
+                            <%--                            <c:when test="${listBillUser.getBillStatus() == 'Huỷ' || listBillUser.getBillStatus() == 'Đã hoàn thành' }">--%>
+                            <%--                                <button style="display: inline;  height: 45px; width: 190px;"--%>
+                            <%--                                        type="submit" class="btn btn-outline-danger">Mua lại</button>--%>
+                            <%--                            </c:when>--%>
                             <c:when test="${
                             listBillUser.getBillStatus() == 'Nhà hàng từ chối đơn' ||
                             listBillUser.getBillStatus() == 'Khách hàng huỷ đơn'   ||
@@ -241,10 +241,10 @@
                                         onclick="location.href='/products?action=cart' ">Mua lại</button>
                             </c:when>
 
-<%--                            <c:otherwise>--%>
-<%--                                <button style="display: inline;  height: 45px; width: 190px; color: orangered"--%>
-<%--                                        type="submit" class="btn btn-outline-dark" disabled>Đang giao</button>--%>
-<%--                            </c:otherwise>--%>
+                            <%--                            <c:otherwise>--%>
+                            <%--                                <button style="display: inline;  height: 45px; width: 190px; color: orangered"--%>
+                            <%--                                        type="submit" class="btn btn-outline-dark" disabled>Đang giao</button>--%>
+                            <%--                            </c:otherwise>--%>
                             <c:otherwise>
                                 <button style="display: inline;  height: 45px; width: 190px; color: orangered"
                                         type="submit" class="btn btn-outline-danger" disabled>Đang giao</button>

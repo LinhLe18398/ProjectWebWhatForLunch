@@ -156,7 +156,6 @@
     <p style="color: red;font-size: 17px">Lưu ý: Một lần mua bạn chỉ có thể mua từ một cửa hàng.</p>
 </div>
 
-
 <div class="container" style="min-height: 500px;padding-top: 17px">
     <table id="cart" class="table table-hover table-condensed" style=" min-height: 300px">
         <thead>
@@ -283,7 +282,6 @@
 </body>
 </html>
 <script>
-
 
     let merchantList = [];
     let numberElements = document.getElementsByClassName("price");

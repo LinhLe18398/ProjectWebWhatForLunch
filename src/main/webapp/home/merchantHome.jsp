@@ -24,7 +24,7 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Merchant Home</title>
+    <title>WhatForLunch</title>
 
     <style>
         .header {
@@ -66,7 +66,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 590px">
 
                     <li style="padding-top: 8px">
                         <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
@@ -131,9 +131,9 @@
         <div class="content-box">
             <p class="list"> Quản lý sản phẩm
                 <span>
-                            <button class="ip-add" type="submit"><a style="text-decoration: none"
+                            <button class="ip-add" type="submit"><a style="text-decoration: none; color: white"
                                                                     href="/products?action=create-product">+Thêm</a></button>
-                            <button class="ip-selectAll" type="submit"><a style="text-decoration: none"
+                            <button class="ip-selectAll" type="submit"><a style="text-decoration: none; color: black"
                                                                           href="/products?action=home-merchant">Quay lại</a></button>
                     </span>
             </p>

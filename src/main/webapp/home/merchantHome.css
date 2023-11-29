@@ -385,12 +385,13 @@ table p {
 .ip-add {
     background-color:orange;
     color:  white;
-    border-radius: 3px 0px 0px 3px;
+    margin-left: 10px;
+    border-radius: 3px;
 }
 .ip-selectAll {
     padding-left: 0px;
     border: 1px solid black;
-    border-radius: 0px 3px 3px 0px;
+    border-radius:3px;
     background-color: white;
     color: black;
 }
