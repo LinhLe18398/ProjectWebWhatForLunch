@@ -197,10 +197,10 @@ public class ProductServlet extends HttpServlet {
         String note = req.getParameter("product_note");
         int sale = Integer.parseInt(req.getParameter("product_promotionalPrice"));
         int serviceFee = Integer.parseInt(req.getParameter("product_serviceCharge"));
-
+        String tag = req.getParameter("tag_product");
 
         Product product = new Product(productName, productImage, waiTime, price, note, sale, serviceFee, idMerchant);
-        productDAO.createProduct(product);
+        productDAO.createProduct(product,tag);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("product/product-create-form.jsp");
         dispatcher.forward(req, resp);

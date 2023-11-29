@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductInterface {
     Product findProductByName(String idMerchant, String nameProduct) throws SQLException, ClassNotFoundException;
-    void createProduct(Product product) throws SQLException, ClassNotFoundException;
+    void createProduct(Product product,String tag) throws SQLException, ClassNotFoundException;
     boolean updateProduct(Product product) throws SQLException, ClassNotFoundException;
     boolean deleteProduct(String idProduct) throws SQLException, ClassNotFoundException;
     Product getProductById(String idProduct) throws SQLException, ClassNotFoundException;
