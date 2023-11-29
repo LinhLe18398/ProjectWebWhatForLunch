@@ -265,12 +265,14 @@ public class ProductDAO implements ProductInterface{
         ResultSet resultSet = callableStatement.executeQuery();
         while (resultSet.next()) {
             String idProduct = resultSet.getString("idProduct");
+            String idMerchant = resultSet.getString("idMerchant");
             String productName = resultSet.getString("productName");
+            String restaurantName = resultSet.getString("restaurantName");
             String productImg = resultSet.getString("productImg");
             int price = resultSet.getInt("price");
             String note = resultSet.getString("note");
             int quantity = resultSet.getInt("quantity");
-            productList.add(new Product(idProduct, productName, productImg, price, note, quantity));
+            productList.add(new Product(idProduct,idMerchant,productName, restaurantName,productImg, price, note, quantity));
 
         }
         return productList;
