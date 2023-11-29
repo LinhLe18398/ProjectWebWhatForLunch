@@ -98,6 +98,7 @@ public class ProductServlet extends HttpServlet {
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("user");
             List<Product> productCart = productDAO.getAllProductByIdUser(user.getId());
+
             req.setAttribute("productCart", productCart);
             RequestDispatcher dispatcher = req.getRequestDispatcher("display/cart.jsp");
             dispatcher.forward(req, resp);
