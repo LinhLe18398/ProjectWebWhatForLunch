@@ -385,7 +385,7 @@ table p {
 .ip-add {
     background-color:orange;
     color:  white;
-    margin-left: 10px;
+    margin-right: 10px;
     border-radius: 3px;
 }
 .ip-selectAll {

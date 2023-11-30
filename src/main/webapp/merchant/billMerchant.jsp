@@ -24,7 +24,7 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Merchant Home</title>
+    <title>WhatForLunch</title>
 
     <style>
         .header {
@@ -66,7 +66,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <c:if test="${sessionScope.isLogin==true}">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 590px">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 609px">
 
                     <li style="padding-top: 8px">
                         <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
@@ -178,21 +178,21 @@
                             <div>
                                 <c:choose>
                                     <c:when test="${billList.getBillStatus() == 'Chờ nhận hàng'}">
-                                        <button class="ip-delete" type="submit" style="background: white; border: none"
+                                        <button class="ip-delete" type="submit"
                                                 onclick="declineStatus(${billList.idBill})">
                                             <i class="fa fa-x"></i>
                                         </button>
-                                        <button style="background: white; border: none" class="ip-update" type="submit"
+                                        <button class="ip-update" type="submit"
                                                 onclick="approveStatus(${billList.idBill})">
                                             <i class="fa fa-check"></i>
                                         </button>
-                                        <button style="background: white; border: none" class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </c:when>
 
                                     <c:otherwise>
-                                        <button style="background: white; border: none" class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
+                                        <button class="ip-view" type="submit" onclick="showDetail(${billList.idBill})">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </c:otherwise>

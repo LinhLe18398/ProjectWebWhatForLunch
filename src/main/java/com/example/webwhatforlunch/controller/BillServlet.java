@@ -103,10 +103,6 @@ public class BillServlet extends HttpServlet {
         List<Bill> billList = billDAO.searchInMerchantBillList(idMerchant, idBill, numberPhone, nameUser, filter);
 
         try {
-//            request.setAttribute("billList", billList);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
-//            dispatcher.forward(request, response);
-
             request.setAttribute("billList", billList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("merchant/billMerchant.jsp");
             dispatcher.forward(request, response);
@@ -167,11 +163,6 @@ public class BillServlet extends HttpServlet {
 
     private void statusBill(HttpServletRequest request, HttpServletResponse response) {
         int number= Integer.parseInt(request.getParameter("active"));
-//        if (number == 2) {
-//            showDetailBillMerchant(request, response);
-//        } else {
-//            setStatusBill(request, response);
-//        }
         if (number == 3) {
             showDetailBillMerchant(request, response);
         } else {
@@ -184,22 +175,12 @@ public class BillServlet extends HttpServlet {
         int number = Integer.parseInt(request.getParameter("active"));
 
         try {
-//            switch (number) {
-//                case 0:
-//                    billDAO.cancelBill(idBill, 0);
-//                    break;
-//                case 1:
-//                    billDAO.acceptBill(idBill, 0);
-//                    break;
-//                default:
-//                    break;
-//            }
             switch (number) {
                 case 0:
-                    billDAO.cancelBill(idBill, 1);
+                    billDAO.cancelBill(idBill, 0);
                     break;
                 case 2:
-                    billDAO.acceptBill(idBill, 1);
+                    billDAO.acceptBill(idBill, 0);
                     break;
                 default:
                     break;
@@ -246,22 +227,6 @@ public class BillServlet extends HttpServlet {
         sendListToHomeMerchant(request, response);
     }
 
-//    private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
-//        HttpSession session = request.getSession();
-//        Merchant merchant = (Merchant) session.getAttribute("merchant");
-//        try {
-//            List<Bill> billList = billDAO.getBillMerchant(merchant.getIdMerchant());
-//            List<Product> productList = productDAO.getAllProductByIdMerchant(merchant.getIdMerchant());
-//            request.setAttribute("productList", productList);
-//            request.setAttribute("billList", billList);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("home/merchantHome.jsp");
-//            dispatcher.forward(request, response);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException | ServletException | IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 private void sendListToHomeMerchant(HttpServletRequest request, HttpServletResponse response) {
     HttpSession session = request.getSession();
     Merchant merchant = (Merchant) session.getAttribute("merchant");
@@ -281,19 +246,9 @@ private void sendListToHomeMerchant(HttpServletRequest request, HttpServletRespo
         int number = Integer.parseInt(request.getParameter("active"));
         System.out.println(number);
         try {
-//            switch (number) {
-//                case 3 :
-//                    billDAO.cancelBill(idBill, 0);
-//                    getListBillUser(request, response);
-//                    break;
-//                case 4 :
-//                    showDetailBillUser(request, response);
-//                default:
-//                    break;
-//            }
             switch (number) {
                 case 1 :
-                    billDAO.cancelBill(idBill, 0);
+                    billDAO.cancelBill(idBill, 1);
                     getListBillUser(request, response);
                     break;
                 case 4 :

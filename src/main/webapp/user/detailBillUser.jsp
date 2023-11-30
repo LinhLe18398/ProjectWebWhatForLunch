@@ -215,9 +215,15 @@
         let li = liElements[i];
         let liElement = li.textContent;
         li.classList.add("complete");
-        if (liElement == "Chờ nhận hàng" && status == "Huỷ") {
-            li.innerHTML = "Huỷ";
+        if (liElement == "Chờ nhận hàng" &&
+            (status == "Nhà hàng từ chối đơn" || status == "Khách hàng huỷ đơn")) {
+            if (status == "Khách hàng huỷ đơn") {
+                li.innerHTML = "Đơn đã huỷ";
+                li.style.color = "red";
+            } else {
+                li.innerHTML = status;
 
+            }
             break;
         }
 
@@ -227,7 +233,6 @@
             break;
         }
     }
-
 
     let numberElements = document.getElementsByClassName("price");
     for (let i = 0; i < numberElements.length; i++) {
