@@ -222,10 +222,7 @@
                             listBillUser.getBillStatus() == 'Nhà hàng từ chối đơn' ||
                             listBillUser.getBillStatus() == 'Khách hàng huỷ đơn'   ||
                             listBillUser.getBillStatus() == 'Đã hoàn thành' }">
-<%--                                <button style="display: inline;  height: 45px; width: 190px;"--%>
-<%--                                        type="submit" class="btn btn-outline-danger"--%>
-<%--                                        onclick="location.href='/users?action=order&user=${user}' ">Mua lại--%>
-<%--                                </button>--%>
+
                             </c:when>
 
 
@@ -240,9 +237,7 @@
                                 type="submit" class="btn btn-outline-danger"
                                 onclick="showDetailBill(${listBillUser.getIdBill()})">Xem chi tiết đơn
                         </button>
-<%--                        <button style="display: inline; margin-left: 22px; ;height: 45px; width: 190px"--%>
-<%--                                type="submit" class="btn btn-outline-danger">Liên hệ cửa hàng--%>
-<%--                        </button>--%>
+
                     </div>
 
                 </div>

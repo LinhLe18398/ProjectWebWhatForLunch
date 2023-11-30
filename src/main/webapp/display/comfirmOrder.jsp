@@ -530,12 +530,23 @@
     let listId = document.getElementById("listId");
     let listQuantity = document.getElementById("listQuantity");
 
+    function convertToCurrencyString(number) {
+        let str = number.toString();
+        let dotIndex = str.length - 3;
+        while (dotIndex > 0) {
+            str = str.slice(0, dotIndex) + "." + str.slice(dotIndex);
+            dotIndex -= 3;
+        }
+        str += "₫";
+        return str;
+    }
+
     for (let i = 0; i < price.length; i++) {
         let dataPrice = price[i].innerHTML;
         let dataQuantity = quantity[i].innerHTML;
         let totalPrice = dataPrice * dataQuantity;
-        total[i].innerHTML = totalPrice + " ₫";
-        price[i].innerHTML = dataPrice + " ₫";
+        total[i].innerHTML = convertToCurrencyString(totalPrice);
+        price[i].innerHTML = convertToCurrencyString(dataPrice);
         quantity[i].innerHTML = dataQuantity;
         listId.value += "/" + id[i].value;
         listQuantity.value += "/" + quantity[i].innerHTML;
@@ -544,7 +555,7 @@
     console.log(listId.value)
     console.log(listQuantity.value)
 
-    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + totalProduct + " ₫";
+    document.getElementById("totalAll").innerHTML = "Tổng Thanh Toán: " + convertToCurrencyString(totalProduct);
 
     function openForm() {
         let address = document.getElementsByClassName("card-address");

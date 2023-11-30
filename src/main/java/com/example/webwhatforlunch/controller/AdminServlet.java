@@ -87,9 +87,8 @@ public class  AdminServlet extends HttpServlet {
                 List<Merchant> merchantList = userDAO.showMerchant();
                 req.setAttribute("merchant", merchantList);
                 dispatcher = req.getRequestDispatcher("home/homeAdmin.jsp");
-                dispatcher.forward(req, resp);
             } else {
-                JOptionPane.showMessageDialog(null, "thông tin email hoặc mật khẩu sai");
+                req.setAttribute("MKS", "MKS");
                 dispatcher = req.getRequestDispatcher("admin/admin-login-form.jsp");
             }
             dispatcher.forward(req, resp);
