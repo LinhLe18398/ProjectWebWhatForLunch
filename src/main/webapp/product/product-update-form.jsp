@@ -194,7 +194,7 @@
                        required=""  value="${product.getServiceFee()}" type="text"/>
             </div>
         </div>
-        <button>Sửa món ăn</button>
+        <button type="submit">Sửa món ăn</button>
         <a href="/products?action=home-merchant" style="text-decoration: none;width: 100%;margin-top: 3px" class="btn btn-outline-primary">Trở về</a>
     </form>
 </section>

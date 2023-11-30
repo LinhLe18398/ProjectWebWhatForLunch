@@ -186,13 +186,19 @@
                     <th>Tổng món</th>
                     <th>Tổng tiền</th>
                 </tr>
+
                 <c:forEach items="${billList}" var="billList">
-                    <tr>
-                        <td>${billList.getTimeOrder()}</td>
-                        <td>${billList.getRecipientName()}</td>
-                        <td>${billList.GetTotalQuantity()}</td>
-                        <td class="price">${billList.getFinalTotal()}</td>
-                    </tr>
+                    <c:choose>
+                        <c:when test="${billList.getBillStatus() == 'Đã hoàn thành'}">
+                            <tr>
+                                <td>${billList.getTimeOrder()}</td>
+                                <td>${billList.getRecipientName()}</td>
+                                <td>${billList.GetTotalQuantity()}</td>
+                                <td class="price">${billList.getFinalTotal()}</td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
+
                 </c:forEach>
             </table>
         </div>

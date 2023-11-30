@@ -71,9 +71,9 @@
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                        <input type="text" id="form3Example1n"
+                        <input type="email" id="form3Example1n"
                                class="form-control form-control-lg"
-                               placeholder="số điện thoại" name="restaurantPhoneNumber">
+                               placeholder="email" name="restaurantPhoneNumber">
                       </div>
                     </div>
                   </div>
@@ -81,9 +81,9 @@
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                        <input type="email" id="form3Example1m1"
+                        <input type="text" id="form3Example1m1"
                                class="form-control form-control-lg"
-                               placeholder="email" name="restaurantEmail">
+                               placeholder="số điện thoại" name="restaurantEmail">
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">

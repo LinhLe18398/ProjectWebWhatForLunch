@@ -169,14 +169,14 @@
                         <span class="detail-tm">Thời gian đặt</span>&emsp;
                         &emsp;&nbsp;<span class="detail-sp-tm" id="timeStart"><c:out value="${bill.getTimeOrder()}"/></span><br>
                         <span class="detail-tm">Thời gian dự kiến </span>
-                        <span class="detail-sp-tm" id="timeEnd"><c:out value="${bill.getTimeWait()}"/></span>
+                        <span class="detail-sp-tm" id="timeEnd"> <c:out value="${bill.getTimeWait()}"/></span>
                     </div>
                 </div>
 
                 <hr>
 
                 <div class="detail-orders">
-                    <h3 class="detail-h3">MÃ ĐƠN HÀNG. <c:out value="${bill.getIdBill()}"/></h3>
+                    <h3 class="detail-h3">MÃ ĐƠN HÀNG: <c:out value="${bill.getIdBill()}"/></h3>
                     <hr>
                 </div>
 

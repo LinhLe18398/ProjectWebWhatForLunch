@@ -63,7 +63,7 @@ public class ProductServlet extends HttpServlet {
                 updateQuantity(req, resp);
                 break;
             case "dish-detail":
-                    getProductByIdToDishDetail(req,resp);
+                getProductByIdToDishDetail(req,resp);
                 break;
         }
     }

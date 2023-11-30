@@ -144,7 +144,7 @@
              style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em; padding: 15px;  width: auto; margin-top: 30px">
             <div class="header-bill">
                 <div style="background-color: orangered; width: 70px;padding-top: 1px ;margin-top: 15px; float: left; height: 25px; margin-left: 30px">
-                    <p style="color: white; font-size: 14px; text-align: center">Yêu thích</p>
+                    <p style="color: white; font-size: 14px; text-align: center">Nhà hàng</p>
                 </div>
                 <div style="margin-top: 15px; float: left; margin-left: 30px">
                     <p style="font-weight: bold;">${listBillUser.getRestaurantName()}</p>

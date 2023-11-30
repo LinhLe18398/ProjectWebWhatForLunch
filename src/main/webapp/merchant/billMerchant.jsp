@@ -120,7 +120,6 @@
                 <div class="group-button" onclick="changeColor(3)">Đã nhận món</div>
                 <div class="group-button" onclick="changeColor(4)">Đang giao</div>
                 <div class="group-button" onclick="changeColor(5)">Đã hoàn thành</div>
-                <%--                <div class="group-button" onclick="changeColor(6)">Huỷ</div>--%>
                 <div class="group-button" onclick="changeColor(6)">Đơn đã huỷ</div>
             </div>
 
@@ -339,11 +338,8 @@
                 sumOrder--;
             }
 
-            // if (buttonIndex == 6 && cellValue !== "Huỷ") {
-            //     tr.style.display = "none";
-            //     sumOrder--;
-            // }
-            if (buttonIndex == 6 && cellValue !== ("Nhà hàng từ chối đơn" || "Khách hàng huỷ đơn")) {
+            if (buttonIndex == 6 && cellValue !== "Nhà hàng từ chối đơn" ||
+                buttonIndex == 6 && cellValue != "Khách hàng huỷ đơn") {
                 tr.style.display = "none";
                 sumOrder--;
             }

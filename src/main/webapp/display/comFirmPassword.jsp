@@ -140,14 +140,14 @@
 <div class="overlay"></div>
 <div class="container">
 
-  <h1 style="margin-top: 50px">Login merchant</h1>
+  <h1 style="margin-top: 50px">Vào nhà hàng của bạn</h1>
 
   <form action="/users?action=comfirmpassword" method="post">
 
     <div class="form-control">
       <input type="password" id="password" placeholder="Password" name="password">
     </div>
-    <input style="margin-bottom: 100px" type="submit" value="Login"/>
+    <input style="margin-bottom: 100px" type="submit" value="Vào"/>
   </form>
 </div>
 </body>
