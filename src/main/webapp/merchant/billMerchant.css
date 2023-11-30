@@ -521,3 +521,52 @@ table p {
 
 
 /* ------------------------------------------------------------- */
+
+
+.ip-update, .ip-delete, .ip-view {
+    width: 35px;
+    height: 35px;
+    padding: 0px 2px;
+    margin: 2px;
+    white-space: nowrap;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: all 0.2s ease-out, color 0.2s ease-out;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+.ip-update {
+    background-color: transparent;
+    color: green;
+    border: none;
+}
+
+.ip-delete {
+    background-color: transparent;
+    color: red;
+    border: none;
+}
+
+.ip-view {
+    background-color: transparent;
+    color: brown;
+    border: none;
+}
+
+.ip-update i,
+.ip-delete i,
+.ip-view i {
+    text-align: center;
+    font-size: 20px; /* Tùy chỉnh kích thước biểu tượng */
+}
+
+.ip-delete:hover {
+    border: 1px solid red;
+}
+.ip-update:hover {
+    border: 1px solid green;
+}
+.ip-view:hover {
+    border: 1px solid brown;
+}

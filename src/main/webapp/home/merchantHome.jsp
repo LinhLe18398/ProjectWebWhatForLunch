@@ -69,12 +69,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 590px">
 
                     <li style="padding-top: 8px">
-                        <a href="/products?action=home-merchant" id="a" onclick="listClick(this.id)"
+                        <a href="/products?action=home-merchant"
                            style="color: white; font-size: 19px; padding-right: 30px; text-decoration: none">Quản lí sản
                             phẩm</a>
                     </li>
                     <li style="padding-top: 8px">
-                        <a href="/bill?action=bill-merchant" id="b" onclick="listClick(this.id)"
+                        <a href="/bill?action=bill-merchant"
                            style="color: white; font-size: 19px; text-decoration: none"> Quản lí đơn</a>
                     </li>
 

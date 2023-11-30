@@ -149,37 +149,37 @@
 
 <div class="container" style="padding-top: 37px">
   <h2>Danh sách đăng ký nhà hàng</h2>
-<form action="/admin?action=clickStatus" method="post">
-  <table class="table" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em;margin-top: 30px">
-    <tr>
-      <th scope="col">MerchantId</th>
-      <th scope="col">RestaurantName</th>
-      <th scope="col">RestaurantEmail</th>
-      <th scope="col">RestaurantPhone</th>
-      <th scope="col">RestaurantAddress</th>
-      <th scope="col">Status</th>
-    </tr>
-    <c:forEach items="${merchant}" var="merchantList">
-      <tr style="height: 68.7px">
-        <td>${merchantList.idMerchant}</td>
-        <td>${merchantList.restaurantName}</td>
-        <td>${merchantList.email}</td>
-        <td>${merchantList.numberPhone}</td>
-        <td>${merchantList.address}</td>
-        <td>${merchantList.status}
-          <div>
-            <c:if test="${merchantList.status == 'wait'}">
-              <button class="button-activity1" id="button1" type="submit" onclick="approveStatus(${merchantList.idUser})">&#10003;</button>
-              <button class="button-activity2" id="button2" type="submit" onclick="declineStatus(${merchantList.idUser})">&#10005;</button>
-            </c:if>
-          </div>
-        </td>
+  <form action="/admin?action=clickStatus" method="post">
+    <table class="table" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; box-sizing: inherit; margin-bottom: 10px; padding: 20px; box-sizing: inherit; line-height: 1.6em;margin-top: 30px">
+      <tr>
+        <th scope="col">MerchantId</th>
+        <th scope="col">RestaurantName</th>
+        <th scope="col">RestaurantEmail</th>
+        <th scope="col">RestaurantPhone</th>
+        <th scope="col">RestaurantAddress</th>
+        <th scope="col">Status</th>
       </tr>
-    </c:forEach>
-    <input type="text" hidden="hidden" id="idUser" name="how" value="">
-    <input type="text" hidden="hidden" id="active" name="active" value="">
-  </table>
-</form>
+      <c:forEach items="${merchant}" var="merchantList">
+        <tr style="height: 68.7px">
+          <td>${merchantList.idMerchant}</td>
+          <td>${merchantList.restaurantName}</td>
+          <td>${merchantList.email}</td>
+          <td>${merchantList.numberPhone}</td>
+          <td>${merchantList.address}</td>
+          <td>${merchantList.status}
+            <div>
+              <c:if test="${merchantList.status == 'wait'}">
+                <button class="button-activity1" id="button1" type="submit" onclick="approveStatus(${merchantList.idUser})">&#10003;</button>
+                <button class="button-activity2" id="button2" type="submit" onclick="declineStatus(${merchantList.idUser})">&#10005;</button>
+              </c:if>
+            </div>
+          </td>
+        </tr>
+      </c:forEach>
+      <input type="text" hidden="hidden" id="idUser" name="how" value="">
+      <input type="text" hidden="hidden" id="active" name="active" value="">
+    </table>
+  </form>
 </div>
 
 <footer class="text-center text-lg-start bg-light text-muted">

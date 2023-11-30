@@ -42,21 +42,18 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example3cg">Email</label>
                                     <input  type="email" id="form3Example3cg"
-                                           name="email"
-                                           class="form-control form-control-lg" placeholder="email"/>
+                                            name="email"
+                                            class="form-control form-control-lg" placeholder="email"/>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example4cg">Mật khẩu</label>
-                                    <input  type="password" id="form3Example4cg"
-                                           name="password"
-                                           class="form-control form-control-lg" placeholder="mật khẩu"/>
+                                    <input  type="password" id="form3Example4cg" name="password"
+                                            class="form-control form-control-lg" placeholder="mật khẩu"/>
 
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <button type="submit"
-                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng nhập
-                                    </button>
+                                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng nhập</button>
                                 </div>
                             </form>
                         </div>

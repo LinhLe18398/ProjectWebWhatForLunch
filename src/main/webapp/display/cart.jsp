@@ -183,8 +183,8 @@
                         </div>
                     </div>
                 </td>
-                <td data-th="Price">${pro.price} ₫</td>
-                <td data-th="Quantity" style="display: flex;padding-bottom: 70px">
+                <td data-th="Price" class="price">${pro.price}</td>
+                <td data-th="Quantity"  style="display: flex;padding-bottom: 70px">
                     <input type="hidden" value="${pro.price}" id="price${pro.idProduct}">
 
                     <a style="margin-right: 8px; margin-top: 8px"
@@ -284,13 +284,15 @@
 <script>
 
     let merchantList = [];
+
     let numberElements = document.getElementsByClassName("price");
     for (let i = 0; i < numberElements.length; i++) {
         let numberElement = numberElements[i];
         let number = parseInt(numberElement.textContent);
         let formattedNumber = number.toLocaleString();
-        numberElement.textContent = formattedNumber;
+        numberElement.textContent = formattedNumber + "₫";
     }
+
 
     var form = document.getElementById('myForm');
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -310,12 +312,27 @@
         }
     });
 
+    function convertToCurrencyString(number) {
+        let str = number.toString();
+        let dotIndex = str.length - 3;
+        while (dotIndex > 0) {
+            str = str.slice(0, dotIndex) + "." + str.slice(dotIndex);
+            dotIndex -= 3;
+        }
+         str += "₫";
+        return str;
+    }
+
+
     var rows = document.querySelectorAll("#cart tbody tr");
     rows.forEach(function (row) {
-        var price = parseFloat(row.querySelector("td[data-th='Price']").innerText);
+        let priceString = row.querySelector("td[data-th='Price']").innerText;
+        let price = parseInt(priceString.replace(/\D/g, ""), 10);
         var quantity = parseInt(row.querySelector(".form-control").value);
         var intoMoney = price * quantity;
-        row.querySelector("td[data-th='Subtotal']").innerText = intoMoney + " ₫";
+
+        row.querySelector("td[data-th='Subtotal']").innerText = convertToCurrencyString(intoMoney);
+
     });
 
     let total = 0;
@@ -345,7 +362,7 @@
             remoteMerchant(merchantClass[0]);
         }
 
-        document.getElementById("my-sum").textContent = "Tổng tiền: " + priceCart + " ₫";
+        document.getElementById("my-sum").textContent = "Tổng tiền: " + convertToCurrencyString(priceCart);
     }
 
     function checkMerchant(idMerchant){
